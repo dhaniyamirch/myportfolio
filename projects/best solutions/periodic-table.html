@@ -1,0 +1,439 @@
+<!doctype html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <script src="https://cdn.tailwindcss.com?plugins=forms,typography,aspect-ratio,line-clamp"></script>
+  <script src="https://cdn.tailwindcss.com?plugins=forms,typography,aspect-ratio,line-clamp"></script>
+  <link rel="stylesheet" href="style.css">
+  <!-- <script defer src="app.js"></script> -->
+  
+  <!-- navigation bar code is written here  -->
+  <style type="text/css">  
+    * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        
+    }
+
+    @import url('https://fonts.googleapis.com/css2?family=Zilla+Slab:wght@500&display=swap');
+
+    nav {
+        font-family: 'Zilla Slab', serif;
+        background: linear-gradient(45deg, #3b1cb8,rgba(178, 11, 220, 0.847),rgba(115, 34, 161, 0.852),rgba(106, 18, 113, 0.715) ,rgba(19, 20, 117, 0.783),rgba(16, 119, 188, 0.865));
+        padding: 10px 20px;
+    }
+
+    nav ul {
+        display: flex;
+        align-items: center;
+        list-style-type: none;
+        height: 80px;
+        color: aliceblue;
+    }
+
+    nav ul li {
+        padding: 0 20px;
+    }
+
+    .brand img {
+        width: 60px;
+        padding: 0 10px;
+        border-radius: 50%;
+    }
+
+    .brand {
+        display: flex;
+        align-items: center;
+        font-weight: bold;
+        font-size: 1.2rem;
+    }
+
+    .bor {
+        border-left: 1px solid aliceblue;
+    
+    }
+
+    .nounderline{
+        text-decoration: none;
+        color: #fff;
+    }
+
+    .right {
+        margin-left: auto;
+        padding-right: 20px;
+    }
+
+
+    .butt {
+        display: inline-block;
+        padding: 10px 20px;
+        font-size: 16px;
+        font-weight: bold;
+        color: #fff;
+        text-align: center;
+        text-decoration: none;
+        border: 2px solid #0e457d;
+        border-radius: 5px;
+        background-color: #040449;
+        transition: all 0.3s ease;
+    }
+
+
+    .butt:hover {
+        background-color: #052978;
+        color: #fff;
+    }
+      
+  </style>
+  
+  <style>
+    .animated-button { /*animated button code */
+        position: relative;   
+        overflow: hidden;
+    }
+
+    .animated-button button {
+        padding: 10px 20px;
+        background-color: #6B46C1;
+        color: white;
+        text-align: center;
+        text-decoration: none;
+        font-weight: bold;
+        border: none;
+        cursor: pointer;
+        transition: transform 0.2s ease-in-out;
+    }
+
+    .animated-button button:hover {
+        transform: scale(1.1); /* Scale the button by 10% on hover */
+    }
+    
+
+    .animated-button2 {  /*animated button code for button number 2 */
+        position: relative;
+        overflow: hidden;
+    }
+
+    .animated-button2 button {
+        padding: 11px 25px;
+        background-color: #6B46C1;
+        color: rgb(255, 255, 255);
+        text-align: center;
+        text-decoration: none;
+        font-weight: bold;
+        border: none;
+        cursor: pointer;
+        transition: transform 0.4s ease-in-out;
+    }
+
+    .animated-button2 button:hover {
+        transform: scale(1.05); 
+    }
+  </style>
+  <style>
+    .animated-button3 { /*animated button code for button number 3 */
+        position: relative;
+        overflow: hidden;
+    }
+
+    .animated-button3 button {
+        padding: 11px 25px;
+        background-color: gray-600;
+        color: rgb(255, 255, 255);
+        text-align: center;
+        text-decoration: none;
+        font-weight: bold;
+        border: none;
+        cursor: pointer;
+        transition: transform 0.4s ease-in-out;
+    }
+
+    .animated-button3 button:hover {
+        transform: scale(1.05); 
+    }
+  </style>
+
+  <style>
+    .container{
+      padding: 20px;
+      padding-left: 43%;
+      background: linear-gradient(45deg, #3b1cb8,rgba(178, 11, 220, 0.847),rgba(115, 34, 161, 0.852),rgba(106, 18, 113, 0.715) ,rgba(19, 20, 117, 0.783),rgba(16, 119, 188, 0.865));
+    }
+    .center {
+      width: 0px;
+      height: 60px;
+      position: absolute;
+    }
+    .btn {
+      
+      width: 180px;
+      height: 60px;
+      cursor: pointer;
+      background: transparent;
+      border: 1px solid #03111e;
+      outline: none;
+      transition: 1s ease-in-out; 
+    }
+
+    
+    svg {
+      position: absolute;
+
+      top: 0;
+      fill: none;
+      stroke: #22629d;
+      stroke-dasharray: 150 480;
+      stroke-dashoffset: 150;
+      transition: 1s ease-in-out;
+    }
+
+    .btn:hover {
+      transition: 1s ease-in-out;
+      background: #110543;
+    }
+
+    .btn:hover svg {
+      stroke-dashoffset: -480;
+    }
+
+    .btn span {
+      color: rgb(160, 118, 118);
+      font-size: 18px;
+      font-weight: 100;
+    }
+
+    .space{
+      margin: 50px;
+    }
+
+    footer {
+            text-align: center;
+            padding: 20px;
+            background-color: #030c24;
+            color: #fff;
+        }
+        
+  </style>
+
+  <title>Periodic Table</title>
+</head>
+<body>
+
+  <nav>
+    <ul>
+        <li class="brand"><img src="logo.jpg" alt="The Chemist's Notebook">The Chemist's Notebook </li>
+        <li class="bor"><a class="nounderline" href="blackhome.html">Home</a> </li>
+        <li class="bor"><a class="nounderline" href="about.html">About</a></li>
+        <li class="bor"><a class="nounderline" href="contact.html">Contact</a></li></li>
+        <li class="right"><a class="nounderline" href="more.html"><button class="butt">more </button></a></li>
+    </ul>
+
+</nav>
+
+  <section class="text-gray-400 body-font overflow-hidden bg-gray-900">  <!--whole bg colour of homepage-->
+    <div class="container px-5 py-24 mx-auto ">
+     
+
+      <div class="flex flex-col text-center w-full mb-20">
+        <div class="animated-button2">   <!--ussed to animate the main title with an pop up effect-->
+          <h1 class="sm:text-4xl text-3xl  font-medium title-font mb-2 text-white"><button > PERIODIC TABLE</button></button></h1>
+          <p class="lg:w-2/3 mx-auto leading-relaxed text-base">it is separarted in 4 different blocks.</p> <!--normal info-->
+        </div>
+       
+        <!-- it si the help button  -->
+        <!-- <div class="container">
+          <div class="center">
+            <button class="btn">
+              <svg width="180px" height="60px" viewBox="0 0 180 60" class="border">
+                <polyline points="179,1 179,59 1,59 1,1 179,1" class="bg-line" />
+                <polyline points="179,1 179,59 1,59 1,1 179,1" class="hl-line" />
+              </svg>
+              <span></span>
+            </button>
+          </div>
+        </div>
+          
+      </div> -->
+      <div class="space"></div>
+
+      <div class="pos flex flex-wrap -m-4 "><!--s block info fulll box -->
+        <div class="p-4 xl:w-1/4 md:w-1/2 w-full">
+          <div class="h-full p-6 rounded-lg border-2 border-purple-500 flex flex-col relative overflow-hidden">
+            <h2 class="text-sm tracking-widest text-gray-400 title-font mb-1 font-medium">1st and 2nd group elements</h2>
+            <h1 class="text-5xl text-white pb-4 mb-4 border-b border-gray-800 leading-none">s Block</h1>
+            <p class="flex items-center text-gray-400 mb-2">
+              <span class="w-4 h-4 mr-2 inline-flex items-center justify-center bg-purple-800 text-gray-00 rounded-full flex-shrink-0">
+                <svg fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" class="w-3 h-3" viewBox="0 0 24 24">
+                  <path d="M20 6L9 17l-5-5"></path>
+                </svg>
+              </span>The s-block elements play important roles in biological systems.as they<br> are found in tissues
+            </p>
+
+            <p class="flex items-center text-gray-400 mb-2">
+              <span class="w-4 h-4 mr-2 inline-flex items-center justify-center bg-purple-800 text-gray-00 rounded-full flex-shrink-0">
+                <svg fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" class="w-3 h-3" viewBox="0 0 24 24">
+                  <path d="M20 6L9 17l-5-5"></path>
+                </svg>
+              </span>The electron in s block elements <br> most outward electron shell are in the s-orbital. 
+            </p>
+
+            <p class="flex items-center text-gray-400 mb-6">
+              <span class="w-4 h-4 mr-2 inline-flex items-center justify-center bg-purple-800 text-gray-00 rounded-full flex-shrink-0">
+                <svg fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" class="w-3 h-3" viewBox="0 0 24 24">
+                  <path d="M20 6L9 17l-5-5"></path>
+                </svg>
+              </span>S- elements are famous for being ingredients in fireworks or any type of firecrackers.
+            </p> 
+            <a href="sblock.html">
+            <div class="animated-button2 ">  
+              <button class=" flex items-center mt-auto text-white bg-purple-500 border-0 py-2 px-4 w-full focus:outline-none hover:bg-purple-600 rounded">click here 
+                <svg fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" class="w-4 h-4 ml-auto" viewBox="0 0 24 24">
+                  <path d="M5 12h14M12 5l7 7-7 7"></path>
+                </svg>
+              </button>
+            </div>
+          </a>
+            <p class="text-xs text-gray-400 mt-3">click on the above link to get more info about s block.</p>
+          </div>
+        </div><!--end of s block info fulll box -->
+
+
+        <div class="p-4 xl:w-1/4 md:w-1/2 w-full"><!--p block info fulll box -->
+          <div class="h-full p-6 rounded-lg border-2 border-purple-500 flex flex-col relative overflow-hidden">
+            <h2 class="text-sm tracking-widest text-gray-400 title-font mb-1 font-medium">13th to 18th group elements</h2>
+            <h1 class="text-5xl text-white leading-none flex items-center pb-4 mb-4 border-b border-gray-800">
+              <span>p Block</span>
+            </h1>
+            <p class="flex items-center text-gray-400 mb-2">
+              <span class="w-4 h-4 mr-2 inline-flex items-center justify-center bg-purple-800 text-gray-00 rounded-full flex-shrink-0">
+                <svg fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" class="w-3 h-3" viewBox="0 0 24 24">
+                  <path d="M20 6L9 17l-5-5"></path>
+                </svg>
+              </span>The p-block elements are unified<br>  by the fact that their valence (outermost) electrons are in the p orbital.
+            </p>
+
+            <p class="flex items-center text-gray-400 mb-2">
+              <span class="w-4 h-4 mr-2 inline-flex items-center justify-center bg-purple-800 text-gray-00 rounded-full flex-shrink-0">
+                <svg fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" class="w-3 h-3" viewBox="0 0 24 24">
+                  <path d="M20 6L9 17l-5-5"></path>
+                </svg>
+              </span>The p-block elements show variable oxidation states usually differing <br> by multiples of two.
+            </p>
+            <p class="flex items-center text-gray-400 mb-2">
+              <span class="w-4 h-4 mr-2 inline-flex items-center justify-center bg-purple-800 text-gray-00 rounded-full flex-shrink-0">
+                <svg fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" class="w-3 h-3" viewBox="0 0 24 24">
+                  <path d="M20 6L9 17l-5-5"></path>
+                </svg>
+              </span>they show variable oxidation <br> states differing by multiples of two.
+            </p>
+            <a href="pblock.html">
+            <div class="animated-button2"> 
+              <button class="flex items-center mt-auto text-white bg-purple-500 border-0 py-2 px-4 w-full focus:outline-none hover:bg-purple-600 rounded">click here
+                <svg fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" class="w-4 h-4 ml-auto" viewBox="0 0 24 24">
+                  <path d="M5 12h14M12 5l7 7-7 7"></path>
+                </svg>
+              </button>
+            </div>
+            </a>  
+            <p class="text-xs text-gray-400 mt-3">click on the above link to get more info about p block.</p>
+          </div>
+        </div>  <!--end of p block info fulll box -->
+
+
+        <div class="p-4 xl:w-1/4 md:w-1/2 w-full"> <!--d block info fulll box -->
+          <div class="h-full p-6 rounded-lg border-2 border-purple-500 flex flex-col relative overflow-hidden">
+            <h2 class="text-sm tracking-widest text-gray-400 title-font mb-1 font-medium"> 3rd to 12th group elements</h2>
+            <h1 class="text-5xl text-white leading-none flex items-center pb-4 mb-4 border-b border-gray-800">
+              <span>d Block</span>
+            </h1>
+            <p class="flex items-center text-gray-400 mb-2">
+              <span class="w-4 h-4 mr-2 inline-flex items-center justify-center bg-purple-800 text-gray-00 rounded-full flex-shrink-0">
+                <svg fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" class="w-3 h-3" viewBox="0 0 24 24">
+                  <path d="M20 6L9 17l-5-5"></path>
+                </svg>
+              </span>Periods from the fourth onwards have a space for ten d-block elements.
+            </p>
+            <p class="flex items-center text-gray-400 mb-2">
+              <span class="w-4 h-4 mr-2 inline-flex items-center justify-center bg-purple-800 text-gray-00 rounded-full flex-shrink-0">
+                <svg fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" class="w-3 h-3" viewBox="0 0 24 24">
+                  <path d="M20 6L9 17l-5-5"></path>
+                </svg>
+              </span>The d-block elements are all metals and most have one or more chemically active d-orbital electrons.
+            </p>
+            <p class="flex items-center text-gray-400 mb-2">
+              <span class="w-4 h-4 mr-2 inline-flex items-center justify-center bg-purple-800 text-gray-00 rounded-full flex-shrink-0">
+                <svg fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" class="w-3 h-3" viewBox="0 0 24 24">
+                  <path d="M20 6L9 17l-5-5"></path>
+                </svg>
+              </span>The d-block elements have a tendency to exhibit two or more oxidation states, differing by multiples of one.
+            </p>
+            <a href="dblock.html">
+              <div class="animated-button2">   
+                <button class="flex items-center mt-auto text-white bg-purple-500 border-0 py-2 px-4 w-full focus:outline-none hover:bg-purple-600 rounded">click here
+                  <svg fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" class="w-4 h-4 ml-auto" viewBox="0 0 24 24">
+                    <path d="M5 12h14M12 5l7 7-7 7"></path>
+                  </svg>
+                </button>
+              </div>
+            </a>
+            <p class="text-xs text-gray-400 mt-3">click on the above link to get more info about d block.</p>
+          </div>
+        </div><!--end of d block info fulll box -->
+        
+
+        <div class="p-4 xl:w-1/4 md:w-1/2 w-full"> <!--f block info fulll box -->          
+          <div class="h-full p-6 rounded-lg border-2 border-purple-500 flex flex-col relative overflow-hidden">
+              <h2 class="text-sm tracking-widest text-gray-400 title-font mb-1 font-medium">lanthanides and actinides elements</h2>
+              <h1 class="text-5xl text-white leading-none flex items-center pb-4 mb-4 border-b border-gray-800">
+                <span>f Block</span>
+              </h1>
+              <p class="flex items-center text-gray-400 mb-2">
+                <span class="w-4 h-4 mr-2 inline-flex items-center justify-center bg-purple-800 text-gray-00 rounded-full flex-shrink-0">
+                  <svg fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" class="w-3 h-3" viewBox="0 0 24 24">
+                    <path d="M20 6L9 17l-5-5"></path>
+                  </svg>
+                </span>These elements have electrons <br> (1 to 14) in the f orbital,
+              </p>
+              <p class="flex items-center text-gray-400 mb-2">
+                <span class="w-4 h-4 mr-2 inline-flex items-center justify-center bg-purple-800 text-gray-00 rounded-full flex-shrink-0">
+                  <svg fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" class="w-3 h-3" viewBox="0 0 24 24">
+                    <path d="M20 6L9 17l-5-5"></path>
+                  </svg>
+                </span> the trivalent oxidation number or state of all f-block elements is a stable or common oxidation state.
+              </p>
+              <p class="flex items-center text-gray-400 mb-2">
+                <span class="w-4 h-4 mr-2 inline-flex items-center justify-center bg-purple-800 text-gray-00 rounded-full flex-shrink-0">
+                  <svg fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" class="w-3 h-3" viewBox="0 0 24 24">
+                    <path d="M20 6L9 17l-5-5"></path>
+                  </svg>
+                </span> The f-orbital electrons are less <br> active in the chemistry of the period<br>  6 f-block elements, although they do make some contribution.
+              </p>
+              <a href="fblock.html">
+                <div class="animated-button2">   
+                  <button class="flex items-center mt-auto text-white bg-purple-500 border-0 py-2 px-4 w-full focus:outline-none hover:bg-purple-600 rounded">click here
+                    <svg fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" class="w-4 h-4 ml-auto" viewBox="0 0 24 24">
+                      <path d="M5 12h14M12 5l7 7-7 7"></path>
+                    </svg>
+                  </button>
+                </div>
+              </a>
+              <p class="text-xs text-gray-400 mt-3">click on the above link to get more info about f block.</p>
+          </div>          
+        </div>  <!--end of f block info fulll box -->       
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <p>Thank you for joining us on this journey through the periodic table!</p>
+    <p>© 2023 Our Chemistry Project. All rights reserved.</p>
+</footer>
+
+</body>
+</html>
+
+
+
+

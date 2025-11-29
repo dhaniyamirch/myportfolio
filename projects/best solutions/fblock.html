@@ -1,0 +1,654 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>F-block</title>
+
+    <style type="text/css">
+        * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+    }
+
+    @import url('https://fonts.googleapis.com/css2?family=Zilla+Slab:wght@500&display=swap');
+
+    nav {
+        font-family: 'Zilla Slab', serif;
+        background-color: rgba(31, 99, 143, 0.349);
+        padding: 10px 20px;
+    }
+
+    nav ul {
+        display: flex;
+        align-items: center;
+        list-style-type: none;
+        height: 80px;
+        color: aliceblue;
+    }
+
+    nav ul li {
+        padding: 0 20px;
+    }
+
+    .brand img {
+        width: 60px;
+        padding: 0 10px;
+        border-radius: 50%;
+    }
+
+    .brand {
+        display: flex;
+        align-items: center;
+        font-weight: bold;
+        font-size: 1.2rem;
+    }
+
+    .bor {
+        border-left: 1px solid aliceblue;
+    
+    }
+
+    .nounderline{
+        text-decoration: none;
+        color: #fff;
+    }
+
+    .right {
+        margin-left: auto;
+        padding-right: 20px;
+    }
+
+
+    .butt {
+        display: inline-block;
+        padding: 10px 20px;
+        font-size: 16px;
+        font-weight: bold;
+        color: #fff;
+        text-align: center;
+        text-decoration: none;
+        border: 2px solid #0e457d;
+        border-radius: 5px;
+        background-color: #040449;
+        transition: all 0.3s ease;
+    }
+
+
+    .butt:hover {
+        background-color: #052978;
+        color: #fff;
+    }
+
+    </style>
+
+    <style>
+
+        .bg{
+            background-color: rgb(2, 2, 35);
+            overflow: hidden;
+            height: 2420px;
+        }
+
+        .place{
+            text-align: center;
+        }
+        .big{
+            margin-top: 90px;
+            color: aliceblue;
+
+            font-weight: bolder;
+            font-size: 60px;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        .small{
+            color: antiquewhite;
+            margin-top: 20px;
+            font-size: medium;
+            font-family: 'Times New Roman', Times, serif;
+        }
+
+        .animated-button{
+            position: relative;
+            overflow: hidden;
+        }
+        .animated-button p{
+            text-decoration: none;
+            cursor: pointer;
+            transition: transform 0.5s ease-in-out;
+        }
+        .animated-button p:hover{
+            transform: scale(1.1);
+        }
+    </style>
+
+    <style>
+        .container{
+            padding-left: 80px;
+            padding-top: 80px;
+            display: flex;
+            padding : 25px;
+            margin-top: 35px; 
+           
+        }
+        
+        .container1{
+            padding-left: 80px;
+            padding-top: 80px;
+            height: 300px;
+            display: flex;
+        }
+        
+        
+        .container .hi{
+            position: relative;
+            width: 270px;
+            height: 125px;
+            margin: 40px;
+            margin-bottom: 60px;
+        }
+        
+        .hi{
+            display: flex;
+            flex-wrap: wrap;
+            height: 300px;
+            padding-left: 70px;
+            padding-bottom: 70px;
+        }
+        
+        .euu{
+            display: flex;
+            position: relative;
+            height: fit-content;
+            
+        }
+
+        .unreal{
+            width:263px;
+            height: 265px;
+            position: relative;
+            opacity: 0;
+            border: 5px solid;
+            border-color: rgb(207, 201, 201);
+            background-color: rgb(21, 13, 33);
+        }
+
+        .euu:hover .unreal{
+            opacity: 1;
+            border: 5px solid;
+            border-color:  rgb(207, 201, 201);
+        }
+
+        .real{
+            position: absolute;
+            width: 267px;
+            height: 265px;
+        
+        }
+
+        .elename{
+            padding-top: 10px;
+            font-style: bold;
+            color: rgb(250, 206, 111);
+            font-size: 15px;
+        }
+
+        .inventor{
+            padding-top: 10x;
+        }  
+
+        .size{
+            font-size: 10px;
+        }
+
+        .col{
+            color: aliceblue;
+        }
+
+        .pad{
+            padding-left: 10px;
+        }
+
+        .text{
+            padding-top: 5px;
+            height: fit-content;
+        }
+
+    </style>
+</head>
+       
+<body>
+    <nav>
+        <ul>
+            <li class="brand"><img src="logo.jpg" alt="The Chemist's Notebook">The Chemist's Notebook </li>
+            <li class="bor"><a class="nounderline" href="periodic-table.html">Home</a> </li>
+            <li class="bor"><a class="nounderline" href="about.html">About</a></li>
+            <li class="bor"><a class="nounderline" href="contact.html">Contact</a></li></li>
+            <li class="right"><button class="butt"><a class="nounderline" href="more.html">more</a> </button></li>
+        </ul>
+    
+    </nav>
+
+    <section class="bg">
+
+            <div class="place animated-button">
+                <p class="big">F-block</p>
+                <h3 class="small">later add sme text </h3>
+
+            </div>
+
+
+            <div class="container">
+
+                <div class="hi">
+                    <div class="euu">
+                        <a href="https://en.wikipedia.org/wiki/cerium" target="_blank">
+                        <img class="real" src="https://www.shutterstock.com/shutterstock/photos/1918632566/display_1500/stock-vector-cerium-atomic-structure-has-atomic-number-atomic-mass-electron-configuration-and-energy-levels-1918632566.jpg" alt="cerium">
+                        <div class="unreal">
+                            <h2 class="elename pad">Cerium(Ce)</h2>
+                            <p class="inventor col size pad">Jöns Berzelius and Wilhelm Hisinger</p>
+                            <p class="text col pad">chemical element, the most abundant of the rare-earth metals. Commercial-grade cerium is iron-gray in colour, silvery when in a pure form, and about as soft and ductile as tin. It oxidizes in air at room temperature to form CeO2</p>
+                        </div>
+                        </a>
+                    </div>
+                </div>
+
+                <div class="hi">
+                    <div class="euu">
+                        <a href="https://en.wikipedia.org/wiki/praseodymium" target="_blank">
+                        <img class="real" src="https://www.shutterstock.com/image-vector/praseodymium-atomic-structure-has-number-260nw-1918632575.jpg" alt="">
+                        <div class="unreal">
+                            <h2 class="elename pad">Praseodymium(Pr)</h2>
+                            <p class="inventor col size pad">Carl F. Auer von Welsbach</p>
+                            <p class="text col pad">It is the third member of the lanthanide series and is considered one of the rare-earth metals. It is a soft, silvery, malleable and ductile metal, valued for its magnetic, electrical, chemical, and optical properties</p>
+                        </div>
+                        </a>
+                    </div>
+                </div>
+
+                <div class="hi">
+                    <div class="euu">
+                        <a href="https://en.wikipedia.org/wiki/neodymium" target="_blank">
+                        <img class="real" src="https://www.shutterstock.com/shutterstock/photos/1918632563/display_1500/stock-vector-neodymium-atomic-structure-has-atomic-number-atomic-mass-electron-configuration-and-energy-levels-1918632563.jpg" alt="">
+                        <div class="unreal">
+                            <h2 class="elename pad">Neodymium(Nd)</h2>
+                            <p class="inventor col size pad">Carl Auer von Welsbach</p>
+                            <p class="text col pad">Neodymium is a ductile and malleable silvery white metal. It oxidizes readily in air to form an oxide, Nd2O3, which easily spalls, exposing the metal to further oxidation. The metal must be stored sealed in a plastic covering or kept in vacuum or in an inert atmosphere.</p>
+                        </div>
+                        </a>
+                    </div>
+                </div>
+
+                <div class="hi">
+                    <div class="euu">
+                        <a href="https://en.wikipedia.org/wiki/promethium" target="_blank">
+                        <img class="real" src="https://www.shutterstock.com/image-vector/promethium-atomic-structure-has-number-600w-1918632584.jpg" alt="">
+                        <div class="unreal">
+                            <h2 class="elename pad">Promethium(Pm)</h2>
+                            <p class="inventor col size pad">Jacob .A. Marinsky, Lawrence E. Glendenin, and Charles D. Coryell</p>
+                            <p class="text col pad">All of its isotopes are radioactive; it is extremely rare, Promethium is one of only two radioactive elements that are followed in the periodic table by elements with stable forms.Promethium shows only one stable oxidation state of +3.</p>
+                        </div>
+                        </a>
+                    </div>
+                </div>
+
+    
+            </div>
+
+
+
+            <div class="container">
+
+                <div class="hi">
+                    <div class="euu">
+                        <a href="https://en.wikipedia.org/wiki/samarium" target="_blank">
+                            <img class="real" src="https://www.shutterstock.com/shutterstock/photos/1918632572/display_1500/stock-vector-samarium-atomic-structure-has-atomic-number-atomic-mass-electron-configuration-and-energy-levels-1918632572.jpg" alt="">
+                            <div class="unreal">
+                                <h2 class="elename pad">Samarium(Sm)</h2>
+                                <p class="inventor col size pad">Paul-Émile Lecoq de Boisbaudran</p>
+                                <p class="text col pad">It is a moderately hard silvery metal that slowly oxidizes in air. Being a typical member of the lanthanide series, samarium usually has the oxidation state +3.Samarium is used to dope calcium chloride crystals for use in optical lasers</p>
+                            </div>
+                            </a>
+                    </div>
+                </div>
+
+                <div class="hi">
+                    <div class="euu">
+                        <a href="https://en.wikipedia.org/wiki/europim" target="_blank">
+                            <img class="real" src="https://www.shutterstock.com/shutterstock/photos/1918630211/display_1500/stock-vector-europium-atomic-structure-has-atomic-number-atomic-mass-electron-configuration-and-energy-levels-1918630211.jpg" alt="">
+                            <div class="unreal">
+                                <h2 class="elename pad">Europium(Eu)</h2>
+                                <p class="inventor col size pad">Eugène-Antole Demarçay</p>
+                                <p class="text col pad">uropium is a silvery-white metal of the lanthanide series that reacts readily with air to form a dark oxide coating. It is the most chemically reactive, least dense, and softest of the lanthanide elements. It is soft enough to be cut with a knife.</p>
+                            </div>
+                            </a>
+                    </div>
+                </div>
+
+                <div class="hi">
+                    <div class="euu">
+                        <a href="https://en.wikipedia.org/wiki/gadolinium" target="_blank">
+                            <img class="real" src="https://www.shutterstock.com/shutterstock/photos/1918630214/display_1500/stock-vector-gadolinium-atomic-structure-has-atomic-number-atomic-mass-electron-configuration-and-energy-1918630214.jpg" alt="">
+                            <div class="unreal">
+                                <h2 class="elename pad">Gadolinium(Gd)</h2>
+                                <p class="inventor col size pad">Charles Galissard de Marignac</p>
+                                <p class="text col pad">Gadolinium is a silvery-white metal when oxidation is removed. It is a malleable and ductile rare-earth element. Gadolinium reacts with atmospheric oxygen or moisture slowly to form a black coating.</p>
+                            </div>
+                            </a>
+                    </div>
+                </div>
+
+                <div class="hi">
+                    <div class="euu">
+                        <a href="https://en.wikipedia.org/wiki/terbium" target="_blank">
+                            <img class="real" src="https://www.shutterstock.com/shutterstock/photos/1918630205/display_1500/stock-vector-terbium-atomic-structure-has-atomic-number-atomic-mass-electron-configuration-and-energy-levels-1918630205.jpg" alt="">
+                            <div class="unreal">
+                                <h2 class="elename pad">Terbium(Tb)</h2>
+                                <p class="inventor col size pad">Carl Mosander</p>
+                                <p class="text col pad">Terbium is a silvery rare-earth metal. It's soft, ductile and malleable. One of the lanthanide series, terbium is sandwiched between gadolinium (Gd) and dysprosium (Dy). It doesn't naturally occur as a free element, but terbium is part of many minerals, such as gadolinite, euxenite, xenotime and monazite</p>
+                            </div>
+                            </a>
+                    </div>
+                </div>
+
+
+            </div>
+
+
+            <div class="container">
+
+                <div class="hi">
+                    <div class="euu">
+                        <a href="https://en.wikipedia.org/wiki/dysprosium" target="_blank">
+                            <img class="real" src="https://www.shutterstock.com/image-vector/dysprosium-atomic-structure-has-number-260nw-1918649828.jpg" alt="">
+                            <div class="unreal">
+                                <h2 class="elename pad">Dysprosium(Dy)</h2>
+                                <p class="inventor col size pad">Paul-Émile Lecoq de Boisbaudran</p>
+                                <p class="text col pad">a rare-earth metal of the lanthanide series of the periodic table. Dysprosium is a relatively hard metal and is silvery white in its pure form. It is quite stable in air, remaining shiny at room temperature. Dysprosium turnings ignite easily and burn white-hot.</p>
+                            </div>
+                            </a>
+                    </div>
+                </div>
+
+                <div class="hi">
+                    <div class="euu">
+                        <a href="https://en.wikipedia.org/wiki/holmium" target="_blank">
+                            <img class="real" src="https://www.shutterstock.com/image-vector/holmium-atomic-structure-has-number-260nw-1918649822.jpg" alt="">
+                            <div class="unreal">
+                                <h2 class="elename pad">Holmium(Ho)</h2>
+                                <p class="inventor col size pad">Per Teodor Cleve , Delafontaine and Louis Soret</p>
+                                <p class="text col pad">is a bright, soft and silvery-white rare-earth metal that is relatively soft and malleable. While it is stable in dry air at room temperature, it will react rapidly with water or when heated to form a yellow oxide (Ho2O3).</p>
+                            </div>
+                            </a>
+                    </div>
+                </div>
+
+                <div class="hi">
+                    <div class="euu">
+                        <a href="https://en.wikipedia.org/wiki/erbium" target="_blank">
+                            <img class="real" src="https://www.shutterstock.com/shutterstock/photos/1918649816/display_1500/stock-vector-erbium-atomic-structure-has-atomic-number-atomic-mass-electron-configuration-and-energy-levels-1918649816.jpg" alt="">
+                            <div class="unreal">
+                                <h2 class="elename pad">Erbium(Er)</h2>
+                                <p class="inventor col size pad">Carl-Gustav Mosander</p>
+                                <p class="text col pad">Erbium is a soft, malleable, lustrous, silvery metal. It is very stable in air, it reacts very slowly with oxygen and water and dissolves in acids. Its salts are rose coloured and it has a sharp adsorption spectra in visible, ultraviolet and infrared light.</p>
+                            </div>
+                            </a>
+                    </div>
+                </div>
+
+                <div class="hi">
+                    <div class="euu">
+                        <a href="https://en.wikipedia.org/wiki/thulium" target="_blank">
+                            <img class="real" src="https://www.shutterstock.com/shutterstock/photos/1918649819/display_1500/stock-vector-thulium-atomic-structure-has-atomic-number-atomic-mass-electron-configuration-and-energy-levels-1918649819.jpg" alt="">
+                            <div class="unreal">
+                                <h2 class="elename pad">Thulium(Tm)</h2>
+                                <p class="inventor col size pad">Per Teodor Cleve</p>
+                                <p class="text col pad">The element is barely traced purely in nature, but it is traced in minute amounts in minerals with other rare earth metals.Thulium is used as a source of radiation from portable X-ray devices and in nuclear reactions.</p>
+                            </div>
+                            </a>
+                    </div>
+                </div>
+
+
+            </div>
+
+
+            <div class="container">
+
+                <div class="hi">
+                    <div class="euu">
+                        <a href="https://en.wikipedia.org/wiki/ytterbium" target="_blank">
+                            <img class="real" src="https://www.shutterstock.com/image-vector/ytterbium-atomic-structure-has-number-600w-1918649825.jpg" alt="">
+                            <div class="unreal">
+                                <h2 class="elename pad">Ytterbium(Yb)</h2>
+                                <p class="inventor col size pad">Jean Charles Galissard de Marignac</p>
+                                <p class="text col pad">Ytterbium is a soft, malleable and rather ductile element that exhibits a bright silvery luster. A rare earth, the element is easily attacked and dissolved by mineral acids, slowly reacts with water, and oxidizes in air. The oxide forms a protective layer on the surface. Compounds of ytterbium are rare.</p>
+                            </div>
+                            </a>
+                    </div>
+                </div>
+
+                <div class="hi">
+                    <div class="euu">
+                        <a href="https://en.wikipedia.org/wiki/lutetium" target="_blank">
+                            <img class="real" src="https://www.shutterstock.com/image-vector/lutetium-atomic-structure-has-number-600w-1919420798.jpg" alt="">
+                            <div class="unreal">
+                                <h2 class="elename pad">Lutetium(Lu)</h2>
+                                <p class="inventor col size pad">Carl Auer von Welsbach and Georges Urbain</p>
+                                <p class="text col pad">it is the densest and the highest-melting rare-earth element In its pure form, lutetium metal is silvery white and stable in air.</p>
+                            </div>
+                            </a>
+                    </div>
+                </div>
+
+                <div class="hi">
+                    <div class="euu">
+                        <a href="https://en.wikipedia.org/wiki/thorium" target="_blank">
+                            <img class="real" src="https://www.shutterstock.com/shutterstock/photos/1919419517/display_1500/stock-vector-thorium-atomic-structure-has-atomic-number-atomic-mass-electron-configuration-and-energy-levels-1919419517.jpg" alt="">
+                            <div class="unreal">
+                                <h2 class="elename pad">Thorium(Th)</h2>
+                                <p class="inventor col size pad">Jöns Jacob Berzelius</p>
+                                <p class="text col pad">Thorium (chemical symbol Th) is a naturally occurring radioactive metal found at trace levels in soil, rocks, water, plants and animals. Thorium is solid under normal conditions. There are natural and man-made forms of thorium, all of which are radioactive.</p>
+                            </div>
+                            </a>
+                    </div>
+                </div>
+
+                <div class="hi">
+                    <div class="euu">
+                        <a href="https://en.wikipedia.org/wiki/protactinium" target="_blank">
+                            <img class="real" src="https://www.shutterstock.com/image-vector/protactinium-atomic-structure-has-number-260nw-1920750692.jpg" alt="">
+                            <div class="unreal">
+                                <h2 class="elename pad">Protactinium(Pa)</h2>
+                                <p class="inventor col size pad">asimir Fajans and O.H. Göhring</p>
+                                <p class="text col pad">It is a dense, radioactive, silvery-gray actinide metal which readily reacts with oxygen, water vapor and inorganic acids.Small amounts of protactinium are found naturally in uranium ores. It is also found in spent fuel rods from nuclear reactors, from which it is extracted.</p>
+                            </div>
+                            </a>
+                    </div>
+                </div>
+
+
+            </div>
+
+
+            <div class="container">
+
+                <div class="hi">
+                    <div class="euu">
+                        <a href="https://en.wikipedia.org/wiki/uranium" target="_blank">
+                            <img class="real" src="https://www.shutterstock.com/shutterstock/photos/1920753050/display_1500/stock-vector-uranium-atomic-structure-has-atomic-number-atomic-mass-electron-configuration-and-energy-levels-1920753050.jpg" alt="">
+                            <div class="unreal">
+                                <h2 class="elename pad">Uranium(U)</h2>
+                                <p class="inventor col size pad">Martin Klaproth</p>
+                                <p class="text col pad">it is assigned the chemical symbol U. A uranium atom has 92 protons and 92 electrons, of which 6 are valence electrons. Uranium has the highest atomic weight of all naturally occurring elements.It can be used as fuel for nuclear power plants</p>
+                            </div>
+                            </a>
+                    </div>
+                </div>
+
+                <div class="hi">
+                    <div class="euu">
+                        <a href="https://en.wikipedia.org/wiki/neptunium" target="_blank">
+                            <img class="real" src="https://www.shutterstock.com/shutterstock/photos/1920751394/display_1500/stock-vector-neptunium-atomic-structure-has-atomic-number-atomic-mass-electron-configuration-and-energy-levels-1920751394.jpg" alt="">
+                            <div class="unreal">
+                                <h2 class="elename pad">Neptunium(Np)</h2>
+                                <p class="inventor col size pad">Edwin McMillan and Philip Abelson</p>
+                                <p class="text col pad">Neptunium, a silvery metal, exists in three crystalline modifications; the room-temperature form (alpha) is orthorhombic. Neptunium is chemically reactive and is more similar to plutonium than to uranium, with oxidation states from +3 to +7</p>
+                            </div>
+                            </a>
+                    </div>
+                </div>
+
+                <div class="hi">
+                    <div class="euu">
+                        <a href="https://en.wikipedia.org/wiki/plutonium" target="_blank">
+                            <img class="real" src="https://www.shutterstock.com/shutterstock/photos/1920751388/display_1500/stock-vector-plutonium-atomic-structure-has-atomic-number-atomic-mass-electron-configuration-and-energy-levels-1920751388.jpg" alt="">
+                            <div class="unreal">
+                                <h2 class="elename pad">Plutonium(Pu)</h2>
+                                <p class="inventor col size pad">Glenn Seaborg, Arthur Wahl, Joseph Kennedy, and Edwin McMillan</p>
+                                <p class="text col pad">It is an actinide metal of silvery-gray appearance that tarnishes when exposed to air, and forms a dull coating when oxidized. The element normally exhibits six allotropes and four oxidation states.</p>
+                            </div>
+                            </a>
+                    </div>
+                </div>
+
+                <div class="hi">
+                    <div class="euu">
+                        <a href="https://en.wikipedia.org/wiki/americium" target="_blank">
+                            <img class="real" src="https://www.shutterstock.com/shutterstock/photos/1920751382/display_1500/stock-vector-americium-atomic-structure-has-atomic-number-atomic-mass-electron-configuration-and-energy-levels-1920751382.jpg" alt="">
+                            <div class="unreal">
+                                <h2 class="elename pad">Americium(Am)</h2>
+                                <p class="inventor col size pad">Glenn T. Seaborg, Ralph A. James, Leon O. Morgan and Albert Ghiorso.</p>
+                                <p class="text col pad">Americium is a synthetic chemical element. It is radioactive and a transuranic member of the actinide series in the periodic table, located under the lanthanide element europium and was thus named after the Americas by analogy.</p>
+                            </div>
+                            </a>
+                    </div>
+                </div>
+
+
+            </div>
+
+
+            <div class="container">
+
+                <div class="hi">
+                    <div class="euu">
+                        <a href="https://en.wikipedia.org/wiki/curium" target="_blank">
+                            <img class="real" src="https://www.shutterstock.com/image-vector/curium-atomic-structure-has-number-600nw-1920751385.jpg" alt="">
+                            <div class="unreal">
+                                <h2 class="elename pad">Curium(Cm)</h2>
+                                <p class="inventor col size pad">Glenn Seaborg, Ralph James, and Albert Ghiorso</p>
+                                <p class="text col pad">Curium is a hard, brittle, silvery radioactive metal that tarnishes slowly and which can only be produced in nuclear reactors.It has very high melting and boiling point and is very radioactive.</p>
+                            </div>
+                            </a>
+                    </div>
+                </div>
+
+                <div class="hi">
+                    <div class="euu">
+                        <a href="https://en.wikipedia.org/wiki/berkelium" target="_blank">
+                            <img class="real" src="https://www.shutterstock.com/image-vector/berkelium-atomic-structure-has-number-600w-1920751391.jpg" alt="">
+                            <div class="unreal">
+                                <h2 class="elename pad">Berkelium(Bk)</h2>
+                                <p class="inventor col size pad">Stanley Thompson, Albert Ghiorso, and Glenn Seaborg</p>
+                                <p class="text col pad">Berkelium is a soft, silvery-white, radioactive actinide metal. In the periodic table, it is located to the right of the actinide curium, to the left of the actinide californium and below the lanthanide terbium with which it shares many similarities in physical and chemical properties.</p>
+                            </div>
+                            </a>
+                    </div>
+                </div>
+
+                <div class="hi">
+                    <div class="euu">
+                        <a href="https://en.wikipedia.org/wiki/californium" target="_blank">
+                            <img class="real" src="https://www.shutterstock.com/shutterstock/photos/1920752144/display_1500/stock-vector-californium-atomic-structure-has-atomic-number-atomic-mass-electron-configuration-and-energy-1920752144.jpg" alt="">
+                            <div class="unreal">
+                                <h2 class="elename pad">Californium(Cf)</h2>
+                                <p class="inventor col size pad">Stanley Thompson, Kenneth Street Jr., Albert Ghiorso, and Glenn Seaborg.</p>
+                                <p class="text col pad">Californium is a radioactive metal. Californium is a very strong neutron emitter. It is used in portable metal detectors, for identifying gold and silver ores, to identify water and oil layers in oil wells and to detect metal fatigue and stress in aeroplanes.</p>
+                            </div>
+                            </a>
+                    </div>
+                </div>
+
+                <div class="hi">
+                    <div class="euu">
+                        <a href="https://en.wikipedia.org/wiki/einsteinium" target="_blank">
+                            <img class="real" src="https://www.shutterstock.com/shutterstock/photos/1920752150/display_1500/stock-vector-einsteinium-atomic-structure-has-atomic-number-atomic-mass-electron-configuration-and-energy-1920752150.jpg" alt="">
+                            <div class="unreal">
+                                <h2 class="elename pad">Einsteinium(Es)</h2>
+                                <p class="inventor col size pad">Albert Ghiorso</p>
+                                <p class="text col pad">Einsteinium is a member of the actinide series, it is metallic and radioactive, with no known uses. It is attacked by oxygen, steam and acids but not by alkalis. It is named after Albert Einstein. It was the seventh transuranic element to be discovered</p>
+                            </div>
+                            </a>
+                    </div>
+                </div>
+
+
+            </div>
+
+
+            <div class="container">
+
+                <div class="hi">
+                    <div class="euu">
+                        <a href="https://en.wikipedia.org/wiki/fermium" target="_blank">
+                            <img class="real" src="https://www.shutterstock.com/shutterstock/photos/1920752147/display_1500/stock-vector-fermium-atomic-structure-has-atomic-number-atomic-mass-electron-configuration-and-energy-levels-1920752147.jpg" alt="">
+                            <div class="unreal">
+                                <h2 class="elename pad">Fermium (Fm)</h2>
+                                <p class="inventor col size pad">Albert Ghiorso</p>
+                                <p class="text col pad">it is an actinide and the heaviest element that can be formed by neutron bombardment of lighter elements, and hence the last element that can be prepared in macroscopic quantities, although pure fermium metal has not yet been prepared.</p>
+                            </div>
+                            </a>
+                    </div>
+                </div>
+
+                <div class="hi">
+                    <div class="euu">
+                        <a href="https://en.wikipedia.org/wiki/mendelevium" target="_blank">
+                            <img class="real" src="https://www.shutterstock.com/shutterstock/photos/1920752141/display_1500/stock-vector-mendelevium-atomic-structure-has-atomic-number-atomic-mass-electron-configuration-and-energy-1920752141.jpg" alt="">
+                            <div class="unreal">
+                                <h2 class="elename pad">Mendelevium(Md)</h2>
+                                <p class="inventor col size pad">Dmitri Mendeleev</p>
+                                <p class="text col pad">A metallic radioactive transuranium element in the actinide series, it is the first element by atomic number that currently cannot be produced in macroscopic quantities by neutron bombardment of lighter elements.
+                                </p>
+                            </div>
+                            </a>
+                    </div>
+                </div>
+
+                <div class="hi">
+                    <div class="euu">
+                        <a href="https://en.wikipedia.org/wiki/nobelium" target="_blank">
+                            <img class="real" src="https://www.shutterstock.com/shutterstock/photos/1920752138/display_1500/stock-vector-nobelium-atomic-structure-has-atomic-number-atomic-mass-electron-configuration-and-energy-levels-1920752138.jpg" alt="">
+                            <div class="unreal">
+                                <h2 class="elename pad">Nobelium(No)</h2>
+                                <p class="inventor col size pad">Georgy Flerov</p>
+                                <p class="text col pad">Nobelium is a synthetic radioactive metal with the symbol No and atomic number 102. It's named after Alfred Nobel, the inventor of dynamite and founder of the Nobel Prize. Nobelium is also the tenth transuranic element and the penultimate member of the actinide series</p>
+                            </div>
+                            </a>
+                    </div>
+                </div>
+
+                <div class="hi">
+                    <div class="euu">
+                        <a href="https://en.wikipedia.org/wiki/lawrencium" target="_blank">
+                            <img class="real" src="https://www.shutterstock.com/image-vector/lawrencium-atomic-structure-has-number-600w-1920753041.jpg" alt="">
+                            <div class="unreal">
+                                <h2 class="elename pad">Lawrencium(Lr)</h2>
+                                <p class="inventor col size pad">Georgy Flerov</p>
+                                <p class="text col pad">Lawrencium is radioactive and toxic. It is the eleventh transuranic element in the periodic table. It is expected to have similar properties to Lutetium, which is just above it in the periodic table. 
+                                    Lawrencium is named after Ernest Lawrence, who invented the cyclotron. The cyclotron is a particle accelerator that accelerates sub-atomic particles around a circle until they have enough energy to smash into an atom and create a new atom</p>
+                            </div>
+                            </a>
+                    </div>
+                </div>
+
+
+            </div>
+
+
+
+    </section>
+</body>
+</html>

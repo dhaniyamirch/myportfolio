@@ -1,0 +1,378 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://cdn.tailwindcss.com?plugins=forms,typography,aspect-ratio,line-clamp"></script>
+    <style>
+      .custom-background {
+        border: 2px solid black;
+        padding: 25px;
+        background-image: url('https://img.freepik.com/free-vector/colorful-realistic-science-background_23-2148477955.jpg');
+        background-repeat: no-repeat;
+        background-size: 1520px 2844px;
+        /* Add any other background-related styles here */
+      }
+    </style>
+
+  <style type="text/css">  
+    * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+    }
+
+    @import url('https://fonts.googleapis.com/css2?family=Zilla+Slab:wght@500&display=swap');
+
+    nav {
+        font-family: 'Zilla Slab', serif;
+        background-color: rgba(31, 99, 143, 0.349);
+        padding: 10px 20px;
+    }
+
+    nav ul {
+        display: flex;
+        align-items: center;
+        list-style-type: none;
+        height: 80px;
+        color: aliceblue;
+    }
+
+    nav ul li {
+        padding: 0 20px;
+    }
+
+    .brand img {
+        width: 60px;
+        padding: 0 10px;
+        border-radius: 50%;
+    }
+
+    .brand {
+        display: flex;
+        align-items: center;
+        font-weight: bold;
+        font-size: 1.2rem;
+    }
+
+    .bor {
+        border-left: 1px solid aliceblue;
+    
+    }
+
+    .nounderline{
+        text-decoration: none;
+        color: #fff;
+    }
+
+    .right {
+        margin-left: auto;
+        padding-right: 20px;
+    }
+
+
+    .butt {
+        display: inline-block;
+        padding: 10px 20px;
+        font-size: 16px;
+        font-weight: bold;
+        color: #fff;
+        text-align: center;
+        text-decoration: none;
+        border: 2px solid #0e457d;
+        border-radius: 5px;
+        background-color: #040449;
+        transition: all 0.3s ease;
+    }
+
+
+    .butt:hover {
+        background-color: #052978;
+        color: #fff;
+    }
+    
+  </style>
+
+    <style>
+      #namo{
+        /* using this to change the size of header or the main title which is sblock  */
+        font-size: larger; 
+      }
+    </style>
+    <style>
+      #namo2{
+         font-size: large ;
+      }
+    </style>
+    
+    <style>
+      .animated-button { /*animated button code for button number 3 */
+          position: relative; 
+          overflow: hidden;
+      }
+    
+      .animated-button button {
+          padding: 11px 25px;
+          background-color: gray-600;
+          color: rgb(255, 255, 255);
+          text-align: center;
+          text-decoration: none;
+          font-weight: bold;
+          border: none;
+          cursor: pointer;
+          transition: transform 0.4s ease-in-out;
+      }
+    
+      .animated-button button:hover {
+          transform: scale(1.05); 
+      }
+    </style>
+
+    <style>
+      .animated-button1 { /*animated button code for button number 3 */
+          position: relative;
+          overflow: hidden;
+      }
+    
+      .animated-button1 button {
+          padding: 11px 25px;
+          background-color: gray-600;
+          color: rgb(255, 255, 255);
+          text-align: center;
+          text-decoration: none;
+          font-weight: bold;
+          border: none;
+          cursor: pointer;
+          transition: transform 0.4s ease-in-out;
+      }
+    
+      .animated-button1 button:hover {
+          transform: scale(1.05); 
+      }
+    </style>
+    <title>s block</title>
+</head>
+<!-- press ctrl + / to add a comment  -->
+<!-- ctrl + enter to jump in next line  -->
+<!-- <hr>is used to make an horizontal line -->
+
+<body>
+
+  <nav>
+    <ul>
+        <li class="brand"><img src="logo.jpg" alt="The Chemist's Notebook">The Chemist's Notebook </li>
+        <li class="bor"><a class="nounderline" href="periodic-table.html">Home</a> </li>
+        <li class="bor"><a class="nounderline" href="about.html">About</a></li>
+        <li class="bor"><a class="nounderline" href="contact.html">Contact</a></li></li>
+        <li class="right"><button class="butt"><a class="nounderline" href="more.html">more</a> </button></li>
+    </ul>
+
+  </nav>
+
+  <section class="custom-background text-gray-400 body-font">       
+
+
+    <div class="container px-10 py-24 mx-auto">
+      <div class="flex flex-col text-center w-full mb-20">            
+       <h1 class="sm:text-5xl text-3xl font-medium title-font mb-6 text-white"><div class="animated-button"><button> <p id="namo">S-BLOCK</p></button></div></h1>
+       <p id="namo2" class="lg:w-2/3 mx-auto leading-relaxed text-lg">sblock padhna hai..?? <br> aajao boss padha dunga</p>
+      </div>
+    </div>        
+ 
+
+    <div class="flex flex-wrap -m-4">
+            
+
+      <div class="lg:w-1/5 sm:w-1/2 p-4"> <!--6 -->
+        <div class="flex relative">
+          <a href="https://en.wikipedia.org/wiki/Hydrogen" target="_blank"><img alt="gallery" class="absolute inset-0 w-full h-full object-cover object-center" src="https://www.shutterstock.com/shutterstock/photos/1914044929/display_1500/stock-vector-hydrogen-atomic-structure-has-atomic-number-atomic-mass-electron-configuration-and-energy-levels-1914044929.jpg">  <!--absolute inset-0 w-full h-full object-cover object-center-->
+            <div class="px-8 py-10 relative z-10 w-full border-4 border-gray-800 bg-gray-900 opacity-0 hover:opacity-100">
+              <h2 class="tracking-widest text-sm title-font font-medium text-indigo-400 mb-1">HYDROGEN (H)</h2>
+              <h1 class="title-font text-lg font-medium text-white mb-3">Henry Cavendish</h1>
+              <p class="leading-relaxed">Hydrogen is the<br> only atom for which <br>the Schrödinger equation has <br>an exact solution.</p>
+            </div>
+          </a>
+        </div>
+      </div>
+
+
+      <div class="lg:w-5/6 sm:w-1 p-4"></div> <!--4-->
+
+
+      <div class="lg:w-1/5 sm:w-1/2 p-4"> <!--6 -->
+        <div class="flex relative">
+          <a href="https://en.wikipedia.org/wiki/Lithium" target="_blank"><img alt="gallery" class="absolute inset-0 w-full h-full object-cover object-center" src="https://www.shutterstock.com/shutterstock/photos/1914044923/display_1500/stock-vector-lithium-atomic-structure-has-atomic-number-atomic-mass-electron-configuration-and-energy-levels-1914044923.jpg">
+            <div class="px-8 py-10 relative z-10 w-full border-4 border-gray-800 bg-gray-900 opacity-0 hover:opacity-100">
+              <h2 class="tracking-widest text-sm title-font font-medium text-indigo-400 mb-1">LITHIUM (Li)</h2>
+              <h1 class="title-font text-lg font-medium text-white mb-3">John Goodenough </h1>
+              <p class="leading-relaxed">Lithium is the lightest metal, with a  density about half that of water.The metal itself—which is soft, white, and  several of its alloys and compounds are produced on an industrial scale.</p>
+            </div>
+          </a>
+        </div>
+      </div>
+
+
+      <div class="lg:w-1/5 sm:w-1/2 p-4"> <!--4 -->
+        <div class="flex relative">
+          <a href="https://en.wikipedia.org/wiki/Beryllium" target="_blank"><img alt="gallery" class="absolute inset-0 w-full h-full object-cover object-center" src="https://www.shutterstock.com/image-vector/beryllium-atomic-structure-has-number-600w-1914044917.jpg">
+            <div class="px-8 py-10 relative z-10 w-full border-4 border-gray-800 bg-gray-900 opacity-0 hover:opacity-100">
+              <h2 class="tracking-widest text-sm title-font font-medium text-indigo-400 mb-1">BERYLLIUM (Be)</h2>
+              <h1 class="title-font text-lg font-medium text-white mb-3">Louis Nicolas Vauqelin</h1>
+              <p class="leading-relaxed">Beryllium is nonmagnetic and resistant to concentrated nitric acid. It is relatively soft and has a low density.it is used  to make gyroscopes.</p>
+            </div>
+          </a>
+        </div>
+      </div>
+
+
+      <div class="lg:w-1/20 sm:w-1/2 p-4"></div> <!--5 -->
+
+
+      <div class="lg:w-1/5 sm:w-1/2 p-4"> <!--6 -->
+        <div class="flex relative">
+          <a href="https://en.wikipedia.org/wiki/Sodium" target="_blank"><img alt="gallery" class="absolute inset-0 w-full h-full object-cover object-center" src="https://t4.ftcdn.net/jpg/04/12/80/93/360_F_412809300_4K2GvQkH4JPcophtr4c9bOCqWP6BgyUb.jpg">
+            <div class="px-8 py-10 relative z-10 w-full border-4 border-gray-800 bg-gray-900 opacity-0 hover:opacity-100">
+              <h2 class="tracking-widest text-sm title-font font-medium text-indigo-400 mb-1">SODIUM (Na)</h2>
+              <h1 class="title-font text-lg font-medium text-white mb-3">Humphry Davy</h1>
+              <p class="leading-relaxed"> Sodium is the sixth <br>most common element on Earth, and makes up 2.6% of the Earth's crust.Sodium has only 1 stable istope </p>
+            </div>
+          </a>
+        </div>
+      </div>
+            
+
+      <div class="lg:w-1/5 sm:w-1/2 p-4"> <!--7 -->
+        <div class="flex relative">
+          <a href="https://en.wikipedia.org/wiki/Magnesium" target="_blank"><img alt="gallery" class="absolute inset-0 w-full h-full object-cover object-center" src="https://www.shutterstock.com/shutterstock/photos/1914333334/display_1500/stock-vector-magnesium-atomic-structure-has-atomic-number-atomic-mass-electron-configuration-and-energy-levels-1914333334.jpg">
+            <div class="px-8 py-10 relative z-10 w-full border-4 border-gray-800 bg-gray-900 opacity-0 hover:opacity-100">
+              <h2 class="tracking-widest text-sm title-font font-medium text-indigo-400 mb-1">MAGNESIUM (Mg)</h2>
+              <h1 class="title-font text-lg font-medium text-white mb-3">Humphry Davy</h1>
+              <p class="leading-relaxed">Abundant throughout the universe, magnesium is also found in the earth and the sea, as well as in plants, animals, and humans..</p>
+            </div>
+          </a>
+          </div>
+      </div>
+
+
+      <div class="lg:w-1/30 sm:w-1/2 p-4"></div> <!--8 -->
+
+
+      <div class="lg:w-1/5 sm:w-1/2 p-4"> <!--9 -->
+        <div class="flex relative">
+          <a href="https://en.wikipedia.org/wiki/Potassium" target="_blank"><img alt="gallery" class="absolute inset-0 w-full h-full object-cover object-center" src="https://www.shutterstock.com/image-vector/potassium-atomic-structure-has-number-250nw-1914415453.jpg">
+            <div class="px-8 py-10 relative z-10 w-full border-4 border-gray-800 bg-gray-900 opacity-0 hover:opacity-100">
+              <h2 class="tracking-widest text-sm title-font font-medium text-indigo-400 mb-1">POTASSIUM (k)</h2>
+              <h1 class="title-font text-lg font-medium text-white mb-3">Humphry Davy</h1>
+              <p class="leading-relaxed">Potassium is a vital electrolyte in the human body an it is a soft <br>solid and can be cut with a knife.</p>
+            </div>
+          </a>
+        </div>
+      </div>
+
+
+      <div class="lg:w-1/5 sm:w-1/2 p-4"> <!--10-->
+        <div class="flex relative">
+          <a href="https://en.wikipedia.org/wiki/Calcium" target="_blank"><img alt="gallery" class="absolute inset-0 w-full h-full object-cover object-center" src="https://www.shutterstock.com/shutterstock/photos/1914415447/display_1500/stock-vector-calcium-atomic-structure-has-atomic-number-atomic-mass-electron-configuration-and-energy-levels-1914415447.jpg">
+            <div class="px-8 py-10 relative z-10 w-full border-4 border-gray-800 bg-gray-900 opacity-0 hover:opacity-100">
+              <h2 class="tracking-widest text-sm title-font font-medium text-indigo-400 mb-1">CALCIUM (Ca)</h2>
+              <h1 class="title-font text-lg font-medium text-white mb-3">Humphry Davy</h1>
+              <p class="leading-relaxed">If you could extract all of the calcium from the average adult person, you'd have about 2 pounds (1 kilogram) of the metal.</p>
+            </div>
+          </a>
+        </div>
+      </div>
+              
+  
+      <div class="lg:w-1/30 sm:w-1/2 p-4"></div> <!--11 -->
+                 
+  
+      <div class="lg:w-1/5 sm:w-1/2 p-4"> <!--12 -->
+        <div class="flex relative">
+          <a href="https://en.wikipedia.org/wiki/Rubidium" target="_blank"><img alt="gallery" class="absolute inset-0 w-full h-full object-cover object-center" src="https://www.shutterstock.com/image-vector/rubidium-atomic-structure-has-number-250nw-1915837372.jpg">
+            <div class="px-8 py-7 relative z-10 w-full border-4 border-gray-800 bg-gray-900 opacity-0 hover:opacity-100">
+              <h2 class="tracking-widest text-sm title-font font-medium text-indigo-400 mb-1">RUBIDIUM (Rb)</h2> 
+              <h1 class="title-font text-lg font-medium text-white mb-3">Robert Bunsen and Gustav Kirchhoff</h1>
+              <p class="leading-relaxed"> Rubidium melts just a little above body temperature.Rubidium is the second most electropositive element.</p>
+            </div>
+          </a>
+        </div>
+      </div>
+  
+  
+      <div class="lg:w-1/5 sm:w-1/2 p-4"> <!--13 -->
+        <div class="flex relative">
+          <a href="https://en.wikipedia.org/wiki/Strontium" target="_blank"><img alt="gallery" class="absolute inset-0 w-full h-full object-cover object-center" src="https://www.shutterstock.com/shutterstock/photos/1915837375/display_1500/stock-vector-strontium-atomic-structure-has-atomic-number-atomic-mass-electron-configuration-and-energy-levels-1915837375.jpg">
+            <div class="px-8 py-10 relative z-10 w-full border-4 border-gray-800 bg-gray-900 opacity-0 hover:opacity-100">
+              <h2 class="tracking-widest text-sm title-font font-medium text-indigo-400 mb-1">STRONTIUM</h2>
+              <h1 class="title-font text-lg font-medium text-white mb-3">Adair Crawfordr</h1>
+              <p class="leading-relaxed">Strontium is used in cancer therapy due to its characteristic of being the best high-energy beta emitter with the longest lifespan.</p>
+            </div>
+          </a> 
+        </div>
+      </div>
+
+
+      <div class="lg:w-1/30 sm:w-1/2 p-4"></div> <!--14 -->
+        
+
+      <div class="lg:w-1/5 sm:w-1/2 p-4"> <!--15 -->
+        <div class="flex relative">
+          <a href="https://en.wikipedia.org/wiki/Caesium" target="_blank"><img alt="gallery" class="absolute inset-0 w-full h-full object-cover object-center" src="https://www.shutterstock.com/shutterstock/photos/1918632587/display_1500/stock-vector-caesium-atomic-structure-has-atomic-number-atomic-mass-electron-configuration-and-energy-levels-1918632587.jpg">
+            <div class="px-8 py-7 relative z-10 w-full border-4 border-gray-800 bg-gray-900 opacity-0 hover:opacity-100">
+              <h2 class="tracking-widest text-sm title-font font-medium text-indigo-400 mb-1">CAESIUM (Cs)</h2>
+              <h1 class="title-font text-lg font-medium text-white mb-3">Robert Wilhelm Bunsen and Gustav Robert Kirchhof</h1>
+              <p class="leading-relaxed">It's a valuable mineral that is used for medical purposes.Caesium is also the most reactive of all metals. itis a radioactive material.</p>
+            </div>
+          </a>
+        </div>
+      </div>
+              
+  
+      <div class="lg:w-1/5 sm:w-1/2 p-4"> <!--16 -->
+        <div class="flex relative">
+          <a href="https://en.wikipedia.org/wiki/Barium" target="_blank"><img alt="gallery" class="absolute inset-0 w-full h-full object-cover object-center" src="https://www.shutterstock.com/shutterstock/photos/1918632581/display_1500/stock-vector-barium-atomic-structure-has-atomic-number-atomic-mass-electron-configuration-and-energy-levels-1918632581.jpg">
+            <div class="px-8 py-10 relative z-10 w-full border-4 border-gray-800 bg-gray-900 opacity-0 hover:opacity-100">
+              <h2 class="tracking-widest text-sm title-font font-medium text-indigo-400 mb-1">BARIUM (Ba)</h2>
+              <h1 class="title-font text-lg font-medium text-white mb-3">Humphry Davy</h1>
+              <p class="leading-relaxed">Barium was named after the word 'bary', which is Greek for 'heavy'.It's said that barite (composed of barium sulfate), was used in ancient witchcraft.</p>
+            </div>
+          </a>
+        </div>
+      </div>
+  
+  
+      <div class="lg:w-1/30 sm:w-1/2 p-4"></div> <!--17 -->
+
+
+      <div class="lg:w-1/5 sm:w-1/2 p-4"> <!--18 -->
+        <div class="flex relative">
+          <a href="https://en.wikipedia.org/wiki/Francium" target="_blank"><img alt="gallery" class="absolute inset-0 w-full h-full object-cover object-center" src="https://www.shutterstock.com/shutterstock/photos/1919418092/display_1500/stock-vector-francium-atomic-structure-has-atomic-number-atomic-mass-electron-configuration-and-energy-levels-1919418092.jpg">
+            <div class="px-8 py-10 relative z-10 w-full border-4 border-gray-800 bg-gray-900 opacity-0 hover:opacity-100">
+              <h2 class="tracking-widest text-sm title-font font-medium text-indigo-400 mb-1">FRANCIUM (Fr)</h2>
+              <h1 class="title-font text-lg font-medium text-white mb-3">Marguerite Perey</h1>
+              <p class="leading-relaxed">Francium is the heaviest known member of the alkali metals.The element is used for research.It exists only in short-lived radioactive forms </p>
+            </div>
+          </a>  
+        </div>
+      </div>
+
+
+      <div class="lg:w-1/5 sm:w-1/2 p-4"> <!--19 -->
+        <div class="flex relative">
+          <a href="https://en.wikipedia.org/wiki/Radium" target="_blank"><img alt="gallery" class="absolute inset-0 w-full h-full object-cover object-center" src="https://www.shutterstock.com/image-vector/radium-atomic-structure-has-number-600w-1919418101.jpg">
+            <div class="px-8 py-10 relative z-10 w-full border-4 border-gray-800 bg-gray-900 opacity-0 hover:opacity-100">
+              <h2 class="tracking-widest text-sm title-font font-medium text-indigo-400 mb-1">RADIUM (Ra)</h2>
+              <h1 class="title-font text-lg font-medium text-white mb-3">Marie and Pierre Curie</h1>
+              <p class="leading-relaxed">Radium is silvery,soft, intensely radioactive. It readily oxidizes on exposure to air, turning from almost pure white to black. </p>
+            </div>
+          </a>
+        </div>
+      </div>
+
+      
+    </div>
+
+
+  </section>
+</body>
+</html>

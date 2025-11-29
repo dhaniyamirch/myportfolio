@@ -1,0 +1,461 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://unpkg.com/scrollreveal"></script>
+    <style>
+        * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        overflow-x: hidden
+    }
+    html{
+        scroll-behavior: smooth;
+    }
+    @import url('https://fonts.googleapis.com/css2?family=Zilla+Slab:wght@500&display=swap');
+    /* first page some initalising? */
+    header{
+        width: 100%;
+        height: 100vh;
+        
+        background-color: purple /*no-repeat 50% 50%*/; 
+        background-size: cover;
+        background-attachment: fixed;
+    }
+    /* nav bar starts here  */
+    nav {
+        font-family: 'Zilla Slab', serif;
+        position: fixed;
+        background-color: rgba(58, 7, 58, 0.674);
+        padding: 10px 20px;
+        box-shadow: 0px 0px 5px 0px rgb(112, 69, 143);
+        
+    }
+
+    nav ul {
+        display: flex;
+        align-items: center;
+        list-style-type: none;
+        height: 80px;
+        width: 1490px;
+        color: aliceblue;
+    }
+
+    nav ul li {
+        padding: 0 20px;
+    }
+
+    .brand img {
+        width: 98px;
+        padding: 0 10px;
+        border-radius: 50%;
+    }
+
+    .brand {
+        display: flex;
+        align-items: center;
+        font-weight: bold;
+        font-size: 1.2rem;
+    }
+
+    .bor {
+        border-left: 1px solid aliceblue;
+    
+    }
+
+    .nounderline{
+        text-decoration: none;
+        color: #fff;
+    }
+
+    .right {
+        margin-left: auto;
+        padding-right: 20px;
+    }
+
+
+    .butt {
+        display: inline-block;
+        padding: 10px 20px;
+        font-size: 16px;
+        margin-left: 760px;
+        font-weight: bold;
+        color: #fff;
+        text-align: center;
+        text-decoration: none;
+        border: 2px solid #0e457d;
+        border-radius: 5px;
+        background-color: #040449;
+        transition: all 0.3s ease;
+    }
+
+
+    .butt:hover {
+        background-color: #052978;
+        color: #fff;
+    }
+    /* nav bar ends  */
+
+/* -------------------------------------------------------------------- */
+
+    /* firts page starts te way to all trends  */
+    
+    .container{
+        height: 100vh;
+        padding :2px;
+    }
+    p{
+        font-size: 1.5em;
+    }
+    #section1{
+        position:relative;
+        display: flex;
+        padding-top: 500px;
+        color: #fff;
+        align-items: center;
+        justify-content: space-around;
+    }
+    
+    #sec1{
+        /* position:absolute; */
+        height:100vh;
+        background: linear-gradient(45deg, #322274,rgba(178, 11, 220, 0.847),rgba(41, 5, 62, 0.852),rgba(40, 112, 190, 0.715) ,rgb(193, 16, 167));
+    }
+    #sec2{
+        /* position:absolute; */
+        height:100vh;
+        background: linear-gradient(45deg, #20115b,rgba(83, 11, 101, 0.486),rgba(6, 37, 46, 0.893),rgba(214, 12, 228, 0.642) ,rgba(4, 34, 79, 0.87),rgb(0, 153, 255));
+    }
+    #sec3{
+        /* position:absolute; */
+        height:100vh;
+        background: linear-gradient(45deg, #9c0c32ce,rgba(108, 11, 160, 0.799),rgba(81, 3, 86, 0.968) ,rgba(6, 7, 65, 0.845),rgba(143, 102, 40, 0.813));
+    }
+    #sec4{
+        /* position:absolute; */
+        height:100vh;
+        background: linear-gradient(45deg, #042670,rgba(95, 3, 118, 0.897),rgba(66, 9, 99, 0.884),rgba(134, 10, 143, 0.872) ,rgba(166, 10, 39, 0.824),rgba(11, 8, 124, 0.929));
+    }
+    #sec5{
+        /* position:absolute; */
+        height:100vh;
+        background: linear-gradient(45deg, #220a85,rgba(123, 24, 148, 0.696),rgba(46, 4, 70, 0.632),rgb(77, 9, 20),rgba(106, 18, 113, 0.715) ,rgba(83, 4, 90, 0.897),rgba(191, 8, 78, 0.737));
+    }
+    #sec6{
+        /* position:absolute; */
+        height:100vh;
+        background: linear-gradient(45deg, #2b1682,rgba(22, 10, 136, 0.516),rgba(8, 20, 66, 0.852),rgba(113, 18, 26, 0.715) ,rgba(120, 15, 92, 0.783),rgba(150, 19, 76, 0.674));
+    }
+    
+    .container{
+        position: relative;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+        color: #fff;
+    }
+    .main-title{
+        position: relative;
+        height: 120px;
+        font-size: 3em;     
+        margin-top: 115px;
+        
+       
+    }
+
+    .content{
+        position: relative;
+        width:1150px;
+        overflow-y: hidden;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+    .content .image1{
+        position: relative;
+        margin-top: 20px;
+        width: 700px;
+        height: 486px;
+        overflow: hidden;
+    }
+    
+    .content .image1 img{
+        z-index: 111;
+        position: absolute;
+        top: 0;
+        left: 0;
+        margin-top: 50px;
+        width: 95%;
+        height: 83%;
+        object-fit: cover;
+        border-radius: 10px;
+
+    }
+    .content .image{
+        position: relative;
+        width: 800px;
+        height: 400px;
+        overflow: hidden;
+    }
+    
+    .content .image img{
+        z-index: 111;
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        border-radius: 10px;
+
+    }
+
+    .content .image2{
+        position: relative;
+        width: 1300px;
+        height: 400px;
+        overflow: hidden;
+    }
+    
+    .content .image2 img{
+        z-index: 111;
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        border-radius: 10px;
+
+    }
+
+    .content  .txt-box{
+        z-index: 222;
+        background: rgba(255, 255, 255, 0.1);
+        backdrop-filter: blur(20px);
+        padding: 40px;
+        margin-left: 5px;
+        box-shadow: 10px 10px 10px 3px rgba(0, 0, 0, 0.315);
+        max-width: 400px;
+        border: 1px solid rgba(255, 255, 255, 0.1);
+        border-radius: 10px;
+        transform: translate(-80px,50px);
+    }
+    .content .txt-box h3{
+        font-size: 2em;
+        margin-bottom: 10px;
+
+    }
+    .all-trends{
+        padding-top:75px;
+        padding-bottom:70px;
+        overflow-y: hidden;
+        display: inline;
+        text-decoration: none;
+    }
+    .big{
+        border: none;
+        background: #ba256ba4;
+        color: #ffffff !important;
+        font-weight: 100;
+        padding: 20px;
+        text-transform: uppercase;
+        border-radius: 6px;
+        display: inline-block;
+        transition: all 0.3s ease 0s;
+    }
+    .big:hover{
+        color: #302a2a !important;
+        background: pink;
+        font-weight: 700 !important;
+        letter-spacing: 3px;
+        /* background: none; */
+        transition: all 0.3s ease 0s;
+    }
+    .all-trends a{
+        color: aliceblue;
+        font-size: 1em;
+        margin: 12px;
+        
+    }
+
+    .section-title{
+        font-size: 3em;
+        margin-bottom: 80px;
+    }
+    .info-title{
+        font-size: 1.8em;
+        margin-bottom: 10px;
+    }
+
+    .info{
+        width: 700px;
+        margin-left: 50px;
+
+    }
+    .huh{
+        overflow-y: hidden;
+    }
+    </style>
+</head>
+<body>
+    <header>
+    <nav>
+        <ul>
+            <li class="brand"><img src="logo.jpg" alt="The Chemist's Notebook">The Chemist's Notebook </li>
+            <li class="bor"><a class="nounderline" href="blackhome.html">Home</a> </li>
+            <li class="bor"><a class="nounderline" href="about.html">About</a></li>
+            <li class="bor"><a class="nounderline" href="contact.html">Contact</a></li></li>
+            <li class="right1"><a class="nounderline" href="more.html"><button class="butt">more </button></a></li>
+        </ul>
+    
+    </nav>
+    <div class="container">
+        <h2 class="main-title">Trends of Periodic Table</h2>
+        <div class="content">
+            <div class="image1">
+                <img src="chart-of-periodic-table-trends.png" alt="trends-of-periodic-table-intro">
+            </div>
+            <div class="txt-box">
+                <h3>Exploring Periodic Trends</h3>
+                <p>The periodic table, a cornerstone of chemistry, holds within its organized structure a wealth of information about the behavior and properties of elements. Understanding periodic trends is key to unraveling the underlying principles that govern these elements' behavior.</p>
+            </div>
+        </div>
+        <div class="all-trends">
+            <div class="huh">
+                <a href="#sec1"><li class="fab big ">Electronegativity</li></a>
+                <a href="#sec2"><li class="fab big">Electron affinity</li></a>
+                <a href="#sec3"><li class="fab big">Ionization energy</li></a>
+                <a href="#sec4"><li class="fab big">Atomic radius</li></a>
+                <a href="#sec5"><li class="fab big">Metallic character</li></a>
+                <a href="#sec6"><li class="fab big">Ionic radius</li></a>
+            </div>
+            
+        </div>
+    </div>
+    </header>
+    <section id="sec1">
+        <div class="container">
+            <h3 class="section-title">Electronegativity</h3>
+            <div class="content">
+                <div class="image2">
+                    <img src="Electronegativity_Trend_IK.png" alt="first trend">
+                </div>
+                <div class="info">
+                    <h4 class="info-title">Electronegativity of the elements </h4>
+                    <p>Electronegativity is a chemical property that measures an atom's tendency to attract electrons when forming a chemical bond.Electronegativity is affected by an atom's atomic number and the distance of its valence electrons from the nucleus. The higher the electronegativity, the more an atom attracts electrons. 
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+    <section id="sec2">
+        <div class="container">
+            <h3 class="section-title">Electron affinity</h3>
+            <div class="content">
+                <div class="image2">
+                    <img src="Electron_Affinity_Trend_IK.png" alt="first trend">
+                </div>
+                <div class="info">
+                    <h4 class="info-title"></h4>
+                    <p>Electron affinity is the energy change that occurs when an atom gains electrons.Across the periodic table
+                        Electron affinity increases from left to right due to increased nuclear charge. This is because atoms become smaller and smaller as the atomic number increases.
+                        Down the periodic table
+                        Electron affinity decreases from top to bottom in a group. 
+                        Upward for the groups
+                        Electron affinity increases because the electrons added to energy levels become closer to the nucleus. </p>
+                </div>
+            </div>
+        </div>
+    </section>
+    <section  id="sec3">
+        <div class="container">
+            <h3 class="section-title">Ionization energy</h3>
+            <div class="content">
+                <div class="image2">
+                    <img src="Ionization_Energy_Trend_IK.png" alt="ionisation-energy-trend">
+                </div>
+                <div class="info">
+                    <h4 class="info-title"></h4>
+                    <p>The amount of energy required by an isolated gaseous atom to lose an electron in its ground state.Ionization energy generally increases from left to right across a period on the periodic table. This is because the atomic radius decreases as you move left to right, so electrons are more attracted to the nucleus. The ionization energy decreases from top to bottom in groups, and increases from left to right across a period.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+    <section  id="sec4">
+        <div class="container">
+            <h3 class="section-title">Atomic Radius</h3>
+            <div class="content">
+                <div class="image2">
+                    <img src="Atomic_Radius_Trend_IK.png" alt="atomic-radius-trend ">
+                </div>
+                <div class="info">
+                    <h4 class="info-title"></h4>
+                    <p>On the periodic table, atomic radius generally decreases from left to right across a period and increases from top to bottom down a column. This is because: 
+                        Across a period
+                        The increasing nuclear charge attracts the electrons more strongly, pulling them closer to the nucleus.
+                        Down a group
+                        The number of energy levels increases, so there is a greater distance between the nucleus and the outermost orbital.
+                        The largest atoms are found in the lower left corner of the periodic table, and the smallest are found in the upper right corner. 
+                        
+                       </p>
+                </div>
+            </div>
+        </div>
+    </section>
+    <section  id="sec5">
+        <div class="container">
+            <h3 class="section-title">Metallic Character</h3>
+            <div class="content">
+                <div class="image2">
+                    <img src="mettalic.png" alt="metallic-character-trend">
+                </div>
+                <div class="info">
+                    <h4 class="info-title"></h4>
+                    <p>The metallic character is the tendency of an element to lose electrons and form positive ions or cations.Metallic character is a periodic table trend that increases as you move down a group and decreases as you move across a period. Metallic character decreases across a period because atoms prefer to accept electrons to fill a valence shell rather than lose them to remove an unfilled shell</p>
+                </div>
+            </div>
+        </div>
+    </section>
+    <section  id="sec6">
+        <div class="container">
+            <h3 class="section-title">Ionic Radius</h3>
+            <div class="content">
+                <div class="image2">
+                    <img src="ionic_radius.png" alt="ionic-radius">
+                </div>
+                <div class="info">
+                    <h4 class="info-title"></h4>
+                    <p>The ionic radius is the distance between the nucleus of an ion and the outermost shell of the ion that contains an electron.The ionic radius trend in the periodic table of elements is that it increases as you move down a column or group. This is because each row adds a new electron shell.The ionic radius decreases moving from left to right across a row or period. This is because the ionic radius decreases for metals forming cations. For nonmetals, the ionic radius increases as the effective nuclear charge decreases.Ionic radius also follows the same vertical trend as atomic radii. 
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+    <section  id="sec7">
+
+    </section>
+    <section  id="sec8">
+
+    </section>
+    <script>
+        ScrollReveal({ 
+            reset: true,
+            distance:'60px',
+            duration : 2500,
+            delay : 400
+        });
+
+        ScrollReveal().reveal('.main-title, .section-title', { delay: 500, origin: 'left' });
+        ScrollReveal().reveal('.image1, .info', { delay: 600, origin: 'bottom' });
+        ScrollReveal().reveal('.txt-box', { delay: 700, origin: 'right' });
+        ScrollReveal().reveal('.all-trends  .huh ', { delay: 500, origin: 'bottom', interval : 200 });
+        ScrollReveal().reveal('.sec1 .image', { delay: 500, origin: 'top' });
+    </script>
+</body>
+</html>

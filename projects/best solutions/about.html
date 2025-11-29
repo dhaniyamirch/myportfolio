@@ -1,0 +1,261 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>About Our Project</title>
+    <style>
+        * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+    }
+
+    @import url('https://fonts.googleapis.com/css2?family=Zilla+Slab:wght@500&display=swap');
+
+    nav {
+        font-family: 'Zilla Slab', serif;
+        background: linear-gradient(45deg, #3b1cb8,rgba(178, 11, 220, 0.847),rgba(115, 34, 161, 0.852),rgba(106, 18, 113, 0.715) ,rgba(19, 20, 117, 0.783),rgba(16, 119, 188, 0.865));
+        box-shadow: 0px 0px 5px 0px rgb(112, 69, 143);
+        padding: 10px 20px;
+    }
+
+    nav ul {
+        display: flex;
+        align-items: center;
+        list-style-type: none;
+        height: 80px;
+        color: aliceblue;
+    }
+
+    nav ul li {
+        padding: 0 20px;
+    }
+
+    .brand img {
+        width: 60px;
+        padding: 0 10px;
+        border-radius: 50%;
+    }
+
+    .brand {
+        display: flex;
+        align-items: center;
+        font-weight: bold;
+        font-size: 1.2rem;
+    }
+
+    .bor {
+        border-left: 1px solid aliceblue;
+    
+    }
+
+    .nounderline{
+        text-decoration: none;
+        color: #fff;
+    }
+
+    .right {
+        margin-left: auto;
+        padding-right: 20px;
+    }
+
+
+    .butt {
+        display: inline-block;
+        padding: 10px 20px;
+        font-size: 16px;
+        font-weight: bold;
+        color: #fff;
+        text-align: center;
+        text-decoration: none;
+        border: 2px solid #0e457d;
+        border-radius: 5px;
+        background-color: #040449;
+        transition: all 0.3s ease;
+    }
+
+
+    .butt:hover {
+        background-color: #052978;
+        color: #fff;
+    }
+    </style>
+    <style>
+      
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background: linear-gradient(45deg, #3b1cb8,rgba(178, 11, 220, 0.847),rgba(115, 34, 161, 0.852),rgba(106, 18, 113, 0.715) ,rgba(19, 20, 117, 0.783),rgba(16, 119, 188, 0.865));
+            color: #d7d7d7;
+            line-height: 1.6;
+        }
+
+        header {
+            background: linear-gradient(45deg, #3b1cb8,rgba(178, 11, 220, 0.847),rgba(115, 34, 161, 0.852),rgba(106, 18, 113, 0.715) ,rgba(19, 20, 117, 0.783),rgba(16, 119, 188, 0.865));
+            color: #fff;
+            text-align: center;
+            padding: 20px;
+        }
+
+        header h1 {
+            font-size: 2.5em;
+        }
+
+        section {
+            padding: 60px;
+            margin: 20px 0;
+            background: linear-gradient(45deg, #3b1cb8,rgba(178, 11, 220, 0.847),rgba(115, 34, 161, 0.852),rgba(106, 18, 113, 0.715) ,rgba(19, 20, 117, 0.783),rgba(16, 119, 188, 0.865));
+            border-radius: 5px;
+            box-shadow: 0 0 10px rgba(255, 255, 255, 0.1);
+        }
+
+        .team ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        .team li {
+            margin-bottom: 10px;
+        }
+
+        h2 {
+            color: #fff;
+        }
+
+        footer {
+            text-align: center;
+            padding: 20px;
+            background-color: #192a56;
+            color: #fff;
+        }
+
+        /* Image animation */
+        .team img {
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            margin-left: 10px;
+            transition: transform 0.3s ease;
+        }
+
+        .team img:hover {
+            transform: scale(1.1);
+        }
+
+        /* Animation */
+        .pulsate {
+            animation: pulseAnimation 3s ease-in-out;
+        }
+
+        @keyframes pulseAnimation {
+            0% {
+                transform: scale(0.8);
+                opacity: 0.5;
+            }
+            50% {
+                transform: scale(1);
+                opacity: 1;
+            }
+            100% {
+                transform: scale(0.8);
+                opacity: 0.5;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    
+    <nav>
+        <ul>
+            <li class="brand"><img src="logo.jpg" alt="The Chemist's Notebook">The Chemist's Notebook </li>
+            <li class="bor"><a class="nounderline" href="blackhome.html">Home</a> </li>
+            <li class="bor"><a class="nounderline" href="about.html">About</a></li>
+            <li class="bor"><a class="nounderline" href="contact.html">Contact</a></li></li>
+            <li class="right"><button class="butt"><a class="nounderline" href="more.html">more</a> </button></li>
+        </ul>
+    
+    </nav>
+
+    <header>
+        <h1>About Our Project</h1>
+        <p class="pulsate">Welcome to The Chemist's Notebook, a comprehensive guide to the periodic table. Our website is dedicated to exploring each of the 118 elements...</p>
+    </header>
+
+    <section class="description">
+        <h2>About This Website</h2>
+        <ul>
+            <li>Our project is focused on providing a detailed exploration of each of the 118 elements in the periodic table. </li>
+            <li>We dive into their inventor information, historical backgrounds, unique properties, common uses, and much more.</li>
+            <li>Welcome to our comprehensive guide to the periodic table! This website is dedicated to unraveling the mysteries of each of the 118 elements, providing in-depth information on their properties, histories, uses, and the visionaries behind their discovery.</li>
+            <li>Our goal is to create an accessible platform for students, educators, and anyone curious about the fascinating world of chemistry. We aim to make learning about the elements engaging and straightforward, offering valuable insights into their significance and applications in everyday life.</li>
+        </ul>
+            
+            
+
+            
+    </section>
+
+    <section class="team">
+        <h2>Our Team</h2>
+        <ul>
+            <li>
+                Code Manager: Nachiket Mahajan
+                <ul>
+                    PRN Number: 202301060047<br>
+                    Roll Number: Ex358
+
+                </ul>
+                <a  href="https://www.instagram.com/am_i_nachiket_/" target="_blank"> <img src="instagram-icon_1057-2227.avif" alt="Nachiket Mahajan"><span style="text-decoration: none; color: #fff;">@am_i_nachiket_</span></a>
+                <a href="https://www.linkedin.com/in/nachiket-mahajan-455ba4286/" target="_blank"> <img src="linkedin.png" alt="Nachiket Mahajan"><span style="text-decoration: none; color: #fff;">@nachiketmahjan </span></a>
+            </li>
+            <li>
+                Design & Information Gathering: Piyush Raundal
+                <ul>
+                    PRN Number: 202301060043<br>
+                    Roll Number: Ex367
+                </ul>
+                <a  href="https://www.instagram.com/piyyushr/" target="_blank"> <img src="instagram-icon_1057-2227.avif" alt="Piyush Raundal"><span style="text-decoration: none; color: #fff;">@piyyushr</span></a>
+            </li>
+            <li>
+                Research & code assist: Sahil Raichurkar
+                <ul>
+                    PRN Number: 202301060051<br>
+                    Roll Number: Ex354
+                </ul>
+                <a  href="https://www.instagram.com/_sahilll1509_/" target="_blank"> <img src="instagram-icon_1057-2227.avif" alt="Sahil Raichurkar"><span style="text-decoration: none; color: #fff;">@_sahilll1509_
+                </span></a>
+                
+            </li>
+        </ul>
+    </section>
+
+    
+
+    <section class="vision">
+        <h2>Our Vision</h2>
+        <p>We want to make a platform that gets people curious and helps them understand more. By working together, we hope to build a place where learning about chemistry is fun and encourages new discoveries.</p>
+        <h2>Our Mission</h2>
+        <p>Our mission is to create an engaging and informative platform that sparks curiosity, fosters understanding, 
+        and serves as a valuable resource for students, educators, and anyone interested in the fascinating world of chemistry.</p>
+    </section>
+
+    <section class="contributions">
+        <h2>Our Contributions</h2>
+        <p>Each of us plays a crucial role in developing this comprehensive resource. We gather, curate, and present information about the elements, ensuring accuracy and clarity. Our aim is to make this platform an engaging and reliable source for exploring the building blocks of the universe.</p>
+        <ul>
+            <li>Researched and gathered information on chemistry elements.</li>
+            <li>Compiled and organized data for website content.</li>
+            <li>Designed the website layout.</li>
+            <li>Managed the overall coding and development process.</li>
+        </ul>
+    </section>
+
+    <footer>
+        <p>Thank you for joining us on this journey through the periodic table!</p>
+        <p>© 2023 Our Chemistry Project. All rights reserved.</p>
+    </footer>
+
+</body>
+</html>

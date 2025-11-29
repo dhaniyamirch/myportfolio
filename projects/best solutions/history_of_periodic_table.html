@@ -1,0 +1,432 @@
+<!DOCTYPE html>
+<html style="overflow: hidden;">
+<head>
+ <title>Vertical Line with Named Circles and Sections</title>
+<style>
+     * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        
+    }
+
+    @import url('https://fonts.googleapis.com/css2?family=Zilla+Slab:wght@500&display=swap');
+
+    nav {
+        font-family: 'Zilla Slab', serif;
+        position: absolute;
+        margin-bottom: 660px;
+        background-color: rgba(121, 20, 121, 0.416);
+        padding: 10px 20px;
+        box-shadow: 0px 0px 5px 0px rgb(112, 69, 143);
+        
+    }
+
+    nav ul {
+        display: flex;
+        align-items: center;
+        list-style-type: none;
+        height: 80px;
+        width: 1490px;
+        color: aliceblue;
+    }
+
+    nav ul li {
+        padding: 0 20px;
+    }
+
+    .brand img {
+        width: 98px;
+        padding: 0 10px;
+        border-radius: 50%;
+    }
+
+    .brand {
+        display: flex;
+        align-items: center;
+        font-weight: bold;
+        font-size: 1.2rem;
+    }
+
+    .bor {
+        border-left: 1px solid aliceblue;
+    
+    }
+
+    .nounderline{
+        text-decoration: none;
+        color: #fff;
+    }
+
+    .right {
+        margin-left: auto;
+        padding-right: 20px;
+    }
+
+
+    .butt {
+        display: inline-block;
+        padding: 10px 20px;
+        font-size: 16px;
+        margin-left: 760px;
+        font-weight: bold;
+        color: #fff;
+        text-align: center;
+        text-decoration: none;
+        border: 2px solid #0e457d;
+        border-radius: 5px;
+        background-color: #040449;
+        transition: all 0.3s ease;
+    }
+
+
+    .butt:hover {
+        background-color: #052978;
+        color: #fff;
+    }
+        body {
+            padding-bottom: 10px;
+            
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            background: linear-gradient(45deg, #3b1cb8,rgba(178, 11, 220, 0.847),rgba(115, 34, 161, 0.852),rgba(106, 18, 113, 0.715) ,rgba(19, 20, 117, 0.783),rgba(16, 119, 188, 0.865));
+            overflow-y: inherit;
+        }
+        .container {
+            position: relative;
+            margin-top: 300px;
+            width: 50px;
+            height: 500px;
+            border-right: 5px solid rgb(118, 27, 118);
+        }
+        .circle {
+            position: absolute;
+            width: 20px;
+            height: 20px;
+            background-color: black;
+            border-radius: 50%;
+            cursor: pointer;
+            transition: top 0.3s ease-in-out, transform 0.3s ease-in-out;
+        }
+
+        .circle:hover {
+            transform: scale(1.2); /* Example: Increases the size of the circle on hover */
+            background-color: #555; /* Example: Changes the color on hover */
+        }
+        .circle-name {
+            position: absolute;
+            /* top: -35px; */
+            left: -90px;
+            font-size: 25px;
+            display: block;
+            width: 100px;
+            text-align: center;
+            color: #ffcc66;
+        }
+        .circle:nth-child(1) {
+            top: 30px;
+            border-right: 5px solid purple;
+        }
+        .circle:nth-child(2) {
+            top: 120px;
+            border-right: 5px solid blue;
+        }
+        .circle:nth-child(3) {
+            top: 210px;
+            border-right: 5px solid green;
+        }
+        .circle:nth-child(4) {
+            top: 300px;
+            border-right: 5px solid yellow;
+        }
+        .circle:nth-child(5) {
+            top: 390px;
+            border-right: 5px solid red;
+        }
+        /* Sections */
+        .section {
+            height: 85vh; /* Adjust section height */
+            width: 80%;
+            position: relative;
+            margin-top: 140px;
+            padding-bottom: 10px;
+            display: none;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            /* gap: 20px; */
+            font-size: 24px;
+            transition: opacity 0.5s ease-in-out; 
+            opacity: 0;
+
+            pointer-events: none;
+            padding: 20px;
+        }
+        .section.active {
+            display: flex;
+            pointer-events: auto;
+            
+            opacity: 1;
+            
+        }
+       
+        .section .left {
+            
+            flex: 1;
+            
+        }
+
+        .his1-img{
+            height: 30vh;
+            width: 30%;
+            margin-bottom: 200px;
+            padding-right: 40px;
+            position: relative;
+            
+            
+        }
+        .his1-img1{
+            height: 70vh;
+            width: 60%;
+            position: relative;
+            
+        }
+        .his1-img-txt{
+            position: absolute;
+            width: 220px;
+            left:0px;
+            color: rgb(0, 0, 0);
+            margin-top: 390px;
+        }
+        .his1-img1-txt1{
+            position: absolute;
+            width: 290px;
+            left: 250px;
+            color: rgb(0, 0, 0);
+            margin-top: 540px;
+        }
+        
+        .his2-img{
+            position: relative;
+            height: 230px;
+        }
+        .his2-img2{
+            height: 350px;
+            position: relative;
+        }
+        .his3-img{
+            position: relative;
+            height: 450px;
+        }
+        .his5-img{
+            position: relative;
+            height: 410px;
+        }
+
+        .section .right {
+            flex: 1;
+            justify-content: left;
+        }
+        .animated {
+            animation: bounce 2.5s ease-in-out;
+        }
+        @keyframes bounce {
+            0%, 100% {
+                transform: translateY(0);
+            }
+            50% {
+                transform: translateY(-15px);
+            }
+        }
+        .section.active .left,
+        .section.active .right {
+            opacity: 1;
+            animation: fadeIn 1s ease-in-out;
+            
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+        .section .button {
+            margin-top: 20px;
+            padding: 10px 20px;
+            background-color: #d78be13b; /* Adjust button color */
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s ease-in-out;
+        }
+        .section .button:hover {
+            background-color: #d934bb; /* Adjust hover color */
+        }
+        
+        /* .section:nth-child(even) {
+            background-color: #39cf983a;
+        } */
+        
+
+        .section1 {
+            background-color: #ca6e6e1f;
+        }
+
+        .section2 {
+            background-color: #b4679e30;
+        }
+
+        .section3 {
+            background-color: #63a8be23;
+        }
+
+        .section4 {
+            background-color: #51aa5a21;
+        }
+
+        .section5 {
+            background-color: #d89b382d;
+        }
+        p{
+            color: rgba(242, 242, 242, 0.669);
+            line-height: 1.3;
+        }
+    </style>
+</head>
+<body>
+    <nav>
+        <ul>
+            <li class="brand"><img src="logo.jpg" alt="The Chemist's Notebook">The Chemist's Notebook </li>
+            <li class="bor"><a class="nounderline" href="blackhome.html">Home</a> </li>
+            <li class="bor"><a class="nounderline" href="about.html">About</a></li>
+            <li class="bor"><a class="nounderline" href="contact.html">Contact</a></li></li>
+            <li class="right1"><a class="nounderline" href="more.html"><button class="butt">more </button></a></li>
+        </ul>
+    
+    </nav>
+    
+    <div class="container">
+        <div class="circle" onclick="showSection(1)"><span class="circle-name">1789</span></div>
+        <div class="circle" onclick="showSection(2)"><span class="circle-name">1864</span></div>
+        <div class="circle" onclick="showSection(3)"><span class="circle-name">1869</span></div>
+        <div class="circle" onclick="showSection(4)"><span class="circle-name">1914</span></div>
+        <div class="circle" onclick="showSection(5)"><span class="circle-name">~1950</span></div>
+    </div>
+
+    <div class="section active section1" id="section1">
+        
+        <div class="left">
+            <span class="his1-img-txt">1789: Antoine Lavoisier publishes his 'Traite Elementaire de Chimie'</span>
+            <img class="his1-img" src="antoine-lavoisier.jpg" alt="antoine-lavoisier">
+            <img class="his1-img1" src="traite-elementaire-1789.jpg" alt="traite-elementaire-1789">
+            <span class="his1-img1-txt1">The 'Traite Elementaire de Chimie' listed 33 substances</span>
+            
+        </div>
+        <div class="right">
+            <p>In 1789, French chemist Antoine Lavoisier tried grouping the elements as metals and nonmetals. Forty years later, German physicist Johann Wolfang Döbereiner observed similarities in physical and chemical properties of certain elements. He arranged them in groups of three in increasing order of atomic weight and called them triads, observing that some properties of the middle element, such as atomic weight and density, approximated the average value of these properties in the other two in each triad. 
+                A breakthrough came with the publication of a revised list of elements and their atomic masses at the first international conference of chemistry in Karlsruhe, Germany, in 1860. They concluded that hydrogen would be assigned the atomic weight of 1 and the atomic weight of other elements would be decided by comparison with hydrogen. For example, carbon, being12 times heavier than hydrogen, would have an atomic weight of 12. </p>
+            <a  target="_blank" href="https://en.wikipedia.org/wiki/Antoine_Lavoisier">
+                <button class="button">Learn-more</button>
+            </a>
+               
+        </div>
+    </div>
+    <div class="section section2" id="section2">
+        <div class="left">
+            <img class="his2-img" src="section2img.png" alt="newland's octaves">
+            <img class="his2-img2" src="newlands-1865.png" alt="newland's 1865 table ">
+
+        </div>
+        <div class="right">
+            <p class="animated">John Newlands proposed a concept of "octaves" in the periodic table, where he observed similarities among elements in groups of seven, with the eighth element resembling the properties of the first. This concept was akin to musical octaves, where a sequence of seven notes is followed by a repetition. Newlands' system didn't include the modern rare gas elements (group 8/18) like helium, neon, argon, etc., as they hadn't been discovered yet. While his idea showed patterns, it wasn't as comprehensive or predictive as Mendeleev's periodic table, which included gaps for undiscovered elements and successfully predicted their properties, strengthening the credibility of the periodic table as a tool for understanding elements.</p>
+            <a target="_blank" href="https://www.meta-synthesis.com/webbook/35_pt/pt_database.php?PT_id=8">
+                <button class="button">Learn-more</button>
+            </a>
+        </div>
+    </div>
+    <div class="section section3" id="section3">
+        <div class="left">
+            <img class="his3-img" src="Who-Invented-the-Periodic-Table.png" alt="mendeleev ">
+        </div>
+        <div class="right">
+            <p class="animated"> In 1869, Russian chemist Dmitri Mendeleev created the framework that became the modern periodic table, leaving gaps for elements that were yet to be discovered. While arranging the elements according to their atomic weight, if he found that they did not fit into the group he would rearrange them. Mendeleev predicted the properties of some undiscovered elements and gave them names such as "eka-aluminium" for an element with properties similar to aluminium. Later eka-aluminium was discovered as gallium. Some discrepancies remained; the position of certain elements, such as iodine and tellurium, could not be explained. </p>
+            <a target="_blank" href="https://www.asbmb.org/asbmb-today/science/020721/a-brief-history-of-the-periodic-table#:~:text=In%201869%2C%20Russian%20chemist%20Dmitri,group%20he%20would%20rearrange%20them.">
+                <button class="button">Learn-more</button>
+            </a>
+        </div>
+    </div>
+    <div class="section section4" id="section4">
+        <div class="left">
+            <img class="his4-img" src="Hackh's-Spiral-Periodic-Table.jpg" alt="Hackh's Spiral Periodic Table">
+        </div>
+        <div class="right">
+            <p class="animated"> Ingo Hackh's spiral periodic table of 1914, from Das Synthetisches System der Atome, Hamburg, Hephaestos.<br><br>Philip Stewart says:<br>
+
+                "I believe that Hackh's 1914 spiral is of special interest it is the first spiral to take account of Mosley's atomic numbers, and the first to show successively larger pairs of coils. It is also interesting because H stands alone in the centre. I have only seen Mazurs' redrawn (as usual!) version, but Mazurs gives SciAm Supplement 1919 as one reference."</p>
+            <a target="_blank" href="https://www.meta-synthesis.com/webbook/35_pt/pt_database.php?PT_id=23">
+                <button class="button">Learn-more</button>
+            </a>
+        </div>
+    </div>
+    <div class="section section5" id="section5">
+        <div class="left">
+            <img class="his5-img" src="periodictable.png" alt="periodic table ">
+        </div>
+        <div class="right">
+            <p class="animated">Glenn T. Seaborg revolutionized chemistry by discovering transuranium elements beyond uranium, expanding the periodic table's boundaries. His pioneering work at the University of California led to the synthesis of elements like plutonium and californium, illuminating the behavior of heavy nuclei. Seaborg proposed an extended periodic table layout, advocating for the placement of the actinide series below the lanthanides. This restructuring accommodated the new elements and provided a more comprehensive understanding of the elements' properties and relationships. His contributions refined the periodic table, shaping our modern understanding of the chemical world.</p>
+            <a target="_blank" href="https://www.popsci.com/science/article/2012-06/archive-gallery-unraveling-periodic-table/#:~:text=In%201950%2C%20there%20were%2096,a%20permanent%20reference%20for%20readers.">
+                <button class="button">Learn-more</button>
+            </a>
+        </div>
+    </div>
+
+    <script>
+        
+        function showSection(sectionNumber) 
+        {
+            const sections = document.querySelectorAll('.section');
+            sections.forEach(section => 
+            {
+                section.classList.remove('active');
+            });
+            const section = document.getElementById(`section${sectionNumber}`);
+            section.classList.add('active');
+            section.scrollIntoView({ behavior: 'smooth' });
+
+            // Update the line color
+            const circles = document.querySelectorAll('.circle');
+            circles.forEach((circle, index) => 
+            {
+                if (index < sectionNumber) 
+                {
+                    circle.style.borderRight = '5px solid purple';
+                } 
+                else 
+                {
+                    circle.style.borderRight = '5px solid black';
+                }
+            });
+        }
+
+        document.addEventListener('keydown', function(event) 
+        {
+            if (event.code === 'Space') 
+            {
+                const sections = document.querySelectorAll('.section');
+                let currentActiveSectionIndex = 0;
+                sections.forEach((section, index) => 
+                {
+                    if (section.classList.contains('active')) 
+                    {
+                        currentActiveSectionIndex = index;
+                    }
+                });
+                const nextSectionIndex = (currentActiveSectionIndex + 1) % sections.length;
+                showSection(nextSectionIndex + 1);
+            }
+        });
+    </script>
+</body>
+</html>

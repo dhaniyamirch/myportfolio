@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Example</title>
+    <style>
+        * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        
+    }
+
+    @import url('https://fonts.googleapis.com/css2?family=Zilla+Slab:wght@500&display=swap');
+
+    nav {
+        font-family: 'Zilla Slab', serif;
+        background-color: rgba(121, 20, 121, 0.416);
+        padding: 10px 20px;
+        box-shadow: 0px 0px 5px 0px rgb(112, 69, 143);
+        
+    }
+
+    nav ul {
+        display: flex;
+        align-items: center;
+        list-style-type: none;
+        height: 80px;
+        width: 1490px;
+        color: aliceblue;
+    }
+
+    nav ul li {
+        padding: 0 20px;
+    }
+
+    .brand img {
+        width: 98px;
+        padding: 0 10px;
+        border-radius: 50%;
+    }
+
+    .brand {
+        display: flex;
+        align-items: center;
+        font-weight: bold;
+        font-size: 1.2rem;
+    }
+
+    .bor {
+        border-left: 1px solid aliceblue;
+    
+    }
+
+    .nounderline{
+        text-decoration: none;
+        color: #fff;
+    }
+
+    .right {
+        margin-left: auto;
+        padding-right: 20px;
+    }
+
+
+    .butt {
+        display: inline-block;
+        padding: 10px 20px;
+        font-size: 16px;
+        font-weight: bold;
+        color: #fff;
+        text-align: center;
+        text-decoration: none;
+        border: 2px solid #0e457d;
+        border-radius: 5px;
+        background-color: #040449;
+        transition: all 0.3s ease;
+    }
+
+
+    .butt:hover {
+        background-color: #052978;
+        color: #fff;
+    }
+       
+    body {
+            
+            height: 06vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background: linear-gradient(45deg, #030303,rgba(50, 35, 50, 0.984),rgba(124, 61, 121, 0.852),rgba(191, 59, 191, 0.879) ,rgb(169, 72, 125),rgb(255, 2, 158));
+        }
+
+        .container {
+            display: flex;
+            position: fixed;
+            flex-wrap: wrap;
+            justify-content: flex-start;
+            margin-top: 900px;
+        }
+
+        .image-container {
+            position: relative;
+            display: inline-block;
+            
+            margin: 40px;
+            
+            opacity: 0;
+        }
+
+        
+        
+
+        @keyframes fadeIn {
+            0% {
+                opacity: 0;
+                transform: translateY(100%);
+            }
+            100% {
+                opacity: 1;
+                transform: translateY(0%);
+            }
+        }
+
+        #imag1, #imag2, #imag3 {
+            position: relative;
+            top: 0;
+            
+            z-index: 9999;
+    
+            animation: fadeIn 0.8s forwards;
+        }
+
+        #imag2 {
+            animation-delay:0.3s;
+        }
+
+        #imag3 {
+            animation-delay:0.5s;
+        }
+
+        .image {
+            box-shadow: 36px 2px 32px 3px #23171f56;
+            border:  5px solid rgb(165, 14, 160) ;
+            width: 350px;
+            height: 450px;
+            transition: transform 0.5s;
+            
+        }
+        /*  */
+        .image-container:hover .image {
+            transform: scale(1.1);
+            
+            
+        }
+
+        .name {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            font-size: xx-large;
+            background-color: rgba(6, 5, 5, 0.475);
+            color: white;
+            text-align: center;
+            padding: 5px;
+            transition: transform 0.8s;
+        }
+
+        .image-container:hover .name {
+            transform: translateY(-390%);
+        }
+
+        .mid {
+            position: absolute;
+            align-items: center;
+            font-size: x-large;
+            
+            background: linear-gradient(to right, #c1abab33, rgb(91, 42, 144),#c1abab33);
+            color: white;
+            
+            margin-top: 250px;
+            animation: fadeIn 3.5s forwards;
+            
+    }
+    
+ 
+
+        
+    </style>
+</head>
+<body>
+    <div class="mid">
+        <p > The Chemist's Notebook !</p>
+    </div>
+    
+        <nav>
+            <ul>
+                <li class="brand"><img src="logo.jpg" alt="The Chemist's Notebook">The Chemist's Notebook </li>
+                <li class="bor"><a class="nounderline" href="blackhome.html">Home</a> </li>
+                <li class="bor"><a class="nounderline" href="about.html">About</a></li>
+                <li class="bor"><a class="nounderline" href="contact.html">Contact</a></li></li>
+                <li class="right"><a class="nounderline" href="more.html"><button class="butt">more </button></a></li>
+            </ul>
+        
+        </nav>
+    
+    
+        
+    
+
+    <div class="container">
+        <div id="imag1" class="image-container">
+            <a href="history_of_periodic_table.html">
+                <img class="image" src="history-of-the-periodic-table.png" alt="history-of-the-periodic-table">
+                <div class="name">History-of-Periodic-Table</div>
+            </a>
+            
+        </div>
+        <div id="imag2" class="image-container">
+            <a href="periodic-table.html">
+                <img class="image" src="vedrana-filipovic-ohrhLVISJ1o-unsplash.jpg" alt="periodic table">
+                <div class="name">Periodic Table</div>
+            </a>
+            
+        </div>
+        <div id="imag3" class="image-container">
+            <a href="periodic_trends.html">
+                <img class="image" src="periodic-trends.jpg" alt="periodic-trends">
+                <div class="name">Periodic-Trends</div>
+            </a>
+            
+        </div>
+    </div>
+</body>
+</html>

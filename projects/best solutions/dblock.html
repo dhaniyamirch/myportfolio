@@ -1,0 +1,790 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>d-block</title>
+
+    <style type ="text/css">
+    * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+    }
+
+    @import url('https://fonts.googleapis.com/css2?family=Zilla+Slab:wght@500&display=swap');
+
+    nav {
+        font-family: 'Zilla Slab', serif;
+        background-color: rgba(31, 99, 143, 0.349);
+        padding: 10px 20px;
+    }
+
+    nav ul {
+        display: flex;
+        align-items: center;
+        list-style-type: none;
+        height: 80px;
+        color: aliceblue;
+    }
+
+    nav ul li {
+        padding: 0 20px;
+    }
+
+    .brand img {
+        width: 60px;
+        padding: 0 10px;
+        border-radius: 50%;
+    }
+
+    .brand {
+        display: flex;
+        align-items: center;
+        font-weight: bold;
+        font-size: 1.2rem;
+    }
+
+    .bor {
+        border-left: 1px solid aliceblue;
+    
+    }
+
+    .nounderline{
+        text-decoration: none;
+        color: #fff;
+    }
+
+    .right {
+        margin-left: auto;
+        padding-right: 20px;
+    }
+
+
+    .butt {
+        display: inline-block;
+        padding: 10px 20px;
+        font-size: 16px;
+        font-weight: bold;
+        color: #fff;
+        text-align: center;
+        text-decoration: none;
+        border: 2px solid #0e457d;
+        border-radius: 5px;
+        background-color: #040449;
+        transition: all 0.3s ease;
+    }
+
+
+    .butt:hover {
+        background-color: #052978;
+        color: #fff;
+    }
+
+    </style>
+
+    <style>
+       
+        .bg{
+            background-color: rgb(2, 2, 35);
+            height: 2720px;
+        }
+
+        .place{
+            text-align: center;
+        }
+        .big{
+            margin-top: 90px;
+            color: aliceblue;
+
+            font-weight: bolder;
+            font-size: 60px;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        .small{
+            color: antiquewhite;
+            margin-top: 20px;
+            font-size: medium;
+            font-family: 'Times New Roman', Times, serif;
+        }
+
+        .animated-button{
+            position: relative;
+            overflow: hidden;
+        }
+        .animated-button p{
+            text-decoration: none;
+            cursor: pointer;
+            transition: transform 0.5s ease-in-out;
+        }
+        .animated-button p:hover{
+            transform: scale(1.1);
+        }
+    </style>
+
+    <style>
+        .container{
+            padding-left: 80px;
+            padding-top: 80px;
+            display: flex;
+        }
+        .container1{
+            padding-left: 80px;
+            padding-top: 80px;
+            height: 300px;
+            display: flex;
+        }
+        .container1 .hi{
+            position: relative;
+            width: 270px;
+            height: 125px;
+            margin: 10px;
+        }
+        
+        
+        .container .hi{
+            position: relative;
+            width: 270px;
+            height: 125px;
+            margin: 10px;
+        }
+        .hi{
+            display: flex;
+            flex-wrap: wrap;
+            height: 300px;
+            padding-bottom: 200px;
+        }
+        .euu{
+            display: flex;
+            position: relative;
+            height: fit-content;
+        }
+        .unreal{
+            width:263px;
+            height: 265px;
+            position: relative;
+            opacity: 0;
+            border: 5px solid;
+            border-color: rgb(207, 201, 201);
+            background-color: rgb(21, 13, 33);
+        }
+        .euu:hover .unreal{
+            opacity: 1;
+            border: 5px solid;
+            border-color:  rgb(207, 201, 201);
+        }
+        .real{
+            position: absolute;
+            width: 267px;
+            height: 265px;
+            
+        }
+        .elename{
+            padding-top: 10px;
+            font-style: bold;
+            color: rgb(250, 206, 111);
+            font-size: 15px;
+        }
+        .inventor{
+            padding-top: 10x;
+        }
+        .size{
+            font-size: 10px;
+        }
+        .col{
+            color: aliceblue;
+        }
+        .pad{
+            padding-left: 10px;
+        }
+        .text{
+            padding-top: 5px;
+            height: fit-content;
+        }
+    </style>
+</head>
+
+<body>
+    <nav>
+        <ul>
+            <li class="brand"><img src="logo.jpg" alt="The Chemist's Notebook">The Chemist's Notebook </li>
+            <li class="bor"><a class="nounderline" href="periodic-table.html">Home</a> </li>
+            <li class="bor"><a class="nounderline" href="about.html">About</a></li>
+            <li class="bor"><a class="nounderline" href="contact.html">Contact</a></li></li>
+            <li class="right"><button class="butt"><a class="nounderline" href="more.html">more</a> </button></li>
+        </ul>
+    
+    </nav>
+    <section class="bg">
+
+        <div class="place  animated-button">
+            <p class="big">D-Block</p>
+            <h3 class="small">later add some text</h3>
+        </div>
+
+        <div class="container">
+
+            <div class="hi">
+                <div class="euu">
+                    <a href="https://en.wikipedia.org/wiki/Scandium" target="_blank">
+                    <img class="real" src="https://www.shutterstock.com/image-vector/scandium-atomic-structure-has-number-260nw-1914414418.jpg" alt="scandium">
+                    <div class="unreal">
+                        <h2 class="elename pad">Scandium(Sc)</h2>
+                        <hi class="inventor size col pad">Lars Frederik Nilson</hi>
+                        <p class="text col pad">Scandium is a soft, silvery transition element which occurs in rare minerals from Scandinavia</p>
+                    </div>
+                    </a>
+                </div>
+            </div>
+
+            <div class="hi">
+                <div class="euu">
+                    <a href="https://en.wikipedia.org/wiki/Titanium" target="_blank">
+                    <img class="real" src="https://as2.ftcdn.net/v2/jpg/04/12/80/93/1000_F_412809338_8ZnJmUVyJOg0KidEQdM7q3ZQs2Aq2Wq0.jpg" alt="titanium">
+                    <div class="unreal">
+                        <h2 class="elename pad">Titanium(Ti)</h2>
+                        <hi class="inventor size col pad">William Gregor</hi>
+                        <p class="text col pad">It's a silvery-white metal that's lightweight, strong, and corrosion-resistant. Titanium is the 9th most abundant element on Earth and is commonly found in rocks, clay, and sand.</p>
+                    </div>
+                    </a>
+                </div>
+            </div>
+
+            <div class="hi">
+                <div class="euu">
+                    <a href="https://en.wikipedia.org/wiki/vanadium" target="_blank">
+                    <img class="real" src="https://www.shutterstock.com/shutterstock/photos/1914414412/display_1500/stock-vector-vanadium-atomic-structure-has-atomic-number-atomic-mass-electron-configuration-and-energy-levels-1914414412.jpg" alt="">
+                    <div class="unreal">
+                        <h2 class="elename pad">Vanadium(V)</h2>
+                        <hi class="inventor size col pad">Andrés Manuel del Río </hi>
+                        <p class="text col pad">It's a hard, silvery-white, ductile metal. Vanadium is rarely found in nature, but it can be isolated artificially.</p>
+                    </div>
+                    </a>
+                </div>
+            </div>
+
+            <div class="hi">
+                <div class="euu">
+                    <a href="https://en.wikipedia.org/wiki/chromium" target="_blank">
+                    <img class="real" src="https://www.shutterstock.com/image-vector/chromium-atomic-structure-has-number-260nw-1914414415.jpg" alt="">
+                    <div class="unreal">
+                        <h2 class="elename pad">Chromium(Cr)</h2>
+                        <hi class="inventor size col pad">Vaughlin</hi>
+                        <p class="text col pad">Chromium metal is valued for its high corrosion resistance and hardness. A major development in steel production was the discovery that steel could be made highly resistant to corrosion and discoloration by adding metallic chromium to form stainless steel.</p>
+                    </div>
+                    </a>
+                </div>
+            </div>
+
+            <div class="hi">
+                <div class="euu">
+                    <a href="https://en.wikipedia.org/wiki/manganese" target="_blank">
+                    <img class="real" src="https://www.shutterstock.com/shutterstock/photos/1914414421/display_1500/stock-vector-manganese-atomic-structure-has-atomic-number-atomic-mass-electron-configuration-and-energy-levels-1914414421.jpg" alt="">
+                    <div class="unreal">
+                        <h2 class="elename pad">Mangenese(Mn)</h2>
+                        <hi class="inventor size col pad">Carl Wilhelm Scheele</hi>
+                        <p class="text col pad">It is a hard, brittle, silvery metal that is often found in minerals with iron. 
+                            Manganese is a transition metal that is solid at room temperature. 
+                            It has many industrial alloy uses, especially in stainless steels. </p>
+                    </div>
+                    </a>
+                </div>
+            </div>
+        </div>
+
+
+
+        <div class="container">
+
+            <div class="hi">
+                <div class="euu">
+                    <a href="https://en.wikipedia.org/wiki/iron" target="_blank">
+                    <img class="real" src="https://as1.ftcdn.net/v2/jpg/04/16/00/12/1000_F_416001276_nCWtxDqNLhocVDQU15hQrUI0hC3gW9UA.jpg" alt="scandium">
+                    <div class="unreal">
+                        <h2 class="elename pad">Iron(Fe)</h2>
+                        <hi class="inventor size col pad">The Hittites of ancient Egypt</hi>
+                        <p class="text col pad">Iron is a chemical element with atomic number 26 and symbol Fe. It is a metal that belongs to the periodic table's first transition series and group 8. It is the most common element on Earth by mass, forming much of the outer and inner core of Earth.</p>
+                    </div>
+                    </a>
+                </div>
+            </div>
+
+            <div class="hi">
+                <div class="euu">
+                    <a href="https://en.wikipedia.org/wiki/cobalt" target="_blank">
+                    <img class="real" src="https://www.shutterstock.com/image-vector/cobalt-atomic-structure-has-number-600w-1916962514.jpg" alt="">
+                    <div class="unreal">
+                        <h2 class="elename pad">Cobalt(Co)</h2>
+                        <hi class="inventor size col pad">George Brandt</hi>
+                        <p class="text col pad">Cobalt is a transition metal. It's found in the Earth's crust in a chemically combined form, except for small deposits in alloys of natural meteoric iron. The free element is a hard, lustrous, silvery metal</p>
+                    </div>
+                    </a>
+                </div>
+            </div>
+
+            <div class="hi">
+                <div class="euu">
+                    <a href="https://en.wikipedia.org/wiki/nickel" target="_blank">
+                    <img class="real" src="https://www.shutterstock.com/shutterstock/photos/1916962493/display_1500/stock-vector-nickel-atomic-structure-has-atomic-number-atomic-mass-electron-configuration-and-energy-levels-1916962493.jpg" alt="">
+                    <div class="unreal">
+                        <h2 class="elename pad">Nickel(Ni)</h2>
+                        <hi class="inventor size col pad">Axel Fredrik Cronstedt</hi>
+                        <p class="text col pad">It's a chemical element with the symbol Ni. 
+                            Nickel is a hard, ductile, transition metal that's silvery-white with a slight golden tinge. 
+                            It's similar to iron in strength and toughness, but more like copper in resistance to corrosion and oxidation. Nickel has high electrical and thermal conductivity. 
+                           </p>
+                    </div>
+                    </a>
+                </div>
+            </div>
+
+            <div class="hi">
+                <div class="euu">
+                    <a href="https://en.wikipedia.org/wiki/copper" target="_blank">
+                    <img class="real" src="https://d2cyt36b7wnvt9.cloudfront.net/exams/wp-content/uploads/2021/09/20192231/128.jpg" alt="">
+                    <div class="unreal">
+                        <h2 class="elename pad">Copper(Cu)</h2>
+                        <hi class="inventor size col pad">Known since ancient times</hi>
+                        <p class="text col pad">It is a soft, malleable, and ductile metal with very high thermal and electrical conductivity.</p>
+                    </div>
+                    </a>
+                </div>
+            </div>
+
+            <div class="hi">
+                <div class="euu">
+                    <a href="https://en.wikipedia.org/wiki/zinc" target="_blank">
+                    <img class="real" src="https://www.shutterstock.com/shutterstock/photos/1916962508/display_1500/stock-vector-zinc-atomic-structure-has-atomic-number-atomic-mass-electron-configuration-and-energy-levels-1916962508.jpg" alt="">
+                    <div class="unreal">
+                        <h2 class="elename pad">zinc(zn)</h2>
+                        <hi class="inventor size col pad">Known since ancient times</hi>
+                        <p class="text col pad">Zinc is a chemical element with the symbol Zn. It's a transition metal that's solid at room temperature. Zinc is brittle and has a shiny-greyish appearance when oxidation is removed. 
+                        </p>
+                    </div>
+                    </a>
+                </div>
+            </div>
+        </div>
+
+        <div class="container">
+
+            <div class="hi">
+                <div class="euu">
+                    <a href="https://en.wikipedia.org/wiki/yttrium" target="_blank">
+                    <img class="real" src="https://www.shutterstock.com/image-vector/yttrium-atomic-structure-has-number-600w-1915837369.jpg" alt="">
+                    <div class="unreal">
+                        <h2 class="elename pad">Yttrium(Y)</h2>
+                        <hi class="inventor size col pad">Johan Gadolin</hi>
+                        <p class="text col pad"> It is a silvery-metallic transition metal chemically similar to the lanthanides and has often been classified as a "rare-earth element".</p>
+                    </div>
+                    </a>
+                </div>
+            </div>
+
+            <div class="hi">
+                <div class="euu">
+                    <a href="https://en.wikipedia.org/wiki/zicronium" target="_blank">
+                    <img class="real" src="https://www.shutterstock.com/shutterstock/photos/1915837393/display_1500/stock-vector-zirconium-atomic-structure-has-atomic-number-atomic-mass-electron-configuration-and-energy-levels-1915837393.jpg" alt="">
+                    <div class="unreal">
+                        <h2 class="elename pad">zicronium(zr)</h2>
+                        <hi class="inventor size col pad">Martin Heinrich Klaproth</hi>
+                        <p class="text col pad">The name zirconium comes from the mineral zircon, which is the most important source of zirconium. The word zirconium is related to the Persian word zargun which means "gold-like" or "as gold".</p>
+                    </div>
+                    </a>
+                </div>
+            </div>
+
+            <div class="hi">
+                <div class="euu">
+                    <a href="https://en.wikipedia.org/wiki/niobium" target="_blank">
+                    <img class="real" src="https://www.shutterstock.com/image-vector/niobium-atomic-structure-has-number-600w-1915838227.jpg" alt="">
+                    <div class="unreal">
+                        <h2 class="elename pad">Niobium(Nb)</h2>
+                        <hi class="inventor size col pad">Charles Hatchett</hi>
+                        <p class="text col pad">Niobium has an atomic number of 41. It's a transition metal with the symbol Nb and an atomic mass of 92.91. 
+                        </p>
+                    </div>
+                    </a>
+                </div>
+            </div>
+
+            <div class="hi">
+                <div class="euu">
+                    <a href="https://en.wikipedia.org/wiki/molybdenum" target="_blank">
+                    <img class="real" src="https://www.shutterstock.com/image-vector/molybdenum-atomic-structure-has-number-260nw-1915837387.jpg" alt="">
+                    <div class="unreal">
+                        <h2 class="elename pad">Molybdenum(Mo)</h2>
+                        <hi class="inventor size col pad">Carl Welhelm Scheele</hi>
+                        <p class="text col pad">Molybdenum is an essential trace mineral that occurs naturally in foods and is available in supplements. It is a component of four different enzymes in the body that help break down proteins, alcohol, drugs, and toxins. Molybdenum-containing enzymes also break down purines and sulfites.</p>
+                    </div>
+                    </a>
+                </div>
+            </div>
+
+            <div class="hi">
+                <div class="euu">
+                    <a href="https://en.wikipedia.org/wiki/technnetium" target="_blank">
+                    <img class="real" src="https://www.shutterstock.com/image-vector/technetium-atomic-structure-has-number-260nw-1915838224.jpg" alt="scandium">
+                    <div class="unreal">
+                        <h2 class="elename pad">Technetium(Tc)</h2>
+                        <hi class="inventor size col pad">Carlo Perrier
+                            Emilio Segrè</hi>
+                        <p class="text col pad">It is the lightest element whose isotopes are all radioactive. All available technetium is produced as a synthetic element.</p>
+                    </div>
+                    </a>
+                </div>
+            </div>
+
+        </div>
+
+
+        <div class="container">
+
+            <div class="hi">
+                <div class="euu">
+                    <a href="https://en.wikipedia.org/wiki/ruthenium" target="_blank">
+                    <img class="real" src="https://www.shutterstock.com/image-vector/ruthenium-atomic-structure-has-number-260nw-1915838218.jpg" alt="scandium">
+                    <div class="unreal">
+                        <h2 class="elename pad">Ruthenium(Ru)</h2>
+                        <hi class="inventor size col pad">Karl Karlovich Klaus</hi>
+                        <p class="text col pad">It is a rare transition metal belonging to the platinum group of the periodic table. Like the other metals of the platinum group, ruthenium is inert to most other chemicals</p>
+                    </div>
+                    </a>
+                </div>
+            </div>
+
+            <div class="hi">
+                <div class="euu">
+                    <a href="https://en.wikipedia.org/wiki/rhodium" target="_blank">
+                    <img class="real" src="https://as1.ftcdn.net/v2/jpg/04/16/00/20/1000_F_416002023_cbfemyq90X7lEYpYm2tjHFZMU03YNQNq.jpg" alt="">
+                    <div class="unreal">
+                        <h2 class="elename pad">Rhodium(Rh)</h2>
+                        <hi class="inventor size col pad">William Hyde Wollaston</hi>
+                        <p class="text col pad"> It is a very rare, silvery-white, hard, corrosion-resistant transition metal. It is a noble metal and a member of the platinum group. It has only one naturally occurring isotope,</p>
+                    </div>
+                    </a>
+                </div>
+            </div>
+
+            <div class="hi">
+                <div class="euu">
+                    <a href="https://en.wikipedia.org/wiki/palladium" target="_blank">
+                    <img class="real" src="https://t4.ftcdn.net/jpg/04/16/00/17/360_F_416001742_2LaJVduKLdPzN5azv5iCxnb13aGkss4k.jpg" alt="">
+                    <div class="unreal">
+                        <h2 class="elename pad">Palladium(Pd)</h2>
+                        <hi class="inventor size col pad">William Hyde Wollaston</hi>
+                        <p class="text col pad">Palladium was discovered in 1803 by English chemist William Hyde Wollaston. 
+                            It's a member of the nickel group of elements and the platinum group of metals. 
+                            Other elements in the transition metal group include: Gold, Iron, Silver, Platinum</p>
+                    </div>
+                    </a>
+                </div>
+            </div>
+
+            <div class="hi">
+                <div class="euu">
+                    <a href="https://en.wikipedia.org/wiki/silver" target="_blank">
+                    <img class="real" src="https://as1.ftcdn.net/v2/jpg/04/16/00/04/1000_F_416000437_KPXhM1v3CsfkBe3A872vjwGEPBnVppD0.jpg" alt="">
+                    <div class="unreal">
+                        <h2 class="elename pad">Silver(Ag)</h2>
+                        <hi class="inventor size col pad">Known since ancient times</hi>
+                        <p class="text col pad">A soft, white, lustrous transition metal, it exhibits the highest electrical conductivity, thermal conductivity, and reflectivity of any metal.</p>
+                    </div>
+                    </a>
+                </div>
+            </div>
+
+            <div class="hi">
+                <div class="euu">
+                    <a href="https://en.wikipedia.org/wiki/cadmium" target="_blank">
+                    <img class="real" src="https://www.shutterstock.com/shutterstock/photos/1916962496/display_1500/stock-vector-cadmium-atomic-structure-has-atomic-number-atomic-mass-electron-configuration-and-energy-levels-1916962496.jpg" alt="">
+                    <div class="unreal">
+                        <h2 class="elename pad">Cadmium(Cd)</h2>
+                        <hi class="inventor size col pad">Friedrich Strohmeyer</hi>
+                        <p class="text col pad">Cadmium is a natural element in the earth's crust. It's usually found as a mineral combined with other elements such as oxygen, chlorine, or sulfur</p>
+                    </div>
+                    </a>
+                </div>
+            </div>
+        </div>
+
+        <div class="container">
+
+            <div class="hi">
+                <div class="euu">
+                    <a href="https://en.wikipedia.org/wiki/lanthanide" target="_blank">
+                    <img class="real" src="https://www.shutterstock.com/shutterstock/photos/1918632590/display_1500/stock-vector-lanthanum-atomic-structure-has-atomic-number-atomic-mass-electron-configuration-and-energy-levels-1918632590.jpg" alt="scandium">
+                    <div class="unreal">
+                        <h2 class="elename pad">Lanthanide(La)</h2>
+                        <hi class="inventor size col pad">Carl Gustav Mosander</hi>
+                        <p class="text col pad">the elements with atomic numbers from 58 to 71, following the element lanthanum. They are called rare earth metals since the occurrence of these elements is very small (3×10-4 % of the Earth's crust).</p>
+                    </div>
+                    </a>
+                </div>
+            </div>
+
+            <div class="hi">
+                <div class="euu">
+                    <a href="https://en.wikipedia.org/wiki/hafnium" target="_blank">
+                    <img class="real" src="hafnium.png">
+                    <div class="unreal">
+                        <h2 class="elename pad">Hafnium(Hf)</h2>
+                        <hi class="inventor size col pad">George Charles de Hevesy and Dirk Coster</hi>
+                        <p class="text col pad">A shiny, silvery metal that resists corrosion and can be drawn into wires. Hafnium is a good absorber of neutrons and is used to make control rods, such as those found in nuclear submarines. It also has a very high melting point and because of this is used in plasma welding torches.</p>
+                    </div>
+                    </a>
+                </div>
+            </div>
+
+            <div class="hi">
+                <div class="euu">
+                    <a href="https://en.wikipedia.org/wiki/tantalum" target="_blank">
+                    <img class="real" src="https://www.shutterstock.com/shutterstock/photos/1919419508/display_1500/stock-vector-tantalum-atomic-structure-has-atomic-number-atomic-mass-electron-configuration-and-energy-levels-1919419508.jpg" alt="">
+                    <div class="unreal">
+                        <h2 class="elename pad">Tantalum(Ta)</h2>
+                        <hi class="inventor size col pad">Anders Gustaf Ekeberg</hi>
+                        <p class="text col pad">It always takes a valence of 5, so, for example, its oxide contains two atoms of tantalum and five of oxygen. In its pure state, tantalum is a grey-blue metal, which can be polished to a silvery sheen.</p>
+                    </div>
+                    </a>
+                </div>
+            </div>
+
+            <div class="hi">
+                <div class="euu">
+                    <a href="https://en.wikipedia.org/wiki/tungsten" target="_blank">
+                    <img class="real" src="https://www.shutterstock.com/shutterstock/photos/1919419514/display_1500/stock-vector-tungsten-atomic-structure-has-atomic-number-atomic-mass-electron-configuration-and-energy-levels-1919419514.jpg" alt="">
+                    <div class="unreal">
+                        <h2 class="elename pad">Tungsten(W)</h2>
+                        <hi class="inventor size col pad">William D. Coolidge</hi>
+                        <p class="text col pad">Tungsten is a rare, lustrous, greyish-white metal. It has the highest melting point and lowest vapor pressure of all metals. Tungsten is also very dense and has excellent corrosion resistance. 
+                        </p>
+                    </div>
+                    </a>
+                </div>
+            </div>
+
+            <div class="hi">
+                <div class="euu">
+                    <a href="https://en.wikipedia.org/wiki/rhenium" target="_blank">
+                    <img class="real" src="https://www.shutterstock.com/image-vector/rhenium-atomic-structure-has-number-260nw-1919419511.jpg" alt="">
+                    <div class="unreal">
+                        <h2 class="elename pad">Rhenium(Re)</h2>
+                        <hi class="inventor size col pad">Walter Noddack, Ida Tacke and Otto Berg</hi>
+                        <p class="text col pad">Rhenium is among the rarest metals on Earth. It does not occur uncombined in nature or as a compound in a mineable mineral species. It is, however, widely spread throughout the Earth's crust to the extent of about 0.001 parts per million.</p>
+                    </div>
+                    </a>
+                </div>
+            </div>
+        </div>
+
+        <div class="container">
+
+            <div class="hi">
+                <div class="euu">
+                    <a href="https://en.wikipedia.org/wiki/osmium" target="_blank">
+                    <img class="real" src="https://www.shutterstock.com/shutterstock/photos/1919420801/display_1500/stock-vector-osmium-atomic-structure-has-atomic-number-atomic-mass-electron-configuration-and-energy-levels-1919420801.jpg" alt="scandium">
+                    <div class="unreal">
+                        <h2 class="elename pad">Opium(os)</h2>
+                        <hi class="inventor size col pad">Smithson Tennant</hi>
+                        <p class="text col pad">Osmium tetroxide is highly toxic. It can cause chemical burns to the skin, eyes, and respiratory tract. Acute inhalation exposure can lead to a burning sensation, tearing, cough, headache, wheezing, shortness of breath, pulmonary edema, and, ultimately, death at high concentrations.</p>
+                    </div>
+                    </a>
+                </div>
+            </div>
+
+            <div class="hi">
+                <div class="euu">
+                    <a href="https://en.wikipedia.org/wiki/iridium" target="_blank">
+                    <img class="real" src="https://www.shutterstock.com/shutterstock/photos/1919420795/display_1500/stock-vector-iridium-atomic-structure-has-atomic-number-atomic-mass-electron-configuration-and-energy-levels-1919420795.jpg" alt="">
+                    <div class="unreal">
+                        <h2 class="elename pad">Iridium(Ir)</h2>
+                        <hi class="inventor size col pad">Dr. Raymond J. Leopold</hi>
+                        <p class="text col pad">Iridium is a hard, silvery metal. It is almost as unreactive as gold. It has a very high density and melting point. Iridium is the most corrosion-resistant material known.</p>
+                    </div>
+                    </a>
+                </div>
+            </div>
+
+            <div class="hi">
+                <div class="euu">
+                    <a href="https://en.wikipedia.org/wiki/platinum" target="_blank">
+                    <img class="real" src="https://www.shutterstock.com/shutterstock/photos/1919414933/display_1500/stock-vector-platinum-atomic-structure-has-atomic-number-atomic-mass-electron-configuration-and-energy-levels-1919414933.jpg" alt="">
+                    <div class="unreal">
+                        <h2 class="elename pad">Platinum(Pt)</h2>
+                        <hi class="inventor size col pad">Antonio de Ulloa</hi>
+                        <p class="text col pad">Platinum is a chemical element with the symbol Pt and atomic number 78. It's a dense, malleable, ductile, and highly unreactive transition metal. Platinum is also one of the purest precious metals, typically being 95% pure. </p>
+                    </div>
+                    </a>
+                </div>
+            </div>
+
+            <div class="hi">
+                <div class="euu">
+                    <a href="https://en.wikipedia.org/wiki/gold" target="_blank">
+                    <img class="real" src="https://www.shutterstock.com/image-vector/gold-atomic-structure-has-number-600w-1919414927.jpg" alt="">
+                    <div class="unreal">
+                        <h2 class="elename pad">Gold(Au)</h2>
+                        <hi class="inventor size col pad">An Egyptian alchemist named Zosimos was the first to find pure gold</hi>
+                        <p class="text col pad">Gold is a chemical element; it has symbol Au and atomic number 79. In pure form, it is a bright, slightly orange-yellow, dense, soft, malleable, and ductile metal. Chemically, gold is a transition metal, a group 11 element, and one of the noble metals.</p>
+                    </div>
+                    </a>
+                </div>
+            </div>
+
+            <div class="hi">
+                <div class="euu">
+                    <a href="https://en.wikipedia.org/wiki/mercury" target="_blank">
+                    <img class="real" src="https://www.shutterstock.com/shutterstock/photos/1919414936/display_1500/stock-vector-hydragyrum-atomic-mercury-atomic-structure-has-atomic-number-atomic-mass-electron-configuration-1919414936.jpg" alt="">
+                    <div class="unreal">
+                        <h2 class="elename pad">Mercury(Hg)</h2>
+                        <hi class="inventor size col pad">Daniel Gabriel Fahrenheit </hi>
+                        <p class="text col pad">Mercury is a naturally-occurring chemical element found in rock in the earth's crust, including in deposits of coal. On the periodic table, it has the symbol "Hg" and its atomic number is 80. It exists in several forms: Elemental (metallic) mercury.</p>
+                    </div>
+                    </a>
+                </div>
+            </div>
+        </div>
+
+        <div class="container">
+
+            <div class="hi">
+                <div class="euu">
+                    <a href="https://en.wikipedia.org/wiki/actinium" target="_blank">
+                    <img class="real" src="https://www.shutterstock.com/image-vector/actinium-atomic-structure-has-number-260nw-1919419520.jpg" alt="actinium">
+                    <div class="unreal">
+                        <h2 class="elename pad">Actnium(Ac)</h2>
+                        <hi class="inventor size col pad">André-Louis Debierne</hi>
+                        <p class="text col pad">Actinium is a soft, silvery-white radioactive metal. It glows blue in the dark because its intense radioactivity excites the air around it. Actinium is a very powerful source of alpha rays, but is rarely used outside research. Actinium has no known biological role.</p>
+                    </div>
+                    </a>
+                </div>
+            </div>
+
+            <div class="hi">
+                <div class="euu">
+                    <a href="https://en.wikipedia.org/wiki/rutherfordium" target="_blank">
+                    <img class="real" src="https://www.shutterstock.com/image-vector/rutherfordium-atomic-structure-has-number-600w-1920753053.jpg" alt="">
+                    <div class="unreal">
+                        <h2 class="elename pad">rutherfordium(Rf)</h2>
+                        <hi class="inventor size col pad">Ernest Rutherford</hi>
+                        <p class="text col pad">Rutherfordium is a synthetic chemical element. Its official chemical symbol is Rf, and its atomic number is 104, which means that a rutherfordium atom has 104 protons in its nucleus. Rutherfordium was the first super-heavy element to be discovered.</p>
+                    </div>
+                    </a>
+                </div>
+            </div>
+
+            <div class="hi">
+                <div class="euu">
+                    <a href="https://en.wikipedia.org/wiki/dubnium" target="_blank">
+                    <img class="real" src="https://www.shutterstock.com/image-vector/dubnium-atomic-structure-has-number-260nw-1920753044.jpg" alt="">
+                    <div class="unreal">
+                        <h2 class="elename pad">dubnium(Db)</h2>
+                        <hi class="inventor size col pad">Harris and Ghiorso</hi>
+                        <p class="text col pad">Dubnium is a synthetic chemical element; it has symbol Db and atomic number 105. It is highly radioactive: the most stable known isotope, dubnium-268, has a half-life of about 16 hours. This greatly limits extended research on the element.</p>
+                    </div>
+                    </a>
+                </div>
+            </div>
+
+            <div class="hi">
+                <div class="euu">
+                    <a href="https://en.wikipedia.org/wiki/seborgium" target="_blank">
+                    <img class="real" src="https://www.shutterstock.com/shutterstock/photos/1920753056/display_1500/stock-vector-seaborgium-atomic-structure-has-atomic-number-atomic-mass-electron-configuration-and-energy-1920753056.jpg" alt="">
+                    <div class="unreal">
+                        <h2 class="elename pad">Seborgium(Sg)</h2>
+                        <hi class="inventor size col pad">Albert Ghiorso and Glenn T. Seaborg </hi>
+                        <p class="text col pad">Seaborgium is not found in nature. It can only be prepared through reactions in a particle accelerator, such as a cyclotron. For example, bombarding lead-208 with chromium-54 yields seaborgium-260. 
+                            The most stable isotope of seaborgium is Sg 271, which has a half life of 2.4 minutes. </p>
+                    </div>
+                    </a>
+                </div>
+            </div>
+
+            <div class="hi">
+                <div class="euu">
+                    <a href="https://en.wikipedia.org/wiki/bhorium" target="_blank">
+                    <img class="real" src="https://www.shutterstock.com/image-vector/bohrium-atomic-structure-has-number-600w-1920753059.jpg" alt="">
+                    <div class="unreal">
+                        <h2 class="elename pad">Bhorium(Bh)</h2>
+                        <hi class="inventor size col pad">Peter Armbruster, Gottfried Münzenberg and colleagues</hi>
+                        <p class="text col pad">Bohrium is a synthetic element, meaning it is not a naturally-occurring element. Several isotopes of Bohrium have been discovered, the most stable of which is bohrium-270, with a half-life of just 61 seconds.
+                        </p>
+                    </div>
+                    </a>
+                </div>
+            </div>
+        </div>
+
+        <div class="container1">
+
+            <div class="hi">
+                <div class="euu">
+                    <a href="https://en.wikipedia.org/wiki/hassium" target="_blank">
+                    <img class="real" src="https://www.shutterstock.com/image-vector/hassium-atomic-structure-has-number-600w-1920753038.jpg" alt="scandium">
+                    <div class="unreal">
+                        <h2 class="elename pad">Hassium(Hs)</h2>
+                        <hi class="inventor size col pad">George Charles de Hevesy and Dirk Coster</hi>
+                        <p class="text col pad">Hassium was synthesized in 1984 by West German researchers at the Institute for Heavy Ion Research in Darmstadt. It was made by bombarding lead with iron</p>
+                    </div>
+                    </a>
+                </div>
+            </div>
+
+            <div class="hi">
+                <div class="euu">
+                    <a href="https://en.wikipedia.org/wiki/meitnerium" target="_blank">
+                    <img class="real" src="https://img.redro.pl/fototapety/meitnerium-atomic-structure-has-atomic-number-atomic-mass-electron-configuration-and-energy-levels-700-247503838.jpg" alt="">
+                    <div class="unreal">
+                        <h2 class="elename pad">Meitnerium (Mt)</h2>
+                        <hi class="inventor size col pad">Lise Meitne</hi>
+                        <p class="text col pad">A single atom was made by bombarding a target of bismuth with accelerated nuclei of iron, to make the isotope meitnerium-266, which has 157 neutrons in its nucleus, together with the 109 protons which define the element.</p>
+                    </div>
+                    </a>
+                </div>
+            </div>
+
+            <div class="hi">
+                <div class="euu">
+                    <a href="https://en.wikipedia.org/wiki/darmstadtium" target="_blank">
+                    <img class="real" src="https://www.shutterstock.com/image-vector/darmstadtium-atomic-structure-has-number-600w-1920753047.jpg" alt="darmstadtium">
+                    <div class="unreal">
+                        <h2 class="elename pad">Darmstadtium (Ds)</h2>
+                        <hi class="inventor size col pad">Sigurd Hofmann, Peter Armbruster and Gottfried Münzenberg</hi>
+                        <p class="text col pad">Darmstadtium is expected to be a solid at room temperature. It has similar properties to its lighter homologues, nickel, palladium, and platinum.Darmstadtium is a synthetic chemical element; it has symbol Ds and atomic number 110. It is extremely radioactive: the most stable known isotope, darmstadtium-281, has a half-life of approximately 14 seconds.
+                        </p>
+                    </div>
+                    </a>
+                </div>
+            </div>
+
+            <div class="hi">
+                <div class="euu">
+                    <a href="https://en.wikipedia.org/wiki/Scandium" target="_blank">
+                    <img class="real" src="https://www.shutterstock.com/shutterstock/photos/1920749048/display_1500/stock-vector-roentgenium-atomic-structure-has-atomic-number-atomic-mass-electron-configuration-and-energy-1920749048.jpg" alt="">
+                    <div class="unreal">
+                        <h2 class="elename pad">Roentgenium(Rg)</h2>
+                        <hi class="inventor size col pad">Peter Armbruster and Gottfried Münzenberg</hi>
+                        <p class="text col pad">Roentgenium is a man-made radioactive element and is not found in any natural environment on Earth. Roentgenium is only used for research purposes in scientific studies, to better understand its properties, and to create heavier elements.</p>
+                    </div>
+                    </a>
+                </div>
+            </div>
+
+            <div class="hi">
+                <div class="euu">
+                    <a href="https://en.wikipedia.org/wiki/copernicium" target="_blank">
+                    <img class="real" src="https://www.shutterstock.com/shutterstock/photos/1920749039/display_1500/stock-vector-copernicium-atomic-structure-has-atomic-number-atomic-mass-electron-configuration-and-energy-1920749039.jpg" alt="">
+                    <div class="unreal">
+                        <h2 class="elename pad">Copernicium(Cn)</h2>
+                        <hi class="inventor size col pad">Sigurd Hofmann and colleagues</hi>
+                        <p class="text col pad">Copernicium is a synthetic radioactive metal. It has only been produced in minute amounts. The element is named after the Renaissance scientist Nicolaus Copernicus. Copernicus was an astronomer who discovered that the planets circle the Sun.His discovery refuted the then accepted belief that the Earth was the center of the universe. </p>
+                    </div>
+                    </a>
+                </div>
+            </div>
+        </div>
+        
+    </section>
+
+</body>
+</html>

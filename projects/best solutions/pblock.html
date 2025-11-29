@@ -1,0 +1,761 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>p-block</title>
+    
+    <style type="text/css">  
+        * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+    }
+
+    @import url('https://fonts.googleapis.com/css2?family=Zilla+Slab:wght@500&display=swap');
+
+    nav {
+        font-family: 'Zilla Slab', serif;
+        background-color: rgba(31, 99, 143, 0.349);
+        padding: 10px 20px;
+    }
+
+    nav ul {
+        display: flex;
+        align-items: center;
+        list-style-type: none;
+        height: 80px;
+        color: aliceblue;
+    }
+
+    nav ul li {
+        padding: 0 20px;
+    }
+
+    .brand img {
+        width: 60px;
+        padding: 0 10px;
+        border-radius: 50%;
+    }
+
+    .brand {
+        display: flex;
+        align-items: center;
+        font-weight: bold;
+        font-size: 1.2rem;
+    }
+
+    .bor {
+        border-left: 1px solid aliceblue;
+    
+    }
+
+    .nounderline{
+        text-decoration: none;
+        color: #fff;
+    }
+
+    .right {
+        margin-left: auto;
+        padding-right: 20px;
+    }
+
+
+    .butt {
+        display: inline-block;
+        padding: 10px 20px;
+        font-size: 16px;
+        font-weight: bold;
+        color: #fff;
+        text-align: center;
+        text-decoration: none;
+        border: 2px solid #0e457d;
+        border-radius: 5px;
+        background-color: #040449;
+        transition: all 0.3s ease;
+    }
+
+
+    .butt:hover {
+        background-color: #052978;
+        color: #fff;
+    }
+    </style>
+    
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+        }
+        .bg{
+
+            background-color: rgb(2, 2, 35);
+            height: 2220px;
+        }
+
+        
+        .place{
+            text-align: center;
+        }
+        .big{
+            color: aliceblue;
+            margin-top: 90px;
+           
+            
+            font-weight: bolder;
+            font-size: 60px;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        .small{
+            color: antiquewhite;
+            margin-top: 20px;
+            font-size: medium;
+            font-family: 'Times New Roman', Times, serif;
+            
+        }
+        
+        
+        .animated-button{
+            position: relative;
+            overflow: hidden;
+            
+        }
+        .animated-button p{           
+            text-decoration: none;
+            cursor: pointer;
+            transition: transform 0.5s ease-in-out;
+        }
+        .animated-button p:hover{
+            transform: scale(1.1);
+        }
+        
+        
+        .container{
+            
+            padding-left: 80px;
+            padding-top: 80px;
+            display: flex;
+        }
+        .container .hi{
+            position: relative;
+            width: 270px;
+            height: 125px;
+            margin: 10px;
+        }
+        
+         .hi{
+            display: flex;
+            flex-wrap: wrap;
+            height: 300px;
+            /* margin-right: 30px; */
+        } 
+        .real{
+            position: absolute;
+            width: 150px;
+            height: 160px;
+        }
+        
+        .euu{
+            display: flex;
+            position: relative;
+            height: fit-content;
+            
+            
+        } 
+        .euu1{
+            display: flex;
+            position: relative;
+            height: fit-content;
+            margin-left: 164dvh;
+            margin-top: 20vh;
+        }
+        .euu1:hover .unreal{
+            opacity: 1;
+            border: 5px solid;
+            border-color: rgb(207, 201, 201);
+        }
+        .unreal{
+            width: 150px;
+            height: 150px;
+            position: relative;
+            opacity: 0;
+            border: 5px solid ;
+            border-color: rgb(207, 201, 201);
+            background-color: rgb(21, 13, 33);
+        }
+        .euu:hover .unreal{
+            opacity: 1;
+            border: 5px solid;
+            border-color: rgb(207, 201, 201);
+        }
+        .elename{
+            padding-top: 10px;
+            font-style: bold;
+            color: rgb(250, 206, 111);
+            font-size: 15px;
+        }
+        .inventor{
+            padding-top: 10px
+        
+        }
+        .size{
+            font-size: 10px;
+        }
+        .col{
+            color: aliceblue;
+
+        }
+        .pad{
+            padding-left: 10px;
+        }
+        .text{
+            padding-top: 5px;
+            height: fit-content;
+        }
+        
+    </style>
+</head>
+
+<body>
+
+    <nav>
+        <ul>
+            <li class="brand"><img src="logo.jpg" alt="The Chemist's Notebook">The Chemist's Notebook </li>
+            <li class="bor"><a class="nounderline" href="periodic-table.html">Home</a> </li>
+            <li class="bor"><a class="nounderline" href="about.html">About</a></li>
+            <li class="bor"><a class="nounderline" href="contact.html">Contact</a></li></li>
+            <li class="right"><button class="butt"><a class="nounderline" href="more.html">more</a> </button></li>
+        </ul>
+    
+    </nav>
+    
+    <section class="bg">
+
+        <div class="place  animated-button">
+            <p class="big">P-BLOCK</p>
+            <h3 class="small">kya hain p block main<br>lappu sa toh p-block hain</h3>            
+        </div>
+
+        <div class="container1">
+            
+            <div class="hi">
+                <div class="euu1">
+                    <a href="https://en.wikipedia.org/wiki/Helium" target="_blank">
+                    <img class="real" src="https://www.shutterstock.com/image-vector/helium-atomic-structure-has-number-600w-1914044920.jpg" alt="helium">
+                    <div class="unreal">
+                        <h2 class="elename pad">Helium(He)</h2>
+                        <h1 class="inventor size col pad">Pierre Janssen</h1>
+                        <p class="text col pad">It is a colorless, odorless, tasteless, non-toxic, inert, monatomic gas </p>
+                    </div>
+                    </a>
+                </div>
+            </div >
+        </div>
+
+        <div class="container ">
+
+
+            <div class="hi">
+                <div class="euu">
+                    <a href="https://en.wikipedia.org/wiki/Boron" target="_blank">
+                    <img src="https://www.shutterstock.com/shutterstock/photos/1914044926/display_1500/stock-vector-boron-atomic-structure-has-atomic-number-atomic-mass-electron-configuration-and-energy-levels-1914044926.jpg" alt="boron" class="real">
+                    <div class="unreal">
+                        <h2 class="elename pad">Boron(B)</h2>
+                        <h1 class="inventor size col pad">Joseph-Louis Gay-Lussac</h1>
+                        <p class="text col pad">in its crystalline form it is a brittle, dark; in its amorphous form it is a brown powder.</p>
+                    </div>
+                    </a>
+                </div>
+            </div>
+
+            <div class="hi">
+                <div class="euu">
+                    <a href="https://en.wikipedia.org/wiki/Carbon" target="_blank">
+                    <img class="real" src="https://www.shutterstock.com/shutterstock/photos/1914333274/display_1500/stock-vector-carbon-atomic-structure-has-atomic-number-atomic-mass-electron-configuration-and-energy-levels-1914333274.jpg" alt="Carbon">
+                    <div class="unreal">
+                        <h2 class="elename pad">Carbon(C)</h2>
+                        <h1 class="inventor size col pad">Antoine Lavoisier</h1>
+                        <p class="text col pad">It is nonmetallic and tetravalenits atom making four electrons available to form covalentbonds.</p>
+                    </div>
+                    </a>
+                </div>
+            </div>
+
+            <div class="hi">
+                <div class="euu">
+                    <a href="https://en.wikipedia.org/wiki/Nitrogen" target="_blank">
+                    <img class="real" src="https://www.shutterstock.com/image-vector/nitrogen-atomic-structure-has-number-600w-1914333358.jpg" alt="Nitrogen">
+                    <div class="unreal">
+                        <h2 class="elename pad">Nitrogen(N)</h2>
+                        <h1 class="inventor size col pad"> Daniel Rutherford</h1>
+                        <p class="text col pad">It is a colourless, odourless, tasteless gas that is the most plentiful element in Earth's atmosphere</p>
+                    </div>
+                    </a>
+                </div>
+            </div>
+
+            <div class="hi">
+                <div class="euu">
+                    <a href="https://en.wikipedia.org/wiki/Oxygen" target="_blank">
+                    <img class="real" src="https://www.shutterstock.com/shutterstock/photos/1914333343/display_1500/stock-vector-oxygen-atomic-structure-has-atomic-number-atomic-mass-electron-configuration-and-energy-levels-1914333343.jpg" alt="oxygen">
+                    <div class="unreal">
+                        <h2 class="elename pad">Oxygen(O)</h2>
+                        <h1 class="inventor size col pad">Michael Sendivogius</h1>
+                        <p class="text col pad">Oxygen forms compounds with silicon and other atoms to form minerals like quartz.</p>
+                    </div>
+                    </a>
+                </div>
+            </div>
+
+            <div class="hi">
+                <div class="euu">
+                    <a href="https://en.wikipedia.org/wiki/Fluorine" target="_blank">
+                    <img src="https://www.shutterstock.com/shutterstock/photos/1914333349/display_1500/stock-vector-fluorine-atomic-structure-has-atomic-number-atomic-mass-electron-configuration-and-energy-levels-1914333349.jpg" alt="Fluorine" class="real">
+                    <div class="unreal">
+                        <h2 class="elename pad">Fluorine(F)</h2>
+                        <h1 class="inventor size col pad">Henri Moissan</h1>
+                        <p class="text col pad">It is the lightest halogen and exists at standard conditions as a highly toxic, pale yellow diatomic gas. </p>
+                    </div>
+                    </a>
+                </div>
+            </div>
+
+            <div class="hi">
+                <div class="euu">
+                    <a href="https://en.wikipedia.org/wiki/Neon" target="_blank">
+                    <img class="real" src="https://www.shutterstock.com/image-vector/neon-atomic-structure-has-number-600w-1914333352.jpg" alt="neon">
+                    <div class="unreal">
+                        <h2 class="elename pad">Neon(Ne)</h2>
+                        <h1 class="inventor size col pad">Sir William Ramsay</h1>
+                        <p class="text col pad">Neon is also used to make high-voltage indicators and switching gear and lasers.</p>
+                    </div>
+                    </a>
+                </div>
+            </div >
+
+
+        </div>
+
+        
+        <div class="container">
+            
+            <div class="hi">
+                <div class="euu">
+                    <a href="https://en.wikipedia.org/wiki/Aluminium" target="_blank">
+                    <img class="real" src="https://www.shutterstock.com/shutterstock/photos/1914341185/display_1500/stock-vector-aluminum-atomic-structure-has-atomic-number-atomic-mass-electron-configuration-and-energy-levels-1914341185.jpg" alt="Aluminium">
+                    <div class="unreal">
+                        <h2 class="elename pad">Aluminum(Al)</h2>
+                        <h1 class="inventor size col pad">Hans Christian Ørsted</h1>
+                        <p class="text col pad">Aluminium is a great reflector</p>
+                    </div>
+                    </a>
+                </div>
+            </div>
+            
+            <div class="hi">
+                <div class="euu">
+                    <a href="https://en.wikipedia.org/wiki/Silicon" target="_blank">
+                    <img src="https://www.shutterstock.com/shutterstock/photos/1914341188/display_1500/stock-vector-silicon-atomic-structure-has-atomic-number-atomic-mass-electron-configuration-and-energy-levels-1914341188.jpg" alt="silicon" class="real">
+                    <div class="unreal">
+                        <h2 class="elename pad">SILICON(Si)</h2>
+                        <h1 class="inventor size col pad">Antoine Lavoisier</h1>
+                        <p class="text col pad">Silicon is a bluish-gray shiny solid at room temperature.</p>
+                    </div>
+                    </a>
+                </div>
+            </div >
+
+            <div class="hi">
+                <div class="euu">
+                    <a href="https://en.wikipedia.org/wiki/Phosphorus" target="_blank">
+                    <img class="real" src="https://www.shutterstock.com/shutterstock/photos/1914341182/display_1500/stock-vector-phosphorus-atomic-structure-has-atomic-number-atomic-mass-electron-configuration-and-energy-1914341182.jpg" alt="phosphorus">
+                    <div class="unreal">
+                        <h2 class="elename pad">PHOSPHORUS(P)</h2>
+                        <h1 class="inventor size col pad">Hennig Brand</h1>
+                        <p class="text col pad">About 85% of phosphorus is stored in the bones and teeth.</p>
+                    </div>
+                    </a>
+                </div>
+            </div >
+
+            <div class="hi">
+                <div class="euu">
+                    <a href="https://en.wikipedia.org/wiki/Sulphur" target="_blank">
+                    <img class="real" src="https://www.shutterstock.com/image-vector/sulfur-atomic-structure-has-number-260nw-1914415459.jpg" alt="sulphur">
+                    <div class="unreal">
+                        <h2 class="elename pad">SULPHUR(S)</h2>
+                        <h1 class="inventor size col pad">Antoine Lavoisier</h1>
+                        <p class="text col pad">Although many sulfur compounds have a strong smell, the pure element is odorless.</p>
+                    </div>
+                    </a>
+                </div>
+            </div >
+
+            <div class="hi">
+                <div class="euu">
+                    <a href="https://en.wikipedia.org/wiki/Chlorine" target="_blank">
+                    <img class="real" src="https://www.shutterstock.com/shutterstock/photos/1914415456/display_1500/stock-vector-chlorine-atomic-structure-has-atomic-number-atomic-mass-electron-configuration-and-energy-levels-1914415456.jpg" alt="chlorine">
+                    <div class="unreal">
+                        <h2 class="elename pad">CHLORINE(Cl)</h2>
+                        <h1 class="inventor size col pad">Carl Wilhelm Scheele</h1>
+                        <p class="text col pad">Chlorine was also the first poison gas to be used as a weapon during World War I. </p>
+                    </div>
+                    </a>
+                </div>
+            </div >
+
+            <div class="hi">
+                <div class="euu">
+                    <a href="https://en.wikipedia.org/wiki/Argon" target="_blank">
+                    <img class="real" src="https://image.shutterstock.com/image-vector/argon-atomic-structure-has-number-260nw-1914415450.jpg" alt="argon">
+                    <div class="unreal">
+                        <h2 class="elename pad">ARGON(Ar)</h2>
+                        <h1 class="inventor size col pad">Sir William Ramsay</h1>
+                        <p class="text col pad">Most of the argon is discovered from the radioactive decay of potassium-40.</p>
+                    </div>
+                    </a>
+                </div>
+            </div >
+       
+       
+        </div>
+
+
+        <div class="container">
+            
+            <div class="hi">
+                <div class="euu">
+                    <a href="https://en.wikipedia.org/wiki/Gallium" target="_blank">
+                    <img class="real" src="https://www.shutterstock.com/shutterstock/photos/1916962490/display_1500/stock-vector-gallium-atomic-structure-has-atomic-number-atomic-mass-electron-configuration-and-energy-levels-1916962490.jpg" alt="gallium">
+                    <div class="unreal">
+                        <h2 class="elename pad">Gallium (Ga)</h2>
+                        <h1 class="inventor size col pad"> Paul-Emile Lecoq de Boisbaudran</h1>
+                        <p class="text col pad">Some of the most common uses of Ga are thermometers and light-emitting diodes.</p>
+                    </div>
+                    </a>
+                </div>
+            </div >
+
+            <div class="hi">
+                <div class="euu">
+                    <a href="https://en.wikipedia.org/wiki/Germanium" target="_blank">
+                    <img class="real" src="https://www.shutterstock.com/shutterstock/photos/1915837366/display_1500/stock-vector-germanium-atomic-structure-has-atomic-number-atomic-mass-electron-configuration-and-energy-levels-1915837366.jpg" alt="germanium">
+                    <div class="unreal">
+                        <h2 class="elename pad">Germanium(Ge)</h2>
+                        <h1 class="inventor size col pad">Clemens A. Winkler</h1>
+                        <p class="text col pad">Ge is lustrous, hard-brittle, grayish-white and similar in appearance to silicon.</p>
+                    </div>
+                    </a>
+                </div>
+            </div >
+
+            <div class="hi">
+                <div class="euu">
+                    <a href="https://en.wikipedia.org/wiki/Arsenic" target="_blank">
+                    <img class="real" src="https://www.shutterstock.com/image-vector/arsenic-atomic-structure-has-number-600w-1915837384.jpg" alt="arsenic">
+                    <div class="unreal">
+                        <h2 class="elename pad">Arsenic(As)</h2>
+                        <h1 class="inventor size col pad">Albertus Magnus</h1>
+                        <p class="text col pad">Arsenic occurs in many minerals, usually in combination with sulfur and metals.</p>
+                    </div>
+                    </a>
+                </div>
+            </div >
+
+            <div class="hi">
+                <div class="euu">
+                    <a href="https://en.wikipedia.org/wiki/Selenium" target="_blank">
+                    <img class="real" src="https://www.shutterstock.com/image-vector/selenium-atomic-structure-has-number-600w-1915837381.jpg" alt="selenium">
+                    <div class="unreal">
+                        <h2 class="elename pad">Selenium(Se)</h2>
+                        <h1 class="inventor size col pad">Jason Huggins</h1>
+                        <p class="text col pad">It is a metalloid with properties that are intermediate between the elements above and below</p>
+                    </div>
+                    </a>
+                </div>
+            </div >
+       
+       
+        
+
+            <div class="hi">
+                <div class="euu">
+                    <a href="https://en.wikipedia.org/wiki/Bromine" target="_blank">
+                    <img class="real" src="https://www.shutterstock.com/image-vector/bromine-atomic-structure-has-number-260nw-1916962505.jpg" alt="bromine">
+                    <div class="unreal">
+                        <h2 class="elename pad">Bromine(Br)</h2>
+                        <h1 class="inventor size col pad">Antoine-Jérôme Balard</h1>
+                        <p class="text col pad">It is a volatile red-brown liquid at room temp that evaporates readily to form a coloured vapour.</p>
+                    </div>
+                    </a>
+                </div>
+            </div >
+
+            <div class="hi">
+                <div class="euu">
+                    <a href="https://en.wikipedia.org/wiki/Krypton" target="_blank">
+                    <img class="real" src="https://www.shutterstock.com/shutterstock/photos/1915837390/display_1500/stock-vector-krypton-atomic-structure-has-atomic-number-atomic-mass-electron-configuration-and-energy-levels-1915837390.jpg" alt="krypton">
+                    <div class="unreal">
+                        <h2 class="elename pad">Krypton(Kr)</h2>
+                        <h1 class="inventor size col pad">Sir William Ramsay</h1>
+                        <p class="text col pad">It is a colorless, odorless noble gas that occurs in trace amounts in the atmosphere</p>
+                    </div>
+                    </a>
+                </div>
+            </div >
+
+        </div>
+
+        <div class="container">
+            
+            <div class="hi">
+                <div class="euu">
+                    <a href="https://en.wikipedia.org/wiki/Indium" target="_blank">
+                    <img class="real" src="https://www.shutterstock.com/shutterstock/photos/1916962499/display_1500/stock-vector-indium-atomic-structure-has-atomic-number-atomic-mass-electron-configuration-and-energy-levels-1916962499.jpg" alt="indium">
+                    <div class="unreal">
+                        <h2 class="elename pad">Indium(In)</h2>
+                        <h1 class="inventor size col pad">Ferdinand Reich</h1>
+                        <p class="text col pad">Indium is the softest metal that is not an alkali metal.</p>
+                    </div>
+                    </a>
+                </div>
+            </div >
+        
+            <div class="hi">
+                <div class="euu">
+                    <a href="https://en.wikipedia.org/wiki/Tin" target="_blank">
+                    <img class="real" src="https://www.shutterstock.com/shutterstock/photos/1915837378/display_1500/stock-vector-tin-atomic-structure-has-atomic-number-atomic-mass-electron-configuration-and-energy-levels-1915837378.jpg" alt="tin">
+                    <div class="unreal">
+                        <h2 class="elename pad">Tin(Sn)</h2>
+                        <h1 class="inventor size col pad">yeh raaz bhi usi ke sath chala gya</h1>
+                        <p class="text col pad">A silvery-coloured metal, tin is soft enough to be cut with little force.</p>
+                    </div>
+                    </a>
+                </div>
+            </div >
+
+            <div class="hi">
+                <div class="euu">
+                    <a href="https://en.wikipedia.org/wiki/Antimony" target="_blank">
+                    <img class="real" src="https://www.shutterstock.com/image-vector/antimony-atomic-structure-has-number-260nw-1918630202.jpg" alt="antimony">
+                    <div class="unreal">
+                        <h2 class="elename pad">Antimony(Sb)</h2>
+                        <h1 class="inventor size col pad"> Nicolas Lémery</h1>
+                        <p class="text col pad">A lustrous gray metalloid, it is found in nature mainly as the sulfide mineral stibnite.</p>
+                    </div>
+                    </a>
+                </div>
+            </div >
+
+            <div class="hi">
+                <div class="euu">
+                    <a href="https://en.wikipedia.org/wiki/Tellurium" target="_blank">
+                    <img class="real" src="https://www.shutterstock.com/image-vector/tellurium-atomic-structure-has-number-600w-1918630208.jpg" alt="Tellurium">
+                    <div class="unreal">
+                        <h2 class="elename pad">Tellurium(Te)</h2>
+                        <h1 class="inventor size col pad">Martin Heinrich Klaproth</h1>
+                        <p class="text col pad">Tellurium is chemically related to selenium and sulfur, all three of which are chalcogens.</p>
+                    </div>
+                    </a>
+                </div>
+            </div >
+
+            <div class="hi">
+                <div class="euu">
+                    <a href="https://en.wikipedia.org/wiki/Iodine" target="_blank">
+                    <img class="real" src="https://as1.ftcdn.net/v2/jpg/04/16/00/12/1000_F_416001246_rCvZyYm6z84IqzQX0WC8ZW5rI9RuodGW.jpg" alt="iodine">
+                    <div class="unreal">
+                        <h2 class="elename pad">Iodine(I)</h2>
+                        <h1 class="inventor size col pad">Bernard Courtois</h1>
+                        <p class="text col pad">The heaviest of the stable halogens, it exists at standard conditions as a semi-lustrous</p>
+                    </div>
+                    </a>
+                </div>
+            </div >
+
+            <div class="hi">
+                <div class="euu">
+                    <a href="https://en.wikipedia.org/wiki/xenon" target="_blank">
+                    <img class="real" src="https://as2.ftcdn.net/v2/jpg/04/16/00/25/1000_F_416002506_ddt5OhdpC9jJE28l2jSzQAQH5lnJdW67.jpg" alt="xenon">
+                    <div class="unreal">
+                        <h2 class="elename pad">Xenon(Xe)</h2>
+                        <h1 class="inventor size col pad">Sir William Ramsay</h1>
+                        <p class="text col pad"> It is a dense, colorless, odorless noble gas found in Earth's atmosphere in trace amounts</p>
+                    </div>
+                    </a>
+                </div>
+            </div >
+       
+       
+        </div>
+
+
+        <div class="container">
+            
+            <div class="hi">
+                <div class="euu">
+                    <a href="https://en.wikipedia.org/wiki/Thallium" target="_blank">
+                    <img class="real" src="https://as2.ftcdn.net/v2/jpg/04/16/00/23/1000_F_416002374_v5LM6hY3XSReRjJ8hWB72ltgBNtKdegO.jpg" alt="thallium">
+                    <div class="unreal">
+                        <h2 class="elename pad">Thallium(Tl)</h2>
+                        <h1 class="inventor size col pad">William Crookes</h1>
+                        <p class="text col pad">It is a gray post-transition metal that is not found free in nature. When isolated, thallium resembles tin</p>
+                    </div>
+                    </a>
+                </div>
+            </div >
+        
+            <div class="hi">
+                <div class="euu">
+                    <a href="https://en.wikipedia.org/wiki/Lead" target="_blank">
+                    <img class="real" src="https://www.thoughtco.com/thmb/Xnczbr3ZzmiNtnofZ1xBA5QGYvc=/1500x0/filters:no_upscale():max_bytes(150000):strip_icc()/Lead-58b601095f9b5860464ba934.jpg" alt="lead">
+                    <div class="unreal">
+                        <h2 class="elename pad">Lead(Pb)</h2>
+                        <h1 class="inventor size col pad">vishwas raina</h1>
+                        <p class="text col pad">Lead is soft and malleable, and also has a relatively low melting point</p>
+                    </div>
+                    </a>
+                </div>
+            </div >
+
+            <div class="hi">
+                <div class="euu">
+                    <a href="https://en.wikipedia.org/wiki/Bismuth" target="_blank">
+                    <img class="real" src="https://www.shutterstock.com/shutterstock/photos/1919414939/display_1500/stock-vector-bismuth-atomic-structure-has-atomic-number-atomic-mass-electron-configuration-and-energy-levels-1919414939.jpg" alt="bismuth">
+                    <div class="unreal">
+                        <h2 class="elename pad">Bismuth(Bi)</h2>
+                        <h1 class="inventor size col pad">Claude François Geoffroy</h1>
+                        <p class="text col pad">It is a post-transition metal  with chemical properties resembling its lighter group</p>
+                    </div>
+                    </a>
+                </div>
+            </div >
+
+            <div class="hi">
+                <div class="euu">
+                    <a href="https://en.wikipedia.org/wiki/Polonium" target="_blank">
+                    <img class="real" src="https://www.shutterstock.com/shutterstock/photos/1919418089/display_1500/stock-vector-polonium-atomic-structure-has-atomic-number-atomic-mass-electron-configuration-and-energy-levels-1919418089.jpg" alt="polonium">
+                    <div class="unreal">
+                        <h2 class="elename pad">Polonium(Po)</h2>
+                        <h1 class="inventor size col pad">Marie Skłodowska-Curie</h1>
+                        <p class="text col pad">A rare and highly radioactive metal with no stable isotopes, polonium is a chalcogen</p>
+                    </div>
+                    </a>
+                </div>
+            </div >
+
+            <div class="hi">
+                <div class="euu">
+                    <a href="https://en.wikipedia.org/wiki/Astatine" target="_blank">
+                    <img class="real" src="https://www.shutterstock.com/shutterstock/photos/1919418086/display_1500/stock-vector-astatine-atomic-structure-has-atomic-number-atomic-mass-electron-configuration-and-energy-levels-1919418086.jpg" alt="astatine">
+                    <div class="unreal">
+                        <h2 class="elename pad">Astatine(At)</h2>
+                        <h1 class="inventor size col pad">Emilio Segrè</h1>
+                        <p class="text col pad">It is the rarest naturally occurring element in the Earth's crust.</p>
+                    </div>
+                    </a>
+                </div>
+            </div >
+
+            <div class="hi">
+                <div class="euu">
+                    <a href="https://en.wikipedia.org/wiki/Radon" target="_blank">
+                    <img class="real" src="https://www.shutterstock.com/shutterstock/photos/1919418095/display_1500/stock-vector-radon-atomic-structure-has-atomic-number-atomic-mass-electron-configuration-and-energy-levels-1919418095.jpg" alt="radon">
+                    <div class="unreal">
+                        <h2 class="elename pad">Radon(Rn)</h2>
+                        <h1 class="inventor size col pad">Friedrich Ernst Dorn</h1>
+                        <p class="text col pad">It is a radioactive, colourless, odourless, noble gas.</p>
+                    </div>
+                    </a>
+                </div>
+            </div >
+       
+       
+        </div>
+
+
+        <div class="container">
+            
+            <div class="hi">
+                <div class="euu">
+                    <a href="https://en.wikipedia.org/wiki/Nihonium" target="_blank">
+                    <img class="real" src="https://www.shutterstock.com/shutterstock/photos/1920750680/display_1500/stock-vector-nihonium-atomic-structure-has-atomic-number-atomic-mass-electron-configuration-and-energy-levels-1920750680.jpg" alt="nihonium">
+                    <div class="unreal">
+                        <h2 class="elename pad">Nihonium(Nh)</h2>
+                        <h1 class="inventor size col pad">Kosuke Morita's RIKEN</h1>
+                        <p class="text col pad"> It is extremely radioactive; its most stable known isotope, nihonium-286, has a half-life of about 10s.</p>
+                    </div>
+                    </a>
+                </div>
+            </div >
+        
+
+            <div class="hi">
+                <div class="euu">
+                    <a href="https://en.wikipedia.org/wiki/Flerovium" target="_blank">
+                    <img class="real" src="https://www.shutterstock.com/image-vector/flerovium-atomic-structure-has-number-250nw-1920749042.jpg" alt="Flerovium">
+                    <div class="unreal">
+                        <h2 class="elename pad">Flerovium(Fl)</h2>
+                        <h1 class="inventor size col pad">yeh raaz usi ke sath chala gya</h1>
+                        <p class="text col pad"> It is an extremely radioactive synthetic element. </p>
+                    </div>
+                    </a>
+                </div>
+            </div >
+
+            <div class="hi">
+                <div class="euu">
+                    <a href="https://en.wikipedia.org/wiki/Moscovium" target="_blank">
+                    <img class="real" src="https://d12oja0ew7x0i8.cloudfront.net/images/Article_Images/ImageForArticle_7958_16736237675045202.jpg" alt="moscovium">
+                    <div class="unreal">
+                        <h2 class="elename pad">Moscovium(Mc)</h2>
+                        <h1 class="inventor size col pad">Lawrence Livermore National Laboratory (USA)</h1>
+                        <p class="text col pad">It was synthesized in 2003 by a team of Russian and American scientists.</p>
+                    </div>
+                    </a>
+                </div>
+            </div >
+
+            <div class="hi">
+                <div class="euu">
+                    <a href="https://en.wikipedia.org/wiki/Livermorium" target="_blank">
+                    <img class="real" src="https://www.shutterstock.com/shutterstock/photos/1920749045/display_1500/stock-vector-livermorium-atomic-structure-has-atomic-number-atomic-mass-electron-configuration-and-energy-1920749045.jpg" alt="Livermorium">
+                    <div class="unreal">
+                        <h2 class="elename pad">Livermorium(Lv)</h2>
+                        <h1 class="inventor size col pad">Yuri Oganessian and Ken Moody</h1>
+                        <p class="text col pad">It is an extremely radioactive element that has only been created in a lab.</p>
+                    </div>
+                    </a>
+                </div>
+            </div >
+
+            <div class="hi">
+                <div class="euu">
+                    <a href="https://en.wikipedia.org/wiki/Tennessine" target="_blank">
+                    <img class="real" src="https://www.shutterstock.com/shutterstock/photos/1920750683/display_1500/stock-vector-tennessine-atomic-structure-has-atomic-number-atomic-mass-electron-configuration-and-energy-1920750683.jpg" alt="Tennessine">
+                    <div class="unreal">
+                        <h2 class="elename pad">Tennessine(Ts)</h2>
+                        <h1 class="inventor size col pad">Yuri Oganessian and Joint Institute for Nuclear Research</h1>
+                        <p class="text col pad">t is the second-heaviest known element and the penultimate element</p>
+                    </div>
+                    </a>
+                </div>
+            </div >
+            
+            <div class="hi">
+                <div class="euu">
+                    <a href="https://en.wikipedia.org/wiki/Oganesson" target="_blank">
+                    <img class="real" src="https://www.shutterstock.com/image-vector/oganesson-atomic-structure-has-number-600w-1920750686.jpg" alt="Oganesson">
+                    <div class="unreal">
+                        <h2 class="elename pad">Oganesson(Og)</h2>
+                        <h1 class="inventor size col pad">Yuri Oganessian</h1>
+                        <p class="text col pad">It was first synthesized in 2002 at the Joint Institute for Nuclear Research in Russia.</p>
+                    </div>
+                    </a>
+                </div>
+            </div >
+       
+        </div>
+    </section>
+</body>
+</html>
