@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>User Profile</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <h1 id="usernameHeading"></h1>
+  <div id="profileGallery"></div>
+
+  <script src="script.js"></script>
+  <script>
+    // Get the ?user= value from the URL
+    const params = new URLSearchParams(window.location.search);
+    const user = params.get('user');
+    document.getElementById("usernameHeading").innerText = `${user}'s Artworks`;
+
+    displayUserArtworks(user);
+  </script>
+</body>
+</html>
