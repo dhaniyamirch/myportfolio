@@ -4,29 +4,29 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Embedded & CV Engineer Portfolio</title>
-    <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@400;600;700&family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@400;600;700;800&family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
     <style>
         :root {
             /* Cute / Pastel Theme Colors */
-            --bg-color: #fff5f8; /* Soft pale pink background */
+            --bg-color: #fff5f8;
             --surface-color: #ffffff;
             --surface-color-light: #fff0f5;
-            --primary-color: #ff8fa3; /* Watermelon pink */
-            --secondary-color: #ffb3c6; /* Lighter pink */
-            --accent-color: #a18cd1; /* Soft purple */
-            --text-main: #4a4a4a; /* Soft dark gray */
+            --primary-color: #ff8fa3; 
+            --secondary-color: #ffb3c6; 
+            --accent-color: #a18cd1; 
+            --text-main: #4a4a4a; 
             --text-muted: #8e8e8e;
             --border-color: rgba(255, 143, 163, 0.2);
             --shadow-color: rgba(255, 143, 163, 0.15);
             
-            /* Game Cat Colors (Matching the intro cat) */
+            /* Game Cat Colors */
             --cat-body: #161616;
             --cat-shade: #2a2a2a;
             --cat-ear: #ff8fa3;
             --cat-eye: #fff;
             
             /* Intro CSS Cat Variables */
-            --intro-size: clamp(150px, 30vw, 220px);
+            --intro-size: clamp(120px, 20vw, 170px);
             --intro-black: #161616;
             --intro-white: #fff;
             --intro-scary-eye: #fff;
@@ -54,33 +54,14 @@
             scroll-behavior: smooth;
         }
 
-        h1, h2, h3, h4 {
-            font-family: 'Quicksand', sans-serif;
-            font-weight: 700;
-        }
-        
-        .mono {
-            font-family: 'JetBrains Mono', monospace;
-            font-size: 0.9em;
-        }
-
-        a {
-            color: var(--primary-color);
-            text-decoration: none;
-            transition: color 0.3s ease;
-            font-weight: 600;
-        }
-
-        a:hover {
-            color: var(--accent-color);
-        }
+        h1, h2, h3, h4 { font-weight: 700; }
+        .mono { font-family: 'JetBrains Mono', monospace; font-size: 0.9em; }
+        a { color: var(--primary-color); text-decoration: none; transition: color 0.3s ease; font-weight: 600; }
+        a:hover { color: var(--accent-color); }
 
         #intro-screen {
             position: fixed;
-            top: 0;
-            left: 0;
-            width: 100vw;
-            height: 100vh;
+            top: 0; left: 0; width: 100vw; height: 100vh;
             background: var(--intro-bg);
             display: flex;
             flex-direction: column;
@@ -90,13 +71,15 @@
             transition: opacity 1s ease, transform 1s ease, background 0.5s ease;
         }
 
-        /* CSS Cat Implementation */
+        /* User Provided CSS Cat - Converted to Vanilla CSS */
         .intro-cat-wrapper {
-            margin-bottom: 3rem;
+            margin-bottom: 2rem;
             transition: transform 0.3s ease;
+            position: relative;
+            z-index: 20;
         }
 
-        .cat-face-container {
+        .cat {
             position: relative;
             height: var(--intro-size);
             width: calc(var(--intro-size) * 1.13);
@@ -108,7 +91,7 @@
             height: 60%;
             width: 25%;
             background: var(--intro-black);
-            transition: transform 0.3s ease, top 0.3s ease;
+            transition: all 0.4s ease;
         }
 
         .ear::before, .ear::after {
@@ -145,6 +128,7 @@
             width: 100%;
             background: var(--intro-black);
             border-radius: 50%;
+            z-index: 2;
         }
 
         .eye {
@@ -154,7 +138,7 @@
             width: 31%;
             background: var(--intro-scary-eye);
             border-radius: 50% 50% 50% 50% / 60% 60% 40% 40%;
-            transition: background 0.3s ease, box-shadow 0.3s ease;
+            transition: background 0.4s ease, box-shadow 0.4s ease;
         }
 
         .eye::after {
@@ -177,9 +161,7 @@
         .eye::before {
             content: '';
             position: absolute;
-            top: 60%;
-            height: 10%;
-            width: 15%;
+            top: 60%; height: 10%; width: 15%;
             background: var(--intro-white);
             border-radius: 50%;
         }
@@ -191,13 +173,11 @@
 
         .eye-pupil {
             position: absolute;
-            top: 25%;
-            height: 50%;
-            width: 20%;
+            top: 25%; height: 50%; width: 20%;
             background: var(--intro-black);
             border-radius: 50%;
             animation: look-around 4s infinite;
-            transition: width 0.3s ease, height 0.3s ease;
+            transition: width 0.4s ease, height 0.4s ease;
         }
 
         @keyframes look-around {
@@ -213,51 +193,47 @@
         .eye-pupil::after {
             content: '';
             position: absolute;
-            top: 30%; right: -5%;
-            height: 20%; width: 35%;
+            top: 30%; right: -5%; height: 20%; width: 35%;
             border-radius: 50%;
             background: var(--intro-white);
         }
 
         .muzzle {
             position: absolute;
-            top: 60%; left: 50%;
-            height: 6%; width: 10%;
+            top: 60%; left: 50%; height: 6%; width: 10%;
             background: var(--intro-white);
             transform: translateX(-50%);
             border-radius: 50% 50% 50% 50% / 30% 30% 70% 70%;
         }
 
+        /* Level 1: Stop blinking, freeze pupils */
         .intro-cat-wrapper[data-scary-level="1"] .eye-pupil { animation: none; transform: translate(0, 0); }
         .intro-cat-wrapper[data-scary-level="1"] .eye::after { animation: none; height: 0; }
         
+        /* Level 2: Yellow eyes, narrow pupils, ears start flattening */
         .intro-cat-wrapper[data-scary-level="2"] .eye { --intro-scary-eye: #ffea00; }
         .intro-cat-wrapper[data-scary-level="2"] .eye-pupil { width: 10%; }
         .intro-cat-wrapper[data-scary-level="2"] .ear--left { transform: rotate(-35deg); top: -20%; }
         .intro-cat-wrapper[data-scary-level="2"] .ear--right { transform: rotate(35deg); top: -20%; }
 
+        /* Level 3: Red glowing eyes, slit pupils, ears flat, background darkens */
         .intro-cat-wrapper[data-scary-level="3"] .eye { --intro-scary-eye: #ff3333; box-shadow: 0 0 30px rgba(255, 51, 51, 0.6); }
         .intro-cat-wrapper[data-scary-level="3"] .eye-pupil { width: 5%; height: 70%; }
         .intro-cat-wrapper[data-scary-level="3"] .ear--left { transform: rotate(-60deg); top: -10%; }
         .intro-cat-wrapper[data-scary-level="3"] .ear--right { transform: rotate(60deg); top: -10%; }
-        #intro-screen.scary-bg-3 { background: #2a1111; color: white; }
+        #intro-screen.scary-bg-3 { --intro-bg: #2a1111; color: white; }
 
+        /* Level 4: Pure black, violently red glow, shaking */
         .intro-cat-wrapper[data-scary-level="4"] { animation: shake 0.5s infinite; }
         .intro-cat-wrapper[data-scary-level="4"] .eye { --intro-scary-eye: #ff0000; box-shadow: 0 0 50px red; }
-        #intro-screen.scary-bg-4 { background: #000; color: #ff3333; }
+        #intro-screen.scary-bg-4 { --intro-bg: #000; color: #ff3333; }
 
         @keyframes shake {
-            0% { transform: translate(1px, 1px) rotate(0deg); }
-            10% { transform: translate(-1px, -2px) rotate(-1deg); }
-            20% { transform: translate(-3px, 0px) rotate(1deg); }
-            30% { transform: translate(3px, 2px) rotate(0deg); }
-            40% { transform: translate(1px, -1px) rotate(1deg); }
-            50% { transform: translate(-1px, 2px) rotate(-1deg); }
-            60% { transform: translate(-3px, 1px) rotate(0deg); }
-            70% { transform: translate(3px, 1px) rotate(-1deg); }
-            80% { transform: translate(-1px, -1px) rotate(1deg); }
-            90% { transform: translate(1px, 2px) rotate(0deg); }
-            100% { transform: translate(1px, -2px) rotate(-1deg); }
+            0%, 100% { transform: translate(1px, 1px) rotate(0deg); }
+            20% { transform: translate(-2px, -1px) rotate(-1deg); }
+            40% { transform: translate(2px, -2px) rotate(1deg); }
+            60% { transform: translate(-2px, 2px) rotate(0deg); }
+            80% { transform: translate(1px, -1px) rotate(1deg); }
         }
 
         .intro-content {
@@ -266,38 +242,40 @@
             align-items: center;
             text-align: center;
             position: relative;
-            z-index: 2;
+            z-index: 20;
             width: 100vw;
+            padding: 0 20px;
         }
 
         #intro-question {
-            font-size: 2.5rem;
+            font-size: clamp(2rem, 5vw, 3rem);
             margin-bottom: 2rem;
             color: inherit;
             transition: color 0.3s;
         }
 
-        .btn-group {
+        /* Fixed fixed height container so buttons don't shift layout */
+        .btn-container {
+            position: relative;
+            height: 60px;
+            width: 100%;
+            max-width: 400px;
             display: flex;
-            gap: 1.5rem;
             justify-content: center;
             align-items: center;
-            position: relative;
-            z-index: 10;
-            margin-top: 1rem;
+            margin-bottom: 2rem;
         }
 
         .btn {
+            position: absolute; /* Absolute to allow overlapping */
             padding: 1rem 3rem;
             font-size: 1.2rem;
             font-family: 'Quicksand', sans-serif;
             font-weight: 700;
             border: none;
-            background: var(--surface-color);
-            color: var(--text-main);
             border-radius: 50px;
             cursor: pointer;
-            transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
             box-shadow: 0 8px 20px var(--shadow-color);
             outline: none;
         }
@@ -305,13 +283,11 @@
         #btn-yes {
             background: var(--primary-color);
             color: white;
-            position: relative;
             z-index: 10;
-            transform-origin: left center;
+            transform: translateX(-70px);
         }
 
         #btn-yes:hover {
-            transform: translateY(-5px) scale(1.05);
             box-shadow: 0 15px 25px rgba(255, 143, 163, 0.4);
         }
 
@@ -319,29 +295,25 @@
             background: var(--surface-color);
             color: var(--text-muted);
             border: 2px solid var(--border-color);
-            position: relative;
             z-index: 1;
-            transform-origin: right center;
-            transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            transform: translateX(70px);
         }
 
         #btn-no:hover {
             background: #fff;
             color: var(--text-main);
-            transform: translateY(-2px);
         }
 
         #intro-message {
-            margin-top: 2rem;
-            font-size: 1.5rem;
+            font-size: clamp(1.2rem, 3vw, 1.8rem);
             color: var(--primary-color);
-            min-height: 2.5rem;
+            min-height: 3rem;
             font-weight: 800;
             opacity: 0;
             transition: opacity 0.3s, color 0.3s;
             text-shadow: 0 2px 5px rgba(0,0,0,0.1);
-            position: relative;
             z-index: 20;
+            max-width: 800px;
         }
 
         #intro-screen.scary-bg-3 #intro-message,
@@ -350,106 +322,58 @@
             text-shadow: 0 0 15px rgba(255, 0, 0, 0.8);
         }
 
-        /* Cinematic last-NO chase transition */
-        #intro-animals {
-            position: fixed; inset: 0; width: 100vw; height: 100vh;
-            pointer-events: none; overflow: hidden; display: none;
-            z-index: 50000; perspective: 900px;
-            background: radial-gradient(circle at 50% 45%, rgba(255,255,255,.32), transparent 34%),
-                        linear-gradient(180deg, rgba(255,245,248,.05), rgba(255,143,163,.12));
+        #block-transition {
+            position: fixed;
+            top: 0; left: 0; width: 100vw; height: 100vh;
+            display: flex;
+            z-index: 40000;
+            pointer-events: none;
         }
-        #chase-world { position:absolute; inset:0; overflow:hidden; transform-style:preserve-3d; }
-        .intro-animal {
-            position:absolute; left:0; top:50%; font-size:clamp(5rem,10vw,9rem);
-            line-height:1; white-space:nowrap; filter:drop-shadow(0 12px 10px rgba(0,0,0,.12));
-            will-change:transform; z-index:20;
+        
+        .block-col {
+            flex: 1;
+            background: var(--primary-color);
+            transform: translateY(-100%);
+            transition: transform 0.5s cubic-bezier(0.5, 0, 0.2, 1);
+            border-right: 1px solid rgba(255,255,255,0.2);
         }
-        #intro-dog { left:-14rem; }
-        #intro-cat-emoji { left:-20rem; font-size:clamp(6rem,11vw,10rem); z-index:21; }
+        
+        .block-col.drop { transform: translateY(0); }
+        .block-col.lift { transform: translateY(-100%); }
 
-        .chase-block {
-            position:absolute; top:-180px; width:70px; height:70px; border-radius:14px;
-            background:linear-gradient(145deg,#fff,#ffd8e2);
-            border:3px solid rgba(255,143,163,.55);
-            box-shadow:0 18px 35px rgba(255,143,163,.24),inset 0 2px 0 rgba(255,255,255,.9);
-            transform-style:preserve-3d; will-change:transform; z-index:10;
+        #intro-animals {
+            position: fixed;
+            top: 50%;
+            left: 0;
+            width: 100vw;
+            height: 150px;
+            transform: translateY(-50%);
+            pointer-events: none;
+            overflow: visible;
+            display: none;
+            z-index: 50000;
         }
-        .chase-block::after {
-            content:'🐾'; position:absolute; inset:0; display:grid; place-items:center;
-            font-size:1.5rem; opacity:.28;
+
+        .intro-animal {
+            position: absolute;
+            top: 0;
+            font-size: 8rem;
+            line-height: 1;
+            white-space: nowrap;
         }
-        .chase-dust {
-            position:absolute; width:18px; height:18px; border-radius:50%;
-            background:rgba(255,143,163,.25); filter:blur(1px); z-index:5;
-            animation:dust-pop .65s ease-out forwards;
+
+        /* Start offscreen to the right, facing left */
+        #intro-dog { left: 100vw; }
+        #intro-cat-emoji { left: calc(100vw + 350px); font-size: 9.5rem; } 
+
+        @keyframes run-chase-container {
+            0% { transform: translateX(0); }
+            100% { transform: translateX(calc(-100vw - 1000px)); }
         }
-        @keyframes dust-pop {
-            from { transform:scale(.3) translateY(0); opacity:.8; }
-            to { transform:scale(2.8) translateY(35px); opacity:0; }
-        }
-        #chase-vignette {
-            position:absolute; inset:-5%; border-radius:50%;
-            box-shadow:inset 0 0 120px rgba(20,10,15,.15); z-index:40;
-        }
-        #chase-flash {
-            position:absolute; inset:0; background:#fff; opacity:0; z-index:100;
-        }
-        #chase-transition {
-            position:absolute; left:50%; top:50%; width:12px; height:12px; border-radius:18px;
-            background:var(--surface-color); transform:translate(-50%,-50%) scale(0);
-            opacity:0; z-index:90;
-        }
-        #intro-screen.cinematic-running #intro-animals { display:block; }
-        #intro-screen.cinematic-running #intro-cat-emoji {
-            animation:cat-cinematic-run 3.6s cubic-bezier(.2,.75,.2,1) forwards;
-        }
-        #intro-screen.cinematic-running #intro-dog {
-            animation:dog-cinematic-run 4s cubic-bezier(.2,.75,.2,1) forwards;
-        }
-        #intro-screen.cinematic-running #chase-transition {
-            animation:chase-wipe 1.2s cubic-bezier(.77,0,.175,1) 3.35s forwards;
-        }
-        #intro-screen.cinematic-running #chase-flash {
-            animation:chase-flash 1.1s ease-out 3.25s forwards;
-        }
-        @keyframes cat-cinematic-run {
-            0%{transform:translate3d(-25vw,-50%,0) scale(.72) rotate(-3deg)}
-            14%{transform:translate3d(8vw,-50%,0) scale(.82) rotate(1deg)}
-            32%{transform:translate3d(30vw,-58%,0) scale(.9) rotate(-2deg)}
-            48%{transform:translate3d(48vw,-43%,0) scale(1) rotate(2deg)}
-            63%{transform:translate3d(66vw,-54%,0) scale(.98) rotate(-1deg)}
-            78%{transform:translate3d(86vw,-47%,0) scale(1.05) rotate(2deg)}
-            100%{transform:translate3d(122vw,-52%,0) scale(1.35) rotate(0)}
-        }
-        @keyframes dog-cinematic-run {
-            0%{transform:translate3d(-35vw,-50%,0) scale(.65)}
-            20%{transform:translate3d(-2vw,-50%,0) scale(.78)}
-            42%{transform:translate3d(25vw,-48%,0) scale(.88)}
-            62%{transform:translate3d(50vw,-50%,0) scale(.96)}
-            80%{transform:translate3d(73vw,-49%,0) scale(1.05)}
-            100%{transform:translate3d(110vw,-50%,0) scale(1.22)}
-        }
-        @keyframes chase-wipe {
-            0%{opacity:0;transform:translate(-50%,-50%) scale(0)}
-            30%{opacity:.85;transform:translate(-50%,-50%) scale(10)}
-            70%{opacity:1;transform:translate(-50%,-50%) scale(90)}
-            100%{opacity:1;transform:translate(-50%,-50%) scale(180)}
-        }
-        @keyframes chase-flash {
-            0%{opacity:0} 35%{opacity:.08} 60%{opacity:.85} 100%{opacity:0}
-        }
-        @keyframes cinematic-screen-shift {
-            0%{transform:scale(1)} 45%{transform:scale(1.015) translateY(-3px)}
-            70%{transform:scale(1.035) translateY(2px)} 100%{transform:scale(1.06)}
-        }
-        #intro-screen.cinematic-running .intro-content {
-            animation:cinematic-screen-shift 3.8s cubic-bezier(.2,.7,.2,1) forwards;
-        }
-        @media (prefers-reduced-motion:reduce) {
-            #intro-screen.cinematic-running .intro-content,
-            #intro-screen.cinematic-running #intro-dog,
-            #intro-screen.cinematic-running #intro-cat-emoji { animation:none!important; }
-            .chase-block,.chase-dust { display:none!important; }
+
+        @keyframes bounce-sprint {
+            0%, 100% { transform: translateY(0) scale(1, 1); }
+            50% { transform: translateY(-40px) scale(0.9, 1.1); }
         }
 
         #portfolio-main {
@@ -461,7 +385,6 @@
             padding-bottom: 100px;
         }
 
-        /* Cute decorative background */
         .cute-bg {
             position: absolute;
             top: 0; left: 0; right: 0; bottom: 0;
@@ -489,28 +412,11 @@
             z-index: 100;
         }
 
-        .logo {
-            font-weight: 800;
-            font-size: 1.5rem;
-            color: var(--text-main);
-            letter-spacing: -0.5px;
-        }
-
+        .logo { font-weight: 800; font-size: 1.5rem; color: var(--text-main); letter-spacing: -0.5px; }
         .logo span { color: var(--primary-color); }
-
-        nav {
-            display: flex;
-            gap: var(--spacing-lg);
-        }
-
-        nav a {
-            color: var(--text-muted);
-            font-size: 1rem;
-        }
-
-        nav a:hover {
-            color: var(--primary-color);
-        }
+        nav { display: flex; gap: var(--spacing-lg); }
+        nav a { color: var(--text-muted); font-size: 1rem; }
+        nav a:hover { color: var(--primary-color); }
 
         section {
             width: 100%;
@@ -535,11 +441,8 @@
         .section-title::after {
             content: '';
             position: absolute;
-            bottom: -15px;
-            left: 50%;
-            transform: translateX(-50%);
-            width: 60px;
-            height: 6px;
+            bottom: -15px; left: 50%; transform: translateX(-50%);
+            width: 60px; height: 6px;
             background: var(--primary-color);
             border-radius: 10px;
         }
@@ -559,75 +462,33 @@
             box-shadow: 0 15px 40px rgba(255, 143, 163, 0.25);
         }
 
-        /* Grid Layouts */
         .grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: var(--spacing-lg); width: 100%; max-width: 1000px; }
         .grid-3 { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: var(--spacing-lg); width: 100%; max-width: 1200px; }
 
         @media (max-width: 768px) {
             .grid-2 { grid-template-columns: 1fr; }
-            .btn-group { flex-direction: column; gap: 1rem; }
             header { flex-direction: column; gap: 1rem; }
             nav { gap: 1rem; flex-wrap: wrap; justify-content: center; }
         }
 
-        /* Hero Section */
-        #hero {
-            min-height: 100vh;
-            justify-content: center;
-            text-align: center;
-            padding-top: 0;
-        }
+        #hero { min-height: 100vh; justify-content: center; text-align: center; padding-top: 0; }
+        .hero-platform { max-width: 800px; width: 100%; padding: 4rem 2rem; }
+        .hero-title { font-size: clamp(2.5rem, 5vw, 4.5rem); line-height: 1.2; margin-bottom: var(--spacing-md); color: var(--text-main); }
+        .hero-subtitle { font-size: 1.2rem; color: var(--accent-color); margin-bottom: var(--spacing-lg); background: var(--surface-color-light); display: inline-block; padding: 0.5rem 1rem; border-radius: 12px; }
 
-        .hero-platform {
-            max-width: 800px;
-            width: 100%;
-            padding: 4rem 2rem;
-            background: var(--surface-color);
-        }
-
-        .hero-title {
-            font-size: clamp(2.5rem, 5vw, 4.5rem);
-            font-weight: 800;
-            line-height: 1.2;
-            margin-bottom: var(--spacing-md);
-            color: var(--text-main);
-        }
-
-        .hero-subtitle {
-            font-size: 1.2rem;
-            color: var(--accent-color);
-            margin-bottom: var(--spacing-lg);
-            background: var(--surface-color-light);
-            display: inline-block;
-            padding: 0.5rem 1rem;
-            border-radius: 12px;
-        }
-
-        /* Content Blocks */
         .tag {
-            display: inline-block;
-            padding: 0.4rem 1rem;
-            background: var(--surface-color-light);
-            color: var(--accent-color);
-            border-radius: 50px;
-            font-size: 0.85rem;
-            margin-right: 0.5rem;
-            margin-bottom: 0.5rem;
-            font-weight: 600;
+            display: inline-block; padding: 0.4rem 1rem;
+            background: var(--surface-color-light); color: var(--accent-color);
+            border-radius: 50px; font-size: 0.85rem;
+            margin-right: 0.5rem; margin-bottom: 0.5rem; font-weight: 600;
             border: 1px solid rgba(161, 140, 209, 0.2);
         }
 
         .project-img {
-            width: 100%;
-            height: 200px;
-            background: var(--bg-color);
-            border-radius: 16px;
-            margin-bottom: 1.5rem;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: var(--text-muted);
-            border: 2px dashed var(--border-color);
+            width: 100%; height: 200px; background: var(--bg-color);
+            border-radius: 16px; margin-bottom: 1.5rem;
+            display: flex; align-items: center; justify-content: center;
+            color: var(--text-muted); border: 2px dashed var(--border-color);
             font-weight: 600;
         }
 
@@ -641,14 +502,19 @@
 
         #cat {
             position: absolute;
-            width: 60px;
-            height: 50px;
+            width: 60px; height: 50px;
             transform-origin: bottom center;
             will-change: transform;
             pointer-events: auto;
         }
 
-        /* SVG Game Cat Animations */
+        /* Big Cute Mode */
+        .cat-big-cute { transform: scale(2) !important; transition: transform 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275); }
+        .cat-big-cute #cat-eyes circle[r="4.5"] { r: 9; }
+        .cat-big-cute #cat-eyes circle[r="2"] { r: 7; }
+        .eye-shine { opacity: 0; transition: opacity 0.3s; }
+        .cat-big-cute .eye-shine { opacity: 1; }
+
         .cat-svg-part { transition: transform 0.2s ease; }
         #cat-tail { transform-origin: 80% 80%; }
         #cat-head { transform-origin: 20% 40%; }
@@ -690,56 +556,26 @@
         .cat-sleeping #cat-legs { transform: translateY(15px) rotate(90deg); opacity: 0; }
         .cat-sleeping #cat-tail { transform: rotate(90deg); }
 
-        @keyframes tail-wag {
-            0%, 100% { transform: rotate(0deg); }
-            50% { transform: rotate(15deg); }
-        }
-        @keyframes blink {
-            0%, 96%, 100% { transform: scaleY(1); }
-            98% { transform: scaleY(0.1); }
-        }
-        @keyframes walk-cycle {
-            0% { transform: rotate(-30deg); }
-            100% { transform: rotate(30deg); }
-        }
+        @keyframes tail-wag { 0%, 100% { transform: rotate(0deg); } 50% { transform: rotate(15deg); } }
+        @keyframes blink { 0%, 96%, 100% { transform: scaleY(1); } 98% { transform: scaleY(0.1); } }
+        @keyframes walk-cycle { 0% { transform: rotate(-30deg); } 100% { transform: rotate(30deg); } }
 
         #waypoint {
-            position: absolute;
-            width: 24px;
-            height: 24px;
-            border: 3px solid var(--primary-color);
-            border-radius: 50%;
+            position: absolute; width: 24px; height: 24px;
+            border: 3px solid var(--primary-color); border-radius: 50%;
             transform: translate(-50%, -50%) scale(0);
-            pointer-events: none;
-            opacity: 0;
-            z-index: 40;
+            pointer-events: none; opacity: 0; z-index: 40;
         }
         .waypoint-anim { animation: ping 0.5s ease-out forwards; }
-        @keyframes ping {
-            0% { transform: translate(-50%, -50%) scale(0); opacity: 1; }
-            100% { transform: translate(-50%, -50%) scale(2); opacity: 0; }
-        }
+        @keyframes ping { 0% { transform: translate(-50%, -50%) scale(0); opacity: 1; } 100% { transform: translate(-50%, -50%) scale(2); opacity: 0; } }
 
         #mobile-hint {
-            display: none;
-            position: fixed;
-            bottom: 20px;
-            left: 50%;
-            transform: translateX(-50%);
-            background: var(--surface-color);
-            padding: 12px 24px;
-            border-radius: 30px;
-            font-size: 0.9rem;
-            color: var(--text-main);
-            font-weight: 600;
-            z-index: 1000;
-            box-shadow: 0 5px 15px var(--shadow-color);
-            pointer-events: none;
+            display: none; position: fixed; bottom: 20px; left: 50%; transform: translateX(-50%);
+            background: var(--surface-color); padding: 12px 24px; border-radius: 30px;
+            font-size: 0.9rem; font-weight: 600; z-index: 1000;
+            box-shadow: 0 5px 15px var(--shadow-color); pointer-events: none;
         }
-
-        @media (max-width: 768px) {
-            #mobile-hint { display: block; }
-        }
+        @media (max-width: 768px) { #mobile-hint { display: block; } }
     </style>
 </head>
 <body>
@@ -747,7 +583,7 @@
         <div class="intro-content">
             
             <div class="intro-cat-wrapper" data-scary-level="0">
-                <div class="cat-face-container">
+                <div class="cat">
                     <div class="ear ear--left"></div>
                     <div class="ear ear--right"></div>
                     <div class="face">
@@ -763,20 +599,20 @@
             </div>
 
             <h1 id="intro-question">Do you like cats?</h1>
-            <div class="btn-group">
+            
+            <div class="btn-container">
                 <button id="btn-yes" class="btn">YES</button>
                 <button id="btn-no" class="btn">NO</button>
             </div>
+            
             <div id="intro-message"></div>
         </div>
-        <div id="intro-animals" aria-hidden="true">
-            <div id="chase-world">
-                <div id="intro-dog" class="intro-animal">🐕</div>
-                <div id="intro-cat-emoji" class="intro-animal">🐈‍⬛</div>
-                <div id="chase-vignette"></div>
-            </div>
-            <div id="chase-transition"></div>
-            <div id="chase-flash"></div>
+
+        <div id="block-transition"></div>
+
+        <div id="intro-animals">
+            <div id="intro-dog" class="intro-animal" style="animation-delay: 0s;">🐕</div>
+            <div id="intro-cat-emoji" class="intro-animal" style="animation-delay: 0.1s;">🐈‍⬛</div>
         </div>
     </div>
 
@@ -831,24 +667,15 @@
             <div class="grid-3">
                 <div class="cat-platform">
                     <h3 style="margin-bottom: 1.5rem;">Microcontrollers & IoT</h3>
-                    <div>
-                        <span class="tag">ESP32</span> <span class="tag">STM32</span> <span class="tag">ARM Cortex-M</span>
-                        <span class="tag">FreeRTOS</span> <span class="tag">Zephyr</span> <span class="tag">MQTT</span> <span class="tag">LoRaWAN</span>
-                    </div>
+                    <div><span class="tag">ESP32</span> <span class="tag">STM32</span> <span class="tag">ARM Cortex-M</span> <span class="tag">FreeRTOS</span> <span class="tag">Zephyr</span> <span class="tag">MQTT</span></div>
                 </div>
                 <div class="cat-platform">
                     <h3 style="margin-bottom: 1.5rem;">Computer Vision & AI</h3>
-                    <div>
-                        <span class="tag">OpenCV</span> <span class="tag">Python</span> <span class="tag">TensorFlow Lite</span>
-                        <span class="tag">YOLO</span> <span class="tag">CUDA</span> <span class="tag">TensorRT</span>
-                    </div>
+                    <div><span class="tag">OpenCV</span> <span class="tag">Python</span> <span class="tag">TensorFlow Lite</span> <span class="tag">YOLO</span> <span class="tag">CUDA</span></div>
                 </div>
                 <div class="cat-platform">
                     <h3 style="margin-bottom: 1.5rem;">Tools & Protocols</h3>
-                    <div>
-                        <span class="tag">I2C/SPI/UART</span> <span class="tag">CAN bus</span> <span class="tag">Altium</span>
-                        <span class="tag">Git</span> <span class="tag">Docker</span> <span class="tag">Linux/Yocto</span>
-                    </div>
+                    <div><span class="tag">I2C/SPI</span> <span class="tag">CAN bus</span> <span class="tag">Altium</span> <span class="tag">Git</span> <span class="tag">Docker</span> <span class="tag">Linux</span></div>
                 </div>
             </div>
         </section>
@@ -859,22 +686,12 @@
                 <div class="cat-platform">
                     <div class="project-img">📷 Drone Brain</div>
                     <h3>Autonomous Drone Brain</h3>
-                    <p style="font-size: 0.95rem; margin-top: 0.5rem; color: var(--text-muted);">A custom flight controller based on STM32 H7 running a real-time object avoidance neural net via Edge Impulse.</p>
+                    <p style="font-size: 0.95rem; margin-top: 0.5rem; color: var(--text-muted);">A custom flight controller based on STM32 H7 running a real-time object avoidance neural net.</p>
                 </div>
                 <div class="cat-platform">
                     <div class="project-img">🐈 Smart Feeder</div>
                     <h3>IoT Cat Feeder + Face Rec</h3>
-                    <p style="font-size: 0.95rem; margin-top: 0.5rem; color: var(--text-muted);">Dispenses specific diets based on which cat is detected using an ESP32-CAM and a custom lightweight CNN.</p>
-                </div>
-                <div class="cat-platform">
-                    <div class="project-img">⚙️ Sensor Mesh</div>
-                    <h3>Industrial Sensor Mesh</h3>
-                    <p style="font-size: 0.95rem; margin-top: 0.5rem; color: var(--text-muted);">A low-power LoRaWAN network designed to monitor factory floor vibration and predict machine failure.</p>
-                </div>
-                <div class="cat-platform">
-                    <div class="project-img">📟 Open Dev Board</div>
-                    <h3>Open Source Dev Board</h3>
-                    <p style="font-size: 0.95rem; margin-top: 0.5rem; color: var(--text-muted);">Designed and routed a 4-layer PCB for a custom RISC-V development kit aimed at students.</p>
+                    <p style="font-size: 0.95rem; margin-top: 0.5rem; color: var(--text-muted);">Dispenses specific diets based on which cat is detected using an ESP32-CAM.</p>
                 </div>
             </div>
         </section>
@@ -883,10 +700,7 @@
             <h2 class="section-title">Initialize Handshake</h2>
             <div class="cat-platform" style="width: 100%; max-width: 600px; text-align: center;">
                 <p style="margin-bottom: 2rem; font-size: 1.1rem;">Interested in collaborating on IoT, robotics, or computer vision? Let's connect.</p>
-                <a href="#" class="btn" style="display:inline-block; background: var(--primary-color); color: white;">Send Transmission</a>
-                <div style="margin-top: 2rem; display:flex; justify-content:center; gap: 1.5rem;">
-                    <a href="#">GitHub</a> &bull; <a href="#">LinkedIn</a> &bull; <a href="#">Twitter</a>
-                </div>
+                <a href="#" class="btn" style="display:inline-block; position:relative; background: var(--primary-color); color: white;">Send Transmission</a>
             </div>
         </section>
         
@@ -903,43 +717,33 @@
         <div id="waypoint"></div>
         <div id="cat" class="cat-idle">
             <svg id="cat-svg" viewBox="0 0 100 100" width="100%" height="100%" style="overflow: visible;">
-                <!-- Shadow -->
                 <ellipse cx="50" cy="95" rx="20" ry="5" fill="rgba(0,0,0,0.1)" />
-                
                 <g id="cat-body-group">
-                    <!-- Tail -->
                     <path id="cat-tail" d="M 80 70 Q 110 70, 95 30 Q 90 15, 80 25" fill="none" stroke="var(--cat-body)" stroke-width="8" stroke-linecap="round" />
-                    
-                    <!-- Legs -->
                     <g id="cat-legs">
                         <line id="cat-leg-bl" x1="65" y1="70" x2="65" y2="90" stroke="var(--cat-shade)" stroke-width="8" stroke-linecap="round" />
                         <line id="cat-leg-fl" x1="35" y1="70" x2="35" y2="90" stroke="var(--cat-shade)" stroke-width="8" stroke-linecap="round" />
                         <line id="cat-leg-br" x1="75" y1="70" x2="75" y2="90" stroke="var(--cat-body)" stroke-width="8" stroke-linecap="round" />
                         <line id="cat-leg-fr" x1="25" y1="70" x2="25" y2="90" stroke="var(--cat-body)" stroke-width="8" stroke-linecap="round" />
                     </g>
-                    
-                    <!-- Body -->
                     <rect id="cat-torso" x="20" y="40" width="60" height="40" rx="20" fill="var(--cat-body)" />
-                    
-                    <!-- Head -->
                     <g id="cat-head">
                         <circle cx="20" cy="40" r="25" fill="var(--cat-body)" />
-                        <!-- Ears -->
                         <polygon points="5,25 0,0 20,15" fill="var(--cat-body)" stroke="var(--cat-body)" stroke-width="3" stroke-linejoin="round" />
                         <polygon points="35,25 40,0 20,15" fill="var(--cat-body)" stroke="var(--cat-body)" stroke-width="3" stroke-linejoin="round" />
-                        <!-- Inner Ears -->
                         <polygon points="7,22 4,5 16,16" fill="var(--cat-ear)" />
                         <polygon points="33,22 36,5 24,16" fill="var(--cat-ear)" />
-                        
-                        <!-- Eyes -->
                         <g id="cat-eyes">
-                            <circle cx="10" cy="38" r="4.5" fill="var(--cat-eye)" />
-                            <circle cx="28" cy="38" r="4.5" fill="var(--cat-eye)" />
-                            <!-- Pupils -->
-                            <circle cx="9" cy="38" r="2" fill="var(--cat-body)" />
-                            <circle cx="27" cy="38" r="2" fill="var(--cat-body)" />
+                            <circle cx="10" cy="38" r="4.5" fill="var(--cat-eye)" style="transition: r 0.3s;" />
+                            <circle cx="28" cy="38" r="4.5" fill="var(--cat-eye)" style="transition: r 0.3s;" />
+                            <circle cx="9" cy="38" r="2" fill="var(--cat-body)" style="transition: r 0.3s;" />
+                            <circle cx="27" cy="38" r="2" fill="var(--cat-body)" style="transition: r 0.3s;" />
+                            <!-- Cute Shines -->
+                            <circle class="eye-shine" cx="7" cy="36" r="2.5" fill="white" />
+                            <circle class="eye-shine" cx="25" cy="36" r="2.5" fill="white" />
+                            <circle class="eye-shine" cx="11" cy="40" r="1" fill="white" />
+                            <circle class="eye-shine" cx="29" cy="40" r="1" fill="white" />
                         </g>
-                        <!-- Nose/Mouth -->
                         <circle cx="19" cy="45" r="2" fill="var(--cat-eye)" />
                         <path d="M 15 48 Q 19 51 19 48 Q 19 51 23 48" fill="none" stroke="var(--cat-eye)" stroke-width="1.5" />
                     </g>
@@ -950,23 +754,12 @@
 
     <script>
         const CAT_CONFIG = {
-            walkSpeed: 150,
-            runSpeed: 400,
-            gravity: 1200, 
-            jumpVelocityY: -600, 
-            jumpCrouchTime: 300,
-            sprintDistance: 800,
-            width: 60,
-            height: 50
+            walkSpeed: 150, runSpeed: 400, gravity: 1200, 
+            jumpVelocityY: -600, jumpCrouchTime: 300, sprintDistance: 800,
+            width: 60, height: 50
         };
 
-        const GameState = {
-            introActive: true,
-            noClicks: 0,
-            platforms: [],
-            lastTime: 0,
-            activeSection: 'hero'
-        };
+        const GameState = { introActive: true, noClicks: 0, platforms: [], lastTime: 0 };
 
         const IntroController = {
             init() {
@@ -975,7 +768,6 @@
                 const msg = document.getElementById('intro-message');
                 const catFace = document.querySelector('.intro-cat-wrapper');
                 const introScreen = document.getElementById('intro-screen');
-                
                 const animals = document.getElementById('intro-animals');
                 const dog = document.getElementById('intro-dog');
                 const catAnim = document.getElementById('intro-cat-emoji');
@@ -984,26 +776,21 @@
                     "Wait, really?",
                     "Are you sure? Look at this face.",
                     "Okay, you're testing my patience...",
-                    "Are you from those who like dogs or something?!",
+                    "Are you from the dog team or what?!",
                     "GET OUT OF MY SIGHT!"
                 ];
 
-                btnYes.addEventListener('click', () => {
-                    this.transitionToPortfolio(true);
-                });
+                btnYes.addEventListener('click', () => { this.transitionToPortfolio(true, false); });
 
                 btnNo.addEventListener('click', () => {
                     if (GameState.noClicks >= 5) return;
-                    
                     GameState.noClicks++;
                     
-                    // Cap the CSS scary styling at level 4
                     let scaryLevel = Math.min(GameState.noClicks, 4);
                     catFace.setAttribute('data-scary-level', scaryLevel);
                     
-                    if (scaryLevel === 3) {
-                        introScreen.classList.add('scary-bg-3');
-                    } else if (scaryLevel === 4) {
+                    if (scaryLevel === 3) introScreen.classList.add('scary-bg-3');
+                    else if (scaryLevel === 4) {
                         introScreen.classList.remove('scary-bg-3');
                         introScreen.classList.add('scary-bg-4');
                     }
@@ -1012,107 +799,50 @@
                         msg.innerText = noMessages[GameState.noClicks - 1];
                         msg.style.opacity = 1;
                         
-                        // Slower scaling, and scoot the NO button to the right so it isn't completely covered
-                        let yesScale = 1 + (GameState.noClicks * 0.15);
-                        let noScale = 1 - (GameState.noClicks * 0.15);
+                        // Scale YES up, move NO to the right so it doesn't get fully covered
+                        let yesScale = 1 + (GameState.noClicks * 0.4);
+                        let noMove = GameState.noClicks * 50;
                         
-                        btnYes.style.transform = `scale(${yesScale})`;
-                        btnNo.style.transform = `translateX(${GameState.noClicks * 20}px) scale(${noScale})`;
+                        btnYes.style.transform = `translateX(-70px) scale(${yesScale})`;
+                        btnNo.style.transform = `translateX(${70 + noMove}px)`;
                         
                     } else if (GameState.noClicks === 5) {
                         msg.innerText = noMessages[4];
-                        
                         btnNo.style.opacity = 0;
                         btnNo.style.pointerEvents = 'none';
-                        btnNo.style.transform = `scale(0)`;
+                        btnYes.style.transform = `translateX(-70px) scale(3.5)`;
+                        btnYes.disabled = true;
                         
-                        btnYes.style.transform = `scale(2.5)`;
-                        btnNo.disabled = true;
-                        
-                        // Cinematic chase with falling blocks and a portal-like handoff.
-                        this.startCinematicChase();
-                    }, 2000);
+                        const blockContainer = document.getElementById('block-transition');
+                        for (let i = 0; i < 10; i++) {
+                            let col = document.createElement('div');
+                            col.className = 'block-col';
+                            blockContainer.appendChild(col);
+                            setTimeout(() => { col.classList.add('drop'); }, i * 40);
+                        }
+
+                        setTimeout(() => {
+                            animals.style.display = 'block';
+                            dog.style.animation = 'run-chase-container 2s linear forwards, bounce-sprint 0.3s infinite alternate';
+                            catAnim.style.animation = 'run-chase-container 1.5s linear forwards 0.2s, bounce-sprint 0.2s infinite alternate';
+                            
+                            setTimeout(() => {
+                                const cols = document.querySelectorAll('.block-col');
+                                cols.forEach((col, i) => {
+                                    setTimeout(() => {
+                                        col.classList.remove('drop');
+                                        col.classList.add('lift');
+                                    }, i * 40);
+                                });
+                                this.transitionToPortfolio(false, true); // BIG CUTE MODE!
+                            }, 2500);
+
+                        }, 800);
                     }
                 });
             },
 
-            startCinematicChase() {
-                const introScreen = document.getElementById('intro-screen');
-                const animals = document.getElementById('intro-animals');
-                const world = document.getElementById('chase-world');
-                const no = document.getElementById('btn-no');
-                const yes = document.getElementById('btn-yes');
-
-                if (no) { no.disabled = true; no.style.pointerEvents = 'none'; }
-                if (yes) { yes.disabled = true; yes.style.pointerEvents = 'none'; }
-
-                introScreen.classList.add('cinematic-running');
-                animals.style.display = 'block';
-
-                const count = 11;
-                const height = window.innerHeight;
-
-                for (let i = 0; i < count; i++) {
-                    const block = document.createElement('div');
-                    block.className = 'chase-block';
-
-                    const size = 42 + Math.random() * 64;
-                    const left = 4 + Math.random() * 92;
-                    const delay = i * 170 + Math.random() * 220;
-                    const duration = 1050 + Math.random() * 850;
-                    const rotation = -40 + Math.random() * 80;
-                    const drift = -100 + Math.random() * 200;
-
-                    block.style.width = size + 'px';
-                    block.style.height = size + 'px';
-                    block.style.left = left + '%';
-                    block.style.top = (-160 - Math.random() * 240) + 'px';
-                    world.appendChild(block);
-
-                    setTimeout(() => {
-                        const start = performance.now();
-
-                        const frame = now => {
-                            const progress = Math.min(1, (now - start) / duration);
-                            const eased = 1 - Math.pow(1 - progress, 3);
-                            const y = -160 + eased * (height + 360);
-                            const x = Math.sin(progress * Math.PI * 2 + i) * drift;
-                            const rot = rotation + eased * (360 + i * 25);
-                            const impact = progress > .84
-                                ? 1 + Math.sin(((progress - .84) / .16) * Math.PI) * .12
-                                : 1;
-
-                            block.style.transform =
-                                `translate3d(${x}px,${y}px,0) rotate(${rot}deg) scale(${impact})`;
-
-                            if (progress < 1) requestAnimationFrame(frame);
-                            else block.remove();
-                        };
-
-                        requestAnimationFrame(frame);
-                    }, delay);
-                }
-
-                const dustTimer = setInterval(() => {
-                    if (!introScreen.classList.contains('cinematic-running')) {
-                        clearInterval(dustTimer);
-                        return;
-                    }
-                    const dust = document.createElement('div');
-                    dust.className = 'chase-dust';
-                    dust.style.left = (18 + Math.random() * 68) + '%';
-                    dust.style.top = (53 + Math.random() * 8) + '%';
-                    world.appendChild(dust);
-                    setTimeout(() => dust.remove(), 700);
-                }, 150);
-
-                setTimeout(() => {
-                    clearInterval(dustTimer);
-                    this.transitionToPortfolio(false);
-                }, 4550);
-            },
-
-            transitionToPortfolio(happy) {
+            transitionToPortfolio(happy, isBigCute) {
                 if(!GameState.introActive) return;
                 GameState.introActive = false;
                 
@@ -1120,28 +850,17 @@
                 const portfolio = document.getElementById('portfolio-main');
                 
                 introScreen.style.opacity = 0;
-                introScreen.style.transform = 'scale(1.08)';
-                introScreen.style.pointerEvents = 'none';
-
-                portfolio.style.display = 'flex';
-                portfolio.style.opacity = 0;
-                portfolio.style.transform = 'scale(0.985)';
-                portfolio.style.transition =
-                    'opacity .95s ease, transform 1.05s cubic-bezier(.2,.75,.2,1)';
-
-                requestAnimationFrame(() => {
-                    requestAnimationFrame(() => {
-                        portfolio.style.opacity = 1;
-                        portfolio.style.transform = 'scale(1)';
-                    });
-                });
-
+                introScreen.style.transform = 'scale(1.1)';
+                
                 setTimeout(() => {
                     introScreen.style.display = 'none';
-                    void portfolio.offsetWidth;
-
+                    portfolio.style.display = 'flex';
+                    void portfolio.offsetWidth; 
+                    portfolio.style.opacity = 1;
+                    
                     PlatformManager.scan();
                     const heroTop = GameState.platforms.find(p => p.el && p.el.classList.contains('hero-platform'));
+                    
                     if(heroTop) {
                         Cat.x = heroTop.x + heroTop.width / 2;
                         Cat.y = happy ? -100 : heroTop.y - CAT_CONFIG.height; 
@@ -1153,7 +872,11 @@
                     if(happy) {
                         Cat.setState('FALL');
                     } else {
-                        Cat.setState('IDLE');
+                        Cat.setState('SIT');
+                        if (isBigCute) {
+                            Cat.el.classList.add('cat-big-cute');
+                            Cat.isBigCute = true;
+                        }
                     }
                     
                     requestAnimationFrame(gameLoop);
@@ -1169,23 +892,12 @@
                 GameState.platforms = Array.from(elements).map(el => {
                     const rect = el.getBoundingClientRect();
                     return {
-                        x: rect.left + window.scrollX,
-                        y: rect.top + window.scrollY,
-                        width: rect.width,
-                        height: rect.height,
-                        el: el
+                        x: rect.left + window.scrollX, y: rect.top + window.scrollY,
+                        width: rect.width, height: rect.height, el: el
                     };
                 });
-                
-                GameState.platforms.push({
-                    x: -1000,
-                    y: document.body.scrollHeight - 10,
-                    width: 5000,
-                    height: 100,
-                    isGround: true
-                });
+                GameState.platforms.push({ x: -1000, y: document.body.scrollHeight - 10, width: 5000, height: 100, isGround: true });
             },
-            
             getPlatformAt(x, y) {
                 for(let p of GameState.platforms) {
                     if(x >= p.x && x <= p.x + p.width) {
@@ -1198,18 +910,9 @@
 
         const Cat = {
             el: document.getElementById('cat'),
-            
-            x: 0, y: 0,
-            vx: 0, vy: 0,
-            
-            targetX: null, targetY: null,
-            
-            state: 'IDLE',
-            stateTimer: 0,
-            direction: 1, 
-            
-            idleTimer: 0,
-            currentPlatform: null,
+            x: 0, y: 0, vx: 0, vy: 0, targetX: null, targetY: null,
+            state: 'IDLE', stateTimer: 0, direction: 1, idleTimer: 0, currentPlatform: null,
+            isBigCute: false,
 
             update(dt) {
                 let dtSeconds = dt / 1000;
@@ -1220,9 +923,7 @@
                     this.x += this.vx * dtSeconds;
                     this.y += this.vy * dtSeconds;
                     
-                    if (this.vy > 0 && this.state !== 'FALL') {
-                        this.setState('FALL');
-                    }
+                    if (this.vy > 0 && this.state !== 'FALL') this.setState('FALL');
                     
                     if (this.vy > 0) {
                         let prevY = this.y - this.vy * dtSeconds;
@@ -1230,8 +931,7 @@
                             if (this.x >= p.x && this.x <= p.x + p.width) {
                                 if (prevY + CAT_CONFIG.height <= p.y + 15 && this.y + CAT_CONFIG.height >= p.y - 10) {
                                     this.y = p.y - CAT_CONFIG.height;
-                                    this.vy = 0;
-                                    this.vx = 0;
+                                    this.vy = 0; this.vx = 0;
                                     this.currentPlatform = p;
                                     this.setState('LAND');
                                     break;
@@ -1243,16 +943,14 @@
                     if (this.targetX !== null) {
                         let speed = this.state === 'RUN' ? CAT_CONFIG.runSpeed : CAT_CONFIG.walkSpeed;
                         let dist = this.targetX - this.x;
-                        
                         this.direction = dist > 0 ? 1 : -1;
                         
                         if (Math.abs(dist) < speed * dtSeconds) {
                             this.x = this.targetX;
                             this.targetX = null;
-                            this.setState('IDLE');
+                            this.setState(this.isBigCute ? 'SIT' : 'IDLE');
                         } else {
                             this.x += this.direction * speed * dtSeconds;
-                            
                             if (this.currentPlatform && !this.currentPlatform.isGround) {
                                 let p = this.currentPlatform;
                                 if (this.x < p.x || this.x > p.x + p.width) {
@@ -1263,7 +961,7 @@
                             }
                         }
                     } else {
-                        this.setState('IDLE');
+                        this.setState(this.isBigCute ? 'SIT' : 'IDLE');
                     }
                 } else if (this.state === 'IDLE') {
                     this.idleTimer += dt;
@@ -1273,24 +971,18 @@
                         else if (r < 0.8 && this.idleTimer > 10000) this.setState('SLEEP');
                     }
                 } else if (this.state === 'SIT' || this.state === 'SLEEP') {
-                    if (this.targetX !== null) {
-                        this.setState('IDLE');
-                    }
+                    if (this.targetX !== null) this.setState('IDLE');
                 } else if (this.state === 'CROUCH') {
                     if (this.stateTimer <= 0) this.executeJump();
                 } else if (this.state === 'LAND') {
                     if (this.stateTimer <= 0) {
-                        if (this.targetX !== null) {
-                             this.evaluateTarget();
-                        } else {
-                            this.setState('IDLE');
-                        }
+                        if (this.targetX !== null) this.evaluateTarget();
+                        else this.setState(this.isBigCute ? 'SIT' : 'IDLE');
                     }
                 }
                 
                 if (this.x < 10) this.x = 10;
                 if (this.x > document.body.scrollWidth - 10) this.x = document.body.scrollWidth - 10;
-                
                 this.draw();
             },
             
@@ -1301,41 +993,34 @@
             
             setState(newState) {
                 if (this.state === newState && newState !== 'JUMP') return;
-                
                 this.el.classList.remove('cat-idle', 'cat-walking', 'cat-running', 'cat-crouching', 'cat-jumping', 'cat-falling', 'cat-landing', 'cat-sitting', 'cat-sleeping');
-                
                 this.state = newState;
                 this.el.classList.add('cat-' + newState.toLowerCase());
                 
-                if (newState === 'IDLE') {
-                    this.idleTimer = 0;
-                    this.vx = 0;
-                } else if (newState === 'CROUCH') {
-                    this.stateTimer = CAT_CONFIG.jumpCrouchTime;
-                } else if (newState === 'LAND') {
-                    this.stateTimer = 150;
-                }
+                if (newState === 'IDLE') { this.idleTimer = 0; this.vx = 0; }
+                else if (newState === 'CROUCH') { this.stateTimer = CAT_CONFIG.jumpCrouchTime; }
+                else if (newState === 'LAND') { this.stateTimer = 150; }
             },
             
             setTarget(x, y) {
-                this.targetX = x;
-                this.targetY = y;
-                
+                // If in big cute mode, shrink back to normal size on first click!
+                if(this.isBigCute) {
+                    this.el.classList.remove('cat-big-cute');
+                    this.isBigCute = false;
+                }
+
+                this.targetX = x; this.targetY = y;
                 const wp = document.getElementById('waypoint');
-                wp.style.left = x + 'px';
-                wp.style.top = y + 'px';
+                wp.style.left = x + 'px'; wp.style.top = y + 'px';
                 wp.classList.remove('waypoint-anim');
                 void wp.offsetWidth; 
                 wp.classList.add('waypoint-anim');
                 
-                if (this.state === 'SLEEP' || this.state === 'SIT' || this.state === 'IDLE') {
-                    this.evaluateTarget();
-                }
+                if (['SLEEP', 'SIT', 'IDLE'].includes(this.state)) this.evaluateTarget();
             },
             
             evaluateTarget() {
                 if (this.targetX === null || this.targetY === null) return;
-                
                 let pTarget = PlatformManager.getPlatformAt(this.targetX, this.targetY);
                 this.currentPlatform = PlatformManager.getPlatformAt(this.x, this.y + CAT_CONFIG.height);
                 
@@ -1363,16 +1048,13 @@
                 
                 let destY = pTarget ? pTarget.y : this.targetY;
                 let dy = destY - (this.y + CAT_CONFIG.height);
-                
                 let t = Math.max(0.5, Math.abs(dx) / 600); 
                 if (t > 1.5) t = 1.5; 
                 
                 this.vx = dx / t;
                 this.vy = (dy - 0.5 * CAT_CONFIG.gravity * t * t) / t;
                 
-                if (this.vy < CAT_CONFIG.jumpVelocityY * 1.5) {
-                     this.vy = CAT_CONFIG.jumpVelocityY * 1.5;
-                }
+                if (this.vy < CAT_CONFIG.jumpVelocityY * 1.5) this.vy = CAT_CONFIG.jumpVelocityY * 1.5;
                 
                 this.setState('JUMP');
                 this.currentPlatform = null;
@@ -1396,33 +1078,20 @@
                 window.addEventListener('resize', () => {
                     if(GameState.introActive) return;
                     clearTimeout(this.resizeTimer);
-                    this.resizeTimer = setTimeout(() => {
-                        PlatformManager.scan();
-                    }, 200);
+                    this.resizeTimer = setTimeout(() => { PlatformManager.scan(); }, 200);
                 });
             }
         };
 
         const ScrollController = {
             init() {
-                const observerOptions = {
-                    root: null,
-                    rootMargin: '-20% 0px -40% 0px',
-                    threshold: 0
-                };
-                
+                const observerOptions = { root: null, rootMargin: '-20% 0px -40% 0px', threshold: 0 };
                 const observer = new IntersectionObserver((entries) => {
                     entries.forEach(entry => {
-                        if (entry.isIntersecting) {
-                            GameState.activeSection = entry.target.id;
-                            this.moveCatToSection(entry.target);
-                        }
+                        if (entry.isIntersecting) this.moveCatToSection(entry.target);
                     });
                 }, observerOptions);
-                
-                document.querySelectorAll('section').forEach(sec => {
-                    observer.observe(sec);
-                });
+                document.querySelectorAll('section').forEach(sec => observer.observe(sec));
             },
             
             moveCatToSection(section) {
@@ -1446,16 +1115,11 @@
             GameState.lastTime = timestamp;
             
             if (dt > 100) dt = 16;
-            
             Cat.update(dt);
-            
             requestAnimationFrame(gameLoop);
         }
 
-        window.addEventListener('DOMContentLoaded', () => {
-            IntroController.init();
-        });
-        
+        window.addEventListener('DOMContentLoaded', () => { IntroController.init(); });
     </script>
 </body>
 </html>
