@@ -261,9 +261,13 @@
         }
 
         .intro-content {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
             text-align: center;
             position: relative;
             z-index: 2;
+            width: 100vw;
         }
 
         #intro-question {
@@ -368,12 +372,12 @@
             white-space: nowrap;
         }
 
-        #intro-dog { right: -200px; }
-        #intro-cat-emoji { right: -400px; font-size: 9.5rem; }
+        #intro-dog { right: -300px; }
+        #intro-cat-emoji { right: -650px; font-size: 9.5rem; } /* Cat starts further back behind the dog */
 
-        @keyframes run-left-fast {
-            0% { right: -500px; transform: scaleX(-1); }
-            100% { right: 120vw; transform: scaleX(-1); }
+        @keyframes run-chase {
+            0% { transform: translateX(0); }
+            100% { transform: translateX(calc(-100vw - 1000px)); } /* Run across the screen naturally */
         }
 
         #portfolio-main {
@@ -950,8 +954,8 @@
                         
                         // Massive chase animation + Screen shake
                         animals.style.display = 'block';
-                        dog.style.animation = 'run-left-fast 1.5s linear forwards';
-                        catAnim.style.animation = 'run-left-fast 1.3s linear forwards 0.2s';
+                        dog.style.animation = 'run-chase 1.5s linear forwards';
+                        catAnim.style.animation = 'run-chase 1.3s linear forwards 0.2s'; /* Cat has a shorter duration, so it catches up to the dog! */
                         
                         introScreen.style.animation = 'shake 0.3s infinite';
                         
