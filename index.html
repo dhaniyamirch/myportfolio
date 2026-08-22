@@ -3,359 +3,1298 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>My Portfolio</title>
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Oswald">
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open Sans">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-    <link rel="stylesheet" href="css\main.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/css/bootstrap.min.css">
-    
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/js/bootstrap.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
-    <link rel="stylesheet" href="css\footer.css">
-</head>
-
-<body >
-    <div class="navbar" style="position: fixed;margin-top: -78px; margin-left: -0px;">
-        <ul>
-            <li><a href="#home">Home</a></li>
-            <li><a href="#about">About Me</a></li>
-            <li><a href="#skills">Skills</a></li> 
+    <title>Embedded & CV Engineer Portfolio</title>
+    <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@400;600;700&family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            /* Cute / Pastel Theme Colors */
+            --bg-color: #fff5f8; /* Soft pale pink background */
+            --surface-color: #ffffff;
+            --surface-color-light: #fff0f5;
+            --primary-color: #ff8fa3; /* Watermelon pink */
+            --secondary-color: #ffb3c6; /* Lighter pink */
+            --accent-color: #a18cd1; /* Soft purple */
+            --text-main: #4a4a4a; /* Soft dark gray */
+            --text-muted: #8e8e8e;
+            --border-color: rgba(255, 143, 163, 0.2);
+            --shadow-color: rgba(255, 143, 163, 0.15);
             
-            <li><a href="#projects">Projects</a></li>
-            <li><a href="#contact">Contact</a></li>
-        </ul>
-    </div>
-    <div class="other-grey">
-        <div id="home" >
-            <!-- Header -->
-            <header class="main-title marg  ">
-                <h1 class="xxxlarge"><b>Welcome..</b></h1>
-                <h6 style="font-size: larger;font-weight: 800;">My <span class="white-in-blackbox">Portfolio</span></h6>
-            </header>
+            /* Game Cat Colors (Matching the intro cat) */
+            --cat-body: #161616;
+            --cat-shade: #2a2a2a;
+            --cat-ear: #ff8fa3;
+            --cat-eye: #fff;
+            
+            /* Intro CSS Cat Variables */
+            --intro-size: clamp(150px, 30vw, 220px);
+            --intro-black: #161616;
+            --intro-white: #fff;
+            --intro-scary-eye: #fff;
+            --intro-bg: #fff5f8;
 
-            <!-- Image header -->
-            <header class="display-container " >
-                <img class="imag" src="photos/my_photos/firstpagenew.jpg" alt="My Potfolio Photo" width="1600" height="1060">
-                <div class="display-left padding-large">
-                    <h1 class="text-white">Hii,I am</h1>
-                    <h1 class="jumbo text-white"><b>Nachiket Mahajan</b></h1>
-                    <a style="text-decoration: none;color: black;" href="#about"><h6><button class="butt padding-large opacity hover-opacity-off">About Me</button></h6>
-                    </a>
-                </div>
-            </header>
-        </div>
-    
-    
-
-        <div class="page" id="about">
-            <div class="center " >
-                <h3 style="font-weight: 400;font-size: 81px;">About Me</h3>
-                <h5 style="color: #fff;font-size: large;">Till Year -<span class="opacity" style="color: #fff;font-size: large;">May, 2024</span></h5>
-            </div>
-            <div class=" content">
-                <div class="container white padding-large" style="width: 1400px;padding: 20px;">
-                    <div class="about-columns" style="padding: 50px;padding-top: 50px;">
-                        <div class="left-column ">
-                        
-                            <div class="justify">
-                                <img src="photos\my_photos\my_photooo.jpg" alt="my photo" style="width:100%" style="padding-top: 16px;">
-                                <p class="highlight"><strong>Personal Information</strong> </p>
-                                <!-- personal information-->
-                                <ul >
-                                    <li><strong>Name :</strong>  Nachiket Mahajan</li>
-                                    <li> <strong>Age :</strong> 20 yrs old</li>
-                                    <li><strong>Nationality :</strong>  Indian</li>
-                                    <li><strong>Country & State :</strong>  India , Maharashtra</li>
-                                    <li><strong>Address :</strong>  Sr mo.1355 Sahyadri Hsg., Soc. Morewasti, Chikhali, Pune</li>
-                                    <li><strong>Mail :</strong>  nachiketm018@gmail.com</li>
-                                </ul>
-                            </div>
-                        </div>
-                        
-                        <div class="right-column">
-                            <h3 class="highlight">Education</h3>
-                            <!--education details-->
-                            <h4 class="highlightx">completed </h4>
-                            <ul>
-                                <li>Completed 10th with A+ Grade from DY Patil</li>
-                                <li>Completed 12th with A Grade from DY Patil</li>
-                            </ul>
-                            <h4 class="highlightx">Curently Pursuing</h4>
-                            <ul>
-                                <li>Btech in Electronics Engineering in MIT-AOE</li>
-                                <B>CPGA: 9.06</B>
-                            </ul>
-                            <h4 class="highlightx">working at </h4>
-                            <ul>
-                                <li>Inthink Technologies (R&D)</li>
-                            </ul>
-                            <h4 class="highlightx">Future Plans for education</h4>
-                            <ul>
-                                <li>Mtech in Electronics</li>
-                                <li>Phd in Electronics</li>
-                            </ul>
-                            <button class="butt light-grey padding-large section" onclick="openPDF()">
-                                <i class="fa fa-download"></i> Download Resume
-                            </button>
-                        </div>
-                    </div>
-                </div> 
-            </div>
-        </div>
-
-        <div class="page other-grey" id="skills">
-            <div class="center">
-                <h3 style="font-weight: 400;font-size: 81px;">Skills</h3>
-            </div>
-            <div class="container white padding-large " >
-                <!-- Skill Bars -->
-                
-                <h2 class="center highlight">Coding Skills</h2>
-                <span>python - 75%</span>
-                <div class="progress skill-bar ">
-                    <div class="progress-bar progress-bar-primary" role="progressbar" aria-valuenow="75" aria-valuemin="0" aria-valuemax="100">75%</div>
-                </div>
-                                    
-                <span>CSS 3 - 60%</span>     
-                <div class="progress skill-bar">
-                    <div class="progress-bar progress-bar-primary" role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100" >60%</div>
-                </div>
-
-                <span>html 5 - 80%</span>
-                <div class="progress skill-bar">
-                    <div class="progress-bar progress-bar-primary" role="progressbar" aria-valuenow="80" aria-valuemin="0" aria-valuemax="100">80% </div>   
-                </div>
-                                    
-                                
-                <span>c++ - 75%</span>
-                <div class="progress skill-bar">
-                    <div class="progress-bar progress-bar-primary" role="progressbar" aria-valuenow="75" aria-valuemin="0" aria-valuemax="100">75%</div>
-                </div>              
-                                
-                <span>javascript - 20%</span>
-                <div class="progress skill-bar">
-                    <div class="progress-bar progress-bar-primary" role="progressbar" aria-valuenow="20" aria-valuemin="0" aria-valuemax="100">20%</div>
-                </div> 
-                                    
-                <span>frotend - 40%</span>
-                <div class="progress skill-bar">
-                    <div class="progress-bar progress-bar-primary" role="progressbar" aria-valuenow="40" aria-valuemin="0" aria-valuemax="100">40%</div>
-                </div>               
-                                            
-                <span>photoshop - 60%</span>
-                <div class="progress skill-bar">
-                    <div class="progress-bar progress-bar-primary" role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100">60%</div>
-                </div>
-                 
-              
-                <div class="skills-list">
-                    <div class="skill-category">
-                        <h2 style="font-weight: 600;text-align: center;">Electronics and Hardware</h2>
-                        <ul>
-                            <li>Schematic design</li>
-                            <li>Component selection</li> 
-                            <li>Programming microcontrollers (core : STM)</li>    
-                            <li>Interfacing sensors and actuators</li>
-                            <li>Assembly and soldering techniques</li>
-                            <li>Data Acquisition Systems (DAS)</li>
-                        </ul>
-                    </div>
-                    <div class="skill-category">
-                        <h2 class="highlight" style="font-weight: 600;text-align: center;">other Skills</h2>
-                        <ul>
-                            <li>Drawing</li>
-                            <li>Communication skills</li>
-                            <li>Time management</li>
-                            <li>Adaptability</li>
-                            <li>Project-Management</li>
-                            <li>Problem-Solving</li>
-                        </ul>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-
-        <div class="page" id="projects">
-            <div class="content">
-                <h2 class="center highlight" style="font-size: 60px;font-weight: 500;">Projects</h2>
-                <div class="projects-section">
-                    <div class="completed-projects">
-                        <h3 class="highlight" style="font-weight: 600;text-align: center;">Completed Projects</h3>
-                        <!-- Project 1 -->
-                         <div class="project">
-                            <a class ="none" href="projects\antenna\EMT Antenna.pdf">
-                                <img src="projects\antenna\image.png" alt="Project 2 photo">
-                                <p class="leftend"style="color: black;">Antenna design - in this project i designed a path antenna on hfss </p>
-                            </a>
-                        </div>
-                        <div class="project">
-                            <a class ="none" href="projects\ci\nachiket 28 nov.pdf">
-                                <img src="projects\ci\image.png" alt="Project 2 photo">
-                                <p class="leftend"style="color: black;">hand gesture controlled robotic arm - with the help of ML trained models which can detect hand gestures and move arm </p>
-                            </a>
-                        </div>
-                        <div class="project">
-                            <a class ="none" href="projects\iot\iot.pdf">
-                                <img src="projects\iot\image.png" alt="Project 2 photo">
-                                <p class="leftend"style="color: black;">soil health monitoring system using mqtt - used esp8266 and npk soil sensor to detect the npk values of the soil and displayed on dashboard </p>
-                            </a>
-                        </div>
-                        <div class="project">
-                            <a class ="none" href="projects\ir remote\hackathonchippt.pdf">
-                                <img src="projects\ir remote\image.png" alt="Project 2 photo">
-                                <p class="leftend"style="color: black;">made an ir tv remote with stm contoller </p>
-                            </a>
-                        </div>
-                        <div class="project">
-                            <a class ="none" href="projects\simulink\Simulink-Based Digital Communication System (3).pdf">
-                                <img src="projects\simulink\image.png" alt="Project 2 photo">
-                                <p class="leftend"style="color: black;">worked on different modulation-Simulink-Based Digital Communication System Using BCH15,5) and 64-QAM for Marathi Speech and SMS</p>
-                            </a>
-                        </div>
-                        <div class="project">
-                            <a class ="none" href="projects\telecope\automated telescope  Final ppt.pdf">
-                                <img src="projects\telecope\image.png" alt="Project 2 photo">
-                                <p class="leftend"style="color: black;">designed an telecope stand</p>
-                            </a>
-                        </div>
-
-                        <div class="project">
-                            <a class ="none" href="projects\waste segregation\evs Automatic Waste Segregation System ppt.pdf">
-                                <img src="projects\waste segregation\image.png" alt="Project 1 photo">
-                                <p class="leftend"style="color: black;">made  an waste segrregation machine which separates metal, wet and dry waste</p>
-                            </a>
-                        </div>
-                        <div class="project">
-                            <a class ="none" href="projects/best solutions/blackhome.html">
-                                <img src="projects/best solutions/periodictable.png" alt="Project 1 photo">
-                                <p class="leftend"style="color: black;">BEST SOLUTIONS - This website is a simple guide to the periodic table. Learn about each element's history, properties, and trends easily. </p>
-                            </a>
-                        </div>
-                        
-                      
-                        <div class="project">
-                            <a class ="none" href="projects/traffic light/index.html">
-                                <img src="projects/traffic light/forportfoliotraaficlight.png" alt="Project 3 photo">
-                                <p class="leftend"style="color: black;">PCB (Traffic Light) - I built a traffic light prototype in my first semester of engineering, learning about ICs and various electronic components like diodes, resistors, LEDs, and potentiometers. </p>
-                            </a>
-                        </div>
-                   
-                        <div class="project">
-                            <a class ="none" href="projects/flame detactor/n.html">
-                                <img src="projects/flame detactor/flamepic.png" alt="Project 4 photo">
-                                <p class="leftend"style="color: black;">FLAME DETECTOR - I worked on a flame detector project, learning more about electronics and sensors.</p>
-                            </a>
-                        </div>
-                    </div>
-                    <div class="ongoing-projects">
-                        <h3 class="highlight" style="font-weight: 600;text-align: center;">Ongoing Projects</h3>
-  
-                        <div class="project">
-                            <a class ="none" href="projects/olunde.s/index.html">
-                                <img src="projects/olunde.s/pics/olundepic.png" alt="Project 1 photo">
-                                <p class="leftend" style="color: black;">OLUNDE's - I'm working on Olunde's, a website where a company sells handmade art like paintings and drawings. It's a place for people who love art to find and buy special pieces. </p>
-                            </a>
-                        </div>
-                        
-                        <div class="project">
-                            <a class ="none" href="projects\schizophrenia\66_Major Project 1 PPT.pdf">
-                                <img src="projects\schizophrenia\image.png" alt="Project 1 photo">
-                                <p class="leftend" style="color: black;">Automated diagnosis of schizophrenia using ML techniques</p>
-                            </a>
-                        </div>
-                    </div>
-                    <div class="future-projects">
-                        <h3 class="highlight" style="font-weight: 600;text-align: center;">Future Projects</h3>
-                        <div class="proj-category">
-                            <ul> 
-                                <li style="color:black; text-align:left;">Smart helmet that detects accidents and sends live GPS location to phone.</li>
-                                <li style="color:black; text-align:left;">Gesture-controlled home automation using hand landmarks</li>
-                                <li style="color:black; text-align:left;">Voice-controlled robot using offline speech recognition (Vosk / PocketSphinx).</li>
-                                <li style="color:black; text-align:left;">ML model that predicts battery health of Li-ion cells from voltage/current curves.</li>
-                                <li style="color:black; text-align:left;">Vibration-based fault detection in motors using MPU6050 + ML classification.</li>
-                                <li style="color:black; text-align:left;">Brainwave-controlled light using EEG</li>
-                            </ul>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-    
-<!-- footer      -->
-<footer class="footer-distributed" id="contact">
-
-			<div class="footer-left">
-
-				<p class="footer-links">
-					<a href="#home" class="link-1">Home</a>
-				
-					<a href="#about">About me</a>
-					
-					<a href="#skills">skills</a>
-					
-					<a href="#projects">project</a>
-				</p>
-
-			</div>	
-
-			<div class="footer-center">
-
-				<div>
-					<i class="fa fa-map-marker"></i>
-					<p><span>Sahyadri Hsg. soc,Chikhali</span> Pune,Maharashtra</p>
-				</div>
-
-				<!-- <div>
-					<i class="fa fa-phone"></i>
-					<p>+91 8767145134</p>
-				</div> -->
-
-				<div>
-					<i class="fa fa-envelope"></i>
-					<p><a href="mailto:nachiketm018@gmail.com">nachiketm018@gmail.com</a></p>
-				</div>
-
-			</div>
-
-			<div class="footer-right">
-
-				<p class="footer-company-about">
-					<span>Follow me on social media</span>
-					
-				</p>
-
-				<div class="footer-icons">
-
-					<a href="https://www.linkedin.com/in/nachiket-mahajan-455ba4286/"><i class="fa fa-linkedin"></i></a>
-					<a href="https://www.instagram.com/nachiii.exe/"><i class="fa fa-instagram"></i></a>
-
-				</div>
-
-			</div>
-           
-		</footer>
-        <p class="footer-company-name center" style="background-color: #666;">&copy; 2024 Nachiket's Portfolio. All rights reserved.</p>
-			
-</body>
-<script>
-    // Progress bars
-    $(document).ready(function() {
-      $('.progress .progress-bar').css("width",
-                function() {
-                    return $(this).attr("aria-valuenow") + "%";
-                }
-        )
-    });
-
-    // open pdf
-    function openPDF() {
-            window.open('nachiket_resume.pdf', '_blank');
+            --spacing-sm: 0.5rem;
+            --spacing-md: 1rem;
+            --spacing-lg: 2rem;
+            --spacing-xl: 4rem;
+            --border-radius: 24px;
         }
 
-</script>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
 
+        body {
+            font-family: 'Quicksand', sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-main);
+            overflow-x: hidden;
+            line-height: 1.6;
+            scroll-behavior: smooth;
+        }
+
+        h1, h2, h3, h4 {
+            font-family: 'Quicksand', sans-serif;
+            font-weight: 700;
+        }
+        
+        .mono {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.9em;
+        }
+
+        a {
+            color: var(--primary-color);
+            text-decoration: none;
+            transition: color 0.3s ease;
+            font-weight: 600;
+        }
+
+        a:hover {
+            color: var(--accent-color);
+        }
+
+        #intro-screen {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            background: var(--intro-bg);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            z-index: 10000;
+            transition: opacity 1s ease, transform 1s ease, background 0.5s ease;
+        }
+
+        /* CSS Cat Implementation */
+        .intro-cat-wrapper {
+            margin-bottom: 3rem;
+            transition: transform 0.3s ease;
+        }
+
+        .cat-face-container {
+            position: relative;
+            height: var(--intro-size);
+            width: calc(var(--intro-size) * 1.13);
+        }
+
+        .ear {
+            position: absolute;
+            top: -30%;
+            height: 60%;
+            width: 25%;
+            background: var(--intro-black);
+            transition: transform 0.3s ease, top 0.3s ease;
+        }
+
+        .ear::before, .ear::after {
+            content: '';
+            position: absolute;
+            bottom: 24%;
+            height: 10%;
+            width: 5%;
+            border-radius: 50%;
+            background: var(--intro-white);
+        }
+
+        .ear::after { transform-origin: 50% 100%; }
+
+        .ear--left {
+            left: -7%;
+            border-radius: 70% 30% 0% 0% / 100% 100% 0% 0%;
+            transform: rotate(-15deg);
+        }
+        .ear--left::before, .ear--left::after { right: 10%; }
+        .ear--left::after { transform: rotate(-45deg); }
+
+        .ear--right {
+            right: -7%;
+            border-radius: 30% 70% 0% 0% / 100% 100% 0% 0%;
+            transform: rotate(15deg);
+        }
+        .ear--right::before, .ear--right::after { left: 10%; }
+        .ear--right::after { transform: rotate(45deg); }
+
+        .face {
+            position: absolute;
+            height: 100%;
+            width: 100%;
+            background: var(--intro-black);
+            border-radius: 50%;
+        }
+
+        .eye {
+            position: absolute;
+            top: 35%;
+            height: 30%;
+            width: 31%;
+            background: var(--intro-scary-eye);
+            border-radius: 50% 50% 50% 50% / 60% 60% 40% 40%;
+            transition: background 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .eye::after {
+            content: '';
+            position: absolute;
+            top: 0; left: 0; height: 0; width: 100%;
+            border-radius: 0 0 50% 50% / 0 0 40% 40%;
+            background: var(--intro-black);
+            animation: intro-blink 4s infinite ease-in;
+        }
+
+        @keyframes intro-blink {
+            0%, 90% { height: 0; }
+            92.5% { height: 100%; }
+            95% { height: 0; }
+            97.5% { height: 100%; }
+            100% { height: 0; }
+        }
+
+        .eye::before {
+            content: '';
+            position: absolute;
+            top: 60%;
+            height: 10%;
+            width: 15%;
+            background: var(--intro-white);
+            border-radius: 50%;
+        }
+
+        .eye--left { left: 0; }
+        .eye--left::before { right: -5%; }
+        .eye--right { right: 0; }
+        .eye--right::before { left: -5%; }
+
+        .eye-pupil {
+            position: absolute;
+            top: 25%;
+            height: 50%;
+            width: 20%;
+            background: var(--intro-black);
+            border-radius: 50%;
+            animation: look-around 4s infinite;
+            transition: width 0.3s ease, height 0.3s ease;
+        }
+
+        @keyframes look-around {
+            0% { transform: translate(0) }
+            5%, 10% { transform: translate(50%, -25%) }
+            15%, 20% { transform: translate(-100%, -25%) }
+            25%, 100% { transform: translate(0, 0) }
+        }
+
+        .eye--left .eye-pupil { right: 30%; }
+        .eye--right .eye-pupil { left: 30%; }
+
+        .eye-pupil::after {
+            content: '';
+            position: absolute;
+            top: 30%; right: -5%;
+            height: 20%; width: 35%;
+            border-radius: 50%;
+            background: var(--intro-white);
+        }
+
+        .muzzle {
+            position: absolute;
+            top: 60%; left: 50%;
+            height: 6%; width: 10%;
+            background: var(--intro-white);
+            transform: translateX(-50%);
+            border-radius: 50% 50% 50% 50% / 30% 30% 70% 70%;
+        }
+
+        .intro-cat-wrapper[data-scary-level="1"] .eye-pupil { animation: none; transform: translate(0, 0); }
+        .intro-cat-wrapper[data-scary-level="1"] .eye::after { animation: none; height: 0; }
+        
+        .intro-cat-wrapper[data-scary-level="2"] .eye { --intro-scary-eye: #ffea00; }
+        .intro-cat-wrapper[data-scary-level="2"] .eye-pupil { width: 10%; }
+        .intro-cat-wrapper[data-scary-level="2"] .ear--left { transform: rotate(-35deg); top: -20%; }
+        .intro-cat-wrapper[data-scary-level="2"] .ear--right { transform: rotate(35deg); top: -20%; }
+
+        .intro-cat-wrapper[data-scary-level="3"] .eye { --intro-scary-eye: #ff3333; box-shadow: 0 0 30px rgba(255, 51, 51, 0.6); }
+        .intro-cat-wrapper[data-scary-level="3"] .eye-pupil { width: 5%; height: 70%; }
+        .intro-cat-wrapper[data-scary-level="3"] .ear--left { transform: rotate(-60deg); top: -10%; }
+        .intro-cat-wrapper[data-scary-level="3"] .ear--right { transform: rotate(60deg); top: -10%; }
+        #intro-screen.scary-bg-3 { background: #2a1111; color: white; }
+
+        .intro-cat-wrapper[data-scary-level="4"] { animation: shake 0.5s infinite; }
+        .intro-cat-wrapper[data-scary-level="4"] .eye { --intro-scary-eye: #ff0000; box-shadow: 0 0 50px red; }
+        #intro-screen.scary-bg-4 { background: #000; color: #ff3333; }
+
+        @keyframes shake {
+            0% { transform: translate(1px, 1px) rotate(0deg); }
+            10% { transform: translate(-1px, -2px) rotate(-1deg); }
+            20% { transform: translate(-3px, 0px) rotate(1deg); }
+            30% { transform: translate(3px, 2px) rotate(0deg); }
+            40% { transform: translate(1px, -1px) rotate(1deg); }
+            50% { transform: translate(-1px, 2px) rotate(-1deg); }
+            60% { transform: translate(-3px, 1px) rotate(0deg); }
+            70% { transform: translate(3px, 1px) rotate(-1deg); }
+            80% { transform: translate(-1px, -1px) rotate(1deg); }
+            90% { transform: translate(1px, 2px) rotate(0deg); }
+            100% { transform: translate(1px, -2px) rotate(-1deg); }
+        }
+
+        .intro-content {
+            text-align: center;
+            position: relative;
+            z-index: 2;
+        }
+
+        #intro-question {
+            font-size: 2.5rem;
+            margin-bottom: 2rem;
+            color: inherit;
+            transition: color 0.3s;
+        }
+
+        .btn-group {
+            display: flex;
+            gap: 1.5rem;
+            justify-content: center;
+            align-items: center;
+            position: relative;
+            z-index: 10;
+            margin-top: 1rem;
+        }
+
+        .btn {
+            padding: 1rem 3rem;
+            font-size: 1.2rem;
+            font-family: 'Quicksand', sans-serif;
+            font-weight: 700;
+            border: none;
+            background: var(--surface-color);
+            color: var(--text-main);
+            border-radius: 50px;
+            cursor: pointer;
+            transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            box-shadow: 0 8px 20px var(--shadow-color);
+            outline: none;
+        }
+
+        #btn-yes {
+            background: var(--primary-color);
+            color: white;
+            position: relative;
+            z-index: 10;
+            transform-origin: left center;
+        }
+
+        #btn-yes:hover {
+            transform: translateY(-5px) scale(1.05);
+            box-shadow: 0 15px 25px rgba(255, 143, 163, 0.4);
+        }
+
+        #btn-no {
+            background: var(--surface-color);
+            color: var(--text-muted);
+            border: 2px solid var(--border-color);
+            position: relative;
+            z-index: 1;
+            transform-origin: right center;
+            transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        }
+
+        #btn-no:hover {
+            background: #fff;
+            color: var(--text-main);
+            transform: translateY(-2px);
+        }
+
+        #intro-message {
+            margin-top: 2rem;
+            font-size: 1.5rem;
+            color: var(--primary-color);
+            min-height: 2.5rem;
+            font-weight: 800;
+            opacity: 0;
+            transition: opacity 0.3s, color 0.3s;
+            text-shadow: 0 2px 5px rgba(0,0,0,0.1);
+            position: relative;
+            z-index: 20;
+        }
+
+        #intro-screen.scary-bg-3 #intro-message,
+        #intro-screen.scary-bg-4 #intro-message {
+            color: #ff3333;
+            text-shadow: 0 0 15px rgba(255, 0, 0, 0.8);
+        }
+
+        /* Intro Dog and Cat animations */
+        #intro-animals {
+            position: fixed;
+            top: 50%;
+            left: 0;
+            width: 100vw;
+            height: 150px;
+            transform: translateY(-50%);
+            pointer-events: none;
+            overflow: visible;
+            display: none;
+            z-index: 50000;
+        }
+
+        .intro-animal {
+            position: absolute;
+            top: 0;
+            font-size: 8rem;
+            line-height: 1;
+            white-space: nowrap;
+        }
+
+        #intro-dog { right: -200px; }
+        #intro-cat-emoji { right: -400px; font-size: 9.5rem; }
+
+        @keyframes run-left-fast {
+            0% { right: -500px; transform: scaleX(-1); }
+            100% { right: 120vw; transform: scaleX(-1); }
+        }
+
+        #portfolio-main {
+            opacity: 0;
+            display: none;
+            flex-direction: column;
+            align-items: center;
+            width: 100%;
+            padding-bottom: 100px;
+        }
+
+        /* Cute decorative background */
+        .cute-bg {
+            position: absolute;
+            top: 0; left: 0; right: 0; bottom: 0;
+            background-image: 
+                radial-gradient(var(--border-color) 2px, transparent 2px),
+                radial-gradient(var(--border-color) 2px, transparent 2px);
+            background-size: 40px 40px;
+            background-position: 0 0, 20px 20px;
+            pointer-events: none;
+            z-index: 0;
+            opacity: 0.5;
+        }
+
+        header {
+            width: 100%;
+            padding: 1.5rem 5%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            position: fixed;
+            top: 0;
+            background: rgba(255, 255, 255, 0.8);
+            backdrop-filter: blur(12px);
+            border-bottom: 2px solid var(--surface-color-light);
+            z-index: 100;
+        }
+
+        .logo {
+            font-weight: 800;
+            font-size: 1.5rem;
+            color: var(--text-main);
+            letter-spacing: -0.5px;
+        }
+
+        .logo span { color: var(--primary-color); }
+
+        nav {
+            display: flex;
+            gap: var(--spacing-lg);
+        }
+
+        nav a {
+            color: var(--text-muted);
+            font-size: 1rem;
+        }
+
+        nav a:hover {
+            color: var(--primary-color);
+        }
+
+        section {
+            width: 100%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 8rem 5% 4rem 5%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            position: relative;
+            z-index: 1;
+        }
+
+        .section-title {
+            font-size: 2.5rem;
+            margin-bottom: var(--spacing-xl);
+            position: relative;
+            color: var(--text-main);
+            text-align: center;
+        }
+        
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: -15px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 60px;
+            height: 6px;
+            background: var(--primary-color);
+            border-radius: 10px;
+        }
+
+        .cat-platform {
+            position: relative;
+            background: var(--surface-color);
+            border: 2px solid white;
+            border-radius: var(--border-radius);
+            padding: var(--spacing-lg);
+            box-shadow: 0 10px 30px var(--shadow-color);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .cat-platform:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 40px rgba(255, 143, 163, 0.25);
+        }
+
+        /* Grid Layouts */
+        .grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: var(--spacing-lg); width: 100%; max-width: 1000px; }
+        .grid-3 { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: var(--spacing-lg); width: 100%; max-width: 1200px; }
+
+        @media (max-width: 768px) {
+            .grid-2 { grid-template-columns: 1fr; }
+            .btn-group { flex-direction: column; gap: 1rem; }
+            header { flex-direction: column; gap: 1rem; }
+            nav { gap: 1rem; flex-wrap: wrap; justify-content: center; }
+        }
+
+        /* Hero Section */
+        #hero {
+            min-height: 100vh;
+            justify-content: center;
+            text-align: center;
+            padding-top: 0;
+        }
+
+        .hero-platform {
+            max-width: 800px;
+            width: 100%;
+            padding: 4rem 2rem;
+            background: var(--surface-color);
+        }
+
+        .hero-title {
+            font-size: clamp(2.5rem, 5vw, 4.5rem);
+            font-weight: 800;
+            line-height: 1.2;
+            margin-bottom: var(--spacing-md);
+            color: var(--text-main);
+        }
+
+        .hero-subtitle {
+            font-size: 1.2rem;
+            color: var(--accent-color);
+            margin-bottom: var(--spacing-lg);
+            background: var(--surface-color-light);
+            display: inline-block;
+            padding: 0.5rem 1rem;
+            border-radius: 12px;
+        }
+
+        /* Content Blocks */
+        .tag {
+            display: inline-block;
+            padding: 0.4rem 1rem;
+            background: var(--surface-color-light);
+            color: var(--accent-color);
+            border-radius: 50px;
+            font-size: 0.85rem;
+            margin-right: 0.5rem;
+            margin-bottom: 0.5rem;
+            font-weight: 600;
+            border: 1px solid rgba(161, 140, 209, 0.2);
+        }
+
+        .project-img {
+            width: 100%;
+            height: 200px;
+            background: var(--bg-color);
+            border-radius: 16px;
+            margin-bottom: 1.5rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--text-muted);
+            border: 2px dashed var(--border-color);
+            font-weight: 600;
+        }
+
+        #game-layer {
+            position: absolute;
+            top: 0; left: 0; width: 100%; height: 100%;
+            pointer-events: none; 
+            z-index: 50;
+            overflow: hidden;
+        }
+
+        #cat {
+            position: absolute;
+            width: 60px;
+            height: 50px;
+            transform-origin: bottom center;
+            will-change: transform;
+            pointer-events: auto;
+        }
+
+        /* SVG Game Cat Animations */
+        .cat-svg-part { transition: transform 0.2s ease; }
+        #cat-tail { transform-origin: 80% 80%; }
+        #cat-head { transform-origin: 20% 40%; }
+        #cat-leg-fl, #cat-leg-fr, #cat-leg-bl, #cat-leg-br { transform-origin: top center; }
+        #cat-eyes { transform-origin: center; }
+
+        .cat-idle #cat-tail { animation: tail-wag 4s infinite ease-in-out; }
+        .cat-idle #cat-eyes { animation: blink 5s infinite; }
+        
+        .cat-walking #cat-leg-fl, .cat-running #cat-leg-fl { animation: walk-cycle 0.5s infinite alternate; }
+        .cat-walking #cat-leg-fr, .cat-running #cat-leg-fr { animation: walk-cycle 0.5s infinite alternate-reverse; }
+        .cat-walking #cat-leg-bl, .cat-running #cat-leg-bl { animation: walk-cycle 0.5s infinite alternate-reverse; }
+        .cat-walking #cat-leg-br, .cat-running #cat-leg-br { animation: walk-cycle 0.5s infinite alternate; }
+        .cat-running #cat-leg-fl, .cat-running #cat-leg-fr, .cat-running #cat-leg-bl, .cat-running #cat-leg-br { animation-duration: 0.25s; }
+        .cat-walking #cat-tail, .cat-running #cat-tail { transform: rotate(-20deg); }
+
+        .cat-crouching #cat-body-group { transform: scaleY(0.6) translateY(20px); }
+        .cat-crouching #cat-head { transform: translateY(10px) rotate(10deg); }
+        .cat-crouching #cat-tail { transform: rotate(-40deg); }
+
+        .cat-jumping #cat-body-group { transform: scaleY(1.2) translateY(-5px); }
+        .cat-jumping #cat-legs { transform: translateY(5px); }
+        .cat-jumping #cat-tail { transform: rotate(20deg); }
+
+        .cat-falling #cat-body-group { transform: scaleY(0.9) translateY(0); }
+        .cat-falling #cat-legs { transform: translateY(-5px) rotate(-10deg); }
+        .cat-falling #cat-tail { transform: rotate(-60deg); }
+
+        .cat-landing #cat-body-group { transform: scaleY(0.5) scaleX(1.1) translateY(25px); transition: transform 0.1s; }
+
+        .cat-sitting #cat-body-group { transform: translateY(15px); }
+        .cat-sitting #cat-head { transform: translateY(5px); }
+        .cat-sitting #cat-legs { transform: translateY(10px); }
+        .cat-sitting #cat-tail { transform: rotate(80deg); }
+
+        .cat-sleeping #cat-body-group { transform: scaleY(0.5) translateY(25px); }
+        .cat-sleeping #cat-head { transform: translateY(20px) rotate(90deg); }
+        .cat-sleeping #cat-eyes { transform: scaleY(0.1); }
+        .cat-sleeping #cat-legs { transform: translateY(15px) rotate(90deg); opacity: 0; }
+        .cat-sleeping #cat-tail { transform: rotate(90deg); }
+
+        @keyframes tail-wag {
+            0%, 100% { transform: rotate(0deg); }
+            50% { transform: rotate(15deg); }
+        }
+        @keyframes blink {
+            0%, 96%, 100% { transform: scaleY(1); }
+            98% { transform: scaleY(0.1); }
+        }
+        @keyframes walk-cycle {
+            0% { transform: rotate(-30deg); }
+            100% { transform: rotate(30deg); }
+        }
+
+        #waypoint {
+            position: absolute;
+            width: 24px;
+            height: 24px;
+            border: 3px solid var(--primary-color);
+            border-radius: 50%;
+            transform: translate(-50%, -50%) scale(0);
+            pointer-events: none;
+            opacity: 0;
+            z-index: 40;
+        }
+        .waypoint-anim { animation: ping 0.5s ease-out forwards; }
+        @keyframes ping {
+            0% { transform: translate(-50%, -50%) scale(0); opacity: 1; }
+            100% { transform: translate(-50%, -50%) scale(2); opacity: 0; }
+        }
+
+        #mobile-hint {
+            display: none;
+            position: fixed;
+            bottom: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: var(--surface-color);
+            padding: 12px 24px;
+            border-radius: 30px;
+            font-size: 0.9rem;
+            color: var(--text-main);
+            font-weight: 600;
+            z-index: 1000;
+            box-shadow: 0 5px 15px var(--shadow-color);
+            pointer-events: none;
+        }
+
+        @media (max-width: 768px) {
+            #mobile-hint { display: block; }
+        }
+    </style>
+</head>
+<body>
+    <div id="intro-screen">
+        <div class="intro-content">
+            
+            <div class="intro-cat-wrapper" data-scary-level="0">
+                <div class="cat-face-container">
+                    <div class="ear ear--left"></div>
+                    <div class="ear ear--right"></div>
+                    <div class="face">
+                        <div class="eye eye--left">
+                            <div class="eye-pupil"></div>
+                        </div>
+                        <div class="eye eye--right">
+                            <div class="eye-pupil"></div>
+                        </div>
+                        <div class="muzzle"></div>
+                    </div>
+                </div>
+            </div>
+
+            <h1 id="intro-question">Do you like cats?</h1>
+            <div class="btn-group">
+                <button id="btn-yes" class="btn">YES</button>
+                <button id="btn-no" class="btn">NO</button>
+            </div>
+            <div id="intro-message"></div>
+        </div>
+        <div id="intro-animals">
+            <div id="intro-dog" class="intro-animal">🐕</div>
+            <div id="intro-cat-emoji" class="intro-animal">🐈‍⬛</div>
+        </div>
+    </div>
+
+    <div id="portfolio-main">
+        <div class="cute-bg"></div>
+        
+        <header>
+            <div class="logo">Dev<span>Cat</span></div>
+            <nav>
+                <a href="#about">About</a>
+                <a href="#skills">Skills</a>
+                <a href="#projects">Projects</a>
+                <a href="#contact">Contact</a>
+            </nav>
+        </header>
+
+        <section id="hero">
+            <div class="hero-platform cat-platform">
+                <h1 class="hero-title">Embedded Systems & <br> Computer Vision</h1>
+                <p class="hero-subtitle mono">Building intelligence into the physical world.</p>
+                <p style="color: var(--text-muted); max-width: 600px; margin: 0 auto; font-size: 1.1rem;">
+                    I specialize in IoT architecture, edge AI, and writing performant code for resource-constrained devices. Also, I really like cats. 
+                    <br><br><span style="font-size: 0.9rem; color: var(--primary-color); font-weight: 600;">(Right-click anywhere or Tap on mobile to guide the cat!)</span>
+                </p>
+            </div>
+        </section>
+
+        <section id="about">
+            <h2 class="section-title">System Specs (About Me)</h2>
+            <div class="grid-2">
+                <div class="cat-platform">
+                    <h3 class="mono" style="margin-bottom: 1rem; color: var(--accent-color);">> root@localhost:~# whoami</h3>
+                    <p>Hello! I'm a passionate engineer who loves making hardware and software talk. I have years of experience architecting IoT solutions and deploying computer vision models to edge devices.</p>
+                    <br>
+                    <p>When I'm not debugging a tricky I2C bus issue or optimizing a TensorFlow Lite model, I'm probably hanging out with my feline friends or building them automated laser pointer turrets.</p>
+                </div>
+                <div class="cat-platform" style="display:flex; flex-direction:column; justify-content:center;">
+                    <div style="display:flex; justify-content:space-between; margin-bottom: 0.5rem; font-weight: 600;"><span>Hardware Logic</span> <span class="mono text-muted">95%</span></div>
+                    <div style="width:100%; height:12px; background:var(--surface-color-light); border-radius:10px; margin-bottom:1.5rem; overflow: hidden;"><div style="width:95%; height:100%; background:var(--primary-color); border-radius:10px;"></div></div>
+                    
+                    <div style="display:flex; justify-content:space-between; margin-bottom: 0.5rem; font-weight: 600;"><span>Embedded C/C++</span> <span class="mono text-muted">90%</span></div>
+                    <div style="width:100%; height:12px; background:var(--surface-color-light); border-radius:10px; margin-bottom:1.5rem; overflow: hidden;"><div style="width:90%; height:100%; background:var(--secondary-color); border-radius:10px;"></div></div>
+
+                    <div style="display:flex; justify-content:space-between; margin-bottom: 0.5rem; font-weight: 600;"><span>Edge AI / CV</span> <span class="mono text-muted">85%</span></div>
+                    <div style="width:100%; height:12px; background:var(--surface-color-light); border-radius:10px; margin-bottom:1rem; overflow: hidden;"><div style="width:85%; height:100%; background:var(--accent-color); border-radius:10px;"></div></div>
+                </div>
+            </div>
+        </section>
+
+        <section id="skills">
+            <h2 class="section-title">Technical Stack</h2>
+            <div class="grid-3">
+                <div class="cat-platform">
+                    <h3 style="margin-bottom: 1.5rem;">Microcontrollers & IoT</h3>
+                    <div>
+                        <span class="tag">ESP32</span> <span class="tag">STM32</span> <span class="tag">ARM Cortex-M</span>
+                        <span class="tag">FreeRTOS</span> <span class="tag">Zephyr</span> <span class="tag">MQTT</span> <span class="tag">LoRaWAN</span>
+                    </div>
+                </div>
+                <div class="cat-platform">
+                    <h3 style="margin-bottom: 1.5rem;">Computer Vision & AI</h3>
+                    <div>
+                        <span class="tag">OpenCV</span> <span class="tag">Python</span> <span class="tag">TensorFlow Lite</span>
+                        <span class="tag">YOLO</span> <span class="tag">CUDA</span> <span class="tag">TensorRT</span>
+                    </div>
+                </div>
+                <div class="cat-platform">
+                    <h3 style="margin-bottom: 1.5rem;">Tools & Protocols</h3>
+                    <div>
+                        <span class="tag">I2C/SPI/UART</span> <span class="tag">CAN bus</span> <span class="tag">Altium</span>
+                        <span class="tag">Git</span> <span class="tag">Docker</span> <span class="tag">Linux/Yocto</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="projects">
+            <h2 class="section-title">Recent Deployments</h2>
+            <div class="grid-2">
+                <div class="cat-platform">
+                    <div class="project-img">📷 Drone Brain</div>
+                    <h3>Autonomous Drone Brain</h3>
+                    <p style="font-size: 0.95rem; margin-top: 0.5rem; color: var(--text-muted);">A custom flight controller based on STM32 H7 running a real-time object avoidance neural net via Edge Impulse.</p>
+                </div>
+                <div class="cat-platform">
+                    <div class="project-img">🐈 Smart Feeder</div>
+                    <h3>IoT Cat Feeder + Face Rec</h3>
+                    <p style="font-size: 0.95rem; margin-top: 0.5rem; color: var(--text-muted);">Dispenses specific diets based on which cat is detected using an ESP32-CAM and a custom lightweight CNN.</p>
+                </div>
+                <div class="cat-platform">
+                    <div class="project-img">⚙️ Sensor Mesh</div>
+                    <h3>Industrial Sensor Mesh</h3>
+                    <p style="font-size: 0.95rem; margin-top: 0.5rem; color: var(--text-muted);">A low-power LoRaWAN network designed to monitor factory floor vibration and predict machine failure.</p>
+                </div>
+                <div class="cat-platform">
+                    <div class="project-img">📟 Open Dev Board</div>
+                    <h3>Open Source Dev Board</h3>
+                    <p style="font-size: 0.95rem; margin-top: 0.5rem; color: var(--text-muted);">Designed and routed a 4-layer PCB for a custom RISC-V development kit aimed at students.</p>
+                </div>
+            </div>
+        </section>
+
+        <section id="contact">
+            <h2 class="section-title">Initialize Handshake</h2>
+            <div class="cat-platform" style="width: 100%; max-width: 600px; text-align: center;">
+                <p style="margin-bottom: 2rem; font-size: 1.1rem;">Interested in collaborating on IoT, robotics, or computer vision? Let's connect.</p>
+                <a href="#" class="btn" style="display:inline-block; background: var(--primary-color); color: white;">Send Transmission</a>
+                <div style="margin-top: 2rem; display:flex; justify-content:center; gap: 1.5rem;">
+                    <a href="#">GitHub</a> &bull; <a href="#">LinkedIn</a> &bull; <a href="#">Twitter</a>
+                </div>
+            </div>
+        </section>
+        
+        <footer style="margin-top: 2rem; padding: 2rem; text-align: center; color: var(--text-muted); width: 100%;">
+            <div class="cat-platform" style="background: transparent; border: none; box-shadow: none;">
+                <p>&copy; 2026 Embedded Dev. Built with Vanilla Web Tech & 🐾.</p>
+            </div>
+        </footer>
+    </div>
+
+    <div id="mobile-hint">Tap anywhere to guide the cat</div>
+
+    <div id="game-layer">
+        <div id="waypoint"></div>
+        <div id="cat" class="cat-idle">
+            <svg id="cat-svg" viewBox="0 0 100 100" width="100%" height="100%" style="overflow: visible;">
+                <!-- Shadow -->
+                <ellipse cx="50" cy="95" rx="20" ry="5" fill="rgba(0,0,0,0.1)" />
+                
+                <g id="cat-body-group">
+                    <!-- Tail -->
+                    <path id="cat-tail" d="M 80 70 Q 110 70, 95 30 Q 90 15, 80 25" fill="none" stroke="var(--cat-body)" stroke-width="8" stroke-linecap="round" />
+                    
+                    <!-- Legs -->
+                    <g id="cat-legs">
+                        <line id="cat-leg-bl" x1="65" y1="70" x2="65" y2="90" stroke="var(--cat-shade)" stroke-width="8" stroke-linecap="round" />
+                        <line id="cat-leg-fl" x1="35" y1="70" x2="35" y2="90" stroke="var(--cat-shade)" stroke-width="8" stroke-linecap="round" />
+                        <line id="cat-leg-br" x1="75" y1="70" x2="75" y2="90" stroke="var(--cat-body)" stroke-width="8" stroke-linecap="round" />
+                        <line id="cat-leg-fr" x1="25" y1="70" x2="25" y2="90" stroke="var(--cat-body)" stroke-width="8" stroke-linecap="round" />
+                    </g>
+                    
+                    <!-- Body -->
+                    <rect id="cat-torso" x="20" y="40" width="60" height="40" rx="20" fill="var(--cat-body)" />
+                    
+                    <!-- Head -->
+                    <g id="cat-head">
+                        <circle cx="20" cy="40" r="25" fill="var(--cat-body)" />
+                        <!-- Ears -->
+                        <polygon points="5,25 0,0 20,15" fill="var(--cat-body)" stroke="var(--cat-body)" stroke-width="3" stroke-linejoin="round" />
+                        <polygon points="35,25 40,0 20,15" fill="var(--cat-body)" stroke="var(--cat-body)" stroke-width="3" stroke-linejoin="round" />
+                        <!-- Inner Ears -->
+                        <polygon points="7,22 4,5 16,16" fill="var(--cat-ear)" />
+                        <polygon points="33,22 36,5 24,16" fill="var(--cat-ear)" />
+                        
+                        <!-- Eyes -->
+                        <g id="cat-eyes">
+                            <circle cx="10" cy="38" r="4.5" fill="var(--cat-eye)" />
+                            <circle cx="28" cy="38" r="4.5" fill="var(--cat-eye)" />
+                            <!-- Pupils -->
+                            <circle cx="9" cy="38" r="2" fill="var(--cat-body)" />
+                            <circle cx="27" cy="38" r="2" fill="var(--cat-body)" />
+                        </g>
+                        <!-- Nose/Mouth -->
+                        <circle cx="19" cy="45" r="2" fill="var(--cat-eye)" />
+                        <path d="M 15 48 Q 19 51 19 48 Q 19 51 23 48" fill="none" stroke="var(--cat-eye)" stroke-width="1.5" />
+                    </g>
+                </g>
+            </svg>
+        </div>
+    </div>
+
+    <script>
+        const CAT_CONFIG = {
+            walkSpeed: 150,
+            runSpeed: 400,
+            gravity: 1200, 
+            jumpVelocityY: -600, 
+            jumpCrouchTime: 300,
+            sprintDistance: 800,
+            width: 60,
+            height: 50
+        };
+
+        const GameState = {
+            introActive: true,
+            noClicks: 0,
+            platforms: [],
+            lastTime: 0,
+            activeSection: 'hero'
+        };
+
+        const IntroController = {
+            init() {
+                const btnYes = document.getElementById('btn-yes');
+                const btnNo = document.getElementById('btn-no');
+                const msg = document.getElementById('intro-message');
+                const catFace = document.querySelector('.intro-cat-wrapper');
+                const introScreen = document.getElementById('intro-screen');
+                
+                const animals = document.getElementById('intro-animals');
+                const dog = document.getElementById('intro-dog');
+                const catAnim = document.getElementById('intro-cat-emoji');
+
+                const noMessages = [
+                    "Wait, really?",
+                    "Are you sure? Look at this face.",
+                    "Okay, you're testing my patience...",
+                    "Are you from those who like dogs or something?!",
+                    "GET OUT OF MY SIGHT!"
+                ];
+
+                btnYes.addEventListener('click', () => {
+                    this.transitionToPortfolio(true);
+                });
+
+                btnNo.addEventListener('click', () => {
+                    if (GameState.noClicks >= 5) return;
+                    
+                    GameState.noClicks++;
+                    
+                    // Cap the CSS scary styling at level 4
+                    let scaryLevel = Math.min(GameState.noClicks, 4);
+                    catFace.setAttribute('data-scary-level', scaryLevel);
+                    
+                    if (scaryLevel === 3) {
+                        introScreen.classList.add('scary-bg-3');
+                    } else if (scaryLevel === 4) {
+                        introScreen.classList.remove('scary-bg-3');
+                        introScreen.classList.add('scary-bg-4');
+                    }
+
+                    if (GameState.noClicks < 5) {
+                        msg.innerText = noMessages[GameState.noClicks - 1];
+                        msg.style.opacity = 1;
+                        
+                        // Slower scaling, and scoot the NO button to the right so it isn't completely covered
+                        let yesScale = 1 + (GameState.noClicks * 0.15);
+                        let noScale = 1 - (GameState.noClicks * 0.15);
+                        
+                        btnYes.style.transform = `scale(${yesScale})`;
+                        btnNo.style.transform = `translateX(${GameState.noClicks * 20}px) scale(${noScale})`;
+                        
+                    } else if (GameState.noClicks === 5) {
+                        msg.innerText = noMessages[4];
+                        
+                        btnNo.style.opacity = 0;
+                        btnNo.style.pointerEvents = 'none';
+                        btnNo.style.transform = `scale(0)`;
+                        
+                        btnYes.style.transform = `scale(2.5)`;
+                        btnNo.disabled = true;
+                        
+                        // Massive chase animation + Screen shake
+                        animals.style.display = 'block';
+                        dog.style.animation = 'run-left-fast 1.5s linear forwards';
+                        catAnim.style.animation = 'run-left-fast 1.3s linear forwards 0.2s';
+                        
+                        introScreen.style.animation = 'shake 0.3s infinite';
+                        
+                        setTimeout(() => {
+                            introScreen.style.animation = 'none';
+                            this.transitionToPortfolio(false);
+                        }, 2000);
+                    }
+                });
+            },
+
+            transitionToPortfolio(happy) {
+                if(!GameState.introActive) return;
+                GameState.introActive = false;
+                
+                const introScreen = document.getElementById('intro-screen');
+                const portfolio = document.getElementById('portfolio-main');
+                
+                introScreen.style.opacity = 0;
+                introScreen.style.transform = 'scale(1.1)';
+                
+                setTimeout(() => {
+                    introScreen.style.display = 'none';
+                    portfolio.style.display = 'flex';
+                    void portfolio.offsetWidth; 
+                    portfolio.style.opacity = 1;
+                    
+                    PlatformManager.scan();
+                    const heroTop = GameState.platforms.find(p => p.el && p.el.classList.contains('hero-platform'));
+                    if(heroTop) {
+                        Cat.x = heroTop.x + heroTop.width / 2;
+                        Cat.y = happy ? -100 : heroTop.y - CAT_CONFIG.height; 
+                    } else {
+                        Cat.x = window.innerWidth / 2;
+                        Cat.y = -100;
+                    }
+                    
+                    if(happy) {
+                        Cat.setState('FALL');
+                    } else {
+                        Cat.setState('IDLE');
+                    }
+                    
+                    requestAnimationFrame(gameLoop);
+                    ScrollController.init();
+                    InputHandler.init();
+                }, 1000);
+            }
+        };
+
+        const PlatformManager = {
+            scan() {
+                const elements = document.querySelectorAll('.cat-platform');
+                GameState.platforms = Array.from(elements).map(el => {
+                    const rect = el.getBoundingClientRect();
+                    return {
+                        x: rect.left + window.scrollX,
+                        y: rect.top + window.scrollY,
+                        width: rect.width,
+                        height: rect.height,
+                        el: el
+                    };
+                });
+                
+                GameState.platforms.push({
+                    x: -1000,
+                    y: document.body.scrollHeight - 10,
+                    width: 5000,
+                    height: 100,
+                    isGround: true
+                });
+            },
+            
+            getPlatformAt(x, y) {
+                for(let p of GameState.platforms) {
+                    if(x >= p.x && x <= p.x + p.width) {
+                        if(Math.abs(y - p.y) < 10) return p;
+                    }
+                }
+                return null;
+            }
+        };
+
+        const Cat = {
+            el: document.getElementById('cat'),
+            
+            x: 0, y: 0,
+            vx: 0, vy: 0,
+            
+            targetX: null, targetY: null,
+            
+            state: 'IDLE',
+            stateTimer: 0,
+            direction: 1, 
+            
+            idleTimer: 0,
+            currentPlatform: null,
+
+            update(dt) {
+                let dtSeconds = dt / 1000;
+                this.stateTimer -= dt;
+                
+                if (this.state === 'JUMP' || this.state === 'FALL') {
+                    this.vy += CAT_CONFIG.gravity * dtSeconds;
+                    this.x += this.vx * dtSeconds;
+                    this.y += this.vy * dtSeconds;
+                    
+                    if (this.vy > 0 && this.state !== 'FALL') {
+                        this.setState('FALL');
+                    }
+                    
+                    if (this.vy > 0) {
+                        let prevY = this.y - this.vy * dtSeconds;
+                        for(let p of GameState.platforms) {
+                            if (this.x >= p.x && this.x <= p.x + p.width) {
+                                if (prevY + CAT_CONFIG.height <= p.y + 15 && this.y + CAT_CONFIG.height >= p.y - 10) {
+                                    this.y = p.y - CAT_CONFIG.height;
+                                    this.vy = 0;
+                                    this.vx = 0;
+                                    this.currentPlatform = p;
+                                    this.setState('LAND');
+                                    break;
+                                }
+                            }
+                        }
+                    }
+                } else if (this.state === 'WALK' || this.state === 'RUN') {
+                    if (this.targetX !== null) {
+                        let speed = this.state === 'RUN' ? CAT_CONFIG.runSpeed : CAT_CONFIG.walkSpeed;
+                        let dist = this.targetX - this.x;
+                        
+                        this.direction = dist > 0 ? 1 : -1;
+                        
+                        if (Math.abs(dist) < speed * dtSeconds) {
+                            this.x = this.targetX;
+                            this.targetX = null;
+                            this.setState('IDLE');
+                        } else {
+                            this.x += this.direction * speed * dtSeconds;
+                            
+                            if (this.currentPlatform && !this.currentPlatform.isGround) {
+                                let p = this.currentPlatform;
+                                if (this.x < p.x || this.x > p.x + p.width) {
+                                    this.currentPlatform = null;
+                                    this.setState('FALL');
+                                    this.vx = this.direction * speed * 0.5; 
+                                }
+                            }
+                        }
+                    } else {
+                        this.setState('IDLE');
+                    }
+                } else if (this.state === 'IDLE') {
+                    this.idleTimer += dt;
+                    if (this.idleTimer > 3000 && Math.random() < 0.01) {
+                        let r = Math.random();
+                        if (r < 0.4) this.setState('SIT');
+                        else if (r < 0.8 && this.idleTimer > 10000) this.setState('SLEEP');
+                    }
+                } else if (this.state === 'SIT' || this.state === 'SLEEP') {
+                    if (this.targetX !== null) {
+                        this.setState('IDLE');
+                    }
+                } else if (this.state === 'CROUCH') {
+                    if (this.stateTimer <= 0) this.executeJump();
+                } else if (this.state === 'LAND') {
+                    if (this.stateTimer <= 0) {
+                        if (this.targetX !== null) {
+                             this.evaluateTarget();
+                        } else {
+                            this.setState('IDLE');
+                        }
+                    }
+                }
+                
+                if (this.x < 10) this.x = 10;
+                if (this.x > document.body.scrollWidth - 10) this.x = document.body.scrollWidth - 10;
+                
+                this.draw();
+            },
+            
+            draw() {
+                let sx = this.direction === 1 ? -1 : 1;
+                this.el.style.transform = `translate(${this.x - CAT_CONFIG.width/2}px, ${this.y}px) scaleX(${sx})`;
+            },
+            
+            setState(newState) {
+                if (this.state === newState && newState !== 'JUMP') return;
+                
+                this.el.classList.remove('cat-idle', 'cat-walking', 'cat-running', 'cat-crouching', 'cat-jumping', 'cat-falling', 'cat-landing', 'cat-sitting', 'cat-sleeping');
+                
+                this.state = newState;
+                this.el.classList.add('cat-' + newState.toLowerCase());
+                
+                if (newState === 'IDLE') {
+                    this.idleTimer = 0;
+                    this.vx = 0;
+                } else if (newState === 'CROUCH') {
+                    this.stateTimer = CAT_CONFIG.jumpCrouchTime;
+                } else if (newState === 'LAND') {
+                    this.stateTimer = 150;
+                }
+            },
+            
+            setTarget(x, y) {
+                this.targetX = x;
+                this.targetY = y;
+                
+                const wp = document.getElementById('waypoint');
+                wp.style.left = x + 'px';
+                wp.style.top = y + 'px';
+                wp.classList.remove('waypoint-anim');
+                void wp.offsetWidth; 
+                wp.classList.add('waypoint-anim');
+                
+                if (this.state === 'SLEEP' || this.state === 'SIT' || this.state === 'IDLE') {
+                    this.evaluateTarget();
+                }
+            },
+            
+            evaluateTarget() {
+                if (this.targetX === null || this.targetY === null) return;
+                
+                let pTarget = PlatformManager.getPlatformAt(this.targetX, this.targetY);
+                this.currentPlatform = PlatformManager.getPlatformAt(this.x, this.y + CAT_CONFIG.height);
+                
+                let distY = this.targetY - (this.y + CAT_CONFIG.height);
+                let distX = Math.abs(this.targetX - this.x);
+                
+                if (Math.abs(distY) < 50 && (pTarget === this.currentPlatform || !pTarget)) {
+                    this.setState(distX > CAT_CONFIG.sprintDistance ? 'RUN' : 'WALK');
+                } else {
+                    this.direction = this.targetX > this.x ? 1 : -1;
+                    this.setState('CROUCH');
+                }
+            },
+            
+            executeJump() {
+                let dx = this.targetX - this.x;
+                let pTarget = null;
+                for(let p of GameState.platforms) {
+                    if (this.targetX >= p.x && this.targetX <= p.x + p.width) {
+                        if (p.y >= this.targetY - 50) {
+                            if (!pTarget || p.y < pTarget.y) pTarget = p;
+                        }
+                    }
+                }
+                
+                let destY = pTarget ? pTarget.y : this.targetY;
+                let dy = destY - (this.y + CAT_CONFIG.height);
+                
+                let t = Math.max(0.5, Math.abs(dx) / 600); 
+                if (t > 1.5) t = 1.5; 
+                
+                this.vx = dx / t;
+                this.vy = (dy - 0.5 * CAT_CONFIG.gravity * t * t) / t;
+                
+                if (this.vy < CAT_CONFIG.jumpVelocityY * 1.5) {
+                     this.vy = CAT_CONFIG.jumpVelocityY * 1.5;
+                }
+                
+                this.setState('JUMP');
+                this.currentPlatform = null;
+            }
+        };
+
+        const InputHandler = {
+            init() {
+                document.addEventListener('contextmenu', (e) => {
+                    if (GameState.introActive) return;
+                    e.preventDefault();
+                    Cat.setTarget(e.pageX, e.pageY);
+                });
+                
+                document.addEventListener('click', (e) => {
+                    if (GameState.introActive) return;
+                    if (e.target.closest('a') || e.target.closest('button')) return;
+                    Cat.setTarget(e.pageX, e.pageY);
+                });
+                
+                window.addEventListener('resize', () => {
+                    if(GameState.introActive) return;
+                    clearTimeout(this.resizeTimer);
+                    this.resizeTimer = setTimeout(() => {
+                        PlatformManager.scan();
+                    }, 200);
+                });
+            }
+        };
+
+        const ScrollController = {
+            init() {
+                const observerOptions = {
+                    root: null,
+                    rootMargin: '-20% 0px -40% 0px',
+                    threshold: 0
+                };
+                
+                const observer = new IntersectionObserver((entries) => {
+                    entries.forEach(entry => {
+                        if (entry.isIntersecting) {
+                            GameState.activeSection = entry.target.id;
+                            this.moveCatToSection(entry.target);
+                        }
+                    });
+                }, observerOptions);
+                
+                document.querySelectorAll('section').forEach(sec => {
+                    observer.observe(sec);
+                });
+            },
+            
+            moveCatToSection(section) {
+                const platforms = section.querySelectorAll('.cat-platform');
+                if (platforms.length > 0) {
+                    const targetEl = platforms[0];
+                    const rect = targetEl.getBoundingClientRect();
+                    const tx = rect.left + window.scrollX + rect.width / 2;
+                    const ty = rect.top + window.scrollY;
+                    
+                    if (Math.abs(Cat.y - ty) > 200 || Math.abs(Cat.x - tx) > 300) {
+                        Cat.setTarget(tx, ty);
+                    }
+                }
+            }
+        };
+
+        function gameLoop(timestamp) {
+            if (!GameState.lastTime) GameState.lastTime = timestamp;
+            let dt = timestamp - GameState.lastTime;
+            GameState.lastTime = timestamp;
+            
+            if (dt > 100) dt = 16;
+            
+            Cat.update(dt);
+            
+            requestAnimationFrame(gameLoop);
+        }
+
+        window.addEventListener('DOMContentLoaded', () => {
+            IntroController.init();
+        });
+        
+    </script>
+</body>
 </html>
-
