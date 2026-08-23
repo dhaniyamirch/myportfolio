@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Embedded & CV Engineer Portfolio</title>
-    <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@400;600;700;800&family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@400;600;700&family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
     <style>
         :root {
             /* Cute / Pastel Theme Colors */
@@ -26,7 +26,7 @@
             --cat-eye: #fff;
             
             /* Intro CSS Cat Variables */
-            --intro-size: clamp(120px, 20vw, 170px);
+            --intro-size: clamp(150px, 30vw, 220px);
             --intro-black: #161616;
             --intro-white: #fff;
             --intro-scary-eye: #fff;
@@ -39,11 +39,7 @@
             --border-radius: 24px;
         }
 
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
 
         body {
             font-family: 'Quicksand', sans-serif;
@@ -60,174 +56,93 @@
         a:hover { color: var(--accent-color); }
 
         #intro-screen {
-            position: fixed;
-            top: 0; left: 0; width: 100vw; height: 100vh;
+            position: fixed; top: 0; left: 0; width: 100vw; height: 100vh;
             background: var(--intro-bg);
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
+            display: flex; flex-direction: column; align-items: center; justify-content: center;
             z-index: 10000;
-            transition: opacity 1s ease, transform 1s ease, background 0.5s ease;
+            transition: opacity 1s ease, transform 1s ease, background 0.8s ease;
         }
 
-        /* User Provided CSS Cat - Converted to Vanilla CSS */
-        .intro-cat-wrapper {
-            margin-bottom: 2rem;
-            transition: transform 0.3s ease;
-            position: relative;
-            z-index: 20;
-        }
-
-        .cat {
-            position: relative;
-            height: var(--intro-size);
-            width: calc(var(--intro-size) * 1.13);
-        }
+        .intro-cat-wrapper { margin-bottom: 3rem; transition: transform 0.5s ease; }
+        .cat-face-container { position: relative; height: var(--intro-size); width: calc(var(--intro-size) * 1.13); }
 
         .ear {
-            position: absolute;
-            top: -30%;
-            height: 60%;
-            width: 25%;
+            position: absolute; top: -30%; height: 60%; width: 25%;
             background: var(--intro-black);
-            transition: all 0.4s ease;
+            transition: transform 0.6s cubic-bezier(0.34, 1.56, 0.64, 1), top 0.6s ease;
         }
-
         .ear::before, .ear::after {
-            content: '';
-            position: absolute;
-            bottom: 24%;
-            height: 10%;
-            width: 5%;
-            border-radius: 50%;
-            background: var(--intro-white);
+            content: ''; position: absolute; bottom: 24%; height: 10%; width: 5%;
+            border-radius: 50%; background: var(--intro-white);
         }
-
         .ear::after { transform-origin: 50% 100%; }
 
-        .ear--left {
-            left: -7%;
-            border-radius: 70% 30% 0% 0% / 100% 100% 0% 0%;
-            transform: rotate(-15deg);
-        }
+        .ear--left { left: -7%; border-radius: 70% 30% 0% 0% / 100% 100% 0% 0%; transform: rotate(-15deg); }
         .ear--left::before, .ear--left::after { right: 10%; }
         .ear--left::after { transform: rotate(-45deg); }
 
-        .ear--right {
-            right: -7%;
-            border-radius: 30% 70% 0% 0% / 100% 100% 0% 0%;
-            transform: rotate(15deg);
-        }
+        .ear--right { right: -7%; border-radius: 30% 70% 0% 0% / 100% 100% 0% 0%; transform: rotate(15deg); }
         .ear--right::before, .ear--right::after { left: 10%; }
         .ear--right::after { transform: rotate(45deg); }
 
-        .face {
-            position: absolute;
-            height: 100%;
-            width: 100%;
-            background: var(--intro-black);
-            border-radius: 50%;
-            z-index: 2;
-        }
+        .face { position: absolute; height: 100%; width: 100%; background: var(--intro-black); border-radius: 50%; }
 
         .eye {
-            position: absolute;
-            top: 35%;
-            height: 30%;
-            width: 31%;
-            background: var(--intro-scary-eye);
-            border-radius: 50% 50% 50% 50% / 60% 60% 40% 40%;
-            transition: background 0.4s ease, box-shadow 0.4s ease;
+            position: absolute; top: 35%; height: 30%; width: 31%;
+            background: var(--intro-scary-eye); border-radius: 50% 50% 50% 50% / 60% 60% 40% 40%;
+            transition: background 0.6s ease, box-shadow 0.6s ease;
         }
-
         .eye::after {
-            content: '';
-            position: absolute;
-            top: 0; left: 0; height: 0; width: 100%;
-            border-radius: 0 0 50% 50% / 0 0 40% 40%;
-            background: var(--intro-black);
+            content: ''; position: absolute; top: 0; left: 0; height: 0; width: 100%;
+            border-radius: 0 0 50% 50% / 0 0 40% 40%; background: var(--intro-black);
             animation: intro-blink 4s infinite ease-in;
         }
-
         @keyframes intro-blink {
-            0%, 90% { height: 0; }
-            92.5% { height: 100%; }
-            95% { height: 0; }
-            97.5% { height: 100%; }
-            100% { height: 0; }
+            0%, 90% { height: 0; } 92.5% { height: 100%; }
+            95% { height: 0; } 97.5% { height: 100%; } 100% { height: 0; }
         }
-
         .eye::before {
-            content: '';
-            position: absolute;
-            top: 60%; height: 10%; width: 15%;
-            background: var(--intro-white);
-            border-radius: 50%;
+            content: ''; position: absolute; top: 60%; height: 10%; width: 15%;
+            background: var(--intro-white); border-radius: 50%;
         }
+        .eye--left { left: 0; } .eye--left::before { right: -5%; }
+        .eye--right { right: 0; } .eye--right::before { left: -5%; }
 
-        .eye--left { left: 0; }
-        .eye--left::before { right: -5%; }
-        .eye--right { right: 0; }
-        .eye--right::before { left: -5%; }
-
+        /* Dynamic Pupil Tracking */
         .eye-pupil {
-            position: absolute;
-            top: 25%; height: 50%; width: 20%;
-            background: var(--intro-black);
-            border-radius: 50%;
-            animation: look-around 4s infinite;
-            transition: width 0.4s ease, height 0.4s ease;
+            position: absolute; top: 25%; height: 50%; width: 20%;
+            background: var(--intro-black); border-radius: 50%;
+            transform: translate(var(--pupil-x, 0px), var(--pupil-y, 0px));
+            transition: width 0.6s ease, height 0.6s ease;
+            will-change: transform;
         }
-
-        @keyframes look-around {
-            0% { transform: translate(0) }
-            5%, 10% { transform: translate(50%, -25%) }
-            15%, 20% { transform: translate(-100%, -25%) }
-            25%, 100% { transform: translate(0, 0) }
-        }
-
         .eye--left .eye-pupil { right: 30%; }
         .eye--right .eye-pupil { left: 30%; }
-
         .eye-pupil::after {
-            content: '';
-            position: absolute;
-            top: 30%; right: -5%; height: 20%; width: 35%;
-            border-radius: 50%;
-            background: var(--intro-white);
+            content: ''; position: absolute; top: 30%; right: -5%; height: 20%; width: 35%;
+            border-radius: 50%; background: var(--intro-white);
         }
 
         .muzzle {
-            position: absolute;
-            top: 60%; left: 50%; height: 6%; width: 10%;
-            background: var(--intro-white);
-            transform: translateX(-50%);
+            position: absolute; top: 60%; left: 50%; height: 6%; width: 10%;
+            background: var(--intro-white); transform: translateX(-50%);
             border-radius: 50% 50% 50% 50% / 30% 30% 70% 70%;
         }
 
-        /* Level 1: Stop blinking, freeze pupils */
-        .intro-cat-wrapper[data-scary-level="1"] .eye-pupil { animation: none; transform: translate(0, 0); }
         .intro-cat-wrapper[data-scary-level="1"] .eye::after { animation: none; height: 0; }
-        
-        /* Level 2: Yellow eyes, narrow pupils, ears start flattening */
         .intro-cat-wrapper[data-scary-level="2"] .eye { --intro-scary-eye: #ffea00; }
         .intro-cat-wrapper[data-scary-level="2"] .eye-pupil { width: 10%; }
         .intro-cat-wrapper[data-scary-level="2"] .ear--left { transform: rotate(-35deg); top: -20%; }
         .intro-cat-wrapper[data-scary-level="2"] .ear--right { transform: rotate(35deg); top: -20%; }
-
-        /* Level 3: Red glowing eyes, slit pupils, ears flat, background darkens */
         .intro-cat-wrapper[data-scary-level="3"] .eye { --intro-scary-eye: #ff3333; box-shadow: 0 0 30px rgba(255, 51, 51, 0.6); }
         .intro-cat-wrapper[data-scary-level="3"] .eye-pupil { width: 5%; height: 70%; }
         .intro-cat-wrapper[data-scary-level="3"] .ear--left { transform: rotate(-60deg); top: -10%; }
         .intro-cat-wrapper[data-scary-level="3"] .ear--right { transform: rotate(60deg); top: -10%; }
-        #intro-screen.scary-bg-3 { --intro-bg: #2a1111; color: white; }
-
-        /* Level 4: Pure black, violently red glow, shaking */
+        #intro-screen.scary-bg-3 { background: #2a1111; color: white; }
         .intro-cat-wrapper[data-scary-level="4"] { animation: shake 0.5s infinite; }
         .intro-cat-wrapper[data-scary-level="4"] .eye { --intro-scary-eye: #ff0000; box-shadow: 0 0 50px red; }
-        #intro-screen.scary-bg-4 { --intro-bg: #000; color: #ff3333; }
-
+        #intro-screen.scary-bg-4 { background: #000; color: #ff3333; }
+        
         @keyframes shake {
             0%, 100% { transform: translate(1px, 1px) rotate(0deg); }
             20% { transform: translate(-2px, -1px) rotate(-1deg); }
@@ -237,230 +152,117 @@
         }
 
         .intro-content {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            text-align: center;
-            position: relative;
-            z-index: 20;
-            width: 100vw;
-            padding: 0 20px;
+            display: flex; flex-direction: column; align-items: center; text-align: center;
+            position: relative; z-index: 2; width: 100vw;
         }
+        #intro-question { font-size: 2.5rem; margin-bottom: 1rem; color: inherit; transition: color 0.5s; }
 
-        #intro-question {
-            font-size: clamp(2rem, 5vw, 3rem);
-            margin-bottom: 2rem;
-            color: inherit;
-            transition: color 0.3s;
-        }
-
-        /* Fixed fixed height container so buttons don't shift layout */
+        /* Fixed container prevents layout shift */
         .btn-container {
-            position: relative;
-            height: 60px;
-            width: 100%;
-            max-width: 400px;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            margin-bottom: 2rem;
+            position: relative; height: 60px; width: 300px; margin: 1rem auto;
+            display: flex; justify-content: center; align-items: center;
         }
 
         .btn {
-            position: absolute; /* Absolute to allow overlapping */
-            padding: 1rem 3rem;
-            font-size: 1.2rem;
-            font-family: 'Quicksand', sans-serif;
-            font-weight: 700;
-            border: none;
-            border-radius: 50px;
-            cursor: pointer;
-            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-            box-shadow: 0 8px 20px var(--shadow-color);
-            outline: none;
+            position: absolute; padding: 1rem 3rem; font-size: 1.2rem;
+            font-family: 'Quicksand', sans-serif; font-weight: 700; border: none; border-radius: 50px;
+            cursor: pointer; transition: all 0.6s cubic-bezier(0.34, 1.56, 0.64, 1); outline: none;
         }
-
         #btn-yes {
-            background: var(--primary-color);
-            color: white;
-            z-index: 10;
-            transform: translateX(-70px);
+            background: var(--primary-color); color: white; z-index: 10;
+            transform: translateX(-75px); box-shadow: 0 8px 20px rgba(255, 143, 163, 0.3);
         }
-
-        #btn-yes:hover {
-            box-shadow: 0 15px 25px rgba(255, 143, 163, 0.4);
-        }
-
+        #btn-yes:hover { box-shadow: 0 15px 25px rgba(255, 143, 163, 0.5); }
         #btn-no {
-            background: var(--surface-color);
-            color: var(--text-muted);
-            border: 2px solid var(--border-color);
-            z-index: 1;
-            transform: translateX(70px);
+            background: var(--surface-color); color: var(--text-muted); border: 2px solid var(--border-color);
+            z-index: 1; transform: translateX(75px); box-shadow: 0 8px 20px var(--shadow-color);
         }
+        #btn-no:hover { background: #fff; color: var(--text-main); border-color: var(--primary-color); }
 
-        #btn-no:hover {
-            background: #fff;
-            color: var(--text-main);
-        }
-
+        #intro-message-wrapper { margin-top: 1.5rem; height: 3rem; display: flex; align-items: center; justify-content: center; }
         #intro-message {
-            font-size: clamp(1.2rem, 3vw, 1.8rem);
-            color: var(--primary-color);
-            min-height: 3rem;
-            font-weight: 800;
-            opacity: 0;
-            transition: opacity 0.3s, color 0.3s;
+            font-size: 1.5rem; color: var(--primary-color); font-weight: 800;
+            opacity: 0; transform: translateY(10px);
+            transition: opacity 0.3s ease, transform 0.3s ease, color 0.5s ease;
             text-shadow: 0 2px 5px rgba(0,0,0,0.1);
-            z-index: 20;
-            max-width: 800px;
+        }
+        #intro-screen.scary-bg-3 #intro-message, #intro-screen.scary-bg-4 #intro-message {
+            color: #ff3333; text-shadow: 0 0 15px rgba(255, 0, 0, 0.8);
         }
 
-        #intro-screen.scary-bg-3 #intro-message,
-        #intro-screen.scary-bg-4 #intro-message {
-            color: #ff3333;
-            text-shadow: 0 0 15px rgba(255, 0, 0, 0.8);
+        #paw-container {
+            position: fixed; top: 0; left: 0; width: 100vw; height: 100vh;
+            pointer-events: none; display: none; z-index: 50000; overflow: hidden;
+            transition: opacity 0.8s ease; /* So it can fade out smoothly */
+        }
+        .giant-paw {
+            position: absolute; left: 50%; top: -250px;
+            width: clamp(250px, 45vw, 600px); height: clamp(250px, 45vw, 600px);
+            transform: translateX(-50%) rotate(-8deg); transform-origin: center center;
+            animation: giantPawFall 3.4s cubic-bezier(0.25, 1, 0.5, 1) forwards;
+            will-change: transform; /* Hardware acceleration to stop zoom lag! */
+            backface-visibility: hidden;
+        }
+        @keyframes giantPawFall {
+            0% { top: -400px; transform: translateX(-50%) rotate(-8deg) scale(1); }
+            5% { top: -200px; transform: translateX(-50%) rotate(-5deg) scale(1); }
+            44% { top: 50%; transform: translate(-50%, -50%) rotate(0deg) scale(1); }
+            53% { top: 50%; transform: translate(-50%, -50%) rotate(0deg) scale(1.05) scaleY(0.9); }
+            62% { top: 50%; transform: translate(-50%, -50%) rotate(0deg) scale(1) scaleY(1.02); }
+            82% { top: 50%; transform: translate(-50%, -50%) rotate(0deg) scale(1.2); }
+            100% { top: 50%; transform: translate(-50%, -50%) rotate(0deg) scale(20); } 
         }
 
-        #block-transition {
-            position: fixed;
-            top: 0; left: 0; width: 100vw; height: 100vh;
-            display: flex;
-            z-index: 40000;
-            pointer-events: none;
+        .tiny-particle {
+            position: absolute; top: 50%; width: 24px; height: 24px;
+            transform: translate(-50%, 0) scale(0);
+            animation: popParticle 1.5s cubic-bezier(0.1, 0.8, 0.2, 1) forwards;
+            animation-delay: 1.4s;
         }
-        
-        .block-col {
-            flex: 1;
-            background: var(--primary-color);
-            transform: translateY(-100%);
-            transition: transform 0.5s cubic-bezier(0.5, 0, 0.2, 1);
-            border-right: 1px solid rgba(255,255,255,0.2);
-        }
-        
-        .block-col.drop { transform: translateY(0); }
-        .block-col.lift { transform: translateY(-100%); }
-
-        #intro-animals {
-            position: fixed;
-            top: 50%;
-            left: 0;
-            width: 100vw;
-            height: 150px;
-            transform: translateY(-50%);
-            pointer-events: none;
-            overflow: visible;
-            display: none;
-            z-index: 50000;
-        }
-
-        .intro-animal {
-            position: absolute;
-            top: 0;
-            font-size: 8rem;
-            line-height: 1;
-            white-space: nowrap;
-        }
-
-        /* Start offscreen to the right, facing left */
-        #intro-dog { left: 100vw; }
-        #intro-cat-emoji { left: calc(100vw + 350px); font-size: 9.5rem; } 
-
-        @keyframes run-chase-container {
-            0% { transform: translateX(0); }
-            100% { transform: translateX(calc(-100vw - 1000px)); }
-        }
-
-        @keyframes bounce-sprint {
-            0%, 100% { transform: translateY(0) scale(1, 1); }
-            50% { transform: translateY(-40px) scale(0.9, 1.1); }
+        @keyframes popParticle {
+            0% { transform: translate(-50%, 0) scale(0) rotate(0deg); opacity: 1; }
+            100% { transform: translate(-50%, -100px) scale(1.5) rotate(var(--rot)); opacity: 0; }
         }
 
         #portfolio-main {
-            opacity: 0;
-            display: none;
-            flex-direction: column;
-            align-items: center;
-            width: 100%;
-            padding-bottom: 100px;
+            opacity: 0; display: none; flex-direction: column; align-items: center;
+            width: 100%; padding-bottom: 100px;
+            transition: opacity 1s ease; /* For smooth reveal */
         }
-
         .cute-bg {
-            position: absolute;
-            top: 0; left: 0; right: 0; bottom: 0;
-            background-image: 
-                radial-gradient(var(--border-color) 2px, transparent 2px),
-                radial-gradient(var(--border-color) 2px, transparent 2px);
-            background-size: 40px 40px;
-            background-position: 0 0, 20px 20px;
-            pointer-events: none;
-            z-index: 0;
-            opacity: 0.5;
+            position: absolute; top: 0; left: 0; right: 0; bottom: 0;
+            background-image: radial-gradient(var(--border-color) 2px, transparent 2px), radial-gradient(var(--border-color) 2px, transparent 2px);
+            background-size: 40px 40px; background-position: 0 0, 20px 20px;
+            pointer-events: none; z-index: 0; opacity: 0.5;
         }
 
         header {
-            width: 100%;
-            padding: 1.5rem 5%;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            position: fixed;
-            top: 0;
-            background: rgba(255, 255, 255, 0.8);
-            backdrop-filter: blur(12px);
-            border-bottom: 2px solid var(--surface-color-light);
-            z-index: 100;
+            width: 100%; padding: 1.5rem 5%; display: flex; justify-content: space-between; align-items: center;
+            position: fixed; top: 0; background: rgba(255, 255, 255, 0.8);
+            backdrop-filter: blur(12px); border-bottom: 2px solid var(--surface-color-light); z-index: 100;
         }
-
-        .logo { font-weight: 800; font-size: 1.5rem; color: var(--text-main); letter-spacing: -0.5px; }
+        .logo { font-weight: 800; font-size: 1.5rem; letter-spacing: -0.5px; }
         .logo span { color: var(--primary-color); }
         nav { display: flex; gap: var(--spacing-lg); }
         nav a { color: var(--text-muted); font-size: 1rem; }
         nav a:hover { color: var(--primary-color); }
 
         section {
-            width: 100%;
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 8rem 5% 4rem 5%;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            position: relative;
-            z-index: 1;
+            width: 100%; max-width: 1200px; margin: 0 auto; padding: 8rem 5% 4rem 5%;
+            display: flex; flex-direction: column; align-items: center; position: relative; z-index: 1;
         }
-
-        .section-title {
-            font-size: 2.5rem;
-            margin-bottom: var(--spacing-xl);
-            position: relative;
-            color: var(--text-main);
-            text-align: center;
-        }
-        
+        .section-title { font-size: 2.5rem; margin-bottom: var(--spacing-xl); position: relative; text-align: center; }
         .section-title::after {
-            content: '';
-            position: absolute;
-            bottom: -15px; left: 50%; transform: translateX(-50%);
-            width: 60px; height: 6px;
-            background: var(--primary-color);
-            border-radius: 10px;
+            content: ''; position: absolute; bottom: -15px; left: 50%; transform: translateX(-50%);
+            width: 60px; height: 6px; background: var(--primary-color); border-radius: 10px;
         }
 
         .cat-platform {
-            position: relative;
-            background: var(--surface-color);
-            border: 2px solid white;
-            border-radius: var(--border-radius);
-            padding: var(--spacing-lg);
-            box-shadow: 0 10px 30px var(--shadow-color);
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            position: relative; background: var(--surface-color); border: 2px solid white;
+            border-radius: var(--border-radius); padding: var(--spacing-lg);
+            box-shadow: 0 10px 30px var(--shadow-color); transition: transform 0.3s ease, box-shadow 0.3s ease;
         }
-
-        .cat-platform:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 15px 40px rgba(255, 143, 163, 0.25);
-        }
+        .cat-platform:hover { transform: translateY(-5px); box-shadow: 0 15px 40px rgba(255, 143, 163, 0.25); }
 
         .grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: var(--spacing-lg); width: 100%; max-width: 1000px; }
         .grid-3 { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: var(--spacing-lg); width: 100%; max-width: 1200px; }
@@ -469,51 +271,19 @@
             .grid-2 { grid-template-columns: 1fr; }
             header { flex-direction: column; gap: 1rem; }
             nav { gap: 1rem; flex-wrap: wrap; justify-content: center; }
+            #mobile-hint { display: block !important; }
         }
 
         #hero { min-height: 100vh; justify-content: center; text-align: center; padding-top: 0; }
         .hero-platform { max-width: 800px; width: 100%; padding: 4rem 2rem; }
-        .hero-title { font-size: clamp(2.5rem, 5vw, 4.5rem); line-height: 1.2; margin-bottom: var(--spacing-md); color: var(--text-main); }
+        .hero-title { font-size: clamp(2.5rem, 5vw, 4.5rem); font-weight: 800; line-height: 1.2; margin-bottom: var(--spacing-md); }
         .hero-subtitle { font-size: 1.2rem; color: var(--accent-color); margin-bottom: var(--spacing-lg); background: var(--surface-color-light); display: inline-block; padding: 0.5rem 1rem; border-radius: 12px; }
 
-        .tag {
-            display: inline-block; padding: 0.4rem 1rem;
-            background: var(--surface-color-light); color: var(--accent-color);
-            border-radius: 50px; font-size: 0.85rem;
-            margin-right: 0.5rem; margin-bottom: 0.5rem; font-weight: 600;
-            border: 1px solid rgba(161, 140, 209, 0.2);
-        }
+        .tag { display: inline-block; padding: 0.4rem 1rem; background: var(--surface-color-light); color: var(--accent-color); border-radius: 50px; font-size: 0.85rem; margin-right: 0.5rem; margin-bottom: 0.5rem; font-weight: 600; border: 1px solid rgba(161, 140, 209, 0.2); }
+        .project-img { width: 100%; height: 200px; background: var(--bg-color); border-radius: 16px; margin-bottom: 1.5rem; display: flex; align-items: center; justify-content: center; color: var(--text-muted); border: 2px dashed var(--border-color); font-weight: 600; }
 
-        .project-img {
-            width: 100%; height: 200px; background: var(--bg-color);
-            border-radius: 16px; margin-bottom: 1.5rem;
-            display: flex; align-items: center; justify-content: center;
-            color: var(--text-muted); border: 2px dashed var(--border-color);
-            font-weight: 600;
-        }
-
-        #game-layer {
-            position: absolute;
-            top: 0; left: 0; width: 100%; height: 100%;
-            pointer-events: none; 
-            z-index: 50;
-            overflow: hidden;
-        }
-
-        #cat {
-            position: absolute;
-            width: 60px; height: 50px;
-            transform-origin: bottom center;
-            will-change: transform;
-            pointer-events: auto;
-        }
-
-        /* Big Cute Mode */
-        .cat-big-cute { transform: scale(2) !important; transition: transform 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275); }
-        .cat-big-cute #cat-eyes circle[r="4.5"] { r: 9; }
-        .cat-big-cute #cat-eyes circle[r="2"] { r: 7; }
-        .eye-shine { opacity: 0; transition: opacity 0.3s; }
-        .cat-big-cute .eye-shine { opacity: 1; }
+        #game-layer { position: absolute; top: 0; left: 0; width: 100%; height: 100%; pointer-events: none; z-index: 50; overflow: hidden; }
+        #cat { position: absolute; width: 60px; height: 50px; transform-origin: bottom center; will-change: transform; pointer-events: auto; }
 
         .cat-svg-part { transition: transform 0.2s ease; }
         #cat-tail { transform-origin: 80% 80%; }
@@ -523,7 +293,6 @@
 
         .cat-idle #cat-tail { animation: tail-wag 4s infinite ease-in-out; }
         .cat-idle #cat-eyes { animation: blink 5s infinite; }
-        
         .cat-walking #cat-leg-fl, .cat-running #cat-leg-fl { animation: walk-cycle 0.5s infinite alternate; }
         .cat-walking #cat-leg-fr, .cat-running #cat-leg-fr { animation: walk-cycle 0.5s infinite alternate-reverse; }
         .cat-walking #cat-leg-bl, .cat-running #cat-leg-bl { animation: walk-cycle 0.5s infinite alternate-reverse; }
@@ -534,65 +303,52 @@
         .cat-crouching #cat-body-group { transform: scaleY(0.6) translateY(20px); }
         .cat-crouching #cat-head { transform: translateY(10px) rotate(10deg); }
         .cat-crouching #cat-tail { transform: rotate(-40deg); }
-
         .cat-jumping #cat-body-group { transform: scaleY(1.2) translateY(-5px); }
         .cat-jumping #cat-legs { transform: translateY(5px); }
         .cat-jumping #cat-tail { transform: rotate(20deg); }
-
         .cat-falling #cat-body-group { transform: scaleY(0.9) translateY(0); }
         .cat-falling #cat-legs { transform: translateY(-5px) rotate(-10deg); }
         .cat-falling #cat-tail { transform: rotate(-60deg); }
-
         .cat-landing #cat-body-group { transform: scaleY(0.5) scaleX(1.1) translateY(25px); transition: transform 0.1s; }
-
+        
         .cat-sitting #cat-body-group { transform: translateY(15px); }
         .cat-sitting #cat-head { transform: translateY(5px); }
         .cat-sitting #cat-legs { transform: translateY(10px); }
         .cat-sitting #cat-tail { transform: rotate(80deg); }
-
+        
         .cat-sleeping #cat-body-group { transform: scaleY(0.5) translateY(25px); }
         .cat-sleeping #cat-head { transform: translateY(20px) rotate(90deg); }
         .cat-sleeping #cat-eyes { transform: scaleY(0.1); }
         .cat-sleeping #cat-legs { transform: translateY(15px) rotate(90deg); opacity: 0; }
         .cat-sleeping #cat-tail { transform: rotate(90deg); }
 
+        /* Big Cute Portfolio Mode */
+        .cat-big-cute { transform: scale(2) !important; transition: transform 0.5s cubic-bezier(0.34, 1.56, 0.64, 1); }
+        .cat-big-cute #cat-eyes circle[r="4.5"] { r: 9; }
+        .cat-big-cute #cat-eyes circle[r="2"] { r: 7; }
+        .eye-shine { opacity: 0; transition: opacity 0.3s; }
+        .cat-big-cute .eye-shine { opacity: 1; }
+
         @keyframes tail-wag { 0%, 100% { transform: rotate(0deg); } 50% { transform: rotate(15deg); } }
         @keyframes blink { 0%, 96%, 100% { transform: scaleY(1); } 98% { transform: scaleY(0.1); } }
         @keyframes walk-cycle { 0% { transform: rotate(-30deg); } 100% { transform: rotate(30deg); } }
 
-        #waypoint {
-            position: absolute; width: 24px; height: 24px;
-            border: 3px solid var(--primary-color); border-radius: 50%;
-            transform: translate(-50%, -50%) scale(0);
-            pointer-events: none; opacity: 0; z-index: 40;
-        }
+        #waypoint { position: absolute; width: 24px; height: 24px; border: 3px solid var(--primary-color); border-radius: 50%; transform: translate(-50%, -50%) scale(0); pointer-events: none; opacity: 0; z-index: 40; }
         .waypoint-anim { animation: ping 0.5s ease-out forwards; }
         @keyframes ping { 0% { transform: translate(-50%, -50%) scale(0); opacity: 1; } 100% { transform: translate(-50%, -50%) scale(2); opacity: 0; } }
-
-        #mobile-hint {
-            display: none; position: fixed; bottom: 20px; left: 50%; transform: translateX(-50%);
-            background: var(--surface-color); padding: 12px 24px; border-radius: 30px;
-            font-size: 0.9rem; font-weight: 600; z-index: 1000;
-            box-shadow: 0 5px 15px var(--shadow-color); pointer-events: none;
-        }
-        @media (max-width: 768px) { #mobile-hint { display: block; } }
+        #mobile-hint { display: none; position: fixed; bottom: 20px; left: 50%; transform: translateX(-50%); background: var(--surface-color); padding: 12px 24px; border-radius: 30px; font-size: 0.9rem; font-weight: 600; z-index: 1000; box-shadow: 0 5px 15px var(--shadow-color); pointer-events: none; }
     </style>
 </head>
 <body>
     <div id="intro-screen">
         <div class="intro-content">
-            
             <div class="intro-cat-wrapper" data-scary-level="0">
-                <div class="cat">
+                <div class="cat-face-container">
                     <div class="ear ear--left"></div>
                     <div class="ear ear--right"></div>
                     <div class="face">
-                        <div class="eye eye--left">
-                            <div class="eye-pupil"></div>
-                        </div>
-                        <div class="eye eye--right">
-                            <div class="eye-pupil"></div>
-                        </div>
+                        <div class="eye eye--left"><div class="eye-pupil"></div></div>
+                        <div class="eye eye--right"><div class="eye-pupil"></div></div>
                         <div class="muzzle"></div>
                     </div>
                 </div>
@@ -605,16 +361,14 @@
                 <button id="btn-no" class="btn">NO</button>
             </div>
             
-            <div id="intro-message"></div>
-        </div>
-
-        <div id="block-transition"></div>
-
-        <div id="intro-animals">
-            <div id="intro-dog" class="intro-animal" style="animation-delay: 0s;">🐕</div>
-            <div id="intro-cat-emoji" class="intro-animal" style="animation-delay: 0.1s;">🐈‍⬛</div>
+            <div id="intro-message-wrapper">
+                <div id="intro-message"></div>
+            </div>
         </div>
     </div>
+
+    <!-- The falling paw transition container -->
+    <div id="paw-container"></div>
 
     <div id="portfolio-main">
         <div class="cute-bg"></div>
@@ -667,7 +421,7 @@
             <div class="grid-3">
                 <div class="cat-platform">
                     <h3 style="margin-bottom: 1.5rem;">Microcontrollers & IoT</h3>
-                    <div><span class="tag">ESP32</span> <span class="tag">STM32</span> <span class="tag">ARM Cortex-M</span> <span class="tag">FreeRTOS</span> <span class="tag">Zephyr</span> <span class="tag">MQTT</span></div>
+                    <div><span class="tag">ESP32</span> <span class="tag">STM32</span> <span class="tag">ARM Cortex-M</span> <span class="tag">FreeRTOS</span> <span class="tag">MQTT</span></div>
                 </div>
                 <div class="cat-platform">
                     <h3 style="margin-bottom: 1.5rem;">Computer Vision & AI</h3>
@@ -675,7 +429,7 @@
                 </div>
                 <div class="cat-platform">
                     <h3 style="margin-bottom: 1.5rem;">Tools & Protocols</h3>
-                    <div><span class="tag">I2C/SPI</span> <span class="tag">CAN bus</span> <span class="tag">Altium</span> <span class="tag">Git</span> <span class="tag">Docker</span> <span class="tag">Linux</span></div>
+                    <div><span class="tag">I2C/SPI/UART</span> <span class="tag">CAN bus</span> <span class="tag">Altium</span> <span class="tag">Git</span> <span class="tag">Docker</span></div>
                 </div>
             </div>
         </section>
@@ -736,13 +490,14 @@
                         <g id="cat-eyes">
                             <circle cx="10" cy="38" r="4.5" fill="var(--cat-eye)" style="transition: r 0.3s;" />
                             <circle cx="28" cy="38" r="4.5" fill="var(--cat-eye)" style="transition: r 0.3s;" />
-                            <circle cx="9" cy="38" r="2" fill="var(--cat-body)" style="transition: r 0.3s;" />
-                            <circle cx="27" cy="38" r="2" fill="var(--cat-body)" style="transition: r 0.3s;" />
-                            <!-- Cute Shines -->
-                            <circle class="eye-shine" cx="7" cy="36" r="2.5" fill="white" />
-                            <circle class="eye-shine" cx="25" cy="36" r="2.5" fill="white" />
-                            <circle class="eye-shine" cx="11" cy="40" r="1" fill="white" />
-                            <circle class="eye-shine" cx="29" cy="40" r="1" fill="white" />
+                            <g id="cat-pupils" style="will-change: transform;">
+                                <circle cx="9" cy="38" r="2" fill="var(--cat-body)" style="transition: r 0.3s;" />
+                                <circle cx="27" cy="38" r="2" fill="var(--cat-body)" style="transition: r 0.3s;" />
+                                <circle class="eye-shine" cx="7" cy="36" r="2.5" fill="white" />
+                                <circle class="eye-shine" cx="25" cy="36" r="2.5" fill="white" />
+                                <circle class="eye-shine" cx="11" cy="40" r="1" fill="white" />
+                                <circle class="eye-shine" cx="29" cy="40" r="1" fill="white" />
+                            </g>
                         </g>
                         <circle cx="19" cy="45" r="2" fill="var(--cat-eye)" />
                         <path d="M 15 48 Q 19 51 19 48 Q 19 51 23 48" fill="none" stroke="var(--cat-eye)" stroke-width="1.5" />
@@ -754,33 +509,99 @@
 
     <script>
         const CAT_CONFIG = {
-            walkSpeed: 150, runSpeed: 400, gravity: 1200, 
-            jumpVelocityY: -600, jumpCrouchTime: 300, sprintDistance: 800,
+            walkSpeed: 150, runSpeed: 400,
+            gravity: 1200, jumpVelocityY: -600, 
+            jumpCrouchTime: 300, sprintDistance: 800,
             width: 60, height: 50
         };
 
-        const GameState = { introActive: true, noClicks: 0, platforms: [], lastTime: 0 };
+        const GameState = {
+            introActive: true,
+            noClicks: 0,
+            platforms: [],
+            lastTime: 0,
+            activeSection: 'hero',
+            mouseX: 0,
+            mouseY: 0
+        };
 
         const IntroController = {
+            playGiantPawTransition(isHappy) {
+                const pawContainer = document.getElementById('paw-container');
+                pawContainer.style.display = 'block';
+                pawContainer.innerHTML = '';
+                
+                // Create the single, centered Giant Paw using a CSS Filter for Lag-Free Drop Shadow
+                const giantPaw = document.createElement('div');
+                giantPaw.className = 'giant-paw';
+                giantPaw.innerHTML = `
+                    <svg viewBox="0 0 200 200" width="100%" height="100%" style="filter: drop-shadow(0 10px 8px rgba(0,0,0,0.15));">
+                        <!-- Fluffy White/Gray Base -->
+                        <path d="M 30 110 C 15 110, 15 160, 45 180 C 75 200, 125 200, 155 180 C 185 160, 185 110, 170 110 C 190 75, 155 30, 100 30 C 45 30, 10 75, 30 110 Z" fill="#ffffff" />
+                        <!-- Main Pink Pad -->
+                        <path d="M 60 135 C 50 110, 75 95, 100 105 C 125 95, 150 110, 140 135 C 135 155, 115 165, 100 160 C 85 165, 65 155, 60 135 Z" fill="#ff8fa3"/>
+                        <!-- Toe Beans -->
+                        <ellipse cx="55" cy="85" rx="14" ry="20" fill="#ff8fa3" transform="rotate(-25 55 85)"/>
+                        <ellipse cx="85" cy="55" rx="15" ry="22" fill="#ff8fa3" transform="rotate(-10 85 55)"/>
+                        <ellipse cx="115" cy="55" rx="15" ry="22" fill="#ff8fa3" transform="rotate(10 115 55)"/>
+                        <ellipse cx="145" cy="85" rx="14" ry="20" fill="#ff8fa3" transform="rotate(25 145 85)"/>
+                    </svg>
+                `;
+                pawContainer.appendChild(giantPaw);
+                
+                // Add subtle tiny particles around the center
+                for(let i = 0; i < 6; i++) {
+                    let p = document.createElement('div');
+                    p.className = 'tiny-particle';
+                    let offsetX = (Math.random() - 0.5) * 30; // Keeps them near the center
+                    let rot = (Math.random() - 0.5) * 60;
+                    p.style.left = `calc(50% + ${offsetX}vw)`;
+                    p.style.setProperty('--rot', `${rot}deg`);
+                    p.innerHTML = `<svg viewBox="0 0 24 24" width="100%" height="100%"><path fill="rgba(255, 143, 163, 0.6)" d="M12 8.5c-1.4 0-2.5 1.1-2.5 2.5s1.1 2.5 2.5 2.5 2.5-1.1 2.5-2.5-1.1-2.5-2.5-2.5zm-5 0c-1.4 0-2.5 1.1-2.5 2.5s1.1 2.5 2.5 2.5 2.5-1.1 2.5-2.5-1.1-2.5-2.5-2.5zm10 0c-1.4 0-2.5 1.1-2.5 2.5s1.1 2.5 2.5 2.5 2.5-1.1 2.5-2.5-1.1-2.5-2.5-2.5zm-8.5-5.5c-1.4 0-2.5 1.1-2.5 2.5s1.1 2.5 2.5 2.5 2.5-1.1 2.5-2.5-1.1-2.5-2.5-2.5zm7 0c-1.4 0-2.5 1.1-2.5 2.5s1.1 2.5 2.5 2.5 2.5-1.1 2.5-2.5-1.1-2.5-2.5-2.5zm-3.5 8c-3 0-5.5 2-6.5 4.5-.5 1.5.5 3 2 3h9c1.5 0 2.5-1.5 2-3-1-2.5-3.5-4.5-6.5-4.5z"/></svg>`;
+                    pawContainer.appendChild(p);
+                }
+                
+                // The paw hits scale(20) at ~3.4s. We trigger transition at 3.3s so the fade is perfectly seamless
+                setTimeout(() => {
+                    this.transitionToPortfolio(isHappy, !isHappy); 
+                }, 3300);
+            },
+
             init() {
                 const btnYes = document.getElementById('btn-yes');
                 const btnNo = document.getElementById('btn-no');
                 const msg = document.getElementById('intro-message');
                 const catFace = document.querySelector('.intro-cat-wrapper');
                 const introScreen = document.getElementById('intro-screen');
-                const animals = document.getElementById('intro-animals');
-                const dog = document.getElementById('intro-dog');
-                const catAnim = document.getElementById('intro-cat-emoji');
 
                 const noMessages = [
                     "Wait, really?",
                     "Are you sure? Look at this face.",
                     "Okay, you're testing my patience...",
-                    "Are you from the dog team or what?!",
+                    "Are you from those who like dogs or something?!",
                     "GET OUT OF MY SIGHT!"
                 ];
+                
+                let msgTimeout;
 
-                btnYes.addEventListener('click', () => { this.transitionToPortfolio(true, false); });
+                btnYes.addEventListener('click', () => { 
+                    btnYes.disabled = true;
+                    btnNo.disabled = true;
+                    
+                    // Hide buttons smoothly
+                    btnYes.style.opacity = 0; btnYes.style.pointerEvents = 'none'; btnYes.style.transform = `translateX(-75px) scale(0)`;
+                    btnNo.style.opacity = 0; btnNo.style.pointerEvents = 'none'; btnNo.style.transform = `translateX(75px) scale(0)`;
+
+                    if(msgTimeout) clearTimeout(msgTimeout);
+                    msg.style.opacity = 0;
+                    setTimeout(() => {
+                        msg.innerText = "Yay! Good choice! 🐾";
+                        msg.style.color = "var(--primary-color)";
+                        msg.style.opacity = 1; msg.style.transform = 'translateY(0)';
+                    }, 300);
+
+                    setTimeout(() => { this.playGiantPawTransition(true); }, 500); 
+                });
 
                 btnNo.addEventListener('click', () => {
                     if (GameState.noClicks >= 5) return;
@@ -790,99 +611,93 @@
                     catFace.setAttribute('data-scary-level', scaryLevel);
                     
                     if (scaryLevel === 3) introScreen.classList.add('scary-bg-3');
-                    else if (scaryLevel === 4) {
-                        introScreen.classList.remove('scary-bg-3');
-                        introScreen.classList.add('scary-bg-4');
-                    }
+                    else if (scaryLevel === 4) { introScreen.classList.remove('scary-bg-3'); introScreen.classList.add('scary-bg-4'); }
 
                     if (GameState.noClicks < 5) {
-                        msg.innerText = noMessages[GameState.noClicks - 1];
-                        msg.style.opacity = 1;
+                        if(msgTimeout) clearTimeout(msgTimeout);
+                        msg.style.opacity = 0; msg.style.transform = 'translateY(10px)';
+                        msgTimeout = setTimeout(() => {
+                            msg.innerText = noMessages[GameState.noClicks - 1];
+                            msg.style.opacity = 1; msg.style.transform = 'translateY(0)';
+                        }, 300);
                         
-                        // Scale YES up, move NO to the right so it doesn't get fully covered
-                        let yesScale = 1 + (GameState.noClicks * 0.4);
-                        let noMove = GameState.noClicks * 50;
+                        let yesScale = 1 + (GameState.noClicks * 0.25);
+                        let noMove = 75 + (GameState.noClicks * 35);
+                        let noScale = 1 - (GameState.noClicks * 0.15);
                         
-                        btnYes.style.transform = `translateX(-70px) scale(${yesScale})`;
-                        btnNo.style.transform = `translateX(${70 + noMove}px)`;
+                        btnYes.style.transform = `translateX(-75px) scale(${yesScale})`;
+                        btnNo.style.transform = `translateX(${noMove}px) scale(${noScale})`;
                         
                     } else if (GameState.noClicks === 5) {
-                        msg.innerText = noMessages[4];
-                        btnNo.style.opacity = 0;
-                        btnNo.style.pointerEvents = 'none';
-                        btnYes.style.transform = `translateX(-70px) scale(3.5)`;
+                        if(msgTimeout) clearTimeout(msgTimeout);
+                        msg.style.opacity = 0;
+                        setTimeout(() => { msg.innerText = noMessages[4]; msg.style.opacity = 1; }, 300);
+
+                        btnNo.style.opacity = 0; btnNo.style.pointerEvents = 'none'; btnNo.style.transform = `translateX(200px) scale(0)`;
+                        btnYes.style.opacity = 0; btnYes.style.pointerEvents = 'none'; btnYes.style.transform = `translateX(-75px) scale(0)`;
                         btnYes.disabled = true;
-                        
-                        const blockContainer = document.getElementById('block-transition');
-                        for (let i = 0; i < 10; i++) {
-                            let col = document.createElement('div');
-                            col.className = 'block-col';
-                            blockContainer.appendChild(col);
-                            setTimeout(() => { col.classList.add('drop'); }, i * 40);
-                        }
 
-                        setTimeout(() => {
-                            animals.style.display = 'block';
-                            dog.style.animation = 'run-chase-container 2s linear forwards, bounce-sprint 0.3s infinite alternate';
-                            catAnim.style.animation = 'run-chase-container 1.5s linear forwards 0.2s, bounce-sprint 0.2s infinite alternate';
-                            
-                            setTimeout(() => {
-                                const cols = document.querySelectorAll('.block-col');
-                                cols.forEach((col, i) => {
-                                    setTimeout(() => {
-                                        col.classList.remove('drop');
-                                        col.classList.add('lift');
-                                    }, i * 40);
-                                });
-                                this.transitionToPortfolio(false, true); // BIG CUTE MODE!
-                            }, 2500);
-
-                        }, 800);
+                        setTimeout(() => { this.playGiantPawTransition(false); }, 800);
                     }
                 });
             },
 
-            transitionToPortfolio(happy, isBigCute) {
+            transitionToPortfolio(happy, isBigCute = false) {
                 if(!GameState.introActive) return;
                 GameState.introActive = false;
                 
                 const introScreen = document.getElementById('intro-screen');
                 const portfolio = document.getElementById('portfolio-main');
+                const pawContainer = document.getElementById('paw-container');
                 
-                introScreen.style.opacity = 0;
-                introScreen.style.transform = 'scale(1.1)';
+                // INSTANTLY hide the intro screen behind the giant paw to prevent the ghost-face!
+                introScreen.style.display = 'none';
                 
+                // Show portfolio container
+                portfolio.style.display = 'flex';
+                void portfolio.offsetWidth; 
+                portfolio.style.opacity = 1;
+                
+                // Add a beautiful cascading fade-up to all the elements on the homepage
+                document.querySelectorAll('#portfolio-main > header, #portfolio-main > section').forEach((el, index) => {
+                    el.style.opacity = '0';
+                    el.style.transform = 'translateY(40px)';
+                    // Stagger the animations slightly based on their index
+                    el.style.transition = `opacity 0.8s ease ${index * 0.15}s, transform 0.8s cubic-bezier(0.25, 1, 0.5, 1) ${index * 0.15}s`;
+                    
+                    // Trigger the animation on the next frame
+                    requestAnimationFrame(() => {
+                        el.style.opacity = '1';
+                        el.style.transform = 'translateY(0)';
+                    });
+                });
+
+                // Trigger smooth fade out of the paw revealing the animating portfolio!
+                if (pawContainer) pawContainer.style.opacity = 0;
+                
+                // Clean up the paw completely after it finishes fading out
                 setTimeout(() => {
-                    introScreen.style.display = 'none';
-                    portfolio.style.display = 'flex';
-                    void portfolio.offsetWidth; 
-                    portfolio.style.opacity = 1;
-                    
-                    PlatformManager.scan();
-                    const heroTop = GameState.platforms.find(p => p.el && p.el.classList.contains('hero-platform'));
-                    
-                    if(heroTop) {
-                        Cat.x = heroTop.x + heroTop.width / 2;
-                        Cat.y = happy ? -100 : heroTop.y - CAT_CONFIG.height; 
-                    } else {
-                        Cat.x = window.innerWidth / 2;
-                        Cat.y = -100;
-                    }
-                    
-                    if(happy) {
-                        Cat.setState('FALL');
-                    } else {
-                        Cat.setState('SIT');
-                        if (isBigCute) {
-                            Cat.el.classList.add('cat-big-cute');
-                            Cat.isBigCute = true;
-                        }
-                    }
-                    
-                    requestAnimationFrame(gameLoop);
-                    ScrollController.init();
-                    InputHandler.init();
-                }, 1000);
+                    if (pawContainer) pawContainer.style.display = 'none'; 
+                }, 1000); 
+                
+                PlatformManager.scan();
+                const heroTop = GameState.platforms.find(p => p.el && p.el.classList.contains('hero-platform'));
+                
+                if(heroTop) {
+                    Cat.x = heroTop.x + heroTop.width / 2;
+                    Cat.y = happy ? -100 : heroTop.y - CAT_CONFIG.height; 
+                } else {
+                    Cat.x = window.innerWidth / 2; Cat.y = -100;
+                }
+                
+                if(happy) { Cat.setState('FALL'); }
+                else {
+                    Cat.setState('SIT');
+                    if (isBigCute) { Cat.el.classList.add('cat-big-cute'); Cat.isBigCute = true; }
+                }
+                
+                requestAnimationFrame(gameLoop);
+                ScrollController.init();
             }
         };
 
@@ -891,18 +706,13 @@
                 const elements = document.querySelectorAll('.cat-platform');
                 GameState.platforms = Array.from(elements).map(el => {
                     const rect = el.getBoundingClientRect();
-                    return {
-                        x: rect.left + window.scrollX, y: rect.top + window.scrollY,
-                        width: rect.width, height: rect.height, el: el
-                    };
+                    return { x: rect.left + window.scrollX, y: rect.top + window.scrollY, width: rect.width, height: rect.height, el: el };
                 });
                 GameState.platforms.push({ x: -1000, y: document.body.scrollHeight - 10, width: 5000, height: 100, isGround: true });
             },
             getPlatformAt(x, y) {
                 for(let p of GameState.platforms) {
-                    if(x >= p.x && x <= p.x + p.width) {
-                        if(Math.abs(y - p.y) < 10) return p;
-                    }
+                    if(x >= p.x && x <= p.x + p.width) { if(Math.abs(y - p.y) < 10) return p; }
                 }
                 return null;
             }
@@ -931,10 +741,8 @@
                             if (this.x >= p.x && this.x <= p.x + p.width) {
                                 if (prevY + CAT_CONFIG.height <= p.y + 15 && this.y + CAT_CONFIG.height >= p.y - 10) {
                                     this.y = p.y - CAT_CONFIG.height;
-                                    this.vy = 0; this.vx = 0;
-                                    this.currentPlatform = p;
-                                    this.setState('LAND');
-                                    break;
+                                    this.vy = 0; this.vx = 0; this.currentPlatform = p;
+                                    this.setState('LAND'); break;
                                 }
                             }
                         }
@@ -946,23 +754,19 @@
                         this.direction = dist > 0 ? 1 : -1;
                         
                         if (Math.abs(dist) < speed * dtSeconds) {
-                            this.x = this.targetX;
-                            this.targetX = null;
+                            this.x = this.targetX; this.targetX = null;
                             this.setState(this.isBigCute ? 'SIT' : 'IDLE');
                         } else {
                             this.x += this.direction * speed * dtSeconds;
                             if (this.currentPlatform && !this.currentPlatform.isGround) {
                                 let p = this.currentPlatform;
                                 if (this.x < p.x || this.x > p.x + p.width) {
-                                    this.currentPlatform = null;
-                                    this.setState('FALL');
+                                    this.currentPlatform = null; this.setState('FALL');
                                     this.vx = this.direction * speed * 0.5; 
                                 }
                             }
                         }
-                    } else {
-                        this.setState(this.isBigCute ? 'SIT' : 'IDLE');
-                    }
+                    } else { this.setState(this.isBigCute ? 'SIT' : 'IDLE'); }
                 } else if (this.state === 'IDLE') {
                     this.idleTimer += dt;
                     if (this.idleTimer > 3000 && Math.random() < 0.01) {
@@ -989,6 +793,27 @@
             draw() {
                 let sx = this.direction === 1 ? -1 : 1;
                 this.el.style.transform = `translate(${this.x - CAT_CONFIG.width/2}px, ${this.y}px) scaleX(${sx})`;
+                
+                // Eye Tracking Logic for SVG Cat
+                const pupils = document.getElementById('cat-pupils');
+                if (pupils) {
+                    if (this.state === 'IDLE' || this.state === 'SIT') {
+                        let dx = GameState.mouseX - this.x;
+                        if (sx === -1) dx = -dx; 
+                        let dy = GameState.mouseY - (this.y + 25); 
+                        
+                        let angle = Math.atan2(dy, dx);
+                        let dist = Math.min(3.5, Math.sqrt(dx*dx + dy*dy) / 40);
+                        if (this.isBigCute) dist *= 1.5; 
+                        
+                        let px = Math.cos(angle) * dist; let py = Math.sin(angle) * dist;
+                        pupils.setAttribute('transform', `translate(${px}, ${py})`);
+                    } else if (this.state === 'SLEEP') {
+                        pupils.setAttribute('transform', `translate(0, 0)`);
+                    } else {
+                        pupils.setAttribute('transform', `translate(0, 0)`);
+                    }
+                }
             },
             
             setState(newState) {
@@ -1003,11 +828,7 @@
             },
             
             setTarget(x, y) {
-                // If in big cute mode, shrink back to normal size on first click!
-                if(this.isBigCute) {
-                    this.el.classList.remove('cat-big-cute');
-                    this.isBigCute = false;
-                }
+                if(this.isBigCute) { this.el.classList.remove('cat-big-cute'); this.isBigCute = false; }
 
                 this.targetX = x; this.targetY = y;
                 const wp = document.getElementById('waypoint');
@@ -1040,20 +861,16 @@
                 let pTarget = null;
                 for(let p of GameState.platforms) {
                     if (this.targetX >= p.x && this.targetX <= p.x + p.width) {
-                        if (p.y >= this.targetY - 50) {
-                            if (!pTarget || p.y < pTarget.y) pTarget = p;
-                        }
+                        if (p.y >= this.targetY - 50) { if (!pTarget || p.y < pTarget.y) pTarget = p; }
                     }
                 }
                 
                 let destY = pTarget ? pTarget.y : this.targetY;
                 let dy = destY - (this.y + CAT_CONFIG.height);
-                let t = Math.max(0.5, Math.abs(dx) / 600); 
-                if (t > 1.5) t = 1.5; 
+                let t = Math.max(0.5, Math.abs(dx) / 600); if (t > 1.5) t = 1.5; 
                 
                 this.vx = dx / t;
                 this.vy = (dy - 0.5 * CAT_CONFIG.gravity * t * t) / t;
-                
                 if (this.vy < CAT_CONFIG.jumpVelocityY * 1.5) this.vy = CAT_CONFIG.jumpVelocityY * 1.5;
                 
                 this.setState('JUMP');
@@ -1063,6 +880,19 @@
 
         const InputHandler = {
             init() {
+                // Tracking Mouse movements globally for both Cats immediately on load
+                document.addEventListener('mousemove', (e) => {
+                    GameState.mouseX = e.pageX;
+                    GameState.mouseY = e.pageY;
+                    
+                    if (GameState.introActive) {
+                        const x = (e.clientX / window.innerWidth - 0.5) * 24;
+                        const y = (e.clientY / window.innerHeight - 0.5) * 24;
+                        document.documentElement.style.setProperty('--pupil-x', `${x}px`);
+                        document.documentElement.style.setProperty('--pupil-y', `${y}px`);
+                    }
+                });
+
                 document.addEventListener('contextmenu', (e) => {
                     if (GameState.introActive) return;
                     e.preventDefault();
@@ -1087,9 +917,7 @@
             init() {
                 const observerOptions = { root: null, rootMargin: '-20% 0px -40% 0px', threshold: 0 };
                 const observer = new IntersectionObserver((entries) => {
-                    entries.forEach(entry => {
-                        if (entry.isIntersecting) this.moveCatToSection(entry.target);
-                    });
+                    entries.forEach(entry => { if (entry.isIntersecting) this.moveCatToSection(entry.target); });
                 }, observerOptions);
                 document.querySelectorAll('section').forEach(sec => observer.observe(sec));
             },
@@ -1101,10 +929,7 @@
                     const rect = targetEl.getBoundingClientRect();
                     const tx = rect.left + window.scrollX + rect.width / 2;
                     const ty = rect.top + window.scrollY;
-                    
-                    if (Math.abs(Cat.y - ty) > 200 || Math.abs(Cat.x - tx) > 300) {
-                        Cat.setTarget(tx, ty);
-                    }
+                    if (Math.abs(Cat.y - ty) > 200 || Math.abs(Cat.x - tx) > 300) { Cat.setTarget(tx, ty); }
                 }
             }
         };
@@ -1113,13 +938,15 @@
             if (!GameState.lastTime) GameState.lastTime = timestamp;
             let dt = timestamp - GameState.lastTime;
             GameState.lastTime = timestamp;
-            
             if (dt > 100) dt = 16;
             Cat.update(dt);
             requestAnimationFrame(gameLoop);
         }
 
-        window.addEventListener('DOMContentLoaded', () => { IntroController.init(); });
+        window.addEventListener('DOMContentLoaded', () => { 
+            IntroController.init(); 
+            InputHandler.init(); // Start tracking mouse right away!
+        });
     </script>
 </body>
 </html>
