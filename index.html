@@ -262,8 +262,6 @@
         }
         .cat-platform:hover { transform: translateY(-5px); box-shadow: 0 15px 40px rgba(255, 143, 163, 0.25); }
 
-        .tag { display: inline-block; padding: 0.4rem 1rem; background: var(--surface-color-light); color: var(--accent-color); border-radius: 50px; font-size: 0.85rem; margin-right: 0.5rem; margin-bottom: 0.5rem; font-weight: 600; border: 1px solid rgba(161, 140, 209, 0.2); }
-
         #hero { min-height: 100vh; justify-content: center; text-align: center; padding-top: 0; }
         .hero-layout {
             display: flex; align-items: center; justify-content: space-between; text-align: left;
@@ -373,55 +371,64 @@
             100% { transform: translate(-50%, -50%) scale(0) rotate(calc(var(--current-rot, 0deg) - 45deg)); opacity: 0; }
         }
 
-        /* YARN AND SKILL STYLING */
+        /* --- SKILL TREE STYLING --- */
         .hanging-yarn-strand {
             stroke: var(--secondary-color); stroke-width: 4; stroke-linecap: round; fill: none;
-            opacity: 1; transform-origin: top center;
+            opacity: 1;
         }
 
-        .skill-panel-node {
-            position: absolute;
-            background: var(--surface-color);
-            border: 2px solid var(--secondary-color);
-            border-radius: var(--border-radius);
-            padding: 1.5rem;
-            box-shadow: 0 10px 25px var(--shadow-color);
-            color: var(--text-main);
-            opacity: 0;
-            transform: scale(0.9) translateY(-10px);
-            transition: opacity 0.5s ease, transform 0.5s cubic-bezier(0.34, 1.56, 0.64, 1);
-            z-index: 30;
-            display: flex;
-            flex-direction: column;
-            pointer-events: none;
+        .sub-branch {
+            fill: none;
+            stroke: var(--secondary-color);
+            stroke-width: 3;
+            stroke-linecap: round;
         }
-        
-        .skill-panel-node.visible {
-            opacity: 1;
-            transform: scale(1) translateY(0);
+
+        .tree-node {
+            position: absolute;
+            transform: translate(-50%, -50%) scale(0);
+            opacity: 0;
+            transition: all 0.5s cubic-bezier(0.34, 1.56, 0.64, 1);
+            z-index: 35;
+            white-space: nowrap;
             pointer-events: auto;
         }
-
-        .skill-panel-node h4 {
-            color: var(--accent-color);
-            font-size: 1.2rem;
-            margin-bottom: 0.5rem;
-            font-weight: 800;
-        }
-
-        .skill-panel-node p {
-            font-size: 0.95rem;
-            color: var(--text-muted);
-            line-height: 1.5;
+        .tree-node.visible {
+            transform: translate(-50%, -50%) scale(1);
+            opacity: 1;
         }
         
-        #skill-labels-container {
-            position: absolute;
-            top: 0; left: 0; width: 100%; height: 100%;
-            pointer-events: none; z-index: 35; 
+        .node-cat {
+            background: var(--surface-color);
+            color: var(--text-main);
+            padding: 0.6rem 1.2rem;
+            border-radius: 30px;
+            font-weight: 800;
+            font-size: 1.1rem;
+            border: 2px solid var(--secondary-color);
+            box-shadow: 0 5px 15px var(--shadow-color);
+        }
+        
+        .node-skill {
+            background: #fff;
+            color: var(--primary-color);
+            border: 2px solid rgba(255, 143, 163, 0.4);
+            padding: 0.4rem 0.8rem;
+            border-radius: 20px;
+            font-weight: 700;
+            font-size: 0.9rem;
+            box-shadow: 0 3px 10px rgba(0,0,0,0.05);
+            transition: transform 0.2s ease, border-color 0.2s ease, box-shadow 0.2s ease;
+        }
+        
+        .node-skill:hover {
+            transform: translate(-50%, -50%) scale(1.05);
+            border-color: var(--primary-color);
+            box-shadow: 0 5px 15px rgba(255, 143, 163, 0.3);
+            cursor: default;
         }
 
-        .timeline-container { position: relative; width: 100%; max-width: 900px; margin: 0 auto; padding-top: 50px; padding-bottom: 250px; }
+        .timeline-container { position: relative; width: 100%; max-width: 900px; margin: 0 auto; padding-top: 50px; }
         .timeline-item { width: 45%; margin-bottom: 3rem; opacity: 0; transition: all 0.6s cubic-bezier(0.34, 1.56, 0.64, 1); z-index: 10; position: relative; }
         .timeline-item.left { margin-right: auto; transform: translateX(-50px); text-align: right; }
         .timeline-item.right { margin-left: auto; transform: translateX(50px); text-align: left; }
@@ -618,10 +625,12 @@
                 <path id="timeline-yarn-glow" fill="none" stroke="rgba(255, 143, 163, 0.4)" stroke-width="12" stroke-linecap="round" />
                 <path id="timeline-yarn-solid" fill="none" stroke="#ffb3c6" stroke-width="6" stroke-linecap="round" />
                 <path id="timeline-yarn-dash" fill="none" stroke="var(--bg-color)" stroke-width="3" stroke-dasharray="10 10" stroke-linecap="round" />
+                
                 <g id="hanging-yarn-group"></g>
+                <g id="skill-yarn-branches"></g> <!-- Sub-branches will draw here -->
             </svg>
             
-            <div id="skill-labels-container"></div>
+            <div id="skill-nodes-container" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; pointer-events: none; z-index: 35;"></div>
             
             <div id="dynamic-ball" style="position: absolute; width: 60px; height: 60px; transform: translate(-50%, -50%); z-index: 10; display: none; transition: opacity 0.3s;">
                 <svg viewBox="0 0 100 100" width="100%" height="100%">
@@ -643,7 +652,6 @@
                         <ellipse cx="52" cy="100" rx="6" ry="8" fill="var(--primary-color)" transform="rotate(15 52 100)"/>
                         <ellipse cx="65" cy="85" rx="5" ry="7" fill="var(--primary-color)" transform="rotate(35 65 85)"/>
                         
-                        <!-- Motion blur trails -->
                         <g id="paw-swipe-trails" style="opacity: 0;">
                             <path d="M -10 90 Q -30 60 -50 20" fill="none" stroke="rgba(0,0,0,0.2)" stroke-width="4" stroke-linecap="round"/>
                             <path d="M 0 100 Q -20 70 -40 30" fill="none" stroke="rgba(0,0,0,0.15)" stroke-width="3" stroke-linecap="round"/>
@@ -802,8 +810,7 @@
             </div>
         </section>
 
-        <!-- Spacer pushes projects down to make room for skill branch panels -->
-        <div id="skills-spacer" style="height: 0px; width: 100%; transition: height 1.2s cubic-bezier(0.25, 1, 0.5, 1);"></div>
+        <div id="skills-spacer" style="height: 0px; width: 100%; transition: height 1s cubic-bezier(0.25, 1, 0.5, 1);"></div>
 
         <section id="projects">
             <h2 class="section-title">Recent Deployments</h2>
@@ -1195,100 +1202,170 @@
 
         const SkillTreeAnimation = {
             isStarted: false,
-            skillData: [
-                { title: "Programming Languages", content: "Python (Libraries: NumPy, Pandas, Matplotlib, Paho, Flask, CV2, sklearn, tensorflow), C++, Embedded C, HTML, CSS, Java." },
-                { title: "Computer Vision & Image Processing", content: "Image segmentation, morphological operations, feature extraction, object detection, and geometric measurement from 2D images." },
-                { title: "PCB Design & Prototyping", content: "Experienced in 2-layer PCB design and real-life PCB prototyping, with practical knowledge of circuit simulation and design tools including Multisim, Proteus, KiCad." },
-                { title: "Communication Protocols", content: "I²C, SPI, UART/USART, RS-485 (Modbus RTU), Bluetooth Low Energy (BLE), Serial Communication, HTTP/REST" },
-                { title: "Embedded Software & Microcontrollers", content: "Skilled in using STM32CubeIDE, STM32CubeProgrammer, STM32CubeStudio, STM32CubeMonitor Arduino IDE and Keil for embedded system development. Familiar with STM32F4, STM32N6, STM32L4, STM32WB series, Raspberry Pi, ESP32/ESP8266, 8051, Arduino microcontrollers." }
+            // Exactly the 13 skills explicitly asked for, grouped logically
+            treeData: [
+                { cat: "Software", skills: ["Python", "C / C++", "JavaScript", "HTML / CSS", "Git / GitHub"] },
+                { cat: "Embedded", skills: ["Embedded Systems", "IoT", "Arduino / ESP32", "Raspberry Pi"] },
+                { cat: "Hardware", skills: ["PCB Design"] },
+                { cat: "AI & Data", skills: ["Computer Vision", "Machine Learning", "Data Science"] }
             ],
 
-            start(startX, startY) {
+            start(rootX, rootY) {
                 if (this.isStarted) return;
                 this.isStarted = true;
 
-                const strands = Array.from(document.querySelectorAll('.hanging-yarn-strand'));
-                const container = document.getElementById('skill-labels-container');
-                container.innerHTML = ''; 
-
                 const isMobile = window.innerWidth <= 768;
-                const panelWidth = Math.min(650, window.innerWidth * 0.85);
-                const startXCentered = (window.innerWidth / 2) - (panelWidth / 2);
-
+                
+                // Expand space dynamically pushing the rest of the site down smoothly
                 const spacer = document.getElementById('skills-spacer');
-                if (spacer) spacer.style.height = isMobile ? '1200px' : '850px';
+                if (spacer) spacer.style.height = isMobile ? '1600px' : '900px';
 
-                // We stop the CSS on these precise strings immediately and handle them via JS
-                strands.forEach((path, index) => {
-                    if (index >= this.skillData.length) {
-                        path.style.display = 'none'; return; 
+                const nodesContainer = document.getElementById('skill-nodes-container');
+                nodesContainer.innerHTML = ''; 
+                const branchesGroup = document.getElementById('skill-yarn-branches');
+                branchesGroup.innerHTML = '';
+
+                // We have exactly 4 main categories. Make sure we have 4 hanging strands.
+                const strands = Array.from(document.querySelectorAll('.hanging-yarn-strand'));
+
+                this.treeData.forEach((catData, i) => {
+                    const strand = strands[i];
+                    if (!strand) return;
+
+                    let catX, catY;
+                    if (isMobile) {
+                        // Trunk grouping down the center, with slight horizontal spread
+                        catX = window.innerWidth / 2 + (i - 1.5) * 15; 
+                        catY = rootY + 180 + i * 320; // Spread vertically further
+                    } else {
+                        // Spread out horizontally across desktop
+                        const availableWidth = Math.min(window.innerWidth * 0.95, 1100);
+                        const spacing = availableWidth / 4;
+                        catX = (window.innerWidth / 2) - (availableWidth / 2) + (spacing / 2) + i * spacing;
+                        catY = rootY + 180;
                     }
-                    
-                    // We must freeze it in its exact final location and kill CSS 
-                    const finalD = path.getAttribute('d');
-                    path.style.transition = 'none';
-                    path.style.animation = 'none';
-                    path.style.transform = 'none';
-                    
-                    const targetX = startXCentered - 10; 
-                    const targetY = startY + 120 + (index * (isMobile ? 220 : 150));
-                    
-                    const panel = document.createElement('div');
-                    panel.className = 'skill-panel-node';
-                    panel.style.left = `${startXCentered}px`; 
-                    panel.style.top = `${targetY - 20}px`;
-                    panel.style.width = `${panelWidth}px`;
-                    panel.innerHTML = `<h4>${this.skillData[index].title}</h4><p>${this.skillData[index].content}</p>`;
-                    container.appendChild(panel);
 
-                    this.stretchPath(path, startX, startY, finalD, targetX, targetY, index, panel);
+                    // 1. Stretch hanging strand down to category node
+                    this.stretchStrand(strand, rootX, rootY, catX, catY, () => {
+                        // Show Category Node
+                        const catEl = document.createElement('div');
+                        catEl.className = 'tree-node node-cat';
+                        catEl.innerText = catData.cat;
+                        catEl.style.left = catX + 'px';
+                        catEl.style.top = catY + 'px';
+                        nodesContainer.appendChild(catEl);
+
+                        setTimeout(() => catEl.classList.add('visible'), 50);
+
+                        // 2. Draw sub-branches dynamically extending to exact 13 skills
+                        this.drawSubBranches(catData.skills, catX, catY, isMobile, nodesContainer, branchesGroup);
+                    });
                 });
             },
 
-            stretchPath(path, rootX, rootY, initialD, targetX, targetY, index, panelElement) {
-                let initEndX = rootX, initEndY = rootY + 150; 
+            stretchStrand(strand, rootX, rootY, targetX, targetY, onComplete) {
+                let curEndX = rootX, curEndY = rootY + 150; 
                 
-                const coordsMatch = initialD.match(/Q\s+([-0-9.]+)\s+([-0-9.]+)\s+([-0-9.]+)\s+([-0-9.]+)/);
-                if (coordsMatch) {
-                    initEndX = parseFloat(coordsMatch[3]);
-                    initEndY = parseFloat(coordsMatch[4]);
+                // Read current drop location to seamlessly transition without flicker
+                const match = strand.getAttribute('d').match(/Q\s+[-0-9.]+\s+[-0-9.]+\s+([-0-9.]+)\s+([-0-9.]+)/);
+                if (match) {
+                    curEndX = parseFloat(match[1]);
+                    curEndY = parseFloat(match[2]);
                 }
 
                 let progress = 0;
-                const duration = 60; 
-                const delay = index * 8; 
-                let currentFrame = -delay;
+                const duration = 60; // 60 frames = approx 1 sec
+                let frame = 0;
 
-                const animate = () => {
-                    currentFrame++;
-                    if (currentFrame > 0) {
-                        progress = Math.min(1, currentFrame / duration);
-                        const easeOut = 1 - Math.pow(1 - progress, 3);
-                        
-                        const curX = initEndX + (targetX - initEndX) * easeOut;
-                        const curY = initEndY + (targetY - initEndY) * easeOut;
-                        
-                        const ctrl1X = rootX;
-                        const ctrl1Y = rootY + (curY - rootY) * 0.4;
-                        const ctrl2X = curX - 50; 
-                        const ctrl2Y = curY;
+                const anim = () => {
+                    if(!this.isStarted) return; // allows aborting if scrolling up
+                    frame++;
+                    progress = frame / duration;
+                    const ease = 1 - Math.pow(1 - progress, 3); // Cubic ease out
+                    
+                    const x = curEndX + (targetX - curEndX) * ease;
+                    const y = curEndY + (targetY - curEndY) * ease;
+                    
+                    const ctrlX = rootX;
+                    const ctrlY = rootY + (y - rootY) * 0.5;
 
-                        path.setAttribute('d', `M ${rootX} ${rootY} C ${ctrl1X} ${ctrl1Y}, ${ctrl2X} ${ctrl2Y}, ${curX} ${curY}`);
+                    strand.setAttribute('d', `M ${rootX} ${rootY} C ${ctrlX} ${ctrlY}, ${x} ${y - 50}, ${x} ${y}`);
 
-                        if (progress >= 1) {
-                            panelElement.classList.add('visible');
-                            return; 
-                        }
+                    if (frame < duration) {
+                        requestAnimationFrame(anim);
+                    } else {
+                        if (onComplete) onComplete();
                     }
-                    requestAnimationFrame(animate);
                 };
-                requestAnimationFrame(animate);
+                requestAnimationFrame(anim);
+            },
+            
+            drawSubBranches(skills, catX, catY, isMobile, nodesContainer, branchesGroup) {
+                skills.forEach((skill, j) => {
+                    let skillX, skillY;
+                    
+                    if (isMobile) {
+                        // Sub-branches go left and right out of the center trunk
+                        const side = (j % 2 === 0) ? -1 : 1;
+                        skillX = catX + side * (window.innerWidth * 0.35); 
+                        skillY = catY + 80 + Math.floor(j / 2) * 65;
+                    } else {
+                        // Vertical Zig-Zag "Vine" to prevent horizontal category overlap
+                        const side = (j % 2 === 0) ? -1 : 1;
+                        // Fan out slightly wider as it goes down to look organic
+                        const horizontalSpread = 35 + (j * 12); 
+                        skillX = catX + (side * horizontalSpread);
+                        
+                        // Push each node further down significantly
+                        const verticalDrop = 110 + (j * 75);
+                        skillY = catY + verticalDrop;
+                    }
+
+                    const path = document.createElementNS("http://www.w3.org/2000/svg", "path");
+                    path.classList.add('sub-branch');
+                    
+                    // Bezier S-curve downwards
+                    const d = `M ${catX} ${catY} C ${catX} ${(catY + skillY) / 2}, ${skillX} ${(catY + skillY) / 2}, ${skillX} ${skillY}`;
+                    path.setAttribute('d', d);
+                    branchesGroup.appendChild(path);
+
+                    // Setup stroke-dash for smooth CSS drawing animation
+                    const len = path.getTotalLength();
+                    path.style.strokeDasharray = len;
+                    path.style.strokeDashoffset = len;
+                    
+                    void path.offsetWidth; // Reflow
+                    
+                    // Stagger the drawing of the sub-branches slightly
+                    setTimeout(() => {
+                        if(!this.isStarted) return;
+                        path.style.transition = 'stroke-dashoffset 0.8s cubic-bezier(0.25, 1, 0.5, 1)';
+                        path.style.strokeDashoffset = '0';
+                        
+                        // Show skill node pill at the tip when line finishes drawing
+                        setTimeout(() => {
+                            if(!this.isStarted) return;
+                            const el = document.createElement('div');
+                            el.className = 'tree-node node-skill';
+                            el.innerText = skill;
+                            el.style.left = skillX + 'px';
+                            el.style.top = skillY + 'px';
+                            nodesContainer.appendChild(el);
+
+                            setTimeout(() => el.classList.add('visible'), 50);
+                        }, 800);
+                    }, j * 150);
+                });
             },
             
             reset() {
                 this.isStarted = false;
-                const container = document.getElementById('skill-labels-container');
-                if (container) container.innerHTML = '';
+                
+                const nodesContainer = document.getElementById('skill-nodes-container');
+                if (nodesContainer) nodesContainer.innerHTML = '';
+                
+                const branchesGroup = document.getElementById('skill-yarn-branches');
+                if (branchesGroup) branchesGroup.innerHTML = '';
                 
                 const spacer = document.getElementById('skills-spacer');
                 if (spacer) spacer.style.height = '0px';
@@ -1300,6 +1377,8 @@
             isPlaying: false,
             finalX: 0,
             timeouts: [],
+            isFalling: false,
+            fallProgress: 0,
             
             trigger(x, y, currentRot) {
                 if (this.isTriggered) return;
@@ -1330,7 +1409,9 @@
                 this.timeouts.push(setTimeout(() => {
                     dynamicBall.style.setProperty('--current-rot', `${currentRot}deg`);
                     dynamicBall.classList.add('ball-squash');
-                    this.createFallingYarn(x, y, 5); 
+                    
+                    // Create EXACTLY 4 strands (one for each main category)
+                    this.createFallingYarn(x, y, 4); 
                 }, 1350));
                 
                 this.timeouts.push(setTimeout(() => {
@@ -1338,17 +1419,18 @@
                     pawContainer.style.display = 'none';
                     if(trails) trails.style.opacity = '0';
                     
-                    setTimeout(() => { SkillTreeAnimation.start(x, y); }, 1400); 
+                    // Stop the fall loop and hand over to Tree Animation
+                    this.isFalling = false;
+                    setTimeout(() => { SkillTreeAnimation.start(x, y); }, 100); 
                 }, 2000));
             },
             
-            createFallingYarn(startX, startY, numStrands = 5) {
+            createFallingYarn(startX, startY, numStrands = 4) {
                 const group = document.getElementById('hanging-yarn-group');
                 group.innerHTML = '';
                 
-                let fallProgress = 0;
-                let isFalling = true;
-                const fallSpeed = 5;
+                this.isFalling = true;
+                this.fallProgress = 0;
 
                 const stringsData = Array.from({length: numStrands}).map((_, i) => {
                     const path = document.createElementNS("http://www.w3.org/2000/svg", "path");
@@ -1364,12 +1446,12 @@
                 });
 
                 const animateFall = () => {
-                    if (!isFalling) return;
+                    if (!this.isFalling) return;
                     
-                    fallProgress += fallSpeed;
+                    this.fallProgress += 5; // speed
                     
                     stringsData.forEach(str => {
-                        const curLen = Math.min(str.len, fallProgress);
+                        const curLen = Math.min(str.len, this.fallProgress);
                         const sway = Math.sin(Date.now() / 300 + str.swayOffset) * (curLen / 5);
                         
                         const endX = startX + str.offsetX + sway;
@@ -1378,11 +1460,7 @@
                         str.path.setAttribute('d', `M ${startX} ${startY} Q ${startX + str.offsetX/2} ${startY + curLen/2} ${endX} ${endY}`);
                     });
                     
-                    if (fallProgress > 200) {
-                        isFalling = false;
-                    } else {
-                        requestAnimationFrame(animateFall);
-                    }
+                    requestAnimationFrame(animateFall);
                 };
                 
                 requestAnimationFrame(animateFall);
@@ -1397,11 +1475,14 @@
                 this.clearTimeouts();
                 this.isTriggered = false;
                 this.isPlaying = false;
+                this.isFalling = false;
+                
                 document.getElementById('hanging-yarn-group').innerHTML = '';
                 
                 const dynamicBall = document.getElementById('dynamic-ball');
                 dynamicBall.classList.remove('ball-squash');
                 dynamicBall.style.opacity = '1'; 
+                dynamicBall.style.display = 'block'; 
                 
                 const pawContainer = document.getElementById('timeline-paw-container');
                 pawContainer.classList.remove('paw-anim-drop', 'paw-anim-swipe');
@@ -1685,17 +1766,14 @@
                     const startX = anchorRect.left + window.scrollX;
                     const startY = anchorRect.top + window.scrollY;
                     
+                    // Use timeline container specifically to lock the bottomY independent of spacer expansion
                     const timelineContainer = document.querySelector('.timeline-container');
                     if (!timelineContainer) return;
                     const timelineRect = timelineContainer.getBoundingClientRect();
                     const centerX = timelineRect.left + timelineRect.width / 2 + window.scrollX;
                     
-                    const timelineItems = document.querySelectorAll('.timeline-item');
-                    let bottomY = timelineRect.bottom + window.scrollY + 50;
-                    if (timelineItems.length > 0) {
-                        const lastItem = timelineItems[timelineItems.length - 1];
-                        bottomY = lastItem.getBoundingClientRect().bottom + window.scrollY + 80;
-                    }
+                    // Fixed Document coordinate - will not change when spacer beneath it expands
+                    let bottomY = timelineRect.bottom + window.scrollY + 50; 
                     
                     const heroCatWrapper = document.getElementById('hero-cat-wrapper');
                     let targetY;
@@ -1736,11 +1814,14 @@
                     }
                     
                     let isAtBottom = false;
+                    
+                    // Check logic based on fixed bottomY
                     if (targetY >= bottomY || TimelineEndingAnimation.isTriggered) {
                         targetY = bottomY;
                         isAtBottom = true;
                     } 
                     
+                    // Solid reset logic for when user scrolls backward up
                     if (!isAtBottom && TimelineEndingAnimation.isTriggered) {
                         TimelineEndingAnimation.reset();
                     }
