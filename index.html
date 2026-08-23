@@ -6,6 +6,16 @@
     <title>Embedded & CV Engineer Portfolio</title>
     <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@400;600;700;800&family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
     
+    <!-- EmailJS SDK -->
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
+    <script type="text/javascript">
+        (function() {
+            emailjs.init({
+              publicKey: "9LHNoHLWAgU29hTTo",
+            });
+        })();
+    </script>
+
     <style>
         :root {
             /* Cozy Midnight / Sleepy Pastel Theme */
@@ -3291,44 +3301,76 @@
                 
                 // Form Validation
                 if (!name.value.trim() || !email.value.trim() || !msg.value.trim()) {
-                    btn.classList.add('error-shake');
-                    setTimeout(() => btn.classList.remove('error-shake'), 400);
-                    
-                    // Simple inline feedback
-                    if(!name.value.trim()) name.style.borderColor = '#ff3333';
-                    if(!email.value.trim()) email.style.borderColor = '#ff3333';
-                    if(!msg.value.trim()) msg.style.borderColor = '#ff3333';
-                    
-                    setTimeout(() => {
-                        name.style.borderColor = '';
-                        email.style.borderColor = '';
-                        msg.style.borderColor = '';
-                    }, 2000);
-                    return;
-                }
+                btn.classList.add('error-shake');
+                setTimeout(() => btn.classList.remove('error-shake'), 400);
                 
-                // Start Sequence
-                btn.disabled = true;
-                btn.innerText = "Preparing message...";
-                btn.style.background = 'var(--text-muted)';
-                btn.style.boxShadow = 'none';
+                // Simple inline feedback
+                if(!name.value.trim()) name.style.borderColor = '#ff3333';
+                if(!email.value.trim()) email.style.borderColor = '#ff3333';
+                if(!msg.value.trim()) msg.style.borderColor = '#ff3333';
                 
-                document.getElementById('cms-1').classList.remove('active');
-                document.getElementById('cms-2').classList.add('active');
+                setTimeout(() => {
+                    name.style.borderColor = '';
+                    email.style.borderColor = '';
+                    msg.style.borderColor = '';
+                }, 2000);
+                return;
+            }
+            
+            // Start Sequence
+            btn.disabled = true;
+            btn.innerText = "Sending... 🐾";
+            btn.style.background = 'var(--text-muted)';
+            btn.style.boxShadow = 'none';
+            
+            const term = document.getElementById('cm-terminal-text');
+            term.innerHTML = "> Connecting to server...<br>> Transmitting data...<span style='animation: blink-light 1s infinite;'>_</span>";
+
+            try {
+                await emailjs.send(
+                    'service_7xb1red',
+                    'template_rctfg6s',
+                    {
+                        name: name.value,
+                        email: email.value,
+                        message: msg.value,
+                        time: new Date().toLocaleString()
+                    }
+                );
+            } catch (error) {
+                console.error('EmailJS error:', error);
                 
-                const term = document.getElementById('cm-terminal-text');
-                const light = document.getElementById('cm-printer-light');
-                const paper = document.getElementById('cm-paper');
-                const paperContent = document.getElementById('cm-paper-content');
-                const cat = document.getElementById('cm-post-cat');
-                const bubble = document.getElementById('cm-cat-bubble');
-                const flag = document.getElementById('cm-mailbox-flag');
+                // Reset button and show error
+                btn.disabled = false;
+                btn.innerText = 'SEND MESSAGE 🐾';
+                btn.style.background = '';
+                btn.style.boxShadow = '';
                 
-                // 1. Terminal processing
-                term.innerHTML = "> Receiving transmission...<br>> Verifying data...<br>> Initiating print job...";
-                await this.sleep(1000);
+                term.innerHTML = "> ERROR: Transmission failed.<br>> Please try again later.<span style='animation: blink-light 1s infinite;'>_</span>";
                 
-                // 2. Printer activates
+                btn.classList.add('error-shake');
+                setTimeout(() => btn.classList.remove('error-shake'), 400);
+                
+                return; // STOP animation sequence here if email fails
+            }
+
+            btn.innerText = "Preparing message...";
+            
+            document.getElementById('cms-1').classList.remove('active');
+            document.getElementById('cms-2').classList.add('active');
+            
+            const light = document.getElementById('cm-printer-light');
+            const paper = document.getElementById('cm-paper');
+            const paperContent = document.getElementById('cm-paper-content');
+            const cat = document.getElementById('cm-post-cat');
+            const bubble = document.getElementById('cm-cat-bubble');
+            const flag = document.getElementById('cm-mailbox-flag');
+            
+            // 1. Terminal processing
+            term.innerHTML = "> Receiving transmission...<br>> Verifying data...<br>> Initiating print job...";
+            await this.sleep(1000);
+            
+            // 2. Printer activates
                 term.innerHTML = "> PRINTING IN PROGRESS...<span style='animation: blink-light 1s infinite;'>_</span>";
                 light.classList.add('is-blinking');
                 
