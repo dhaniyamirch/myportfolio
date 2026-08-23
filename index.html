@@ -366,7 +366,7 @@
             top: 0; left: 0; width: 100%; height: 100%;
             border-radius: 50%;
             pointer-events: none;
-            background-image: url('data:image/svg+xml;utf8,<svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg"><path d="M 20 20 Q 50 50 80 20" fill="none" stroke="rgba(255,255,255,0.5)" stroke-width="4" stroke-linecap="round"/><path d="M 15 50 Q 50 80 85 50" fill="none" stroke="rgba(255,255,255,0.5)" stroke-width="4" stroke-linecap="round"/></svg>');
+            background-image: url('data:image/svg+xml;utf8,<svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg"><path d="M 15 30 Q 50 0 85 30" fill="none" stroke="rgba(255,255,255,0.5)" stroke-width="5" stroke-linecap="round"/><path d="M 6 50 Q 50 15 94 50" fill="none" stroke="rgba(255,255,255,0.6)" stroke-width="6" stroke-linecap="round"/><path d="M 12 70 Q 50 35 88 70" fill="none" stroke="rgba(255,255,255,0.4)" stroke-width="5" stroke-linecap="round"/><path d="M 25 15 Q 80 50 30 85" fill="none" stroke="rgba(255,255,255,0.5)" stroke-width="7" stroke-linecap="round"/><path d="M 40 8 Q 95 45 45 92" fill="none" stroke="rgba(255,255,255,0.4)" stroke-width="6" stroke-linecap="round"/><path d="M 75 15 Q 10 55 65 90" fill="none" stroke="rgba(255,255,255,0.5)" stroke-width="5" stroke-linecap="round"/><path d="M 90 35 Q 20 70 85 75" fill="none" stroke="rgba(255,255,255,0.4)" stroke-width="6" stroke-linecap="round"/></svg>');
             background-size: cover;
             z-index: 0;
         }
@@ -386,6 +386,42 @@
         .skills-visible #giant-skill-ball {
             transform: translateY(0) scale(1) rotate(0deg);
             opacity: 1;
+        }
+
+        .timeline {
+            position: relative;
+            width: 100%;
+            max-width: 900px;
+            margin: 2rem auto 0;
+            display: flex;
+            flex-direction: column;
+            gap: 2.5rem;
+            z-index: 10;
+        }
+        .timeline-item {
+            display: flex;
+            width: 100%;
+            position: relative;
+        }
+        .timeline-item.left { justify-content: flex-start; }
+        .timeline-item.right { justify-content: flex-end; }
+        .timeline-content {
+            width: 45%;
+            opacity: 0;
+            transform: translateY(30px);
+            transition: opacity 0.8s ease, transform 0.8s ease, box-shadow 0.3s ease;
+        }
+        .timeline-content.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        .timeline-content:hover {
+            transform: translateY(-5px); /* Maintain cat-platform hover effect */
+        }
+        
+        @media (max-width: 768px) {
+            .timeline-content { width: 90%; margin: 0 auto; }
+            .timeline-item.left, .timeline-item.right { justify-content: center; }
         }
 
         .skills-visible .section-title { color: white; text-shadow: 0 2px 5px rgba(0,0,0,0.2); }
@@ -918,9 +954,16 @@
                         <!-- The small toy ball -->
                         <div id="hero-cat-ball">
                             <svg viewBox="0 0 100 100" width="100%" height="100%">
-                                <circle cx="50" cy="50" r="45" fill="url(#ball-grad)"/>
-                                <path d="M 20 20 Q 50 50 80 20" fill="none" stroke="rgba(255,255,255,0.4)" stroke-width="8" stroke-linecap="round"/>
-                                <path d="M 15 50 Q 50 80 85 50" fill="none" stroke="rgba(255,255,255,0.4)" stroke-width="8" stroke-linecap="round"/>
+                                <circle cx="50" cy="50" r="46" fill="url(#ball-grad)"/>
+                                <circle cx="50" cy="50" r="46" fill="none" stroke="rgba(0,0,0,0.1)" stroke-width="3"/>
+                                <!-- Yarn Strands -->
+                                <path d="M 15 30 Q 50 0 85 30" fill="none" stroke="rgba(255,255,255,0.6)" stroke-width="5" stroke-linecap="round"/>
+                                <path d="M 6 50 Q 50 15 94 50" fill="none" stroke="rgba(255,255,255,0.7)" stroke-width="6" stroke-linecap="round"/>
+                                <path d="M 12 70 Q 50 35 88 70" fill="none" stroke="rgba(255,255,255,0.5)" stroke-width="5" stroke-linecap="round"/>
+                                <path d="M 25 15 Q 80 50 30 85" fill="none" stroke="rgba(255,255,255,0.6)" stroke-width="7" stroke-linecap="round"/>
+                                <path d="M 40 8 Q 95 45 45 92" fill="none" stroke="rgba(255,255,255,0.5)" stroke-width="6" stroke-linecap="round"/>
+                                <path d="M 75 15 Q 10 55 65 90" fill="none" stroke="rgba(255,255,255,0.6)" stroke-width="5" stroke-linecap="round"/>
+                                <path d="M 90 35 Q 20 70 85 75" fill="none" stroke="rgba(255,255,255,0.5)" stroke-width="6" stroke-linecap="round"/>
                             </svg>
                         </div>
                     </div>
@@ -929,23 +972,70 @@
         </section>
 
         <section id="about">
-            <h2 class="section-title">System Specs (About Me)</h2>
-            <div class="grid-2">
-                <div class="cat-platform">
-                    <h3 class="mono" style="margin-bottom: 1rem; color: var(--accent-color);">> root@localhost:~# whoami</h3>
-                    <p>Hello! I'm a passionate engineer who loves making hardware and software talk. I have years of experience architecting IoT solutions and deploying computer vision models to edge devices.</p>
-                    <br>
-                    <p>When I'm not debugging a tricky I2C bus issue or optimizing a TensorFlow Lite model, I'm probably hanging out with my feline friends or building them automated laser pointer turrets.</p>
+            <h2 class="section-title">Timeline</h2>
+            <div class="timeline" id="experience-timeline">
+                <!-- 1. Sr. KG -->
+                <div class="timeline-item left">
+                    <div class="cat-platform timeline-content">
+                        <h3 class="mono" style="color: var(--accent-color); font-size: 1.2rem;">> Sr. KG</h3>
+                        <p style="color: var(--text-muted); font-size: 0.95rem; margin-top: 0.5rem;">Where the curiosity started. Mostly finger painting, block building, and taking naps.</p>
+                    </div>
                 </div>
-                <div class="cat-platform" style="display:flex; flex-direction:column; justify-content:center;">
-                    <div style="display:flex; justify-content:space-between; margin-bottom: 0.5rem; font-weight: 600;"><span>Hardware Logic</span> <span class="mono text-muted">95%</span></div>
-                    <div style="width:100%; height:12px; background:var(--surface-color-light); border-radius:10px; margin-bottom:1.5rem; overflow: hidden;"><div style="width:95%; height:100%; background:var(--primary-color); border-radius:10px;"></div></div>
-                    
-                    <div style="display:flex; justify-content:space-between; margin-bottom: 0.5rem; font-weight: 600;"><span>Embedded C/C++</span> <span class="mono text-muted">90%</span></div>
-                    <div style="width:100%; height:12px; background:var(--surface-color-light); border-radius:10px; margin-bottom:1.5rem; overflow: hidden;"><div style="width:90%; height:100%; background:var(--secondary-color); border-radius:10px;"></div></div>
-
-                    <div style="display:flex; justify-content:space-between; margin-bottom: 0.5rem; font-weight: 600;"><span>Edge AI / CV</span> <span class="mono text-muted">85%</span></div>
-                    <div style="width:100%; height:12px; background:var(--surface-color-light); border-radius:10px; margin-bottom:1rem; overflow: hidden;"><div style="width:85%; height:100%; background:var(--accent-color); border-radius:10px;"></div></div>
+                
+                <!-- 2. School -->
+                <div class="timeline-item right">
+                    <div class="cat-platform timeline-content">
+                        <h3 class="mono" style="color: var(--accent-color); font-size: 1.2rem;">> School</h3>
+                        <p style="color: var(--text-muted); font-size: 0.95rem; margin-top: 0.5rem;">Primary & Secondary education. First exposure to basic logic, science, and breaking toys to see how they work.</p>
+                    </div>
+                </div>
+                
+                <!-- 3. Jr. College -->
+                <div class="timeline-item left">
+                    <div class="cat-platform timeline-content">
+                        <h3 class="mono" style="color: var(--accent-color); font-size: 1.2rem;">> Jr. College</h3>
+                        <p style="color: var(--text-muted); font-size: 0.95rem; margin-top: 0.5rem;">Shifted focus heavily towards mathematics, physics, and exploring basic electronics principles.</p>
+                    </div>
+                </div>
+                
+                <!-- 4. College Started -->
+                <div class="timeline-item right">
+                    <div class="cat-platform timeline-content">
+                        <h3 class="mono" style="color: var(--accent-color); font-size: 1.2rem;">> College Started</h3>
+                        <p style="color: var(--text-muted); font-size: 0.95rem; margin-top: 0.5rem;">Undergrad degree. Diving deep into Embedded Systems, C/C++, and hardware architectures.</p>
+                    </div>
+                </div>
+                
+                <!-- 5. Internship 1 -->
+                <div class="timeline-item left">
+                    <div class="cat-platform timeline-content">
+                        <h3 class="mono" style="color: var(--accent-color); font-size: 1.2rem;">> Internship 1</h3>
+                        <p style="color: var(--text-muted); font-size: 0.95rem; margin-top: 0.5rem;">First taste of the industry. Working directly with microcontrollers and writing hardware logic.</p>
+                    </div>
+                </div>
+                
+                <!-- 6. Internship 2 -->
+                <div class="timeline-item right">
+                    <div class="cat-platform timeline-content">
+                        <h3 class="mono" style="color: var(--accent-color); font-size: 1.2rem;">> Internship 2</h3>
+                        <p style="color: var(--text-muted); font-size: 0.95rem; margin-top: 0.5rem;">Focused on Computer Vision. Trained and optimized edge AI models for real-time inference.</p>
+                    </div>
+                </div>
+                
+                <!-- 7. Internship 3 -->
+                <div class="timeline-item left">
+                    <div class="cat-platform timeline-content">
+                        <h3 class="mono" style="color: var(--accent-color); font-size: 1.2rem;">> Internship 3</h3>
+                        <p style="color: var(--text-muted); font-size: 0.95rem; margin-top: 0.5rem;">Architecting end-to-end IoT solutions. Connecting edge devices to cloud infrastructure.</p>
+                    </div>
+                </div>
+                
+                <!-- 8. Currently -->
+                <div class="timeline-item right">
+                    <div class="cat-platform timeline-content">
+                        <h3 class="mono" style="color: var(--accent-color); font-size: 1.2rem;">> Currently</h3>
+                        <p style="color: var(--text-muted); font-size: 0.95rem; margin-top: 0.5rem;">Building autonomous systems, optimizing code, and ready for the next big challenge!</p>
+                    </div>
                 </div>
             </div>
         </section>
@@ -1721,20 +1811,23 @@
                 }, observerOptions);
                 document.querySelectorAll('section').forEach(sec => observer.observe(sec));
 
+                // Timeline Cards Observer
+                const timelineObserver = new IntersectionObserver((entries) => {
+                    entries.forEach(entry => {
+                        if (entry.isIntersecting) {
+                            entry.target.classList.add('visible');
+                        }
+                    });
+                }, { threshold: 0.1, rootMargin: '0px 0px -50px 0px' });
+                document.querySelectorAll('.timeline-content').forEach(el => timelineObserver.observe(el));
+
                 // Generate the literal slide track for the ball mathematically
                 const slideSvg = document.getElementById('cat-slide');
                 if (slideSvg) {
-                    let pathD = "M 0 0";
-                    for(let d = 0; d <= 1800; d += 20) {
-                        let hop = (d > 0 && d < 200) ? Math.sin((d/200)*Math.PI) * -50 : 0;
-                        let x = Math.sin(d / 150) * 120;
-                        let y = d + hop;
-                        pathD += ` L ${x} ${y}`;
-                    }
                     slideSvg.innerHTML = `
-                        <path d="${pathD}" fill="none" stroke="var(--surface-color-light)" stroke-width="24" stroke-linecap="round" />
-                        <path d="${pathD}" fill="none" stroke="rgba(255, 143, 163, 0.4)" stroke-width="12" stroke-linecap="round" />
-                        <path d="${pathD}" fill="none" stroke="var(--primary-color)" stroke-width="4" stroke-dasharray="10 10" />
+                        <path id="yarn-thread-glow" fill="none" stroke="rgba(255, 143, 163, 0.3)" stroke-width="16" stroke-linecap="round" />
+                        <path id="yarn-thread-solid" fill="none" stroke="var(--primary-color)" stroke-width="4" stroke-linecap="round" />
+                        <path id="yarn-thread-dash" fill="none" stroke="#fff" stroke-width="2" stroke-dasharray="6 6" stroke-linecap="round" opacity="0.8" />
                     `;
                 }
 
@@ -1759,7 +1852,7 @@
                         ball.style.animation = 'none';
                         if (slideSvg) slideSvg.style.opacity = '1';
                         
-                        // Cat swats the ball immediately, then gets sad MUCH sooner (at scrollY 50 instead of 150)
+                        // Cat swats the ball immediately
                         if (scrollY > 10 && scrollY < 50) {
                             heroCatWrapper.classList.add('swatting');
                             heroCatWrapper.classList.remove('sad-cat');
@@ -1768,26 +1861,82 @@
                             heroCatWrapper.classList.add('sad-cat');
                         }
                         
-                        // Calculate smooth drop progress 
-                        let dropProgress = Math.max(0, scrollY - 30);
-                        let D = dropProgress * 1.5; // Controls the speed of the fall relative to scroll
+                        // 1. Calculate Absolute Anchors
+                        const wrapperRect = heroCatWrapper.getBoundingClientRect();
+                        const absoluteWrapperBottom = wrapperRect.bottom + scrollY;
+                        const ballStartDocY = absoluteWrapperBottom - 25; 
                         
-                        // Fade out the ball as it merges into the Giant Skills Ball
-                        let maxD = 1500; 
-                        let opacity = 1;
-                        if (D > maxD) {
-                            opacity = Math.max(0, 1 - (D - maxD) / 200);
-                            D = maxD + (D - maxD) * 0.2; // Slow down descent as it merges
+                        // 2. Lock ball in the 2nd quartile of viewport (35vh)
+                        const targetViewportY = window.innerHeight * 0.35;
+                        
+                        // Calculate total unrolled string length (dy)
+                        let dy = scrollY + targetViewportY - ballStartDocY;
+                        if (dy < 0) dy = 0; // Don't drop until we scroll past the mark
+                        
+                        // 3. X-Axis Math
+                        const startX = wrapperRect.left + (wrapperRect.width / 2);
+                        const centerX = window.innerWidth / 2;
+                        const driftOffset = centerX - startX;
+
+                        function getDx(y) {
+                            let H = 550; // Drop distance required to center the ball
+                            let x = 0;
+                            
+                            if (y < H) {
+                                let progress = y / H;
+                                // Smooth drift to center using Cosine
+                                let centerDrift = driftOffset * (1 - Math.cos(progress * Math.PI / 2));
+                                // Add explicit outward initial swoop (bulges right before swinging left)
+                                let bulge = 60 * Math.sin(progress * Math.PI); 
+                                x = centerDrift + bulge;
+                            } else {
+                                x = driftOffset;
+                            }
+
+                            // Smoothly blend into the weaving motion
+                            let weaveStart = 450;
+                            if (y > weaveStart) {
+                                let wProg = y - weaveStart;
+                                let amp = Math.min(1, wProg / 350) * 180; // Fade amplitude in smoothly
+                                x += Math.sin(wProg / 160) * amp; // 160 period = wide lazy swing
+                            }
+                            return x;
                         }
                         
-                        // Apply the exact same mathematical formula to the ball that we used to draw the slide!
-                        let hop = (D > 0 && D < 200) ? Math.sin((D/200)*Math.PI) * -50 : 0;
-                        let dx = Math.sin(D / 150) * 120;
-                        let dy = D + hop;
-                        let rot = D * 1.2; // Spin the ball as it rolls
+                        let dx = getDx(dy);
+                        let rot = dy * 1.2; 
+                        
+                        // 4. Fade out smoothly when hitting the Giant Skills Ball
+                        const skillsSection = document.getElementById('skills');
+                        let opacity = 1;
+                        if (skillsSection) {
+                            const skillsRect = skillsSection.getBoundingClientRect();
+                            let ballViewportY = (dy === 0) ? (wrapperRect.bottom - 25) : targetViewportY;
+                            let distanceToSkills = skillsRect.top - ballViewportY;
+                            if (distanceToSkills < 300) {
+                                opacity = Math.max(0, distanceToSkills / 300);
+                            }
+                        }
                         
                         ball.style.transform = `translate(${dx}px, ${dy}px) rotate(${rot}deg)`;
                         ball.style.opacity = opacity.toString();
+
+                        // 5. Draw the perfect mathematical trajectory line
+                        if (slideSvg) {
+                            let pathD = "M 0 0";
+                            for(let y = 0; y <= dy; y += 10) {
+                                pathD += ` L ${getDx(y)} ${y}`;
+                            }
+                            pathD += ` L ${dx} ${dy}`; // Guarantee last point connects precisely
+
+                            const threadGlow = document.getElementById('yarn-thread-glow');
+                            const threadSolid = document.getElementById('yarn-thread-solid');
+                            const threadDash = document.getElementById('yarn-thread-dash');
+
+                            if (threadGlow) threadGlow.setAttribute('d', pathD);
+                            if (threadSolid) threadSolid.setAttribute('d', pathD);
+                            if (threadDash) threadDash.setAttribute('d', pathD);
+                        }
                     }
                 });
             },
