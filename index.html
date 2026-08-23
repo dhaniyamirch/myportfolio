@@ -322,6 +322,13 @@
             transition: opacity 0.3s ease; /* Fade out when big ball drops */
         }
 
+        /* Hides the ball dynamically when the cat attacks the skills section */
+        body.skills-active #hero-cat-ball,
+        body.skills-active #cat-slide {
+            opacity: 0 !important;
+            transition: opacity 0.1s ease;
+        }
+
         @keyframes ball-roll {
             0%, 20% { transform: translateX(35px) rotate(0deg); }
             22% { transform: translateX(45px) rotate(45deg) scale(1.1, 0.9); }
@@ -332,60 +339,112 @@
 
         #skills {
             position: relative;
-            min-height: 100vh;
+            min-height: 80vh;
             display: flex;
+            flex-direction: column;
             align-items: center;
-            justify-content: center;
             overflow: visible;
+            padding-top: 100px;
         }
 
-        #giant-skill-ball {
-            position: relative;
-            width: clamp(320px, 85vw, 750px);
-            height: clamp(320px, 85vw, 750px);
-            border-radius: 50%;
-            background: radial-gradient(circle at 30% 30%, #fff0f5 0%, #ffb3c6 30%, #ff8fa3 70%, #e06c81 100%);
-            box-shadow: 0 30px 60px rgba(255, 143, 163, 0.4), inset -20px -20px 50px rgba(0,0,0,0.1), inset 20px 20px 50px rgba(255,255,255,0.4);
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            text-align: center;
-            
-            /* Initial state: small, up high */
-            transform: translateY(-50vh) scale(0.1) rotate(-180deg);
+        /* --- New Hanging Yarn Skills Styles --- */
+        #paw-swipe-container {
+            position: absolute; top: -50px; left: 50%; width: 100%; height: 300px; 
+            transform: translateX(-50%); overflow: hidden; z-index: 100; pointer-events: none;
+        }
+        
+        #swiping-paw { 
+            position: absolute; top: -150px; left: 80%; opacity: 0; 
+            filter: drop-shadow(0 15px 10px rgba(0,0,0,0.3));
+        }
+        
+        #slash-marks {
+            position: absolute; top: 80px; left: 50%; transform: translateX(-50%) scale(0);
             opacity: 0;
-            transition: transform 1.2s cubic-bezier(0.34, 1.56, 0.64, 1), opacity 0.8s ease;
-            z-index: 10;
         }
 
-        /* SVG Stripes for the Giant Ball to match the small one */
-        #giant-skill-ball::before {
-            content: '';
-            position: absolute;
-            top: 0; left: 0; width: 100%; height: 100%;
-            border-radius: 50%;
-            pointer-events: none;
-            background-image: url('data:image/svg+xml;utf8,<svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg"><path d="M 15 30 Q 50 0 85 30" fill="none" stroke="rgba(255,255,255,0.5)" stroke-width="5" stroke-linecap="round"/><path d="M 6 50 Q 50 15 94 50" fill="none" stroke="rgba(255,255,255,0.6)" stroke-width="6" stroke-linecap="round"/><path d="M 12 70 Q 50 35 88 70" fill="none" stroke="rgba(255,255,255,0.4)" stroke-width="5" stroke-linecap="round"/><path d="M 25 15 Q 80 50 30 85" fill="none" stroke="rgba(255,255,255,0.5)" stroke-width="7" stroke-linecap="round"/><path d="M 40 8 Q 95 45 45 92" fill="none" stroke="rgba(255,255,255,0.4)" stroke-width="6" stroke-linecap="round"/><path d="M 75 15 Q 10 55 65 90" fill="none" stroke="rgba(255,255,255,0.5)" stroke-width="5" stroke-linecap="round"/><path d="M 90 35 Q 20 70 85 75" fill="none" stroke="rgba(255,255,255,0.4)" stroke-width="6" stroke-linecap="round"/></svg>');
-            background-size: cover;
-            z-index: 0;
+        /* The Attack Sequence */
+        .skills-unraveled #swiping-paw { animation: paw-attack 0.5s cubic-bezier(0.1, 0.8, 0.2, 1) forwards; }
+        .skills-unraveled #slash-marks { animation: slash-flash 0.3s cubic-bezier(0.1, 0.8, 0.2, 1) forwards 0.2s; }
+
+        @keyframes paw-attack {
+            0% { top: -150px; left: 60%; opacity: 1; transform: rotate(120deg) scale(1); }
+            40% { top: 80px; left: 48%; opacity: 1; transform: rotate(170deg) scale(1.2); }
+            100% { top: 300px; left: 10%; opacity: 0; transform: rotate(220deg) scale(1); }
+        }
+        @keyframes slash-flash {
+            0% { transform: translateX(-50%) scale(0.5); opacity: 1; }
+            100% { transform: translateX(-50%) scale(1.5); opacity: 0; }
         }
 
-        .ball-content {
-            position: relative;
-            z-index: 2;
-            width: 75%;
-            height: 75%;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
+        .yarn-strings-container {
+            display: flex; justify-content: space-around; flex-wrap: wrap;
+            width: 100%; max-width: 1000px; z-index: 10; margin-top: 2rem;
+            gap: 1rem;
+        }
+        
+        .string-col {
+            display: flex; flex-direction: column; align-items: center; 
+            position: relative; width: 30%; min-width: 250px;
         }
 
-        /* Scroll trigger class */
-        .skills-visible #giant-skill-ball {
-            transform: translateY(0) scale(1) rotate(0deg);
-            opacity: 1;
+        .string-thread {
+            position: absolute; top: -150px; left: 50%; bottom: -50px; width: 4px; 
+            border-left: 4px dashed var(--primary-color); 
+            transform-origin: top center; transform: scaleY(0); z-index: -1;
+        }
+        
+        .skills-unraveled .string-col:nth-child(1) .string-thread { animation: unroll 1.2s cubic-bezier(0.25, 1, 0.5, 1) forwards 0.3s; }
+        .skills-unraveled .string-col:nth-child(2) .string-thread { animation: unroll 1.2s cubic-bezier(0.25, 1, 0.5, 1) forwards 0.5s; }
+        .skills-unraveled .string-col:nth-child(3) .string-thread { animation: unroll 1.2s cubic-bezier(0.25, 1, 0.5, 1) forwards 0.7s; }
+
+        @keyframes unroll { to { transform: scaleY(1); } }
+
+        .skill-category {
+            background: white; border: 3px solid var(--primary-color); color: var(--primary-color); 
+            padding: 0.6rem 1.2rem; border-radius: 20px; font-weight: 800; font-size: 1.1rem;
+            margin-top: 40px; margin-bottom: 25px; z-index: 2; opacity: 0; transform: scale(0);
+            box-shadow: 0 8px 15px var(--shadow-color);
+        }
+        
+        .skill-tag {
+            background: var(--surface-color-light); color: var(--text-main); 
+            border: 2px solid var(--secondary-color); padding: 0.5rem 1.2rem; 
+            border-radius: 12px; margin-bottom: 18px; z-index: 2; font-weight: 700; 
+            opacity: 0; transform-origin: top center;
+            box-shadow: 0 5px 10px rgba(0,0,0,0.05);
+        }
+
+        /* The hook connecting the tag to the thread */
+        .skill-tag::before {
+            content: ''; position: absolute; top: -20px; left: 50%; width: 2px; height: 20px; 
+            background: var(--secondary-color); margin-left: -1px;
+        }
+
+        .skills-unraveled .skill-category { 
+            animation: pop-in 0.5s cubic-bezier(0.34, 1.56, 0.64, 1) forwards; 
+            animation-delay: calc(var(--delay) + 0.2s); 
+        }
+        
+        .skills-unraveled .skill-tag { 
+            animation: drop-tag 0.5s cubic-bezier(0.34, 1.56, 0.64, 1) forwards, tag-swing 4s infinite ease-in-out alternate; 
+            animation-delay: var(--delay), calc(var(--delay) + 0.5s); 
+        }
+
+        @keyframes pop-in {
+            0% { transform: scale(0); opacity: 0; }
+            80% { transform: scale(1.1); opacity: 1; }
+            100% { transform: scale(1); opacity: 1; }
+        }
+
+        @keyframes drop-tag {
+            0% { transform: scale(0) rotate(-15deg); opacity: 0; }
+            100% { transform: scale(1) rotate(0deg); opacity: 1; }
+        }
+
+        @keyframes tag-swing {
+            0% { transform: rotate(-4deg); }
+            100% { transform: rotate(4deg); }
         }
 
         .timeline {
@@ -406,22 +465,22 @@
         .timeline-item.left { justify-content: flex-start; }
         .timeline-item.right { justify-content: flex-end; }
         .timeline-content {
-            width: 45%;
+            width: 40%;
             opacity: 0;
-            transform: translateY(30px);
-            transition: opacity 0.8s ease, transform 0.8s ease, box-shadow 0.3s ease;
+            transform: translateY(40px) scale(0.9);
+            transition: opacity 0.6s cubic-bezier(0.34, 1.56, 0.64, 1), transform 0.6s cubic-bezier(0.34, 1.56, 0.64, 1), box-shadow 0.3s ease;
         }
         .timeline-content.visible {
             opacity: 1;
-            transform: translateY(0);
+            transform: translateY(0) scale(1);
         }
         .timeline-content:hover {
-            transform: translateY(-5px); /* Maintain cat-platform hover effect */
+            transform: translateY(-5px) scale(1.02); 
         }
         
         @media (max-width: 768px) {
-            .timeline-content { width: 90%; margin: 0 auto; }
-            .timeline-item.left, .timeline-item.right { justify-content: center; }
+            .timeline-content { width: 75%; margin: 0; }
+            .timeline-item.left, .timeline-item.right { justify-content: flex-end; }
         }
 
         .skills-visible .section-title { color: white; text-shadow: 0 2px 5px rgba(0,0,0,0.2); }
@@ -849,7 +908,7 @@
         <header>
             <div class="logo">Dev<span>Cat</span></div>
             <nav>
-                <a href="#about">About</a>
+                <a href="#timeline">Timeline</a>
                 <a href="#skills">Skills</a>
                 <a href="#projects">Projects</a>
                 <a href="#contact">Contact</a>
@@ -939,31 +998,31 @@
                             <rect id="hero-cat-right-paw" x="215" y="360" width="34" height="42" rx="17" fill="#2a2a2a" />
                         </svg>
                         
-                        <!-- The Slide Track -->
+                        <!-- The Slide Track (Yarn Thread) -->
                         <svg id="cat-slide" style="
                             position: absolute;
-                            bottom: 60px; /* Aligned with the center of the ball */
+                            bottom: 60px;
                             left: 50%;
                             width: 2px; height: 2px;
                             overflow: visible;
                             opacity: 0;
                             z-index: -1;
                             transition: opacity 0.5s;
-                        "></svg>
+                        ">
+                            <path id="yarn-thread-glow" d="M 0 0" fill="none" stroke="var(--surface-color-light)" stroke-width="24" stroke-linecap="round" />
+                            <path id="yarn-thread-solid" d="M 0 0" fill="none" stroke="rgba(255, 143, 163, 0.4)" stroke-width="12" stroke-linecap="round" />
+                            <path id="yarn-thread-dash" d="M 0 0" fill="none" stroke="var(--primary-color)" stroke-width="4" stroke-dasharray="10 10" />
+                        </svg>
 
-                        <!-- The small toy ball -->
+                        <!-- The small toy ball (Yarn Ball) -->
                         <div id="hero-cat-ball">
-                            <svg viewBox="0 0 100 100" width="100%" height="100%">
-                                <circle cx="50" cy="50" r="46" fill="url(#ball-grad)"/>
-                                <circle cx="50" cy="50" r="46" fill="none" stroke="rgba(0,0,0,0.1)" stroke-width="3"/>
-                                <!-- Yarn Strands -->
-                                <path d="M 15 30 Q 50 0 85 30" fill="none" stroke="rgba(255,255,255,0.6)" stroke-width="5" stroke-linecap="round"/>
-                                <path d="M 6 50 Q 50 15 94 50" fill="none" stroke="rgba(255,255,255,0.7)" stroke-width="6" stroke-linecap="round"/>
-                                <path d="M 12 70 Q 50 35 88 70" fill="none" stroke="rgba(255,255,255,0.5)" stroke-width="5" stroke-linecap="round"/>
-                                <path d="M 25 15 Q 80 50 30 85" fill="none" stroke="rgba(255,255,255,0.6)" stroke-width="7" stroke-linecap="round"/>
-                                <path d="M 40 8 Q 95 45 45 92" fill="none" stroke="rgba(255,255,255,0.5)" stroke-width="6" stroke-linecap="round"/>
-                                <path d="M 75 15 Q 10 55 65 90" fill="none" stroke="rgba(255,255,255,0.6)" stroke-width="5" stroke-linecap="round"/>
-                                <path d="M 90 35 Q 20 70 85 75" fill="none" stroke="rgba(255,255,255,0.5)" stroke-width="6" stroke-linecap="round"/>
+                            <svg viewBox="0 0 100 100" width="100%" height="100%" style="overflow:visible;">
+                                <circle cx="50" cy="50" r="45" fill="url(#ball-grad)"/>
+                                <path d="M 15 50 Q 30 20 80 30" fill="none" stroke="rgba(255,255,255,0.7)" stroke-width="5" stroke-linecap="round"/>
+                                <path d="M 20 70 Q 50 90 85 60" fill="none" stroke="rgba(255,255,255,0.7)" stroke-width="4" stroke-linecap="round"/>
+                                <path d="M 30 15 Q 50 60 70 85" fill="none" stroke="rgba(255,255,255,0.7)" stroke-width="3" stroke-linecap="round"/>
+                                <path d="M 10 40 Q 60 40 90 50" fill="none" stroke="rgba(255,255,255,0.5)" stroke-width="6" stroke-linecap="round"/>
+                                <path d="M 40 10 Q 40 60 50 90" fill="none" stroke="rgba(255,255,255,0.5)" stroke-width="4" stroke-linecap="round"/>
                             </svg>
                         </div>
                     </div>
@@ -971,92 +1030,112 @@
             </div>
         </section>
 
-        <section id="about">
+        <section id="timeline">
             <h2 class="section-title">Timeline</h2>
-            <div class="timeline" id="experience-timeline">
-                <!-- 1. Sr. KG -->
+            <div class="timeline" id="timeline-container">
                 <div class="timeline-item left">
-                    <div class="cat-platform timeline-content">
-                        <h3 class="mono" style="color: var(--accent-color); font-size: 1.2rem;">> Sr. KG</h3>
-                        <p style="color: var(--text-muted); font-size: 0.95rem; margin-top: 0.5rem;">Where the curiosity started. Mostly finger painting, block building, and taking naps.</p>
+                    <div class="timeline-content cat-platform">
+                        <h3 class="mono" style="color: var(--accent-color); margin-bottom: 0.5rem;">> Sr. KG</h3>
+                        <p style="color: var(--text-muted); font-size: 0.95rem;">Where the curiosity started. Mostly finger painting, block building, and taking naps.</p>
                     </div>
                 </div>
-                
-                <!-- 2. School -->
                 <div class="timeline-item right">
-                    <div class="cat-platform timeline-content">
-                        <h3 class="mono" style="color: var(--accent-color); font-size: 1.2rem;">> School</h3>
-                        <p style="color: var(--text-muted); font-size: 0.95rem; margin-top: 0.5rem;">Primary & Secondary education. First exposure to basic logic, science, and breaking toys to see how they work.</p>
+                    <div class="timeline-content cat-platform">
+                        <h3 class="mono" style="color: var(--accent-color); margin-bottom: 0.5rem;">> School</h3>
+                        <p style="color: var(--text-muted); font-size: 0.95rem;">Primary & Secondary education. First exposure to basic logic, science, and breaking toys to see how they work.</p>
                     </div>
                 </div>
-                
-                <!-- 3. Jr. College -->
                 <div class="timeline-item left">
-                    <div class="cat-platform timeline-content">
-                        <h3 class="mono" style="color: var(--accent-color); font-size: 1.2rem;">> Jr. College</h3>
-                        <p style="color: var(--text-muted); font-size: 0.95rem; margin-top: 0.5rem;">Shifted focus heavily towards mathematics, physics, and exploring basic electronics principles.</p>
+                    <div class="timeline-content cat-platform">
+                        <h3 class="mono" style="color: var(--accent-color); margin-bottom: 0.5rem;">> Jr. College</h3>
+                        <p style="color: var(--text-muted); font-size: 0.95rem;">Shifted focus heavily towards mathematics, physics, and exploring basic electronics principles.</p>
                     </div>
                 </div>
-                
-                <!-- 4. College Started -->
                 <div class="timeline-item right">
-                    <div class="cat-platform timeline-content">
-                        <h3 class="mono" style="color: var(--accent-color); font-size: 1.2rem;">> College Started</h3>
-                        <p style="color: var(--text-muted); font-size: 0.95rem; margin-top: 0.5rem;">Undergrad degree. Diving deep into Embedded Systems, C/C++, and hardware architectures.</p>
+                    <div class="timeline-content cat-platform">
+                        <h3 class="mono" style="color: var(--accent-color); margin-bottom: 0.5rem;">> College (B.Tech)</h3>
+                        <p style="color: var(--text-muted); font-size: 0.95rem;">Deep dive into Embedded Systems, Microcontrollers, and writing my first computer vision scripts.</p>
                     </div>
                 </div>
-                
-                <!-- 5. Internship 1 -->
                 <div class="timeline-item left">
-                    <div class="cat-platform timeline-content">
-                        <h3 class="mono" style="color: var(--accent-color); font-size: 1.2rem;">> Internship 1</h3>
-                        <p style="color: var(--text-muted); font-size: 0.95rem; margin-top: 0.5rem;">First taste of the industry. Working directly with microcontrollers and writing hardware logic.</p>
+                    <div class="timeline-content cat-platform">
+                        <h3 class="mono" style="color: var(--accent-color); margin-bottom: 0.5rem;">> Internship 1</h3>
+                        <p style="color: var(--text-muted); font-size: 0.95rem;">Wrote firmware for smart home devices using ESP32 and FreeRTOS. First taste of production code.</p>
                     </div>
                 </div>
-                
-                <!-- 6. Internship 2 -->
                 <div class="timeline-item right">
-                    <div class="cat-platform timeline-content">
-                        <h3 class="mono" style="color: var(--accent-color); font-size: 1.2rem;">> Internship 2</h3>
-                        <p style="color: var(--text-muted); font-size: 0.95rem; margin-top: 0.5rem;">Focused on Computer Vision. Trained and optimized edge AI models for real-time inference.</p>
+                    <div class="timeline-content cat-platform">
+                        <h3 class="mono" style="color: var(--accent-color); margin-bottom: 0.5rem;">> Internship 2</h3>
+                        <p style="color: var(--text-muted); font-size: 0.95rem;">Deployed YOLO models onto edge devices. Optimized inference speed using TensorRT and CUDA.</p>
                     </div>
                 </div>
-                
-                <!-- 7. Internship 3 -->
                 <div class="timeline-item left">
-                    <div class="cat-platform timeline-content">
-                        <h3 class="mono" style="color: var(--accent-color); font-size: 1.2rem;">> Internship 3</h3>
-                        <p style="color: var(--text-muted); font-size: 0.95rem; margin-top: 0.5rem;">Architecting end-to-end IoT solutions. Connecting edge devices to cloud infrastructure.</p>
+                    <div class="timeline-content cat-platform">
+                        <h3 class="mono" style="color: var(--accent-color); margin-bottom: 0.5rem;">> Internship 3</h3>
+                        <p style="color: var(--text-muted); font-size: 0.95rem;">Architecting end-to-end IoT solutions. Connecting edge devices to cloud infrastructure.</p>
                     </div>
                 </div>
-                
-                <!-- 8. Currently -->
                 <div class="timeline-item right">
-                    <div class="cat-platform timeline-content">
-                        <h3 class="mono" style="color: var(--accent-color); font-size: 1.2rem;">> Currently</h3>
-                        <p style="color: var(--text-muted); font-size: 0.95rem; margin-top: 0.5rem;">Building autonomous systems, optimizing code, and ready for the next big challenge!</p>
+                    <div class="timeline-content cat-platform">
+                        <h3 class="mono" style="color: var(--accent-color); margin-bottom: 0.5rem;">> Currently</h3>
+                        <p style="color: var(--text-muted); font-size: 0.95rem;">Building autonomous systems, optimizing code, and ready for the next big challenge!</p>
                     </div>
                 </div>
             </div>
         </section>
 
         <section id="skills">
-            <div id="giant-skill-ball">
-                <div class="ball-content">
-                    <h2 class="section-title">Technical Stack</h2>
-                    
-                    <div class="skill-group">
-                        <h3>Microcontrollers & IoT</h3>
-                        <div><span class="tag ball-tag">ESP32</span> <span class="tag ball-tag">STM32</span> <span class="tag ball-tag">ARM Cortex-M</span> <span class="tag ball-tag">FreeRTOS</span> <span class="tag ball-tag">MQTT</span></div>
-                    </div>
-                    <div class="skill-group">
-                        <h3>Computer Vision & AI</h3>
-                        <div><span class="tag ball-tag">OpenCV</span> <span class="tag ball-tag">Python</span> <span class="tag ball-tag">TensorFlow Lite</span> <span class="tag ball-tag">YOLO</span> <span class="tag ball-tag">CUDA</span></div>
-                    </div>
-                    <div class="skill-group">
-                        <h3>Tools & Protocols</h3>
-                        <div><span class="tag ball-tag">I2C/SPI/UART</span> <span class="tag ball-tag">CAN bus</span> <span class="tag ball-tag">Altium</span> <span class="tag ball-tag">Git</span> <span class="tag ball-tag">Docker</span></div>
-                    </div>
+            <h2 class="section-title">Technical Stack</h2>
+            
+            <div id="paw-swipe-container">
+                <!-- The mischievous paw -->
+                <svg id="swiping-paw" viewBox="0 0 100 100" width="180" height="180">
+                    <path d="M10 50 C 10 20, 90 20, 90 50 C 90 80, 70 90, 50 90 C 30 90, 10 80, 10 50 Z" fill="#161616"/>
+                    <circle cx="30" cy="30" r="10" fill="#2a2a2a"/>
+                    <circle cx="50" cy="20" r="12" fill="#2a2a2a"/>
+                    <circle cx="70" cy="30" r="10" fill="#2a2a2a"/>
+                    <!-- Claws -->
+                    <path d="M 28 15 Q 30 0 25 -5" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round"/>
+                    <path d="M 50 5 Q 50 -10 45 -15" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round"/>
+                    <path d="M 72 15 Q 70 0 75 -5" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round"/>
+                </svg>
+                <!-- Slash Marks -->
+                <svg id="slash-marks" viewBox="0 0 100 100" width="120" height="120">
+                    <path d="M 20 10 Q 40 50 20 90" fill="none" stroke="#ff8fa3" stroke-width="6" stroke-linecap="round"/>
+                    <path d="M 50 10 Q 70 50 50 90" fill="none" stroke="#ff8fa3" stroke-width="6" stroke-linecap="round"/>
+                    <path d="M 80 10 Q 100 50 80 90" fill="none" stroke="#ff8fa3" stroke-width="6" stroke-linecap="round"/>
+                </svg>
+            </div>
+
+            <div class="yarn-strings-container">
+                <!-- Column 1 -->
+                <div class="string-col">
+                    <div class="string-thread"></div>
+                    <div class="skill-category" style="--delay: 0.5s;">Microcontrollers</div>
+                    <div class="skill-tag" style="--delay: 0.7s;">ESP32</div>
+                    <div class="skill-tag" style="--delay: 0.9s;">STM32</div>
+                    <div class="skill-tag" style="--delay: 1.1s;">ARM Cortex-M</div>
+                    <div class="skill-tag" style="--delay: 1.3s;">FreeRTOS</div>
+                </div>
+
+                <!-- Column 2 -->
+                <div class="string-col">
+                    <div class="string-thread"></div>
+                    <div class="skill-category" style="--delay: 0.7s;">Vision & AI</div>
+                    <div class="skill-tag" style="--delay: 0.9s;">OpenCV</div>
+                    <div class="skill-tag" style="--delay: 1.1s;">Python / C++</div>
+                    <div class="skill-tag" style="--delay: 1.3s;">TensorFlow Lite</div>
+                    <div class="skill-tag" style="--delay: 1.5s;">YOLO / CUDA</div>
+                </div>
+
+                <!-- Column 3 -->
+                <div class="string-col">
+                    <div class="string-thread"></div>
+                    <div class="skill-category" style="--delay: 0.9s;">Tools & Protocols</div>
+                    <div class="skill-tag" style="--delay: 1.1s;">I2C / SPI / UART</div>
+                    <div class="skill-tag" style="--delay: 1.3s;">CAN Bus / MQTT</div>
+                    <div class="skill-tag" style="--delay: 1.5s;">Altium Designer</div>
+                    <div class="skill-tag" style="--delay: 1.7s;">Git / Docker</div>
                 </div>
             </div>
         </section>
@@ -1187,36 +1266,36 @@
                                         
                                         <!-- Tiny Pink Nose & Whiskers -->
                                         <polygon points="76,124 84,124 80,129" fill="#F498A7" stroke="#F498A7" stroke-width="2" stroke-linejoin="round"/>
-                                        <path d="M 40 125 L 20 120 M 40 130 L 15 130 M 40 135 L 20 140" fill="none" stroke="#888" stroke-width="2" stroke-linecap="round" opacity="0.5"/>
-                                        <path d="M 120 125 L 140 120 M 120 130 L 145 130 M 120 135 L 140 140" fill="none" stroke="#888" stroke-width="2" stroke-linecap="round" opacity="0.5"/>
-                                        
-                                            <path id="g-mouth-rest" d="M 74 135 Q 80 142 80 133 Q 80 142 86 135" fill="none" stroke="#D66A15" stroke-width="2" stroke-linecap="round" style="opacity: 1;"/>
-                                            <path id="g-mouth" d="M 76 139 Q 80 148 84 139" fill="none" stroke="#ff8fa3" stroke-width="3" stroke-linecap="round" style="opacity: 0;"/>
-                                        </g>
-                                    </g> <!-- End g-fat-scaler -->
-                                </g>
-
-                                <!-- UI Elements (Outside the mesh so they don't flip backwards) -->
-                                <g id="g-zzzs">
-                                    <text class="zzz-anim" x="30" y="50" fill="#a18cd1" font-size="28" font-weight="bold">Z</text>
-                                    <text class="zzz-anim" x="10" y="20" fill="#ff8fa3" font-size="18" font-weight="bold" style="animation-delay: 0.7s;">z</text>
-                                </g>
-                                <!-- "Huh?" reaction -->
-                                <text id="g-huh" x="40" y="40" fill="#ffea00" font-size="40" font-weight="bold" style="opacity:0; transition: opacity 0.3s;">?</text>
-                                <!-- Happy Heart -->
-                                <text id="g-heart" x="220" y="50" fill="#ff3333" font-size="40" style="opacity:0; transition: opacity 0.5s, transform 0.5s; transform: scale(0); transform-origin: 240px 40px;">❤️</text>
-                                <!-- Eating Noms (positioned on the right side since cat flips) -->
-                                <g id="g-noms" style="opacity:0;">
-                                    <text class="nom-anim" x="250" y="140" fill="#ff8fa3" font-size="16" font-weight="bold">nom</text>
-                                    <text class="nom-anim" x="270" y="110" fill="#a18cd1" font-size="14" font-weight="bold" style="animation-delay: 0.3s;">nom</text>
-                                    <text class="nom-anim" x="230" y="90" fill="#ffb3c6" font-size="12" font-weight="bold" style="animation-delay: 0.6s;">nom</text>
-                                </g>
-                            </svg>
-                        </div>
+                            <rect id="hero-cat-left-paw" x="150" y="360" width="34" height="42" rx="17" fill="#2a2a2a" />
+                            <rect id="hero-cat-right-paw" x="215" y="360" width="34" height="42" rx="17" fill="#2a2a2a" />
+                        </svg>
                         
-                        <div id="guardian-text-container" style="transition: opacity 0.5s; text-align: center; margin-top: 1rem; position: relative; z-index: 25;">
-                            <h3>Projects Blocked!</h3>
-                            <p style="color: var(--text-muted); font-weight: 600;">A giant sleepy cat is resting on the repos.</p>
+                        <!-- The Slide Track (Yarn Thread) -->
+                        <svg id="cat-slide" style="
+                            position: absolute;
+                            bottom: 60px;
+                            left: 50%;
+                            width: 2px; height: 2px;
+                            overflow: visible;
+                            opacity: 0;
+                            z-index: -1;
+                            transition: opacity 0.5s;
+                        ">
+                            <path id="yarn-thread-glow" d="M 0 0" fill="none" stroke="var(--surface-color-light)" stroke-width="24" stroke-linecap="round" />
+                            <path id="yarn-thread-solid" d="M 0 0" fill="none" stroke="rgba(255, 143, 163, 0.4)" stroke-width="12" stroke-linecap="round" />
+                            <path id="yarn-thread-dash" d="M 0 0" fill="none" stroke="var(--primary-color)" stroke-width="4" stroke-dasharray="10 10" />
+                        </svg>
+
+                        <!-- The small toy ball (Yarn Ball) -->
+                        <div id="hero-cat-ball">
+                            <svg viewBox="0 0 100 100" width="100%" height="100%" style="overflow:visible;">
+                                <circle cx="50" cy="50" r="45" fill="url(#ball-grad)"/>
+                                <path d="M 15 50 Q 30 20 80 30" fill="none" stroke="rgba(255,255,255,0.7)" stroke-width="5" stroke-linecap="round"/>
+                                <path d="M 20 70 Q 50 90 85 60" fill="none" stroke="rgba(255,255,255,0.7)" stroke-width="4" stroke-linecap="round"/>
+                                <path d="M 30 15 Q 50 60 70 85" fill="none" stroke="rgba(255,255,255,0.7)" stroke-width="3" stroke-linecap="round"/>
+                                <path d="M 10 40 Q 60 40 90 50" fill="none" stroke="rgba(255,255,255,0.5)" stroke-width="6" stroke-linecap="round"/>
+                                <path d="M 40 10 Q 40 60 50 90" fill="none" stroke="rgba(255,255,255,0.5)" stroke-width="4" stroke-linecap="round"/>
+                            </svg>
                         </div>
                     </div>
                 </div>
@@ -1794,44 +1873,13 @@
                 const observerOptions = { root: null, rootMargin: '-20% 0px -40% 0px', threshold: 0 };
                 const observer = new IntersectionObserver((entries) => {
                     entries.forEach(entry => { 
-                        if (entry.isIntersecting) {
+                        if (entry.isIntersecting && entry.target.id !== 'hero') {
                             this.moveCatToSection(entry.target);
-                        }
-                        
-                        // Link the Hero Ball disappearance to the Skills Ball appearance
-                        if (entry.target.id === 'skills') {
-                            const heroBall = document.getElementById('hero-cat-ball');
-                            if (entry.isIntersecting) {
-                                entry.target.classList.add('skills-visible');
-                            } else {
-                                entry.target.classList.remove('skills-visible');
-                            }
                         }
                     });
                 }, observerOptions);
                 document.querySelectorAll('section').forEach(sec => observer.observe(sec));
 
-                // Timeline Cards Observer
-                const timelineObserver = new IntersectionObserver((entries) => {
-                    entries.forEach(entry => {
-                        if (entry.isIntersecting) {
-                            entry.target.classList.add('visible');
-                        }
-                    });
-                }, { threshold: 0.1, rootMargin: '0px 0px -50px 0px' });
-                document.querySelectorAll('.timeline-content').forEach(el => timelineObserver.observe(el));
-
-                // Generate the literal slide track for the ball mathematically
-                const slideSvg = document.getElementById('cat-slide');
-                if (slideSvg) {
-                    slideSvg.innerHTML = `
-                        <path id="yarn-thread-glow" fill="none" stroke="rgba(255, 143, 163, 0.3)" stroke-width="16" stroke-linecap="round" />
-                        <path id="yarn-thread-solid" fill="none" stroke="var(--primary-color)" stroke-width="4" stroke-linecap="round" />
-                        <path id="yarn-thread-dash" fill="none" stroke="#fff" stroke-width="2" stroke-dasharray="6 6" stroke-linecap="round" opacity="0.8" />
-                    `;
-                }
-
-                // Frame-by-frame physics linked to scroll position
                 window.addEventListener('scroll', () => {
                     if (GameState.introActive) return;
                     const scrollY = window.scrollY;
@@ -1841,18 +1889,17 @@
                     if (!ball || !heroCatWrapper) return;
 
                     if (scrollY <= 10) {
-                        // Reset to idle animation at the very top
                         ball.style.animation = 'ball-roll 6s infinite';
                         ball.style.transform = '';
                         ball.style.opacity = '1';
                         heroCatWrapper.classList.remove('swatting', 'sad-cat');
                         if (slideSvg) slideSvg.style.opacity = '0';
+                        document.querySelectorAll('.timeline-content').forEach(card => card.classList.remove('visible'));
+                        document.body.classList.remove('skills-unraveled', 'skills-active');
                     } else {
-                        // Stop idle animations and show the slide
                         ball.style.animation = 'none';
                         if (slideSvg) slideSvg.style.opacity = '1';
                         
-                        // Cat swats the ball immediately
                         if (scrollY > 10 && scrollY < 50) {
                             heroCatWrapper.classList.add('swatting');
                             heroCatWrapper.classList.remove('sad-cat');
@@ -1861,74 +1908,58 @@
                             heroCatWrapper.classList.add('sad-cat');
                         }
                         
-                        // 1. Calculate Absolute Anchors
+                        /* Calculate Center Trajectory */
+                        let D = Math.max(0, scrollY - 30);
+                        
                         const wrapperRect = heroCatWrapper.getBoundingClientRect();
-                        const absoluteWrapperBottom = wrapperRect.bottom + scrollY;
-                        const ballStartDocY = absoluteWrapperBottom - 25; 
-                        
-                        // 2. Lock ball in the 2nd quartile of viewport (35vh)
-                        const targetViewportY = window.innerHeight * 0.35;
-                        
-                        // Calculate total unrolled string length (dy)
-                        let dy = scrollY + targetViewportY - ballStartDocY;
-                        if (dy < 0) dy = 0; // Don't drop until we scroll past the mark
-                        
-                        // 3. X-Axis Math
-                        const startX = wrapperRect.left + (wrapperRect.width / 2);
+                        const startX = wrapperRect.left + (wrapperRect.width / 2); 
                         const centerX = window.innerWidth / 2;
-                        const driftOffset = centerX - startX;
+                        const targetCenterOffset = centerX - startX;
 
-                        function getDx(y) {
-                            let H = 550; // Drop distance required to center the ball
+                        const mergePoint = 600;
+
+                        function getPathX(y) {
                             let x = 0;
-                            
-                            if (y < H) {
-                                let progress = y / H;
-                                // Smooth drift to center using Cosine
-                                let centerDrift = driftOffset * (1 - Math.cos(progress * Math.PI / 2));
-                                // Add explicit outward initial swoop (bulges right before swinging left)
-                                let bulge = 60 * Math.sin(progress * Math.PI); 
-                                x = centerDrift + bulge;
+                            if (y < mergePoint) {
+                                // Smooth curve to the center with an outward swoop
+                                let t = Math.max(0, y / mergePoint);
+                                let ease = t * t * (3 - 2 * t);
+                                x = ease * targetCenterOffset;
+                                let swoopDir = targetCenterOffset < 0 ? 1 : -1; 
+                                x += Math.sin(t * Math.PI) * 60 * swoopDir;
                             } else {
-                                x = driftOffset;
-                            }
-
-                            // Smoothly blend into the weaving motion
-                            let weaveStart = 450;
-                            if (y > weaveStart) {
-                                let wProg = y - weaveStart;
-                                let amp = Math.min(1, wProg / 350) * 180; // Fade amplitude in smoothly
-                                x += Math.sin(wProg / 160) * amp; // 160 period = wide lazy swing
+                                // Zig-zag weave perfectly down the center between the timeline cards
+                                let weaveAmplitude = window.innerWidth > 768 ? 90 : 30;
+                                x = targetCenterOffset + Math.sin((y - mergePoint) / 180) * weaveAmplitude;
                             }
                             return x;
                         }
+
+                        let dx = getPathX(D);
+                        let dy = D;
+                        let rot = D * 1.2;
                         
-                        let dx = getDx(dy);
-                        let rot = dy * 1.2; 
-                        
-                        // 4. Fade out smoothly when hitting the Giant Skills Ball
+                        /* Skills Unravel Trigger Tracker */
                         const skillsSection = document.getElementById('skills');
-                        let opacity = 1;
-                        if (skillsSection) {
-                            const skillsRect = skillsSection.getBoundingClientRect();
-                            let ballViewportY = (dy === 0) ? (wrapperRect.bottom - 25) : targetViewportY;
-                            let distanceToSkills = skillsRect.top - ballViewportY;
-                            if (distanceToSkills < 300) {
-                                opacity = Math.max(0, distanceToSkills / 300);
-                            }
-                        }
+                        const skillsRect = skillsSection ? skillsSection.getBoundingClientRect() : null;
                         
-                        ball.style.transform = `translate(${dx}px, ${dy}px) rotate(${rot}deg)`;
-                        ball.style.opacity = opacity.toString();
+                        if (skillsRect && skillsRect.top < window.innerHeight * 0.6) {
+                           document.body.classList.add('skills-unraveled', 'skills-active');
+                           ball.style.opacity = '0';
+                        } else {
+                           document.body.classList.remove('skills-unraveled', 'skills-active');
+                           ball.style.opacity = '1';
+                           ball.style.transform = `translate(${dx}px, ${dy}px) rotate(${rot}deg)`;
+                        }
 
-                        // 5. Draw the perfect mathematical trajectory line
-                        if (slideSvg) {
+                        /* Draw the Yarn Path */
+                        if (slideSvg && !document.body.classList.contains('skills-active')) {
                             let pathD = "M 0 0";
-                            for(let y = 0; y <= dy; y += 10) {
-                                pathD += ` L ${getDx(y)} ${y}`;
+                            for(let y = 0; y <= D; y += 20) {
+                                pathD += ` L ${getPathX(y)} ${y}`;
                             }
-                            pathD += ` L ${dx} ${dy}`; // Guarantee last point connects precisely
-
+                            pathD += ` L ${dx} ${dy}`;
+                            
                             const threadGlow = document.getElementById('yarn-thread-glow');
                             const threadSolid = document.getElementById('yarn-thread-solid');
                             const threadDash = document.getElementById('yarn-thread-dash');
@@ -1937,6 +1968,20 @@
                             if (threadSolid) threadSolid.setAttribute('d', pathD);
                             if (threadDash) threadDash.setAttribute('d', pathD);
                         }
+
+                        /* Reveal Timeline Cards exactly when the ball touches them */
+                        const ballRect = ball.getBoundingClientRect();
+                        const ballCenterY = ballRect.top + (ballRect.height / 2);
+                        
+                        document.querySelectorAll('.timeline-content').forEach(card => {
+                            const cardRect = card.getBoundingClientRect();
+                            const revealPoint = cardRect.top + 60; 
+                            if (ballCenterY >= revealPoint || document.body.classList.contains('skills-active')) {
+                                card.classList.add('visible');
+                            } else {
+                                card.classList.remove('visible');
+                            }
+                        });
                     }
                 });
             },
