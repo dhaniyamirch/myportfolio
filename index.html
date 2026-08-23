@@ -109,7 +109,6 @@
         .eye--left { left: 0; } .eye--left::before { right: -5%; }
         .eye--right { right: 0; } .eye--right::before { left: -5%; }
 
-        /* Dynamic Pupil Tracking for Intro Cat */
         .eye-pupil {
             position: absolute; top: 25%; height: 50%; width: 20%;
             background: var(--intro-black); border-radius: 50%;
@@ -486,6 +485,267 @@
             0% { transform: translate(-50%, 0) scale(0) rotate(0deg); opacity: 1; }
             100% { transform: translate(-50%, -100px) scale(1.5) rotate(var(--rot)); opacity: 0; }
         }
+
+        .carousel-container {
+            position: relative;
+            width: 100%;
+            max-width: 500px;
+            height: 380px;
+            margin: 0 auto;
+            overflow: hidden;
+            border-radius: var(--border-radius);
+        }
+
+        .carousel-slide {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            transition: transform 0.6s cubic-bezier(0.34, 1.56, 0.64, 1), opacity 0.6s;
+            opacity: 0;
+            pointer-events: none;
+            transform: translateX(120%);
+        }
+
+        .carousel-slide.active {
+            opacity: 1;
+            pointer-events: auto;
+            transform: translateX(0);
+        }
+
+        .carousel-controls {
+            display: flex;
+            justify-content: space-between;
+            width: 100%;
+            max-width: 500px;
+            margin: 1.5rem auto 0;
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 0.8s ease;
+            position: relative;
+            z-index: 40;
+        }
+
+        .btn-nav {
+            background: var(--surface-color);
+            color: var(--primary-color);
+            border: 2px solid var(--primary-color);
+            padding: 0.6rem 1.5rem;
+            border-radius: 30px;
+            font-weight: 700;
+            cursor: pointer;
+            transition: all 0.3s;
+            box-shadow: 0 4px 10px var(--shadow-color);
+        }
+        .btn-nav:hover {
+            background: var(--primary-color);
+            color: white;
+            transform: translateY(-2px);
+        }
+        
+        .projects-interactive-wrapper { display: flex; gap: 2rem; width: 100%; align-items: stretch; position: relative; }
+        .projects-content-area { flex: 1; position: relative; display: flex; flex-direction: column; width: 100%; }
+        
+        /* Restored Guardian Cat Overlay CSS */
+        .guardian-cat-overlay {
+            position: absolute; top: 0; left: 0; width: 100%; height: 100%;
+            display: flex; flex-direction: column; align-items: center; justify-content: center;
+            z-index: 20; transition: background 1s ease, backdrop-filter 1s ease;
+            pointer-events: auto;
+        }
+        .guardian-cat-overlay:not(.unlocked) {
+            background: rgba(255, 255, 255, 0.85); backdrop-filter: blur(8px);
+        }
+        .guardian-cat-overlay.unlocked { pointer-events: none; }
+        .guardian-cat-overlay.unlocked #guardian-text-container { opacity: 0; pointer-events: none; }
+        
+        .guardian-cat-wrapper {
+            position: absolute;
+            top: calc(50% - 90px); left: calc(50% - 125px);
+            width: 250px; height: 180px;
+            transform: translate(0px, 0px);
+            z-index: 30; will-change: transform;
+        }
+        
+        .cat-flipped svg { transform: scaleX(-1); }
+
+        /* Fixed Rigging Origins (Prevents Detachment) */
+        #g-torso { transform-origin: 160px 160px; transition: transform 0.4s ease; }
+        #g-head { transform-origin: 80px 130px; transition: transform 0.4s ease; }
+        #g-tail { transform-origin: 250px 150px; transition: transform 0.4s ease; }
+        #g-leg-fl { transform-origin: 100px 180px; transition: transform 0.4s ease, opacity 0.4s; }
+        #g-leg-fr { transform-origin: 120px 170px; transition: transform 0.4s ease, opacity 0.4s; }
+        #g-leg-bl { transform-origin: 190px 180px; transition: transform 0.4s ease, opacity 0.4s; }
+        #g-leg-br { transform-origin: 210px 170px; transition: transform 0.4s ease, opacity 0.4s; }
+
+        .cat-state-sleeping #g-leg-bl, .cat-state-sleeping #g-leg-br { opacity: 0; transform: translateY(-20px); }
+
+        /* State: Waking */
+        .cat-state-waking #g-torso { transform: scaleY(0.9) translateY(10px); }
+        .cat-state-waking #g-head { transform: translateY(5px) rotate(5deg); }
+        .cat-state-waking #g-tail { transform: translate(-15px, -5px) rotate(-40deg); }
+        .cat-state-waking #g-leg-fl, .cat-state-waking #g-leg-fr, 
+        .cat-state-waking #g-leg-bl, .cat-state-waking #g-leg-br { opacity: 0; transform: translateY(-10px); }
+
+        /* State: Stretching */
+        .cat-state-stretching #g-torso { transform: scaleX(1.1) scaleY(0.9) translateY(10px); }
+        .cat-state-stretching #g-head { transform: translateY(15px) rotate(10deg); }
+        .cat-state-stretching #g-tail { transform: rotate(-20deg); }
+        .cat-state-stretching #g-leg-fl, .cat-state-stretching #g-leg-fr { opacity: 1; transform: translate(-20px, -10px) rotate(30deg); }
+
+        /* State: Standing & Walking shared posture */
+        .cat-state-standing #g-leg-fl, .cat-state-standing #g-leg-fr, 
+        .cat-state-standing #g-leg-bl, .cat-state-standing #g-leg-br,
+        .cat-state-walking #g-leg-fl, .cat-state-walking #g-leg-fr, 
+        .cat-state-walking #g-leg-bl, .cat-state-walking #g-leg-br, 
+        .cat-state-eating #g-leg-fl, .cat-state-eating #g-leg-fr, 
+        .cat-state-eating #g-leg-bl, .cat-state-eating #g-leg-br,
+        .cat-state-happy #g-leg-fl, .cat-state-happy #g-leg-fr, 
+        .cat-state-happy #g-leg-bl, .cat-state-happy #g-leg-br {
+            opacity: 1; transform: translateY(0) rotate(0deg);
+        }
+        
+        .cat-state-standing #g-torso, .cat-state-walking #g-torso,
+        .cat-state-eating #g-torso, .cat-state-happy #g-torso { transform: translateY(-25px); }
+        .cat-state-standing #g-head, .cat-state-walking #g-head { transform: translateY(-25px); }
+        .cat-state-standing #g-tail, .cat-state-walking #g-tail,
+        .cat-state-eating #g-tail, .cat-state-happy #g-tail { transform: translateY(-25px) rotate(20deg); }
+
+        /* State: Walking Cycle */
+        @keyframes g-walk-1 { 0% { transform: rotate(-25deg); } 100% { transform: rotate(25deg); } }
+        @keyframes g-walk-2 { 0% { transform: rotate(25deg); } 100% { transform: rotate(-25deg); } }
+        @keyframes g-body-bob { 0% { transform: translateY(-25px); } 100% { transform: translateY(-30px); } }
+        @keyframes g-tail-sway { 0% { transform: translateY(-25px) rotate(10deg); } 100% { transform: translateY(-25px) rotate(40deg); } }
+
+        .cat-state-walking #g-leg-fl { animation: g-walk-1 0.3s infinite alternate ease-in-out; }
+        .cat-state-walking #g-leg-bl { animation: g-walk-2 0.3s infinite alternate ease-in-out; }
+        .cat-state-walking #g-leg-fr { animation: g-walk-2 0.3s infinite alternate ease-in-out; }
+        .cat-state-walking #g-leg-br { animation: g-walk-1 0.3s infinite alternate ease-in-out; }
+        
+        .cat-state-walking #g-torso, .cat-state-walking #g-head { animation: g-body-bob 0.3s infinite alternate ease-in-out; }
+        .cat-state-walking #g-tail { animation: g-tail-sway 0.4s infinite alternate ease-in-out; }
+
+        /* State: Eating */
+        @keyframes g-eat-bob { 0% { transform: translateY(-5px) rotate(25deg); } 100% { transform: translateY(5px) rotate(15deg); } }
+        @keyframes g-mouth-chew { 0% { transform: scaleY(1); } 100% { transform: scaleY(1.5) translateY(2px); } }
+        .cat-state-eating #g-head { animation: g-eat-bob 0.4s infinite alternate; }
+        .cat-state-eating #g-mouth { opacity: 1; animation: g-mouth-chew 0.2s infinite alternate; transform-origin: 80px 140px; }
+        .cat-state-eating #g-mouth-rest { opacity: 0; }
+        .cat-state-eating #g-noms { opacity: 1; }
+        
+        .nom-anim { animation: floatNom 1.5s infinite; opacity: 0; }
+        @keyframes floatNom { 0% { transform: translateY(0); opacity: 1; } 100% { transform: translateY(-20px); opacity: 0; } }
+
+        /* State: Happy (Yum!) */
+        @keyframes g-tail-sway-fast { 0% { transform: translateY(-25px) rotate(15deg); } 100% { transform: translateY(-25px) rotate(45deg); } }
+        .cat-state-happy #g-tail { animation: g-tail-sway-fast 0.2s infinite alternate ease-in-out; }
+        .cat-state-happy #g-head { transform: translateY(-20px) rotate(10deg); }
+
+        /* State: Sitting Upright (Rigged to maintain joint connections) */
+        .cat-state-sitting #g-torso { 
+            transform: translate(10px, -15px) rotate(45deg); 
+        }
+        .cat-state-sitting #g-head { 
+            transform: translate(55px, -60px) rotate(-10deg); 
+        }
+        .cat-state-sitting #g-tail { 
+            animation: tail-idle-wiggle 4s infinite ease-in-out;
+        }
+        
+        @keyframes tail-idle-wiggle {
+            0%, 100% { transform: translate(-10px, 45px) rotate(60deg); }
+            50% { transform: translate(-10px, 45px) rotate(70deg); }
+        }
+        
+        /* Paws straight down in front, back paws tucked */
+        .cat-state-sitting #g-leg-fl { 
+            opacity: 1; transform: translate(20px, -60px) rotate(-25deg); 
+        }
+        .cat-state-sitting #g-leg-fr { 
+            opacity: 1; transform: translate(15px, -50px) rotate(-25deg); 
+        }
+        .cat-state-sitting #g-leg-bl { 
+            opacity: 1; transform: translate(-10px, 0px) rotate(40deg); 
+        }
+        .cat-state-sitting #g-leg-br { 
+            opacity: 1; transform: translate(-10px, 5px) rotate(40deg); 
+        }
+        
+        @media (max-width: 768px) {
+            .projects-interactive-wrapper { flex-direction: column; }
+        }
+        
+        .dispenser-station {
+            width: 250px; flex-shrink: 0; background: var(--surface-color);
+            border-radius: var(--border-radius); border: 2px solid var(--border-color);
+            padding: var(--spacing-md); display: flex; flex-direction: column;
+            align-items: center; box-shadow: 0 10px 30px var(--shadow-color);
+            z-index: 10;
+        }
+        
+        .dispenser-machine-svg { width: 100%; height: 220px; overflow: visible; margin-bottom: 1rem; }
+        .kibble { opacity: 0; transition: transform 0.5s ease-in, opacity 0.2s; }
+        .kibble.drop { animation: dropFood 0.5s forwards; }
+        
+        @keyframes dropFood {
+            0% { transform: translateY(0); opacity: 1; }
+            80% { opacity: 1; }
+            100% { transform: translateY(60px); opacity: 0; }
+        }
+        
+        .bowl-food { opacity: 0; transition: opacity 0.5s ease 0.5s; }
+        .bowl-food.filled { opacity: 1; }
+
+        .btn-feed {
+            background: var(--accent-color); color: white; border: none; padding: 1rem;
+            width: 100%; border-radius: 50px; font-weight: 700; cursor: pointer;
+            box-shadow: 0 8px 20px rgba(161, 140, 209, 0.3); transition: all 0.3s;
+            font-family: 'Quicksand', sans-serif; font-size: 1.1rem;
+        }
+        .btn-feed:hover { transform: translateY(-3px); box-shadow: 0 12px 25px rgba(161, 140, 209, 0.5); }
+        .btn-feed:disabled { background: var(--text-muted); transform: none; box-shadow: none; cursor: not-allowed; }
+
+        /* Cushion Button Final State */
+        .btn-cushion {
+            background: linear-gradient(135deg, #ff9a9e 0%, #fecfef 100%) !important;
+            border-radius: 40px !important;
+            box-shadow: 
+                inset 0 15px 20px rgba(255,255,255,0.7),
+                inset 0 -10px 20px rgba(0,0,0,0.1),
+                0 15px 30px rgba(255, 143, 163, 0.4) !important;
+            transform: scale(1.05) !important;
+            color: #d85c75 !important;
+            height: auto !important;
+            padding-top: 100px !important;
+            padding-bottom: 1.5rem !important;
+            display: flex !important;
+            align-items: flex-end !important;
+            justify-content: center !important;
+            white-space: pre-wrap !important;
+            font-size: 1.1rem !important;
+            font-weight: 800 !important;
+            cursor: default !important;
+            border: 3px solid #fff !important;
+            line-height: 1.4;
+            transition: all 0.8s cubic-bezier(0.34, 1.56, 0.64, 1) !important;
+        }
+
+        /* Breathing Animation for Maximum Chonk */
+        @keyframes fat-breathe {
+            0%, 100% { transform: scale(var(--fat-x, 1), var(--fat-y, 1)); }
+            50% { transform: scale(calc(var(--fat-x, 1) * 1.02), calc(var(--fat-y, 1) * 1.04)); }
+        }
+        .fat-breathing {
+            animation: fat-breathe 3s infinite ease-in-out;
+        }
+
+        .zzz-anim { animation: zzzFloat 2.5s infinite linear; transform-origin: center; }
+        @keyframes zzzFloat { 
+            0% { transform: translate(0,0) scale(0.8); opacity: 0; } 
+            20% { opacity: 1; } 
+            100% { transform: translate(30px, -40px) scale(1.5); opacity: 0; } 
+        }
     </style>
 </head>
 <body>
@@ -657,17 +917,230 @@
 
         <section id="projects">
             <h2 class="section-title">Recent Deployments</h2>
-            <div class="grid-2">
-                <div class="cat-platform">
-                    <div class="project-img">📷 Drone Brain</div>
-                    <h3>Autonomous Drone Brain</h3>
-                    <p style="font-size: 0.95rem; margin-top: 0.5rem; color: var(--text-muted);">A custom flight controller based on STM32 H7 running a real-time object avoidance neural net.</p>
+            
+            <div class="projects-interactive-wrapper">
+                
+                <!-- Left: The Projects & Overlay -->
+                <div class="projects-content-area">
+                    
+                    <div class="carousel-container">
+                        <div class="carousel-slide active">
+                            <div class="cat-platform" style="height: 100%; display: flex; flex-direction: column;">
+                                <div class="project-img">📷 Drone Brain</div>
+                                <h3>Autonomous Drone Brain</h3>
+                                <p style="font-size: 0.95rem; margin-top: 0.5rem; color: var(--text-muted);">A custom flight controller based on STM32 H7 running a real-time object avoidance neural net.</p>
+                            </div>
+                        </div>
+                        <div class="carousel-slide">
+                            <div class="cat-platform" style="height: 100%; display: flex; flex-direction: column;">
+                                <div class="project-img">🐈 Smart Feeder</div>
+                                <h3>IoT Cat Feeder + Face Rec</h3>
+                                <p style="font-size: 0.95rem; margin-top: 0.5rem; color: var(--text-muted);">Dispenses specific diets based on which cat is detected using an ESP32-CAM.</p>
+                            </div>
+                        </div>
+                        <div class="carousel-slide">
+                            <div class="cat-platform" style="height: 100%; display: flex; flex-direction: column;">
+                                <div class="project-img">🦾 Bionic Arm</div>
+                                <h3>Myoelectric Prosthetic</h3>
+                                <p style="font-size: 0.95rem; margin-top: 0.5rem; color: var(--text-muted);">A 3D-printed bionic arm controlled by EMG sensors reading muscle signals via I2C.</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div id="carousel-controls" class="carousel-controls">
+                        <button id="btn-prev-proj" class="btn-nav">← Prev</button>
+                        <button id="btn-next-proj" class="btn-nav">Next →</button>
+                    </div>
+
+                    <!-- The Blocking Guardian Cat -->
+                    <div id="guardian-cat-overlay" class="guardian-cat-overlay">
+                        <div class="guardian-cat-bg"></div>
+                        
+                        <div id="guardian-cat-wrapper" class="guardian-cat-wrapper cat-state-sleeping">
+                            <svg id="guardian-svg" viewBox="0 0 320 250" width="250" height="180" style="overflow:visible;">
+                                
+                                <!-- Core Cat Elements -->
+                                <g id="g-cat-mesh">
+                                    <!-- Scaler for getting FATTER -->
+                                    <g id="g-fat-scaler" style="transform-origin: 160px 180px; transition: transform 1.2s cubic-bezier(0.34, 1.56, 0.64, 1);">
+                                        
+                                        <!-- Tail Group (Fluffy Peachy Cream) -->
+                                        <g id="g-tail">
+                                            <path d="M 235 180 C 290 200, 310 130, 270 90 C 240 60, 230 100, 250 120" fill="none" stroke="#F28C38" stroke-width="25" stroke-linecap="round" />
+                                            <path d="M 255 178 Q 285 180, 280 140 M 275 110 Q 260 90, 250 100" fill="none" stroke="#D66A15" stroke-width="5" stroke-linecap="round" opacity="0.6"/>
+                                        </g>
+                                    
+                                    <!-- Back Legs -->
+                                    <g id="g-legs-back">
+                                        <line id="g-leg-br" x1="210" y1="170" x2="210" y2="215" stroke="#D66A15" stroke-width="20" stroke-linecap="round" />
+                                        <line id="g-leg-bl" x1="190" y1="180" x2="190" y2="225" stroke="#F28C38" stroke-width="20" stroke-linecap="round" />
+                                    </g>
+                                    
+                                    <!-- Torso Group (Body + Chest) -->
+                                    <g id="g-torso">
+                                        <!-- Main Fluffy Orange Body -->
+                                        <path id="g-body" d="M 85 150 C 85 90, 230 100, 250 150 C 265 190, 230 210, 160 210 C 90 210, 85 180, 85 150 Z" fill="#F28C38" />
+                                        
+                                        <!-- Tabby Back Stripes -->
+                                        <path d="M 150 105 Q 170 120 160 140 M 180 105 Q 200 120 190 140 M 210 115 Q 230 130 220 150" fill="none" stroke="#D66A15" stroke-width="5" stroke-linecap="round" opacity="0.8"/>
+                                        
+                                        <!-- Soft White Chest Patch -->
+                                        <path id="g-chest" d="M 85 160 C 110 130, 150 130, 170 160 C 180 190, 130 210, 85 200 Z" fill="#FFFFFF" />
+                                    </g>
+
+                                    <!-- Front Legs -->
+                                    <g id="g-legs-front">
+                                        <line id="g-leg-fr" x1="120" y1="170" x2="120" y2="215" stroke="#D66A15" stroke-width="20" stroke-linecap="round" />
+                                        <line id="g-leg-fl" x1="100" y1="180" x2="100" y2="225" stroke="#F28C38" stroke-width="20" stroke-linecap="round" />
+                                    </g>
+                                    
+                                    <!-- Head Group -->
+                                    <g id="g-head">
+                                        <!-- Pointed Orange Ears -->
+                                        <path d="M 35 75 L 45 25 L 75 60 Z" fill="#F28C38" stroke="#F28C38" stroke-width="4" stroke-linejoin="round"/>
+                                        <path d="M 42 70 L 50 40 L 68 62 Z" fill="#F498A7" />
+                                        
+                                        <path d="M 125 75 L 115 25 L 85 60 Z" fill="#F28C38" stroke="#F28C38" stroke-width="4" stroke-linejoin="round"/>
+                                        <path d="M 118 70 L 110 40 L 92 62 Z" fill="#F498A7" />
+                                        
+                                        <!-- Round Orange Face -->
+                                        <ellipse cx="80" cy="110" rx="55" ry="45" fill="#F28C38"/>
+                                        
+                                        <!-- Classic 'M' Tabby Mark on Forehead -->
+                                        <path d="M 60 80 L 70 95 L 80 80 L 90 95 L 100 80" fill="none" stroke="#D66A15" stroke-width="4" stroke-linejoin="round" opacity="0.8"/>
+
+                                        <!-- Fluffy White Muzzle Area -->
+                                        <ellipse cx="80" cy="130" rx="28" ry="18" fill="#FFFFFF"/>
+
+                                        <!-- Sleeping eyes (Curved lines) -->
+                                        <path id="guardian-eye-l" d="M 45 120 Q 55 128 65 120" fill="none" stroke="#D66A15" stroke-width="4" stroke-linecap="round" style="transition: opacity 0.3s;"/>
+                                        <path id="guardian-eye-r" d="M 95 120 Q 105 128 115 120" fill="none" stroke="#D66A15" stroke-width="4" stroke-linecap="round" style="transition: opacity 0.3s;"/>
+                                        
+                                        <!-- Adorable Big Green Anime Eyes (Awake/Sitting) -->
+                                        <g id="guardian-eyes-awake" style="opacity: 0; transition: opacity 0.3s;">
+                                            <!-- Left Eye -->
+                                            <ellipse cx="55" cy="110" rx="14" ry="16" fill="#fff" />
+                                            <ellipse cx="55" cy="110" rx="11" ry="14" fill="#A2D149" />
+                                            <ellipse cx="55" cy="110" rx="4" ry="10" fill="#161616" />
+                                            <circle cx="52" cy="104" r="3.5" fill="#fff" />
+                                            <circle cx="56" cy="117" r="1.5" fill="#fff" />
+                    
+                                            <!-- Right Eye -->
+                                            <ellipse cx="105" cy="110" rx="14" ry="16" fill="#fff" />
+                                            <ellipse cx="105" cy="110" rx="11" ry="14" fill="#A2D149" />
+                                            <ellipse cx="105" cy="110" rx="4" ry="10" fill="#161616" />
+                                            <circle cx="102" cy="104" r="3.5" fill="#fff" />
+                                            <circle cx="106" cy="117" r="1.5" fill="#fff" />
+                                        </g>
+                                        
+                                        <!-- Cute Squint (Happy/Eating) -->
+                                        <g id="guardian-eyes-happy" style="opacity: 0; transition: opacity 0.3s;">
+                                            <path d="M 45 115 Q 55 105 65 115" fill="none" stroke="#D66A15" stroke-width="5" stroke-linecap="round"/>
+                                            <path d="M 95 115 Q 105 105 115 115" fill="none" stroke="#D66A15" stroke-width="5" stroke-linecap="round"/>
+                                        </g>
+                                        
+                                        <!-- Tiny Pink Nose & Whiskers -->
+                                        <polygon points="76,124 84,124 80,129" fill="#F498A7" stroke="#F498A7" stroke-width="2" stroke-linejoin="round"/>
+                                        <path d="M 40 125 L 20 120 M 40 130 L 15 130 M 40 135 L 20 140" fill="none" stroke="#888" stroke-width="2" stroke-linecap="round" opacity="0.5"/>
+                                        <path d="M 120 125 L 140 120 M 120 130 L 145 130 M 120 135 L 140 140" fill="none" stroke="#888" stroke-width="2" stroke-linecap="round" opacity="0.5"/>
+                                        
+                                            <path id="g-mouth-rest" d="M 74 135 Q 80 142 80 133 Q 80 142 86 135" fill="none" stroke="#D66A15" stroke-width="2" stroke-linecap="round" style="opacity: 1;"/>
+                                            <path id="g-mouth" d="M 76 139 Q 80 148 84 139" fill="none" stroke="#ff8fa3" stroke-width="3" stroke-linecap="round" style="opacity: 0;"/>
+                                        </g>
+                                    </g> <!-- End g-fat-scaler -->
+                                </g>
+
+                                <!-- UI Elements (Outside the mesh so they don't flip backwards) -->
+                                <g id="g-zzzs">
+                                    <text class="zzz-anim" x="30" y="50" fill="#a18cd1" font-size="28" font-weight="bold">Z</text>
+                                    <text class="zzz-anim" x="10" y="20" fill="#ff8fa3" font-size="18" font-weight="bold" style="animation-delay: 0.7s;">z</text>
+                                </g>
+                                <!-- "Huh?" reaction -->
+                                <text id="g-huh" x="40" y="40" fill="#ffea00" font-size="40" font-weight="bold" style="opacity:0; transition: opacity 0.3s;">?</text>
+                                <!-- Happy Heart -->
+                                <text id="g-heart" x="220" y="50" fill="#ff3333" font-size="40" style="opacity:0; transition: opacity 0.5s, transform 0.5s; transform: scale(0); transform-origin: 240px 40px;">❤️</text>
+                                <!-- Eating Noms (positioned on the right side since cat flips) -->
+                                <g id="g-noms" style="opacity:0;">
+                                    <text class="nom-anim" x="250" y="140" fill="#ff8fa3" font-size="16" font-weight="bold">nom</text>
+                                    <text class="nom-anim" x="270" y="110" fill="#a18cd1" font-size="14" font-weight="bold" style="animation-delay: 0.3s;">nom</text>
+                                    <text class="nom-anim" x="230" y="90" fill="#ffb3c6" font-size="12" font-weight="bold" style="animation-delay: 0.6s;">nom</text>
+                                </g>
+                            </svg>
+                        </div>
+                        
+                        <div id="guardian-text-container" style="transition: opacity 0.5s; text-align: center; margin-top: 1rem; position: relative; z-index: 25;">
+                            <h3>Projects Blocked!</h3>
+                            <p style="color: var(--text-muted); font-weight: 600;">A giant sleepy cat is resting on the repos.</p>
+                        </div>
+                    </div>
                 </div>
-                <div class="cat-platform">
-                    <div class="project-img">🐈 Smart Feeder</div>
-                    <h3>IoT Cat Feeder + Face Rec</h3>
-                    <p style="font-size: 0.95rem; margin-top: 0.5rem; color: var(--text-muted);">Dispenses specific diets based on which cat is detected using an ESP32-CAM.</p>
+
+                <!-- Right: The Food Dispenser -->
+                <div class="dispenser-station">
+                    <svg class="dispenser-machine-svg" viewBox="0 0 200 250">
+                        <defs>
+                            <clipPath id="hopper-clip">
+                                <path d="M 44 24 L 156 24 L 136 116 L 64 116 Z" />
+                            </clipPath>
+                        </defs>
+                        <!-- Hopper glass background -->
+                        <path d="M 40 20 L 160 20 L 140 120 L 60 120 Z" fill="var(--surface-color-light)" />
+                        
+                        <!-- Kibbles inside Hopper -->
+                        <g clip-path="url(#hopper-clip)">
+                            <g id="hopper-kibbles" style="transition: transform 0.8s cubic-bezier(0.25, 1, 0.5, 1);">
+                                <!-- Bulk background aligned perfectly to the top of the clip path (y=24) -->
+                                <path d="M 44 24 L 156 24 L 136 120 L 64 120 Z" fill="#9a6b4e"/>
+                                <g fill="#a87b60">
+                                    <circle cx="70" cy="100" r="8"/> <circle cx="90" cy="105" r="8"/> 
+                                    <circle cx="130" cy="110" r="8"/> <circle cx="100" cy="85" r="8"/>
+                                    <circle cx="80" cy="65" r="8"/> <circle cx="120" cy="60" r="8"/>
+                                    <circle cx="65" cy="45" r="8"/> <circle cx="105" cy="40" r="8"/>
+                                    <circle cx="135" cy="45" r="8"/> <circle cx="140" cy="85" r="8"/>
+                                    <!-- Top edge kibbles perfectly aligned -->
+                                    <circle cx="80" cy="30" r="8"/> <circle cx="110" cy="32" r="8"/>
+                                    <circle cx="95" cy="28" r="8"/> <circle cx="130" cy="35" r="8"/>
+                                    <circle cx="60" cy="35" r="8"/> <circle cx="145" cy="32" r="8"/>
+                                </g>
+                                <g fill="#8c6148">
+                                    <circle cx="110" cy="95" r="8"/> <circle cx="80" cy="80" r="8"/> 
+                                    <circle cx="120" cy="80" r="8"/> <circle cx="115" cy="110" r="8"/>
+                                    <circle cx="60" cy="80" r="8"/> <circle cx="100" cy="60" r="8"/>
+                                    <circle cx="130" cy="70" r="8"/> <circle cx="85" cy="45" r="8"/>
+                                    <circle cx="120" cy="35" r="8"/> <circle cx="95" cy="40" r="8"/>
+                                    <!-- Top edge kibbles perfectly aligned -->
+                                    <circle cx="100" cy="28" r="8"/> <circle cx="125" cy="30" r="8"/>
+                                    <circle cx="75" cy="35" r="8"/> <circle cx="115" cy="45" r="8"/>
+                                    <circle cx="55" cy="40" r="8"/> <circle cx="140" cy="38" r="8"/>
+                                </g>
+                            </g>
+                        </g>
+
+                        <!-- Hopper glass foreground border -->
+                        <path d="M 40 20 L 160 20 L 140 120 L 60 120 Z" fill="none" stroke="var(--primary-color)" stroke-width="4"/>
+                        
+                        <!-- Machine Body -->
+                        <rect x="70" y="120" width="60" height="80" rx="10" fill="#fff" stroke="var(--border-color)" stroke-width="4"/>
+                        <circle cx="100" cy="150" r="15" fill="var(--surface-color-light)" stroke="var(--primary-color)" stroke-width="2"/>
+                        
+                        <!-- Spout -->
+                        <path d="M 85 180 L 115 180 L 125 200 L 75 200 Z" fill="var(--accent-color)"/>
+                        
+                        <!-- Dropping Kibbles (animated) -->
+                        <circle class="kibble" cx="95" cy="185" r="6" fill="#8c6148"/>
+                        <circle class="kibble" cx="105" cy="185" r="6" fill="#a87b60"/>
+                        <circle class="kibble" cx="90" cy="195" r="6" fill="#a87b60"/>
+                        <circle class="kibble" cx="110" cy="195" r="6" fill="#8c6148"/>
+
+                        <!-- Bowl Base -->
+                        <ellipse cx="100" cy="235" rx="45" ry="15" fill="#e0e0e0" stroke="#b0b0b0" stroke-width="3"/>
+                        <!-- Bowl Food (initially hidden) -->
+                        <ellipse id="bowl-food" class="bowl-food" cx="100" cy="230" rx="35" ry="10" fill="#a87b60"/>
+                    </svg>
+
+                    <button id="btn-feed" class="btn-feed">Feed the Cat</button>
                 </div>
+
             </div>
         </section>
 
@@ -1163,9 +1636,375 @@
             requestAnimationFrame(gameLoop);
         }
 
+        const CarouselController = {
+            currentSlide: 0,
+            isPushing: false,
+            
+            init() {
+                this.slides = document.querySelectorAll('.carousel-slide');
+                document.getElementById('btn-next-proj').addEventListener('click', () => this.handlePush('next'));
+                document.getElementById('btn-prev-proj').addEventListener('click', () => this.handlePush('prev'));
+            },
+
+            handlePush(direction) {
+                if (this.isPushing) return;
+                this.isPushing = true;
+                
+                const wrapper = document.getElementById('guardian-cat-wrapper');
+                const container = document.querySelector('.carousel-container');
+                
+                // 1. Wake up the cat if it's currently sleeping (save old state first)
+                const zzzs = document.getElementById('g-zzzs');
+                const eyeAwake = document.getElementById('guardian-eyes-awake');
+                const eyeHappy = document.getElementById('guardian-eyes-happy');
+                const eyeL = document.getElementById('guardian-eye-l');
+                const eyeR = document.getElementById('guardian-eye-r');
+
+                const savedOpacities = {
+                    zzz: zzzs ? zzzs.style.opacity : '',
+                    awake: eyeAwake ? eyeAwake.style.opacity : '',
+                    happy: eyeHappy ? eyeHappy.style.opacity : '',
+                    eyeL: eyeL ? eyeL.style.opacity : '',
+                    eyeR: eyeR ? eyeR.style.opacity : ''
+                };
+
+                // Force eyes open and hide Zzzs while walking/pushing
+                if (zzzs) zzzs.style.opacity = '0';
+                if (eyeAwake) eyeAwake.style.opacity = '1';
+                if (eyeHappy) eyeHappy.style.opacity = '0';
+                if (eyeL) eyeL.style.opacity = '0';
+                if (eyeR) eyeR.style.opacity = '0';
+
+                // 2. Save cat's current state and location
+                const savedTransform = wrapper.style.transform;
+                const savedClass = wrapper.className;
+                
+                // Parse current X position to know which way she should face while walking
+                let curX = 0;
+                const match = savedTransform.match(/translate\(([-0-9.]+)px/);
+                if (match) curX = parseFloat(match[1]);
+
+                // Calculate edge of the project card
+                const halfWidth = container.offsetWidth / 2;
+                // Next: Cat goes to RIGHT edge. Prev: Cat goes to LEFT edge.
+                let targetX = direction === 'next' ? halfWidth - 10 : -halfWidth + 10;
+                let targetY = -20; // Align vertically with the center of the card
+                
+                if (window.innerWidth <= 768) {
+                    targetX = direction === 'next' ? halfWidth - 20 : -halfWidth + 20;
+                }
+
+                // Determine walk direction facing
+                let walkDiff = targetX - curX;
+                let walkFacingClass = walkDiff > 0 ? 'cat-flipped' : ''; // Flipped = facing right
+                
+                // Wake up and walk to the edge
+                wrapper.className = `guardian-cat-wrapper cat-state-walking ${walkFacingClass}`;
+                wrapper.style.transition = 'transform 1s cubic-bezier(0.25, 1, 0.5, 1)';
+                wrapper.style.transform = `translate(${targetX}px, ${targetY}px)`;
+                
+                setTimeout(() => {
+                    // 2. Prepare to push! Face the correct way to push
+                    // Next (pushing left) -> face left (no flip). Prev (pushing right) -> face right (flipped).
+                    let pushFacingClass = direction === 'next' ? '' : 'cat-flipped';
+                    wrapper.className = `guardian-cat-wrapper cat-state-stretching ${pushFacingClass}`;
+                    
+                    // Move slightly into the card to simulate physical pushing force
+                    let pushOffset = direction === 'next' ? -50 : 50;
+                    wrapper.style.transform = `translate(${targetX + pushOffset}px, ${targetY}px)`;
+                    
+                    // 3. Move actual slides
+                    this.slides[this.currentSlide].classList.remove('active');
+                    this.slides[this.currentSlide].style.transform = direction === 'next' ? 'translateX(-120%)' : 'translateX(120%)';
+                    
+                    this.currentSlide = (direction === 'next') 
+                        ? (this.currentSlide + 1) % this.slides.length 
+                        : (this.currentSlide - 1 + this.slides.length) % this.slides.length;
+                    
+                    // Reset new slide position to opposite side instantly
+                    this.slides[this.currentSlide].style.transition = 'none';
+                    this.slides[this.currentSlide].style.transform = direction === 'next' ? 'translateX(120%)' : 'translateX(-120%)';
+                    
+                    // Force reflow
+                    void this.slides[this.currentSlide].offsetWidth;
+                    
+                    // Slide new card in
+                    this.slides[this.currentSlide].style.transition = 'transform 0.6s cubic-bezier(0.25, 1, 0.5, 1)';
+                    this.slides[this.currentSlide].style.transform = 'translateX(0)';
+                    this.slides[this.currentSlide].classList.add('active');
+                    
+                    setTimeout(() => {
+                        // 4. Walk back to where she was
+                        let returnDiff = curX - (targetX + pushOffset);
+                        let returnFacingClass = returnDiff > 0 ? 'cat-flipped' : '';
+                        
+                        wrapper.className = `guardian-cat-wrapper cat-state-walking ${returnFacingClass}`;
+                        wrapper.style.transition = 'transform 1.2s cubic-bezier(0.25, 1, 0.5, 1)';
+                        wrapper.style.transform = savedTransform;
+                        
+                        setTimeout(() => {
+                            // 5. Restore exact state (sleeping, loafing, etc)
+                            wrapper.className = savedClass;
+                            this.isPushing = false;
+                            
+                            // Restore exact eye/zzz opacities so she goes back to sleep if she was sleeping
+                            if (zzzs) zzzs.style.opacity = savedOpacities.zzz;
+                            if (eyeAwake) eyeAwake.style.opacity = savedOpacities.awake;
+                            if (eyeHappy) eyeHappy.style.opacity = savedOpacities.happy;
+                            if (eyeL) eyeL.style.opacity = savedOpacities.eyeL;
+                            if (eyeR) eyeR.style.opacity = savedOpacities.eyeR;
+                        }, 1200);
+                        
+                    }, 600); // Time spent pushing
+                    
+                }, 1000); // Time spent walking to the edge
+            }
+        };
+
+        const ProjectsInteractive = {
+            init() {
+                const btnFeed = document.getElementById('btn-feed');
+                if (!btnFeed) return;
+                
+                let feedCount = 0;
+                let currentFatX = 1;
+                let currentFatY = 1;
+                
+                btnFeed.addEventListener('click', () => {
+                    feedCount++;
+                    btnFeed.disabled = true;
+                    
+                    const bowlFood = document.getElementById('bowl-food');
+                    const overlay = document.getElementById('guardian-cat-overlay');
+                    const wrapper = document.getElementById('guardian-cat-wrapper');
+                    const heart = document.getElementById('g-heart');
+                    const eyeAwake = document.getElementById('guardian-eyes-awake');
+                    const eyeHappy = document.getElementById('guardian-eyes-happy');
+                    const zzzs = document.getElementById('g-zzzs');
+                    const huh = document.getElementById('g-huh');
+                    const fatScaler = document.getElementById('g-fat-scaler');
+
+                    // Helper to drop food
+                    const dropFood = () => {
+                        document.querySelectorAll('.kibble').forEach(k => k.classList.remove('drop'));
+                        void document.body.offsetWidth; // Reflow to reset animation
+                        document.querySelectorAll('.kibble').forEach((k, i) => {
+                            setTimeout(() => k.classList.add('drop'), i * 150);
+                        });
+                        
+                        // Lower the food level in the hopper
+                        const hopper = document.getElementById('hopper-kibbles');
+                        if (hopper) {
+                            hopper.style.transform = `translateY(${feedCount * 22}px)`; // Adjusted from 33 so it doesn't drop too far
+                        }
+                        
+                        bowlFood.classList.remove('filled');
+                        bowlFood.style.opacity = '0';
+                        bowlFood.style.transform = 'scale(0.8)';
+                        
+                        setTimeout(() => {
+                            bowlFood.style.transition = 'opacity 0.5s ease, transform 0.5s ease';
+                            bowlFood.classList.add('filled');
+                            bowlFood.style.opacity = '1';
+                            bowlFood.style.transform = 'scale(1)'; 
+                            bowlFood.style.transformOrigin = 'center bottom';
+                        }, 600);
+                    };
+
+                    if (feedCount === 1) {
+                        btnFeed.innerText = 'Dispensing...';
+                        dropFood();
+                        
+                        /* Phase 2: Cat Wakes Up */
+                        setTimeout(() => {
+                            zzzs.style.opacity = '0';
+                            const eyeL = document.getElementById('guardian-eye-l');
+                            const eyeR = document.getElementById('guardian-eye-r');
+                            if(eyeL) eyeL.style.opacity = '0'; 
+                            if(eyeR) eyeR.style.opacity = '0'; 
+                            eyeAwake.style.opacity = '1'; 
+                            huh.style.opacity = '1';
+                        }, 1000);
+                        
+                        /* Phase 3: Cat Stretches */
+                        setTimeout(() => {
+                            huh.style.opacity = '0';
+                            wrapper.className = 'guardian-cat-wrapper cat-state-stretching';
+                        }, 1800);
+                        
+                        /* Phase 4: Cat Stands & Flips Towards Bowl */
+                        setTimeout(() => {
+                            wrapper.className = 'guardian-cat-wrapper cat-state-standing cat-flipped';
+                        }, 2800);
+                        
+                        /* Phase 5: Cat Walks to Food */
+                        setTimeout(() => {
+                            wrapper.className = 'guardian-cat-wrapper cat-state-walking cat-flipped';
+                            
+                            const wrapperRect = wrapper.getBoundingClientRect();
+                            const bowlRect = bowlFood.getBoundingClientRect();
+                            
+                            // Stop earlier so the cat doesn't step into the plate
+                            let distX = bowlRect.left - wrapperRect.left - 180; 
+                            let distY = bowlRect.top - wrapperRect.top - 100;
+                            
+                            if (window.innerWidth <= 768) {
+                                distX = (bowlRect.left + bowlRect.width/2) - (wrapperRect.left + wrapperRect.width/2) - 40;
+                                distY = bowlRect.top - wrapperRect.top - 120; 
+                            }
+                            
+                            wrapper.style.transition = 'transform 2.5s cubic-bezier(0.25, 1, 0.5, 1)';
+                            wrapper.style.transform = `translate(${distX}px, ${distY}px)`;
+                        }, 3300);
+                        
+                        /* Phase 6: Arrive at Bowl */
+                        setTimeout(() => {
+                            wrapper.className = 'guardian-cat-wrapper cat-state-standing cat-flipped';
+                        }, 5800);
+                        
+                        /* Phase 7: Eating Animation */
+                        setTimeout(() => {
+                            wrapper.className = 'guardian-cat-wrapper cat-state-eating cat-flipped';
+                            bowlFood.style.transition = 'transform 3s linear';
+                            bowlFood.style.transform = 'scale(1, 0.1)';
+                        }, 6100);
+                        
+                        /* Phase 8: Happy Cat */
+                        setTimeout(() => {
+                            wrapper.className = 'guardian-cat-wrapper cat-state-happy cat-flipped';
+                            bowlFood.style.opacity = '0'; 
+                            eyeAwake.style.opacity = '0'; 
+                            eyeHappy.style.opacity = '1';
+                        }, 9100);
+                        
+                        /* Phase 9: Sit quietly & Unlock Projects */
+                        setTimeout(() => {
+                            wrapper.className = 'guardian-cat-wrapper cat-state-sitting cat-flipped';
+                            eyeAwake.style.opacity = '1'; 
+                            eyeHappy.style.opacity = '0';
+
+                            heart.style.transform = 'scale(1)';
+                            heart.style.opacity = '1';
+                            
+                            overlay.classList.add('unlocked');
+                            btnFeed.innerText = 'Projects Unlocked! 🐾';
+                            btnFeed.style.background = 'var(--primary-color)';
+                            btnFeed.style.boxShadow = 'none';
+                            
+                            const controls = document.getElementById('carousel-controls');
+                            controls.style.opacity = '1';
+                            controls.style.pointerEvents = 'auto';
+
+                            setTimeout(() => { 
+                                PlatformManager.scan(); 
+                                heart.style.opacity = '0';
+                                heart.style.transform = 'scale(0)';
+                                
+                                // Re-enable for more feeding!
+                                btnFeed.innerText = 'Give Treat 🐟';
+                                btnFeed.style.cursor = 'pointer';
+                                btnFeed.style.boxShadow = '0 8px 20px rgba(161, 140, 209, 0.3)';
+                                btnFeed.disabled = false;
+                            }, 1500);
+                        }, 10600);
+
+                    } else if (feedCount === 2) {
+                        // ALREADY AT BOWL - EAT & GET FAT
+                        btnFeed.innerText = 'Dispensing...';
+                        dropFood();
+
+                        setTimeout(() => {
+                            wrapper.className = 'guardian-cat-wrapper cat-state-eating cat-flipped';
+                            bowlFood.style.transition = 'transform 2.5s linear';
+                            bowlFood.style.transform = 'scale(1, 0.1)';
+                        }, 1000);
+
+                        setTimeout(() => {
+                            wrapper.className = 'guardian-cat-wrapper cat-state-happy cat-flipped';
+                            bowlFood.style.opacity = '0';
+                            eyeAwake.style.opacity = '0';
+                            eyeHappy.style.opacity = '1';
+                            
+                            // Increase Fatness!
+                            currentFatX += 0.15;
+                            currentFatY += 0.05;
+                            fatScaler.style.transform = `scale(${currentFatX}, ${currentFatY})`;
+                        }, 3500);
+
+                        setTimeout(() => {
+                            wrapper.className = 'guardian-cat-wrapper cat-state-sitting cat-flipped';
+                            eyeAwake.style.opacity = '1';
+                            eyeHappy.style.opacity = '0';
+                            
+                            btnFeed.innerText = 'Another one? 🍗';
+                            btnFeed.disabled = false;
+                        }, 5000);
+
+                    } else if (feedCount === 3) {
+                        // MAXIMUM CHONK REFUSES FOOD & SLEEPS ON BUTTON
+                        
+                        // Change Button to Cushion immediately
+                        btnFeed.className = 'btn-feed btn-cushion';
+                        btnFeed.innerText = 'Are you trying to make me a balloon?! 🎈\n(Zzz...)';
+
+                        // Cat refuses (stands up and shows exclamation mark)
+                        wrapper.className = 'guardian-cat-wrapper cat-state-standing cat-flipped';
+                        huh.textContent = '!';
+                        huh.style.fill = '#ff3333'; // Make the exclamation red
+                        huh.style.opacity = '1';
+
+                        // Walk to the cushion button after refusing
+                        setTimeout(() => {
+                            huh.style.opacity = '0';
+                            setTimeout(() => { huh.textContent = '?'; huh.style.fill = '#ffea00'; }, 300); // Reset for safety
+                            
+                            wrapper.className = 'guardian-cat-wrapper cat-state-walking cat-flipped';
+                            
+                            const wrapperRect = wrapper.getBoundingClientRect();
+                            const btnRect = btnFeed.getBoundingClientRect();
+                            
+                            // Calculate center points to walk to
+                            let catCenterX = wrapperRect.left + wrapperRect.width / 2;
+                            let catCenterY = wrapperRect.top + wrapperRect.height * 0.8; 
+                            
+                            let btnCenterX = btnRect.left + btnRect.width / 2;
+                            let btnCenterY = btnRect.top + 40; // Aim for the top fluffy padding area, leaving text clear
+                            
+                            let deltaX = btnCenterX - catCenterX;
+                            let deltaY = btnCenterY - catCenterY;
+                            
+                            // Parse current translate values
+                            let curX = 0, curY = 0;
+                            const match = wrapper.style.transform.match(/translate\(([-0-9.]+)px,\s*([-0-9.]+)px\)/);
+                            if (match) {
+                                curX = parseFloat(match[1]);
+                                curY = parseFloat(match[2]);
+                            }
+                            
+                            wrapper.style.transition = 'transform 1.5s cubic-bezier(0.25, 1, 0.5, 1)';
+                            wrapper.style.transform = `translate(${curX + deltaX}px, ${curY + deltaY}px)`;
+                        }, 1200);
+
+                        // Sleep on Cushion
+                        setTimeout(() => {
+                            wrapper.className = 'guardian-cat-wrapper cat-state-sleeping cat-flipped';
+                            eyeAwake.style.opacity = '0';
+                            eyeHappy.style.opacity = '0';
+                            zzzs.style.opacity = '1';
+                            
+                            // Activate chubby breathing animation
+                            fatScaler.classList.add('fat-breathing');
+                        }, 2800);
+                    }
+                });
+            }
+        };
+
         window.addEventListener('DOMContentLoaded', () => { 
             IntroController.init(); 
             InputHandler.init();
+            ProjectsInteractive.init();
+            CarouselController.init();
         });
     </script>
 </body>
