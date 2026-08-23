@@ -60,16 +60,16 @@
             background: var(--intro-bg);
             display: flex; flex-direction: column; align-items: center; justify-content: center;
             z-index: 10000;
-            transition: opacity 1s ease, transform 1s ease, background 0.8s ease;
+            transition: opacity 0.5s ease, transform 0.5s ease, background 0.8s ease;
         }
 
-        .intro-cat-wrapper { margin-bottom: 3rem; transition: transform 0.5s ease; }
+        .intro-cat-wrapper { margin-bottom: 3rem; transition: transform 0.8s ease; }
         .cat-face-container { position: relative; height: var(--intro-size); width: calc(var(--intro-size) * 1.13); }
 
         .ear {
             position: absolute; top: -30%; height: 60%; width: 25%;
             background: var(--intro-black);
-            transition: transform 0.6s cubic-bezier(0.34, 1.56, 0.64, 1), top 0.6s ease;
+            transition: transform 0.8s cubic-bezier(0.34, 1.56, 0.64, 1), top 0.8s ease;
         }
         .ear::before, .ear::after {
             content: ''; position: absolute; bottom: 24%; height: 10%; width: 5%;
@@ -90,7 +90,7 @@
         .eye {
             position: absolute; top: 35%; height: 30%; width: 31%;
             background: var(--intro-scary-eye); border-radius: 50% 50% 50% 50% / 60% 60% 40% 40%;
-            transition: background 0.6s ease, box-shadow 0.6s ease;
+            transition: background 0.8s ease, box-shadow 0.8s ease;
         }
         .eye::after {
             content: ''; position: absolute; top: 0; left: 0; height: 0; width: 100%;
@@ -101,6 +101,7 @@
             0%, 90% { height: 0; } 92.5% { height: 100%; }
             95% { height: 0; } 97.5% { height: 100%; } 100% { height: 0; }
         }
+        
         .eye::before {
             content: ''; position: absolute; top: 60%; height: 10%; width: 15%;
             background: var(--intro-white); border-radius: 50%;
@@ -108,12 +109,12 @@
         .eye--left { left: 0; } .eye--left::before { right: -5%; }
         .eye--right { right: 0; } .eye--right::before { left: -5%; }
 
-        /* Dynamic Pupil Tracking */
+        /* Dynamic Pupil Tracking for Intro Cat */
         .eye-pupil {
             position: absolute; top: 25%; height: 50%; width: 20%;
             background: var(--intro-black); border-radius: 50%;
             transform: translate(var(--pupil-x, 0px), var(--pupil-y, 0px));
-            transition: width 0.6s ease, height 0.6s ease;
+            transition: width 0.3s ease, height 0.3s ease;
             will-change: transform;
         }
         .eye--left .eye-pupil { right: 30%; }
@@ -134,11 +135,13 @@
         .intro-cat-wrapper[data-scary-level="2"] .eye-pupil { width: 10%; }
         .intro-cat-wrapper[data-scary-level="2"] .ear--left { transform: rotate(-35deg); top: -20%; }
         .intro-cat-wrapper[data-scary-level="2"] .ear--right { transform: rotate(35deg); top: -20%; }
+        
         .intro-cat-wrapper[data-scary-level="3"] .eye { --intro-scary-eye: #ff3333; box-shadow: 0 0 30px rgba(255, 51, 51, 0.6); }
         .intro-cat-wrapper[data-scary-level="3"] .eye-pupil { width: 5%; height: 70%; }
         .intro-cat-wrapper[data-scary-level="3"] .ear--left { transform: rotate(-60deg); top: -10%; }
         .intro-cat-wrapper[data-scary-level="3"] .ear--right { transform: rotate(60deg); top: -10%; }
         #intro-screen.scary-bg-3 { background: #2a1111; color: white; }
+        
         .intro-cat-wrapper[data-scary-level="4"] { animation: shake 0.5s infinite; }
         .intro-cat-wrapper[data-scary-level="4"] .eye { --intro-scary-eye: #ff0000; box-shadow: 0 0 50px red; }
         #intro-screen.scary-bg-4 { background: #000; color: #ff3333; }
@@ -157,7 +160,6 @@
         }
         #intro-question { font-size: 2.5rem; margin-bottom: 1rem; color: inherit; transition: color 0.5s; }
 
-        /* Fixed container prevents layout shift */
         .btn-container {
             position: relative; height: 60px; width: 300px; margin: 1rem auto;
             display: flex; justify-content: center; align-items: center;
@@ -190,44 +192,9 @@
             color: #ff3333; text-shadow: 0 0 15px rgba(255, 0, 0, 0.8);
         }
 
-        #paw-container {
-            position: fixed; top: 0; left: 0; width: 100vw; height: 100vh;
-            pointer-events: none; display: none; z-index: 50000; overflow: hidden;
-            transition: opacity 0.8s ease; /* So it can fade out smoothly */
-        }
-        .giant-paw {
-            position: absolute; left: 50%; top: -250px;
-            width: clamp(250px, 45vw, 600px); height: clamp(250px, 45vw, 600px);
-            transform: translateX(-50%) rotate(-8deg); transform-origin: center center;
-            animation: giantPawFall 3.4s cubic-bezier(0.25, 1, 0.5, 1) forwards;
-            will-change: transform; /* Hardware acceleration to stop zoom lag! */
-            backface-visibility: hidden;
-        }
-        @keyframes giantPawFall {
-            0% { top: -400px; transform: translateX(-50%) rotate(-8deg) scale(1); }
-            5% { top: -200px; transform: translateX(-50%) rotate(-5deg) scale(1); }
-            44% { top: 50%; transform: translate(-50%, -50%) rotate(0deg) scale(1); }
-            53% { top: 50%; transform: translate(-50%, -50%) rotate(0deg) scale(1.05) scaleY(0.9); }
-            62% { top: 50%; transform: translate(-50%, -50%) rotate(0deg) scale(1) scaleY(1.02); }
-            82% { top: 50%; transform: translate(-50%, -50%) rotate(0deg) scale(1.2); }
-            100% { top: 50%; transform: translate(-50%, -50%) rotate(0deg) scale(20); } 
-        }
-
-        .tiny-particle {
-            position: absolute; top: 50%; width: 24px; height: 24px;
-            transform: translate(-50%, 0) scale(0);
-            animation: popParticle 1.5s cubic-bezier(0.1, 0.8, 0.2, 1) forwards;
-            animation-delay: 1.4s;
-        }
-        @keyframes popParticle {
-            0% { transform: translate(-50%, 0) scale(0) rotate(0deg); opacity: 1; }
-            100% { transform: translate(-50%, -100px) scale(1.5) rotate(var(--rot)); opacity: 0; }
-        }
-
         #portfolio-main {
             opacity: 0; display: none; flex-direction: column; align-items: center;
-            width: 100%; padding-bottom: 100px;
-            transition: opacity 1s ease; /* For smooth reveal */
+            width: 100%; padding-bottom: 100px; transition: opacity 1s ease; 
         }
         .cute-bg {
             position: absolute; top: 0; left: 0; right: 0; bottom: 0;
@@ -267,20 +234,151 @@
         .grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: var(--spacing-lg); width: 100%; max-width: 1000px; }
         .grid-3 { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: var(--spacing-lg); width: 100%; max-width: 1200px; }
 
-        @media (max-width: 768px) {
-            .grid-2 { grid-template-columns: 1fr; }
-            header { flex-direction: column; gap: 1rem; }
-            nav { gap: 1rem; flex-wrap: wrap; justify-content: center; }
-            #mobile-hint { display: block !important; }
-        }
-
-        #hero { min-height: 100vh; justify-content: center; text-align: center; padding-top: 0; }
-        .hero-platform { max-width: 800px; width: 100%; padding: 4rem 2rem; }
-        .hero-title { font-size: clamp(2.5rem, 5vw, 4.5rem); font-weight: 800; line-height: 1.2; margin-bottom: var(--spacing-md); }
-        .hero-subtitle { font-size: 1.2rem; color: var(--accent-color); margin-bottom: var(--spacing-lg); background: var(--surface-color-light); display: inline-block; padding: 0.5rem 1rem; border-radius: 12px; }
-
         .tag { display: inline-block; padding: 0.4rem 1rem; background: var(--surface-color-light); color: var(--accent-color); border-radius: 50px; font-size: 0.85rem; margin-right: 0.5rem; margin-bottom: 0.5rem; font-weight: 600; border: 1px solid rgba(161, 140, 209, 0.2); }
         .project-img { width: 100%; height: 200px; background: var(--bg-color); border-radius: 16px; margin-bottom: 1.5rem; display: flex; align-items: center; justify-content: center; color: var(--text-muted); border: 2px dashed var(--border-color); font-weight: 600; }
+
+        #hero { min-height: 100vh; justify-content: center; text-align: center; padding-top: 0; }
+        
+        .hero-layout {
+            display: flex; align-items: center; justify-content: space-between; text-align: left;
+            max-width: 1050px; margin: 0 auto; gap: 2rem; width: 100%;
+        }
+        
+        .hero-text-content { flex: 1; min-width: 300px; z-index: 10; }
+        .hero-title { font-size: clamp(2.5rem, 4vw, 4rem); font-weight: 800; line-height: 1.1; margin-bottom: var(--spacing-md); }
+        .hero-subtitle { font-size: 1.1rem; color: var(--accent-color); margin-bottom: var(--spacing-lg); background: var(--surface-color-light); display: inline-block; padding: 0.5rem 1rem; border-radius: 12px; }
+
+        .hero-cat-container {
+            flex: 1; display: flex; justify-content: center; align-items: flex-end;
+            position: relative; min-height: 400px; z-index: 5;
+        }
+        
+        #hero-cat-wrapper {
+            position: relative; width: clamp(240px, 100%, 380px); height: clamp(300px, 100%, 450px);
+            opacity: 0; transform: translateY(100px);
+            animation: hero-cat-entry 1.2s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
+            animation-delay: 0.6s;
+        }
+
+        @keyframes hero-cat-entry {
+            0% { transform: translateY(100px); opacity: 0; }
+            60% { transform: translateY(-15px); opacity: 1; }
+            80% { transform: translateY(5px); opacity: 1; }
+            100% { transform: translateY(0); opacity: 1; }
+        }
+
+        /* Hero Cat Idle Animations */
+        #hero-cat-body-core { animation: cat-breathe 4s infinite ease-in-out; transform-origin: center 400px; }
+        #hero-cat-head { animation: cat-head-bob 4s infinite ease-in-out; transform-origin: center 250px; }
+        #hero-cat-tail { animation: cat-tail-sway 4s infinite ease-in-out; transform-origin: 290px 380px; }
+        #ear-l { animation: ear-twitch-l 7s infinite; transform-origin: 110px 100px; }
+        #ear-r { animation: ear-twitch-r 9s infinite; transform-origin: 290px 100px; }
+        #hero-cat-eyes-group { animation: cat-blink 5s infinite; transform-origin: 200px 180px; }
+        
+        @keyframes cat-breathe { 0%, 100% { transform: scaleY(1); } 50% { transform: scaleY(1.02); } }
+        @keyframes cat-head-bob { 0%, 100% { transform: translateY(0) rotate(0deg); } 50% { transform: translateY(-4px) rotate(1deg); } }
+        @keyframes cat-tail-sway { 0%, 100% { transform: rotate(0deg); } 50% { transform: rotate(-8deg); } }
+        @keyframes ear-twitch-l { 0%, 90%, 100% { transform: rotate(0deg); } 92% { transform: rotate(-15deg); } 94% { transform: rotate(5deg); } 96% { transform: rotate(0deg); } }
+        @keyframes ear-twitch-r { 0%, 80%, 100% { transform: rotate(0deg); } 82% { transform: rotate(15deg); } 84% { transform: rotate(-5deg); } 86% { transform: rotate(0deg); } }
+        @keyframes cat-blink { 0%, 96%, 100% { transform: scaleY(1); } 98% { transform: scaleY(0.1); } }
+
+        /* Ball and Paw Play Sequence */
+        #hero-cat-left-paw { animation: paw-tap-left 6s infinite; transform-origin: 167px 360px; }
+        #hero-cat-right-paw { animation: paw-tap-right 6s infinite; transform-origin: 232px 360px; }
+        
+        @keyframes paw-tap-left {
+            0%, 60%, 75%, 100% { transform: translateY(0) rotate(0deg); }
+            63% { transform: translateY(-15px) rotate(15deg); }
+            67% { transform: translateY(5px) rotate(-10deg); }
+        }
+        @keyframes paw-tap-right {
+            0%, 15%, 30%, 100% { transform: translateY(0) rotate(0deg); }
+            18% { transform: translateY(-15px) rotate(-15deg); }
+            22% { transform: translateY(5px) rotate(10deg); }
+        }
+
+        #hero-cat-ball {
+            position: absolute; bottom: 25px; left: 50%; margin-left: -35px; width: 70px; height: 70px;
+            animation: ball-roll 6s infinite; filter: drop-shadow(0 8px 6px rgba(0,0,0,0.15)); will-change: transform;
+            transition: opacity 0.3s ease; /* Fade out when big ball drops */
+        }
+
+        @keyframes ball-roll {
+            0%, 20% { transform: translateX(35px) rotate(0deg); }
+            22% { transform: translateX(45px) rotate(45deg) scale(1.1, 0.9); }
+            30%, 65% { transform: translateX(-35px) rotate(-360deg) scale(1); }
+            67% { transform: translateX(-45px) rotate(-405deg) scale(1.1, 0.9); }
+            75%, 100% { transform: translateX(35px) rotate(0deg) scale(1); }
+        }
+
+        #skills {
+            position: relative;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: visible;
+        }
+
+        #giant-skill-ball {
+            position: relative;
+            width: clamp(320px, 85vw, 750px);
+            height: clamp(320px, 85vw, 750px);
+            border-radius: 50%;
+            background: radial-gradient(circle at 30% 30%, #fff0f5 0%, #ffb3c6 30%, #ff8fa3 70%, #e06c81 100%);
+            box-shadow: 0 30px 60px rgba(255, 143, 163, 0.4), inset -20px -20px 50px rgba(0,0,0,0.1), inset 20px 20px 50px rgba(255,255,255,0.4);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            
+            /* Initial state: small, up high */
+            transform: translateY(-50vh) scale(0.1) rotate(-180deg);
+            opacity: 0;
+            transition: transform 1.2s cubic-bezier(0.34, 1.56, 0.64, 1), opacity 0.8s ease;
+            z-index: 10;
+        }
+
+        /* SVG Stripes for the Giant Ball to match the small one */
+        #giant-skill-ball::before {
+            content: '';
+            position: absolute;
+            top: 0; left: 0; width: 100%; height: 100%;
+            border-radius: 50%;
+            pointer-events: none;
+            background-image: url('data:image/svg+xml;utf8,<svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg"><path d="M 20 20 Q 50 50 80 20" fill="none" stroke="rgba(255,255,255,0.5)" stroke-width="4" stroke-linecap="round"/><path d="M 15 50 Q 50 80 85 50" fill="none" stroke="rgba(255,255,255,0.5)" stroke-width="4" stroke-linecap="round"/></svg>');
+            background-size: cover;
+            z-index: 0;
+        }
+
+        .ball-content {
+            position: relative;
+            z-index: 2;
+            width: 75%;
+            height: 75%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+        }
+
+        /* Scroll trigger class */
+        .skills-visible #giant-skill-ball {
+            transform: translateY(0) scale(1) rotate(0deg);
+            opacity: 1;
+        }
+
+        .skills-visible .section-title { color: white; text-shadow: 0 2px 5px rgba(0,0,0,0.2); }
+        .skill-group { margin-bottom: 1.5rem; width: 100%; }
+        .skill-group h3 { color: white; margin-bottom: 0.8rem; text-shadow: 0 1px 3px rgba(0,0,0,0.2); font-size: 1.2rem; }
+        
+        .ball-tag {
+            background: rgba(255, 255, 255, 0.95);
+            color: var(--primary-color);
+            border: none;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+        }
 
         #game-layer { position: absolute; top: 0; left: 0; width: 100%; height: 100%; pointer-events: none; z-index: 50; overflow: hidden; }
         #cat { position: absolute; width: 60px; height: 50px; transform-origin: bottom center; will-change: transform; pointer-events: auto; }
@@ -289,10 +387,8 @@
         #cat-tail { transform-origin: 80% 80%; }
         #cat-head { transform-origin: 20% 40%; }
         #cat-leg-fl, #cat-leg-fr, #cat-leg-bl, #cat-leg-br { transform-origin: top center; }
-        #cat-eyes { transform-origin: center; }
 
         .cat-idle #cat-tail { animation: tail-wag 4s infinite ease-in-out; }
-        .cat-idle #cat-eyes { animation: blink 5s infinite; }
         .cat-walking #cat-leg-fl, .cat-running #cat-leg-fl { animation: walk-cycle 0.5s infinite alternate; }
         .cat-walking #cat-leg-fr, .cat-running #cat-leg-fr { animation: walk-cycle 0.5s infinite alternate-reverse; }
         .cat-walking #cat-leg-bl, .cat-running #cat-leg-bl { animation: walk-cycle 0.5s infinite alternate-reverse; }
@@ -318,25 +414,78 @@
         
         .cat-sleeping #cat-body-group { transform: scaleY(0.5) translateY(25px); }
         .cat-sleeping #cat-head { transform: translateY(20px) rotate(90deg); }
-        .cat-sleeping #cat-eyes { transform: scaleY(0.1); }
         .cat-sleeping #cat-legs { transform: translateY(15px) rotate(90deg); opacity: 0; }
         .cat-sleeping #cat-tail { transform: rotate(90deg); }
 
-        /* Big Cute Portfolio Mode */
-        .cat-big-cute { transform: scale(2) !important; transition: transform 0.5s cubic-bezier(0.34, 1.56, 0.64, 1); }
-        .cat-big-cute #cat-eyes circle[r="4.5"] { r: 9; }
-        .cat-big-cute #cat-eyes circle[r="2"] { r: 7; }
-        .eye-shine { opacity: 0; transition: opacity 0.3s; }
-        .cat-big-cute .eye-shine { opacity: 1; }
-
         @keyframes tail-wag { 0%, 100% { transform: rotate(0deg); } 50% { transform: rotate(15deg); } }
-        @keyframes blink { 0%, 96%, 100% { transform: scaleY(1); } 98% { transform: scaleY(0.1); } }
         @keyframes walk-cycle { 0% { transform: rotate(-30deg); } 100% { transform: rotate(30deg); } }
 
-        #waypoint { position: absolute; width: 24px; height: 24px; border: 3px solid var(--primary-color); border-radius: 50%; transform: translate(-50%, -50%) scale(0); pointer-events: none; opacity: 0; z-index: 40; }
         .waypoint-anim { animation: ping 0.5s ease-out forwards; }
         @keyframes ping { 0% { transform: translate(-50%, -50%) scale(0); opacity: 1; } 100% { transform: translate(-50%, -50%) scale(2); opacity: 0; } }
+
         #mobile-hint { display: none; position: fixed; bottom: 20px; left: 50%; transform: translateX(-50%); background: var(--surface-color); padding: 12px 24px; border-radius: 30px; font-size: 0.9rem; font-weight: 600; z-index: 1000; box-shadow: 0 5px 15px var(--shadow-color); pointer-events: none; }
+        
+        @media (max-width: 768px) {
+            .grid-2 { grid-template-columns: 1fr; }
+            header { flex-direction: column; gap: 1rem; }
+            nav { gap: 1rem; flex-wrap: wrap; justify-content: center; }
+            .hero-layout { flex-direction: column; text-align: center; }
+            .hero-cat-container { min-height: 350px; }
+            #hero-cat-wrapper { height: 350px; }
+            #mobile-hint { display: block; }
+            
+            #giant-skill-ball { padding: 1rem; }
+            .skill-group h3 { font-size: 1rem; }
+            .tag { padding: 0.3rem 0.8rem; font-size: 0.75rem; }
+        }
+
+        #paw-container {
+            position: fixed;
+            top: 0; left: 0;
+            width: 100vw; height: 100vh;
+            pointer-events: none;
+            display: none; 
+            z-index: 50000;
+            overflow: hidden;
+            transition: opacity 0.8s ease; 
+        }
+
+        .giant-paw {
+            position: absolute;
+            left: 50%;
+            top: -250px;
+            width: clamp(250px, 45vw, 600px);
+            height: clamp(250px, 45vw, 600px);
+            transform: translateX(-50%) rotate(-8deg);
+            transform-origin: center center;
+            animation: giantPawFall 3.4s cubic-bezier(0.25, 1, 0.5, 1) forwards;
+            will-change: transform;
+            backface-visibility: hidden;
+        }
+
+        @keyframes giantPawFall {
+            0% { top: -400px; transform: translateX(-50%) rotate(-8deg) scale(1); }
+            5% { top: -200px; transform: translateX(-50%) rotate(-5deg) scale(1); }
+            44% { top: 50%; transform: translate(-50%, -50%) rotate(0deg) scale(1); }
+            53% { top: 50%; transform: translate(-50%, -50%) rotate(0deg) scale(1.05) scaleY(0.9); }
+            62% { top: 50%; transform: translate(-50%, -50%) rotate(0deg) scale(1) scaleY(1.02); }
+            82% { top: 50%; transform: translate(-50%, -50%) rotate(0deg) scale(1.2); }
+            100% { top: 50%; transform: translate(-50%, -50%) rotate(0deg) scale(20); } 
+        }
+
+        .tiny-particle {
+            position: absolute;
+            top: 50%;
+            width: 24px; height: 24px;
+            transform: translate(-50%, 0) scale(0);
+            animation: popParticle 1.5s cubic-bezier(0.1, 0.8, 0.2, 1) forwards;
+            animation-delay: 1.4s;
+        }
+        
+        @keyframes popParticle {
+            0% { transform: translate(-50%, 0) scale(0) rotate(0deg); opacity: 1; }
+            100% { transform: translate(-50%, -100px) scale(1.5) rotate(var(--rot)); opacity: 0; }
+        }
     </style>
 </head>
 <body>
@@ -367,7 +516,6 @@
         </div>
     </div>
 
-    <!-- The falling paw transition container -->
     <div id="paw-container"></div>
 
     <div id="portfolio-main">
@@ -384,13 +532,83 @@
         </header>
 
         <section id="hero">
-            <div class="hero-platform cat-platform">
-                <h1 class="hero-title">Embedded Systems & <br> Computer Vision</h1>
-                <p class="hero-subtitle mono">Building intelligence into the physical world.</p>
-                <p style="color: var(--text-muted); max-width: 600px; margin: 0 auto; font-size: 1.1rem;">
-                    I specialize in IoT architecture, edge AI, and writing performant code for resource-constrained devices. Also, I really like cats. 
-                    <br><br><span style="font-size: 0.9rem; color: var(--primary-color); font-weight: 600;">(Right-click anywhere or Tap on mobile to guide the cat!)</span>
-                </p>
+            <div class="hero-platform cat-platform hero-layout">
+                <div class="hero-text-content">
+                    <h1 class="hero-title">Embedded Systems & <br> Computer Vision</h1>
+                    <p class="hero-subtitle mono">Building intelligence into the physical world.</p>
+                    <p style="color: var(--text-muted); font-size: 1.1rem; margin-bottom: 1rem;">
+                        I specialize in IoT architecture, edge AI, and writing performant code for resource-constrained devices. Also, I really like cats. 
+                    </p>
+                    <p style="font-size: 0.9rem; color: var(--primary-color); font-weight: 600;">
+                        (Right-click anywhere or Tap on mobile to guide the small cat!)
+                    </p>
+                </div>
+                
+                <div class="hero-cat-container">
+                    <div id="hero-cat-wrapper">
+                        <!-- Massive SVG Mascot Kitten -->
+                        <svg id="hero-cat" viewBox="0 0 400 450" width="100%" height="100%" style="overflow: visible;">
+                            <defs>
+                                <linearGradient id="cat-body-grad" x1="0%" y1="0%" x2="0%" y2="100%">
+                                    <stop offset="0%" stop-color="#3a3a3a"/>
+                                    <stop offset="100%" stop-color="#161616"/>
+                                </linearGradient>
+                                <linearGradient id="ball-grad" x1="0%" y1="0%" x2="100%" y2="100%">
+                                    <stop offset="0%" stop-color="#ffb3c6"/>
+                                    <stop offset="100%" stop-color="#ff8fa3"/>
+                                </linearGradient>
+                            </defs>
+                            
+                            <ellipse cx="200" cy="425" rx="130" ry="15" fill="rgba(0,0,0,0.08)" />
+                            <g id="hero-cat-tail"><path d="M 280 380 Q 360 390 360 300 Q 360 250 330 250" fill="none" stroke="url(#cat-body-grad)" stroke-width="35" stroke-linecap="round"/></g>
+                            <g id="hero-cat-body-core">
+                                <ellipse cx="110" cy="340" rx="45" ry="65" fill="url(#cat-body-grad)" transform="rotate(20 110 340)"/>
+                                <ellipse cx="290" cy="340" rx="45" ry="65" fill="url(#cat-body-grad)" transform="rotate(-20 290 340)"/>
+                                <rect x="110" y="180" width="180" height="210" rx="80" fill="url(#cat-body-grad)" />
+                            </g>
+                            <g id="hero-cat-head">
+                                <g id="ear-l">
+                                    <polygon points="130,130 90,40 180,90" fill="#2a2a2a"/>
+                                    <polygon points="130,115 105,60 165,95" fill="#ff8fa3"/>
+                                </g>
+                                <g id="ear-r">
+                                    <polygon points="270,130 310,40 220,90" fill="#2a2a2a"/>
+                                    <polygon points="270,115 295,60 235,95" fill="#ff8fa3"/>
+                                </g>
+                                <ellipse cx="200" cy="165" rx="115" ry="90" fill="url(#cat-body-grad)" />
+                                <ellipse cx="100" cy="185" rx="30" ry="25" fill="url(#cat-body-grad)" transform="rotate(30 100 185)"/>
+                                <ellipse cx="300" cy="185" rx="30" ry="25" fill="url(#cat-body-grad)" transform="rotate(-30 300 185)"/>
+                                <g id="hero-cat-eyes-group">
+                                    <circle cx="145" cy="160" r="30" fill="#ffffff" />
+                                    <circle cx="255" cy="160" r="30" fill="#ffffff" />
+                                    <g id="hero-cat-pupils" style="will-change: transform;">
+                                        <circle cx="145" cy="160" r="21" fill="#161616" />
+                                        <circle cx="255" cy="160" r="21" fill="#161616" />
+                                        <circle cx="137" cy="151" r="7" fill="#ffffff" />
+                                        <circle cx="153" cy="169" r="3" fill="#ffffff" />
+                                        <circle cx="247" cy="151" r="7" fill="#ffffff" />
+                                        <circle cx="263" cy="169" r="3" fill="#ffffff" />
+                                    </g>
+                                </g>
+                                <path d="M 193 182 Q 200 187 207 182 Z" fill="#ff8fa3" />
+                                <path d="M 188 192 Q 194 200 200 192 Q 206 200 212 192" fill="none" stroke="#161616" stroke-width="3" stroke-linecap="round"/>
+                                <path d="M 100 165 L 55 160 M 95 178 L 50 180 M 100 190 L 60 200" fill="none" stroke="rgba(255,255,255,0.15)" stroke-width="2.5" stroke-linecap="round"/>
+                                <path d="M 300 165 L 345 160 M 305 178 L 350 180 M 300 190 L 340 200" fill="none" stroke="rgba(255,255,255,0.15)" stroke-width="2.5" stroke-linecap="round"/>
+                            </g>
+                            <rect id="hero-cat-left-paw" x="150" y="360" width="34" height="42" rx="17" fill="#2a2a2a" />
+                            <rect id="hero-cat-right-paw" x="215" y="360" width="34" height="42" rx="17" fill="#2a2a2a" />
+                        </svg>
+                        
+                        <!-- The small toy ball -->
+                        <div id="hero-cat-ball">
+                            <svg viewBox="0 0 100 100" width="100%" height="100%">
+                                <circle cx="50" cy="50" r="45" fill="url(#ball-grad)"/>
+                                <path d="M 20 20 Q 50 50 80 20" fill="none" stroke="rgba(255,255,255,0.4)" stroke-width="8" stroke-linecap="round"/>
+                                <path d="M 15 50 Q 50 80 85 50" fill="none" stroke="rgba(255,255,255,0.4)" stroke-width="8" stroke-linecap="round"/>
+                            </svg>
+                        </div>
+                    </div>
+                </div>
             </div>
         </section>
 
@@ -417,19 +635,22 @@
         </section>
 
         <section id="skills">
-            <h2 class="section-title">Technical Stack</h2>
-            <div class="grid-3">
-                <div class="cat-platform">
-                    <h3 style="margin-bottom: 1.5rem;">Microcontrollers & IoT</h3>
-                    <div><span class="tag">ESP32</span> <span class="tag">STM32</span> <span class="tag">ARM Cortex-M</span> <span class="tag">FreeRTOS</span> <span class="tag">MQTT</span></div>
-                </div>
-                <div class="cat-platform">
-                    <h3 style="margin-bottom: 1.5rem;">Computer Vision & AI</h3>
-                    <div><span class="tag">OpenCV</span> <span class="tag">Python</span> <span class="tag">TensorFlow Lite</span> <span class="tag">YOLO</span> <span class="tag">CUDA</span></div>
-                </div>
-                <div class="cat-platform">
-                    <h3 style="margin-bottom: 1.5rem;">Tools & Protocols</h3>
-                    <div><span class="tag">I2C/SPI/UART</span> <span class="tag">CAN bus</span> <span class="tag">Altium</span> <span class="tag">Git</span> <span class="tag">Docker</span></div>
+            <div id="giant-skill-ball">
+                <div class="ball-content">
+                    <h2 class="section-title">Technical Stack</h2>
+                    
+                    <div class="skill-group">
+                        <h3>Microcontrollers & IoT</h3>
+                        <div><span class="tag ball-tag">ESP32</span> <span class="tag ball-tag">STM32</span> <span class="tag ball-tag">ARM Cortex-M</span> <span class="tag ball-tag">FreeRTOS</span> <span class="tag ball-tag">MQTT</span></div>
+                    </div>
+                    <div class="skill-group">
+                        <h3>Computer Vision & AI</h3>
+                        <div><span class="tag ball-tag">OpenCV</span> <span class="tag ball-tag">Python</span> <span class="tag ball-tag">TensorFlow Lite</span> <span class="tag ball-tag">YOLO</span> <span class="tag ball-tag">CUDA</span></div>
+                    </div>
+                    <div class="skill-group">
+                        <h3>Tools & Protocols</h3>
+                        <div><span class="tag ball-tag">I2C/SPI/UART</span> <span class="tag ball-tag">CAN bus</span> <span class="tag ball-tag">Altium</span> <span class="tag ball-tag">Git</span> <span class="tag ball-tag">Docker</span></div>
+                    </div>
                 </div>
             </div>
         </section>
@@ -454,7 +675,7 @@
             <h2 class="section-title">Initialize Handshake</h2>
             <div class="cat-platform" style="width: 100%; max-width: 600px; text-align: center;">
                 <p style="margin-bottom: 2rem; font-size: 1.1rem;">Interested in collaborating on IoT, robotics, or computer vision? Let's connect.</p>
-                <a href="#" class="btn" style="display:inline-block; position:relative; background: var(--primary-color); color: white;">Send Transmission</a>
+                <a href="#" class="btn" style="display:inline-block; position:relative; background: var(--primary-color); color: white; transform: none; box-shadow: 0 8px 20px rgba(255, 143, 163, 0.3);">Send Transmission</a>
             </div>
         </section>
         
@@ -465,7 +686,7 @@
         </footer>
     </div>
 
-    <div id="mobile-hint">Tap anywhere to guide the cat</div>
+    <div id="mobile-hint">Tap anywhere to guide the mini cat</div>
 
     <div id="game-layer">
         <div id="waypoint"></div>
@@ -509,20 +730,12 @@
 
     <script>
         const CAT_CONFIG = {
-            walkSpeed: 150, runSpeed: 400,
-            gravity: 1200, jumpVelocityY: -600, 
-            jumpCrouchTime: 300, sprintDistance: 800,
-            width: 60, height: 50
+            walkSpeed: 150, runSpeed: 400, gravity: 1200, jumpVelocityY: -600, 
+            jumpCrouchTime: 300, sprintDistance: 800, width: 60, height: 50
         };
 
         const GameState = {
-            introActive: true,
-            noClicks: 0,
-            platforms: [],
-            lastTime: 0,
-            activeSection: 'hero',
-            mouseX: 0,
-            mouseY: 0
+            introActive: true, noClicks: 0, platforms: [], lastTime: 0, mouseX: 0, mouseY: 0
         };
 
         const IntroController = {
@@ -531,16 +744,12 @@
                 pawContainer.style.display = 'block';
                 pawContainer.innerHTML = '';
                 
-                // Create the single, centered Giant Paw using a CSS Filter for Lag-Free Drop Shadow
                 const giantPaw = document.createElement('div');
                 giantPaw.className = 'giant-paw';
                 giantPaw.innerHTML = `
                     <svg viewBox="0 0 200 200" width="100%" height="100%" style="filter: drop-shadow(0 10px 8px rgba(0,0,0,0.15));">
-                        <!-- Fluffy White/Gray Base -->
                         <path d="M 30 110 C 15 110, 15 160, 45 180 C 75 200, 125 200, 155 180 C 185 160, 185 110, 170 110 C 190 75, 155 30, 100 30 C 45 30, 10 75, 30 110 Z" fill="#ffffff" />
-                        <!-- Main Pink Pad -->
                         <path d="M 60 135 C 50 110, 75 95, 100 105 C 125 95, 150 110, 140 135 C 135 155, 115 165, 100 160 C 85 165, 65 155, 60 135 Z" fill="#ff8fa3"/>
-                        <!-- Toe Beans -->
                         <ellipse cx="55" cy="85" rx="14" ry="20" fill="#ff8fa3" transform="rotate(-25 55 85)"/>
                         <ellipse cx="85" cy="55" rx="15" ry="22" fill="#ff8fa3" transform="rotate(-10 85 55)"/>
                         <ellipse cx="115" cy="55" rx="15" ry="22" fill="#ff8fa3" transform="rotate(10 115 55)"/>
@@ -549,11 +758,10 @@
                 `;
                 pawContainer.appendChild(giantPaw);
                 
-                // Add subtle tiny particles around the center
                 for(let i = 0; i < 6; i++) {
                     let p = document.createElement('div');
                     p.className = 'tiny-particle';
-                    let offsetX = (Math.random() - 0.5) * 30; // Keeps them near the center
+                    let offsetX = (Math.random() - 0.5) * 30;
                     let rot = (Math.random() - 0.5) * 60;
                     p.style.left = `calc(50% + ${offsetX}vw)`;
                     p.style.setProperty('--rot', `${rot}deg`);
@@ -561,10 +769,7 @@
                     pawContainer.appendChild(p);
                 }
                 
-                // The paw hits scale(20) at ~3.4s. We trigger transition at 3.3s so the fade is perfectly seamless
-                setTimeout(() => {
-                    this.transitionToPortfolio(isHappy, !isHappy); 
-                }, 3300);
+                setTimeout(() => { this.transitionToPortfolio(isHappy); }, 3300);
             },
 
             init() {
@@ -572,7 +777,6 @@
                 const btnNo = document.getElementById('btn-no');
                 const msg = document.getElementById('intro-message');
                 const catFace = document.querySelector('.intro-cat-wrapper');
-                const introScreen = document.getElementById('intro-screen');
 
                 const noMessages = [
                     "Wait, really?",
@@ -585,10 +789,7 @@
                 let msgTimeout;
 
                 btnYes.addEventListener('click', () => { 
-                    btnYes.disabled = true;
-                    btnNo.disabled = true;
-                    
-                    // Hide buttons smoothly
+                    btnYes.disabled = true; btnNo.disabled = true;
                     btnYes.style.opacity = 0; btnYes.style.pointerEvents = 'none'; btnYes.style.transform = `translateX(-75px) scale(0)`;
                     btnNo.style.opacity = 0; btnNo.style.pointerEvents = 'none'; btnNo.style.transform = `translateX(75px) scale(0)`;
 
@@ -610,8 +811,8 @@
                     let scaryLevel = Math.min(GameState.noClicks, 4);
                     catFace.setAttribute('data-scary-level', scaryLevel);
                     
-                    if (scaryLevel === 3) introScreen.classList.add('scary-bg-3');
-                    else if (scaryLevel === 4) { introScreen.classList.remove('scary-bg-3'); introScreen.classList.add('scary-bg-4'); }
+                    if (scaryLevel === 3) document.getElementById('intro-screen').classList.add('scary-bg-3');
+                    else if (scaryLevel === 4) { document.getElementById('intro-screen').classList.remove('scary-bg-3'); document.getElementById('intro-screen').classList.add('scary-bg-4'); }
 
                     if (GameState.noClicks < 5) {
                         if(msgTimeout) clearTimeout(msgTimeout);
@@ -621,12 +822,11 @@
                             msg.style.opacity = 1; msg.style.transform = 'translateY(0)';
                         }, 300);
                         
-                        let yesScale = 1 + (GameState.noClicks * 0.25);
-                        let noMove = 75 + (GameState.noClicks * 35);
+                        let yesScale = 1 + (GameState.noClicks * 0.15);
                         let noScale = 1 - (GameState.noClicks * 0.15);
                         
-                        btnYes.style.transform = `translateX(-75px) scale(${yesScale})`;
-                        btnNo.style.transform = `translateX(${noMove}px) scale(${noScale})`;
+                        btnYes.style.transform = `scale(${yesScale})`;
+                        btnNo.style.transform = `translateX(${GameState.noClicks * 20}px) scale(${noScale})`;
                         
                     } else if (GameState.noClicks === 5) {
                         if(msgTimeout) clearTimeout(msgTimeout);
@@ -634,7 +834,7 @@
                         setTimeout(() => { msg.innerText = noMessages[4]; msg.style.opacity = 1; }, 300);
 
                         btnNo.style.opacity = 0; btnNo.style.pointerEvents = 'none'; btnNo.style.transform = `translateX(200px) scale(0)`;
-                        btnYes.style.opacity = 0; btnYes.style.pointerEvents = 'none'; btnYes.style.transform = `translateX(-75px) scale(0)`;
+                        btnYes.style.opacity = 0; btnYes.style.pointerEvents = 'none'; btnYes.style.transform = `scale(0)`;
                         btnYes.disabled = true;
 
                         setTimeout(() => { this.playGiantPawTransition(false); }, 800);
@@ -642,7 +842,7 @@
                 });
             },
 
-            transitionToPortfolio(happy, isBigCute = false) {
+            transitionToPortfolio(happy) {
                 if(!GameState.introActive) return;
                 GameState.introActive = false;
                 
@@ -650,51 +850,33 @@
                 const portfolio = document.getElementById('portfolio-main');
                 const pawContainer = document.getElementById('paw-container');
                 
-                // INSTANTLY hide the intro screen behind the giant paw to prevent the ghost-face!
                 introScreen.style.display = 'none';
                 
-                // Show portfolio container
                 portfolio.style.display = 'flex';
                 void portfolio.offsetWidth; 
                 portfolio.style.opacity = 1;
                 
-                // Add a beautiful cascading fade-up to all the elements on the homepage
                 document.querySelectorAll('#portfolio-main > header, #portfolio-main > section').forEach((el, index) => {
                     el.style.opacity = '0';
                     el.style.transform = 'translateY(40px)';
-                    // Stagger the animations slightly based on their index
                     el.style.transition = `opacity 0.8s ease ${index * 0.15}s, transform 0.8s cubic-bezier(0.25, 1, 0.5, 1) ${index * 0.15}s`;
-                    
-                    // Trigger the animation on the next frame
-                    requestAnimationFrame(() => {
-                        el.style.opacity = '1';
-                        el.style.transform = 'translateY(0)';
-                    });
+                    requestAnimationFrame(() => { el.style.opacity = '1'; el.style.transform = 'translateY(0)'; });
                 });
 
-                // Trigger smooth fade out of the paw revealing the animating portfolio!
                 if (pawContainer) pawContainer.style.opacity = 0;
-                
-                // Clean up the paw completely after it finishes fading out
-                setTimeout(() => {
-                    if (pawContainer) pawContainer.style.display = 'none'; 
-                }, 1000); 
+                setTimeout(() => { if (pawContainer) pawContainer.style.display = 'none'; }, 1000);
                 
                 PlatformManager.scan();
                 const heroTop = GameState.platforms.find(p => p.el && p.el.classList.contains('hero-platform'));
                 
                 if(heroTop) {
-                    Cat.x = heroTop.x + heroTop.width / 2;
+                    Cat.x = heroTop.x + (heroTop.width * 0.2);
                     Cat.y = happy ? -100 : heroTop.y - CAT_CONFIG.height; 
                 } else {
                     Cat.x = window.innerWidth / 2; Cat.y = -100;
                 }
                 
-                if(happy) { Cat.setState('FALL'); }
-                else {
-                    Cat.setState('SIT');
-                    if (isBigCute) { Cat.el.classList.add('cat-big-cute'); Cat.isBigCute = true; }
-                }
+                Cat.setState(happy ? 'FALL' : 'SIT');
                 
                 requestAnimationFrame(gameLoop);
                 ScrollController.init();
@@ -722,7 +904,6 @@
             el: document.getElementById('cat'),
             x: 0, y: 0, vx: 0, vy: 0, targetX: null, targetY: null,
             state: 'IDLE', stateTimer: 0, direction: 1, idleTimer: 0, currentPlatform: null,
-            isBigCute: false,
 
             update(dt) {
                 let dtSeconds = dt / 1000;
@@ -755,7 +936,7 @@
                         
                         if (Math.abs(dist) < speed * dtSeconds) {
                             this.x = this.targetX; this.targetX = null;
-                            this.setState(this.isBigCute ? 'SIT' : 'IDLE');
+                            this.setState('IDLE');
                         } else {
                             this.x += this.direction * speed * dtSeconds;
                             if (this.currentPlatform && !this.currentPlatform.isGround) {
@@ -766,7 +947,7 @@
                                 }
                             }
                         }
-                    } else { this.setState(this.isBigCute ? 'SIT' : 'IDLE'); }
+                    } else { this.setState('IDLE'); }
                 } else if (this.state === 'IDLE') {
                     this.idleTimer += dt;
                     if (this.idleTimer > 3000 && Math.random() < 0.01) {
@@ -781,7 +962,7 @@
                 } else if (this.state === 'LAND') {
                     if (this.stateTimer <= 0) {
                         if (this.targetX !== null) this.evaluateTarget();
-                        else this.setState(this.isBigCute ? 'SIT' : 'IDLE');
+                        else this.setState('IDLE');
                     }
                 }
                 
@@ -794,24 +975,17 @@
                 let sx = this.direction === 1 ? -1 : 1;
                 this.el.style.transform = `translate(${this.x - CAT_CONFIG.width/2}px, ${this.y}px) scaleX(${sx})`;
                 
-                // Eye Tracking Logic for SVG Cat
                 const pupils = document.getElementById('cat-pupils');
                 if (pupils) {
                     if (this.state === 'IDLE' || this.state === 'SIT') {
                         let dx = GameState.mouseX - this.x;
                         if (sx === -1) dx = -dx; 
                         let dy = GameState.mouseY - (this.y + 25); 
-                        
                         let angle = Math.atan2(dy, dx);
-                        let dist = Math.min(3.5, Math.sqrt(dx*dx + dy*dy) / 40);
-                        if (this.isBigCute) dist *= 1.5; 
-                        
-                        let px = Math.cos(angle) * dist; let py = Math.sin(angle) * dist;
-                        pupils.setAttribute('transform', `translate(${px}, ${py})`);
-                    } else if (this.state === 'SLEEP') {
-                        pupils.setAttribute('transform', `translate(0, 0)`);
+                        let dist = Math.min(6, Math.sqrt(dx*dx + dy*dy) / 80);
+                        pupils.style.transform = `translate(${Math.cos(angle)*dist}px, ${Math.sin(angle)*dist}px)`;
                     } else {
-                        pupils.setAttribute('transform', `translate(0, 0)`);
+                        pupils.style.transform = `translate(0px, 0px)`;
                     }
                 }
             },
@@ -828,8 +1002,6 @@
             },
             
             setTarget(x, y) {
-                if(this.isBigCute) { this.el.classList.remove('cat-big-cute'); this.isBigCute = false; }
-
                 this.targetX = x; this.targetY = y;
                 const wp = document.getElementById('waypoint');
                 wp.style.left = x + 'px'; wp.style.top = y + 'px';
@@ -864,29 +1036,25 @@
                         if (p.y >= this.targetY - 50) { if (!pTarget || p.y < pTarget.y) pTarget = p; }
                     }
                 }
-                
                 let destY = pTarget ? pTarget.y : this.targetY;
                 let dy = destY - (this.y + CAT_CONFIG.height);
                 let t = Math.max(0.5, Math.abs(dx) / 600); if (t > 1.5) t = 1.5; 
                 
-                this.vx = dx / t;
-                this.vy = (dy - 0.5 * CAT_CONFIG.gravity * t * t) / t;
+                this.vx = dx / t; this.vy = (dy - 0.5 * CAT_CONFIG.gravity * t * t) / t;
                 if (this.vy < CAT_CONFIG.jumpVelocityY * 1.5) this.vy = CAT_CONFIG.jumpVelocityY * 1.5;
                 
-                this.setState('JUMP');
-                this.currentPlatform = null;
+                this.setState('JUMP'); this.currentPlatform = null;
             }
         };
 
         const InputHandler = {
             init() {
-                // Tracking Mouse movements globally for both Cats immediately on load
                 document.addEventListener('mousemove', (e) => {
                     GameState.mouseX = e.pageX;
                     GameState.mouseY = e.pageY;
                     
                     if (GameState.introActive) {
-                        const x = (e.clientX / window.innerWidth - 0.5) * 24;
+                        const x = (e.clientX / window.innerWidth - 0.5) * 24; 
                         const y = (e.clientY / window.innerHeight - 0.5) * 24;
                         document.documentElement.style.setProperty('--pupil-x', `${x}px`);
                         document.documentElement.style.setProperty('--pupil-y', `${y}px`);
@@ -895,8 +1063,7 @@
 
                 document.addEventListener('contextmenu', (e) => {
                     if (GameState.introActive) return;
-                    e.preventDefault();
-                    Cat.setTarget(e.pageX, e.pageY);
+                    e.preventDefault(); Cat.setTarget(e.pageX, e.pageY);
                 });
                 
                 document.addEventListener('click', (e) => {
@@ -917,7 +1084,23 @@
             init() {
                 const observerOptions = { root: null, rootMargin: '-20% 0px -40% 0px', threshold: 0 };
                 const observer = new IntersectionObserver((entries) => {
-                    entries.forEach(entry => { if (entry.isIntersecting) this.moveCatToSection(entry.target); });
+                    entries.forEach(entry => { 
+                        if (entry.isIntersecting) {
+                            this.moveCatToSection(entry.target);
+                        }
+                        
+                        // Link the Hero Ball disappearance to the Skills Ball appearance
+                        if (entry.target.id === 'skills') {
+                            const heroBall = document.getElementById('hero-cat-ball');
+                            if (entry.isIntersecting) {
+                                entry.target.classList.add('skills-visible');
+                                if (heroBall) heroBall.style.opacity = '0';
+                            } else {
+                                entry.target.classList.remove('skills-visible');
+                                if (heroBall) heroBall.style.opacity = '1';
+                            }
+                        }
+                    });
                 }, observerOptions);
                 document.querySelectorAll('section').forEach(sec => observer.observe(sec));
             },
@@ -939,13 +1122,50 @@
             let dt = timestamp - GameState.lastTime;
             GameState.lastTime = timestamp;
             if (dt > 100) dt = 16;
+            
             Cat.update(dt);
+            
+            const heroPupils = document.getElementById('hero-cat-pupils');
+            if (heroPupils && !GameState.introActive) {
+                const heroBall = document.getElementById('hero-cat-ball');
+                const heroFace = document.getElementById('hero-cat-head');
+                
+                if (heroBall && heroFace) {
+                    const ballRect = heroBall.getBoundingClientRect();
+                    const faceRect = heroFace.getBoundingClientRect();
+                    
+                    const bx = ballRect.left + ballRect.width / 2;
+                    const by = ballRect.top + ballRect.height / 2;
+                    const fx = faceRect.left + faceRect.width / 2;
+                    const fy = faceRect.top + faceRect.height / 2;
+                    
+                    let targetX = bx;
+                    let targetY = by;
+                    
+                    const mx = GameState.mouseX;
+                    const my = GameState.mouseY - window.scrollY; 
+                    const distMouse = Math.sqrt(Math.pow(mx - fx, 2) + Math.pow(my - fy, 2));
+                    
+                    if (distMouse < 400) {
+                        targetX = (bx * 0.7) + (mx * 0.3);
+                        targetY = (by * 0.7) + (my * 0.3);
+                    }
+                    
+                    const dx = targetX - fx;
+                    const dy = targetY - fy;
+                    const angle = Math.atan2(dy, dx);
+                    
+                    const dist = Math.min(10, Math.sqrt(dx*dx + dy*dy) / 12);
+                    heroPupils.style.transform = `translate(${Math.cos(angle)*dist}px, ${Math.sin(angle)*dist}px)`;
+                }
+            }
+            
             requestAnimationFrame(gameLoop);
         }
 
         window.addEventListener('DOMContentLoaded', () => { 
             IntroController.init(); 
-            InputHandler.init(); // Start tracking mouse right away!
+            InputHandler.init();
         });
     </script>
 </body>
