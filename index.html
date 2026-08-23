@@ -1127,16 +1127,181 @@
                         <div class="room-label">PAINTING</div>
                         <svg class="scene-svg" viewBox="0 0 200 150">
                             <!-- Background Decor -->
-                            <rect x="20" y="30" width="40" height="50" fill="none" stroke="#ddd" stroke-width="2"/>
-                            <circle cx="40" cy="55" r="10" fill="#f498a7" opacity="0.3"/>
+                            <rect x="20" y="20" width="40" height="50" fill="none" stroke="#ddd" stroke-width="2"/>
+                            <rect x="25" y="25" width="30" height="40" fill="#e0f2f7"/>
+                            <circle cx="40" cy="45" r="10" fill="#f498a7" opacity="0.6"/>
+                            <path d="M 25 65 L 35 50 L 45 60 L 55 45 L 55 65 Z" fill="#a18cd1" opacity="0.5"/>
                             
+                            <!-- Small wall frame -->
+                        <rect x="75" y="15" width="20" height="25" fill="none" stroke="#b3855a" stroke-width="2"/>
+                        <circle cx="85" cy="27" r="5" fill="#ffea00" opacity="0.5"/>
+
+<!-- NEW: Caged Dog Area -->
+<g transform="translate(-30, 80) scale(1.25)">
+
+    <!-- Back wires of the cage -->
+    <path d="M 8 42 C 8 0, 48 0, 48 42"
+          fill="none" stroke="#ddd" stroke-width="1.1" />
+
+    <path d="M 16 42 C 16 8, 40 8, 40 42"
+          fill="none" stroke="#ddd" stroke-width="1.1" />
+
+    <!-- Inner shadow / depth base -->
+    <rect x="3" y="38" width="50" height="6"
+          rx="2" fill="#ffb3c6" opacity="0.8" />
+
+    <!-- The Sitting Dog -->
+    <g transform="translate(10, 8)">
+
+        <!-- Tail -->
+        <path d="M 0 25 Q -8 28 -4 18"
+              fill="none"
+              stroke="#d2a679"
+              stroke-width="4"
+              stroke-linecap="round"/>
+
+        <!-- Body -->
+        <path d="M 15 5 Q 30 15 25 30 L 5 30 Q 0 20 15 5 Z"
+              fill="#c69c6d"/>
+
+        <!-- Back haunch -->
+        <circle cx="10" cy="23" r="7" fill="#b3855a"/>
+        <rect x="12" y="27" width="5" height="4"
+              rx="2" fill="#fff"/>
+
+        <!-- Chest patch -->
+        <ellipse cx="22" cy="18" rx="4" ry="9"
+                 fill="#fff" opacity="0.9"/>
+
+        <!-- Front Legs -->
+        <rect x="17" y="20" width="4" height="11"
+              rx="2" fill="#c69c6d"/>
+        <rect x="23" y="20" width="4" height="11"
+              rx="2" fill="#c69c6d"/>
+
+        <rect x="17" y="28" width="4" height="3"
+              rx="1.5" fill="#fff"/>
+        <rect x="23" y="28" width="4" height="3"
+              rx="1.5" fill="#fff"/>
+
+        <!-- Head -->
+        <circle cx="20" cy="5" r="10" fill="#c69c6d"/>
+
+        <!-- Floppy Ears -->
+        <ellipse cx="11" cy="5" rx="3.5" ry="9"
+                 fill="#8c6148"
+                 transform="rotate(25 11 5)"/>
+
+        <ellipse cx="29" cy="5" rx="3.5" ry="9"
+                 fill="#8c6148"
+                 transform="rotate(-25 29 5)"/>
+
+        <!-- Snout -->
+        <circle cx="25" cy="7" r="5" fill="#fff"/>
+        <circle cx="28" cy="5" r="2" fill="#333"/>
+
+        <path d="M 26 9 Q 27 11 28 9"
+              fill="none"
+              stroke="#ff8fa3"
+              stroke-width="1.5"/>
+
+        <!-- Eyes -->
+        <circle cx="21" cy="2" r="1.5" fill="#333"/>
+        <circle cx="26" cy="1" r="1.5" fill="#333"/>
+
+    </g>
+
+    <!-- Bone -->
+    <g transform="translate(36, 35)">
+        <circle cx="0" cy="0" r="1.5" fill="#e6c280"/>
+        <circle cx="0" cy="3" r="1.5" fill="#e6c280"/>
+        <circle cx="6" cy="0" r="1.5" fill="#e6c280"/>
+        <circle cx="6" cy="3" r="1.5" fill="#e6c280"/>
+        <rect x="0" y="0.5" width="6" height="2"
+              fill="#e6c280"/>
+    </g>
+
+    <!-- Water Bottle -->
+    <g transform="translate(42, 13)">
+        <rect x="0" y="0" width="6" height="12"
+              rx="2"
+              fill="#fff"
+              stroke="#b0b0b0"
+              stroke-width="1"
+              opacity="0.9"/>
+
+        <rect x="0.5" y="5" width="5" height="6"
+              rx="1"
+              fill="#81d4fa"
+              opacity="0.7"/>
+
+        <!-- Nozzle -->
+        <path d="M 1 12 L -2 15"
+              stroke="#999"
+              stroke-width="1.5"
+              stroke-linecap="round"/>
+
+        <circle cx="-2" cy="15" r="1"
+                fill="#ffb3c6"/>
+    </g>
+
+    <!-- Front Wires & Pink Tray Base -->
+
+    <!-- Base / Tray -->
+    <rect x="0" y="40" width="56" height="7"
+          rx="3"
+          fill="#f498a7" />
+
+    <!-- Arching front dome -->
+    <path d="M 3 40 C 3 0, 53 0, 53 40"
+          fill="none"
+          stroke="#b0b0b0"
+          stroke-width="1.5" />
+
+    <!-- Inner vertical wires -->
+    <path d="M 12 40 C 12 2, 44 2, 44 40"
+          fill="none"
+          stroke="#b0b0b0"
+          stroke-width="1.5" />
+
+    <path d="M 22 40 C 22 4, 34 4, 34 40"
+          fill="none"
+          stroke="#b0b0b0"
+          stroke-width="1.5" />
+
+    <path d="M 28 40 L 28 3"
+          fill="none"
+          stroke="#b0b0b0"
+          stroke-width="1.5" />
+
+    <!-- Horizontal wires -->
+    <path d="M 3.5 30 Q 28 33 52.5 30"
+          fill="none"
+          stroke="#b0b0b0"
+          stroke-width="1.5" />
+
+    <path d="M 4.5 20 Q 28 23 51.5 20"
+          fill="none"
+          stroke="#b0b0b0"
+          stroke-width="1.5" />
+
+    <path d="M 6.5 10 Q 28 13 49.5 10"
+          fill="none"
+          stroke="#b0b0b0"
+          stroke-width="1.5" />
+
+</g>
+
+                        <!-- Entire Painting Scene Moved Slightly Left -->
+                        <g transform="translate(-12, 0)">
                             <!-- Easel & Canvas -->
                             <polygon points="150,140 160,20 170,140" fill="#b3855a"/>
                             <rect x="135" y="40" width="50" height="60" fill="#fff" stroke="#ccc" stroke-width="2"/>
-                            <!-- Crude cat drawing on canvas -->
-                            <circle cx="160" cy="70" r="15" fill="none" stroke="#888" stroke-width="1.5"/>
-                            <polygon points="150,60 145,50 155,55" fill="none" stroke="#888" stroke-width="1.5"/>
-                            <polygon points="170,60 175,50 165,55" fill="none" stroke="#888" stroke-width="1.5"/>
+                            <!-- Drawing of the Dog on the canvas -->
+                            <circle cx="160" cy="65" r="8" fill="none" stroke="#888" stroke-width="1.5"/>
+                            <path d="M 154 65 Q 160 80 166 65" fill="none" stroke="#888" stroke-width="1.5"/>
+                            <path d="M 154 62 C 150 62, 150 68, 154 68" fill="none" stroke="#888" stroke-width="1"/>
+                            <path d="M 166 62 C 170 62, 170 68, 166 68" fill="none" stroke="#888" stroke-width="1"/>
                             <!-- Splatter -->
                             <circle class="paint-splat" cx="165" cy="80" r="4" fill="#a18cd1"/>
                             
@@ -1149,49 +1314,53 @@
                             <g transform="translate(60, 60)">
                                 <!-- Tail -->
                                 <path d="M -5 60 Q -20 70 -10 90" fill="none" stroke="var(--cat-body)" stroke-width="10" stroke-linecap="round"/>
+                                <!-- Back legs -->
+                                <rect x="5" y="70" width="12" height="15" rx="6" fill="var(--cat-body)"/>
+                                <rect x="25" y="70" width="12" height="15" rx="6" fill="var(--cat-body)"/>
                                 
                                 <!-- Chubby Body Base -->
                                 <path d="M 0 30 Q -5 70 20 75 Q 45 70 40 30 Z" fill="var(--cat-body)"/>
                                 <circle cx="20" cy="45" r="23" fill="var(--cat-body)"/>
                                 
                                 <!-- Big Round Head -->
-                                <circle cx="20" cy="10" r="24" fill="var(--cat-body)"/>
-                                <polygon points="-2,-2 -8,-18 10,-2" fill="var(--cat-body)" stroke="var(--cat-body)" stroke-width="2" stroke-linejoin="round"/>
-                                <polygon points="42,-2 48,-18 30,-2" fill="var(--cat-body)" stroke="var(--cat-body)" stroke-width="2" stroke-linejoin="round"/>
-                                <polygon points="0,0 -5,-14 9,-1" fill="var(--cat-ear)"/>
-                                <polygon points="40,0 45,-14 31,-1" fill="var(--cat-ear)"/>
+                                <circle cx="20" cy="10" r="26" fill="var(--cat-body)"/>
+                                <polygon points="-5,0 -12,-18 8,-2" fill="var(--cat-body)" stroke="var(--cat-body)" stroke-width="2" stroke-linejoin="round"/>
+                                <polygon points="45,0 52,-18 32,-2" fill="var(--cat-body)" stroke="var(--cat-body)" stroke-width="2" stroke-linejoin="round"/>
+                                <polygon points="-2,-1 -8,-14 6,0" fill="var(--cat-ear)"/>
+                                <polygon points="42,-1 48,-14 34,0" fill="var(--cat-ear)"/>
                                 
                                 <g class="c-eye-open">
-                                    <circle cx="10" cy="12" r="3.5" fill="var(--cat-eye)"/>
-                                    <circle cx="30" cy="12" r="3.5" fill="var(--cat-eye)"/>
+                                    <circle cx="8" cy="14" r="3.5" fill="var(--cat-eye)"/>
+                                    <circle cx="32" cy="14" r="3.5" fill="var(--cat-eye)"/>
                                 </g>
                                 <g class="c-eye-happy">
-                                    <path d="M 6 13 Q 10 8 14 13" fill="none" stroke="var(--cat-eye)" stroke-width="2.5" stroke-linecap="round"/>
-                                    <path d="M 26 13 Q 30 8 34 13" fill="none" stroke="var(--cat-eye)" stroke-width="2.5" stroke-linecap="round"/>
+                                    <path d="M 4 15 Q 8 10 12 15" fill="none" stroke="var(--cat-eye)" stroke-width="2.5" stroke-linecap="round"/>
+                                    <path d="M 28 15 Q 32 10 36 15" fill="none" stroke="var(--cat-eye)" stroke-width="2.5" stroke-linecap="round"/>
                                 </g>
                                 
                                 <!-- Cute details -->
-                                <ellipse cx="3" cy="18" rx="4" ry="2.5" fill="#ffb3c6" opacity="0.8"/>
-                                <ellipse cx="37" cy="18" rx="4" ry="2.5" fill="#ffb3c6" opacity="0.8"/>
-                                <path d="M 17 17 Q 20 20 23 17" fill="none" stroke="var(--cat-ear)" stroke-width="1.5" stroke-linecap="round"/>
+                                <ellipse cx="1" cy="20" rx="5" ry="3" fill="#ffb3c6" opacity="0.8"/>
+                                <ellipse cx="39" cy="20" rx="5" ry="3" fill="#ffb3c6" opacity="0.8"/>
+                                <path d="M 17 19 Q 20 22 23 19" fill="none" stroke="var(--cat-ear)" stroke-width="1.5" stroke-linecap="round"/>
                                 
                                 <!-- Left Arm (Palette) -->
-                                <path d="M 5 35 Q -10 40 0 55" fill="none" stroke="var(--cat-body)" stroke-width="8" stroke-linecap="round"/>
-                                <ellipse cx="0" cy="55" rx="12" ry="8" fill="#e8c6c8"/> 
-                                <circle cx="-3" cy="55" r="3" fill="#ff8fa3"/>
-                                <circle cx="4" cy="53" r="2" fill="#a18cd1"/>
+                                <path d="M 5 35 Q -15 45 0 60" fill="none" stroke="var(--cat-body)" stroke-width="10" stroke-linecap="round"/>
+                                <ellipse cx="0" cy="60" rx="14" ry="9" fill="#e8c6c8" transform="rotate(15 0 60)"/> 
+                                <circle cx="-4" cy="60" r="3" fill="#ff8fa3"/>
+                                <circle cx="4" cy="57" r="2" fill="#a18cd1"/>
                                 
                                 <!-- Right Arm (Brush) -->
                                 <g class="brush-arm" style="transform-origin: 35px 35px;">
-                                    <path d="M 35 35 Q 50 45 45 30" fill="none" stroke="var(--cat-body)" stroke-width="8" stroke-linecap="round"/>
-                                    <line x1="40" y1="35" x2="65" y2="15" stroke="#b3855a" stroke-width="3" stroke-linecap="round"/>
-                                    <path d="M 65 15 L 70 10 L 68 18 Z" fill="#a18cd1"/>
+                                    <path d="M 35 35 Q 55 45 45 25" fill="none" stroke="var(--cat-body)" stroke-width="12" stroke-linecap="round"/>
+                                    <line x1="40" y1="35" x2="65" y2="10" stroke="#b3855a" stroke-width="4" stroke-linecap="round"/>
+                                    <path d="M 65 10 L 70 5 L 68 13 Z" fill="#a18cd1"/>
                                 </g>
                             </g>
-                        </svg>
-                    </div>
+                        </g>
+                    </svg>
+                </div>
 
-                    <!-- 2. SKETCHING -->
+                <!-- 2. SKETCHING -->
                     <div class="c-room room-sketch">
                         <div class="room-label">SKETCHING</div>
                         <svg class="scene-svg" viewBox="0 0 200 150">
@@ -1200,11 +1369,20 @@
                             <line x1="130" y1="50" x2="180" y2="50" stroke="#ccc" stroke-width="3"/>
                             <line x1="155" y1="20" x2="155" y2="80" stroke="#ccc" stroke-width="3"/>
                             
+                            <!-- Potted plant on sill -->
+                            <path d="M 160 40 Q 150 25 160 30 Q 170 20 165 35 Q 175 30 168 45" fill="#a2d149"/>
+                            <polygon points="158,50 155,40 171,40 168,50" fill="#f498a7"/>
+
                             <!-- Desk -->
                             <path d="M 30 100 L 170 100 L 180 110 L 20 110 Z" fill="#d2a679"/>
                             <rect x="40" y="110" width="10" height="40" fill="#b3855a"/>
                             <rect x="150" y="110" width="10" height="40" fill="#b3855a"/>
                             
+                            <!-- Books on Desk -->
+                            <rect x="45" y="94" width="25" height="6" rx="1" fill="#ffb3c6"/>
+                            <rect x="48" y="88" width="20" height="6" rx="1" fill="#a18cd1"/>
+                            <rect x="52" y="83" width="14" height="5" rx="1" fill="#ffea00"/>
+
                             <!-- Lamp -->
                             <path d="M 160 100 Q 160 70 140 60" fill="none" stroke="#666" stroke-width="3"/>
                             <polygon points="140,55 125,65 145,75" fill="#f498a7"/>
@@ -1218,38 +1396,41 @@
                             <g transform="translate(60, 40)">
                                 <!-- Tail -->
                                 <path d="M -15 65 Q -30 75 -20 95" fill="none" stroke="var(--cat-body)" stroke-width="10" stroke-linecap="round"/>
+                                <!-- Back Legs -->
+                                <rect x="5" y="60" width="12" height="15" rx="6" fill="var(--cat-body)"/>
+                                <rect x="25" y="60" width="12" height="15" rx="6" fill="var(--cat-body)"/>
                                 
                                 <!-- Chubby Body Base -->
                                 <path d="M -5 30 Q -10 65 20 70 Q 45 65 40 30 Z" fill="var(--cat-body)"/>
                                 <circle cx="17.5" cy="40" r="23" fill="var(--cat-body)"/>
                                 
                                 <!-- Big Round Head down -->
-                                <circle cx="35" cy="15" r="24" fill="var(--cat-body)"/>
+                                <circle cx="35" cy="15" r="26" fill="var(--cat-body)"/>
                                 <polygon points="12,5 5,-12 22,-2" fill="var(--cat-body)" stroke="var(--cat-body)" stroke-width="2" stroke-linejoin="round"/>
                                 <polygon points="56,0 67,-12 48,-2" fill="var(--cat-body)" stroke="var(--cat-body)" stroke-width="2" stroke-linejoin="round"/>
                                 <polygon points="14,3 8,-9 20,0" fill="var(--cat-ear)"/>
                                 <polygon points="54,2 64,-9 50,0" fill="var(--cat-ear)"/>
                                 
                                 <g class="c-eye-open">
-                                    <circle cx="30" cy="22" r="3.5" fill="var(--cat-eye)"/>
-                                    <circle cx="48" cy="22" r="3.5" fill="var(--cat-eye)"/>
+                                    <circle cx="28" cy="24" r="3.5" fill="var(--cat-eye)"/>
+                                    <circle cx="50" cy="24" r="3.5" fill="var(--cat-eye)"/>
                                 </g>
                                 <g class="c-eye-happy">
-                                    <path d="M 26 23 Q 30 18 34 23" fill="none" stroke="var(--cat-eye)" stroke-width="2.5" stroke-linecap="round"/>
-                                    <path d="M 44 23 Q 48 18 52 23" fill="none" stroke="var(--cat-eye)" stroke-width="2.5" stroke-linecap="round"/>
+                                    <path d="M 24 25 Q 28 20 32 25" fill="none" stroke="var(--cat-eye)" stroke-width="2.5" stroke-linecap="round"/>
+                                    <path d="M 46 25 Q 50 20 54 25" fill="none" stroke="var(--cat-eye)" stroke-width="2.5" stroke-linecap="round"/>
                                 </g>
                                 
                                 <!-- Cute details -->
-                                <ellipse cx="23" cy="26" rx="4" ry="2.5" fill="#ffb3c6" opacity="0.8"/>
-                                <ellipse cx="55" cy="26" rx="4" ry="2.5" fill="#ffb3c6" opacity="0.8"/>
-                                <path d="M 37 25 Q 39 28 41 25" fill="none" stroke="var(--cat-ear)" stroke-width="1.5" stroke-linecap="round"/>
+                                <ellipse cx="20" cy="29" rx="5" ry="3" fill="#ffb3c6" opacity="0.8"/>
+                                <ellipse cx="58" cy="29" rx="5" ry="3" fill="#ffb3c6" opacity="0.8"/>
+                                <path d="M 37 27 Q 39 30 41 27" fill="none" stroke="var(--cat-ear)" stroke-width="1.5" stroke-linecap="round"/>
                                 
                                 <!-- Static Left Arm -->
-                                <path d="M 5 40 Q 15 60 25 55" fill="none" stroke="var(--cat-body)" stroke-width="8" stroke-linecap="round"/>
+                                <path d="M 5 40 Q 15 60 25 55" fill="none" stroke="var(--cat-body)" stroke-width="10" stroke-linecap="round"/>
                                 
                                 <!-- Sketching Right Arm -->
                                 <g class="sketch-paw" style="transform-origin: 25px 40px;">
-                                    <path d="M 25 40 Q 40 65 55 55" fill="none" stroke="var(--cat-body)" stroke-width="8" stroke-linecap="round"/>
+                                    <path d="M 25 40 Q 40 70 55 55" fill="none" stroke="var(--cat-body)" stroke-width="10" stroke-linecap="round"/>
                                     <line x1="45" y1="50" x2="65" y2="65" stroke="#f498a7" stroke-width="2.5" stroke-linecap="round"/>
                                     <polygon points="65,65 68,68 62,68" fill="#333"/>
                                 </g>
@@ -1261,9 +1442,24 @@
                     <div class="c-room room-crochet">
                         <div class="room-label">CROCHET</div>
                         <svg class="scene-svg" viewBox="0 0 200 150">
+                            <!-- Arched Night Window -->
+                            <path d="M 25 70 L 25 30 A 25 25 0 0 1 75 30 L 75 70 Z" fill="#2a1b38" stroke="#ccc" stroke-width="3"/>
+                            <path d="M 55 30 A 8 8 0 0 0 65 40 A 10 10 0 0 1 55 30 Z" fill="#ffea00"/> <!-- Crescent moon -->
+                            <circle cx="35" cy="40" r="1" fill="#fff"/>
+                            <circle cx="45" cy="55" r="1.5" fill="#fff"/>
+                            <circle cx="65" cy="60" r="1" fill="#fff"/>
+
                             <!-- Rug -->
                             <ellipse cx="100" cy="135" rx="60" ry="15" fill="#f498a7" opacity="0.4"/>
                             
+                            <!-- Little Side Table & Mug -->
+                            <rect x="150" y="80" width="30" height="4" rx="2" fill="#b3855a"/>
+                            <rect x="163" y="84" width="4" height="25" fill="#8c6148"/>
+                            <!-- Mug -->
+                            <rect x="158" y="70" width="10" height="10" rx="2" fill="#a18cd1"/>
+                            <path d="M 168 72 A 3 3 0 0 1 168 78" fill="none" stroke="#a18cd1" stroke-width="2"/>
+                            <path d="M 161 68 Q 158 63 163 58 T 161 50" fill="none" stroke="#fff" stroke-width="1.5" opacity="0.7"/>
+
                             <!-- Yarn Basket -->
                             <path d="M 140 120 L 170 120 L 165 140 L 145 140 Z" fill="#b3855a"/>
                             <circle cx="150" cy="115" r="10" fill="#a18cd1"/>
@@ -1273,42 +1469,45 @@
                             <g transform="translate(80, 60)">
                                 <!-- Tail -->
                                 <path d="M -5 65 Q -30 75 -15 90" fill="none" stroke="var(--cat-body)" stroke-width="10" stroke-linecap="round"/>
+                                <!-- Back Legs -->
+                                <rect x="5" y="70" width="12" height="15" rx="6" fill="var(--cat-body)"/>
+                                <rect x="25" y="70" width="12" height="15" rx="6" fill="var(--cat-body)"/>
                                 
                                 <!-- Chubby Body Base -->
                                 <path d="M -5 30 Q -10 65 20 70 Q 45 65 40 30 Z" fill="var(--cat-body)"/>
                                 <circle cx="17.5" cy="40" r="23" fill="var(--cat-body)"/>
                                 
                                 <!-- Big Round Head -->
-                                <circle cx="17" cy="5" r="24" fill="var(--cat-body)"/>
+                                <circle cx="17" cy="5" r="26" fill="var(--cat-body)"/>
                                 <polygon points="-5,-5 -12,-20 5,-5" fill="var(--cat-body)" stroke="var(--cat-body)" stroke-width="2" stroke-linejoin="round"/>
                                 <polygon points="38,-5 46,-20 28,-5" fill="var(--cat-body)" stroke="var(--cat-body)" stroke-width="2" stroke-linejoin="round"/>
                                 <polygon points="-2,-4 -9,-17 6,-4" fill="var(--cat-ear)"/>
                                 <polygon points="35,-4 43,-17 29,-4" fill="var(--cat-ear)"/>
                                 
                                 <g class="c-eye-open">
-                                    <circle cx="7" cy="8" r="3.5" fill="var(--cat-eye)"/>
-                                    <circle cx="27" cy="8" r="3.5" fill="var(--cat-eye)"/>
+                                    <circle cx="6" cy="10" r="3.5" fill="var(--cat-eye)"/>
+                                    <circle cx="28" cy="10" r="3.5" fill="var(--cat-eye)"/>
                                 </g>
                                 <g class="c-eye-happy">
-                                    <path d="M 3 9 Q 7 4 11 9" fill="none" stroke="var(--cat-eye)" stroke-width="2.5" stroke-linecap="round"/>
-                                    <path d="M 23 9 Q 27 4 31 9" fill="none" stroke="var(--cat-eye)" stroke-width="2.5" stroke-linecap="round"/>
+                                    <path d="M 2 11 Q 6 6 10 11" fill="none" stroke="var(--cat-eye)" stroke-width="2.5" stroke-linecap="round"/>
+                                    <path d="M 24 11 Q 28 6 32 11" fill="none" stroke="var(--cat-eye)" stroke-width="2.5" stroke-linecap="round"/>
                                 </g>
                                 
                                 <!-- Cute details -->
-                                <ellipse cx="0" cy="13" rx="4" ry="2.5" fill="#ffb3c6" opacity="0.8"/>
-                                <ellipse cx="34" cy="13" rx="4" ry="2.5" fill="#ffb3c6" opacity="0.8"/>
-                                <path d="M 14 12 Q 17 15 20 12" fill="none" stroke="var(--cat-ear)" stroke-width="1.5" stroke-linecap="round"/>
+                                <ellipse cx="-1" cy="16" rx="5" ry="3" fill="#ffb3c6" opacity="0.8"/>
+                                <ellipse cx="35" cy="16" rx="5" ry="3" fill="#ffb3c6" opacity="0.8"/>
+                                <path d="M 14 14 Q 17 17 20 14" fill="none" stroke="var(--cat-ear)" stroke-width="1.5" stroke-linecap="round"/>
 
                                 <!-- Amigurumi base -->
                                 <circle cx="10" cy="45" r="14" fill="#ffb3c6"/>
                                 
                                 <!-- Left Paw holding item -->
-                                <path d="M -2 30 Q -5 45 5 45" fill="none" stroke="var(--cat-body)" stroke-width="8" stroke-linecap="round"/>
+                                <path d="M -2 30 Q -5 45 5 45" fill="none" stroke="var(--cat-body)" stroke-width="10" stroke-linecap="round"/>
                                 
                                 <!-- Right Paw holding hook -->
                                 <g class="crochet-paw" style="transform-origin: 35px 30px;">
-                                    <path d="M 35 30 Q 30 50 15 45" fill="none" stroke="var(--cat-body)" stroke-width="8" stroke-linecap="round"/>
-                                    <line x1="25" y1="35" x2="5" y2="50" stroke="#d2a679" stroke-width="2" stroke-linecap="round"/>
+                                    <path d="M 35 30 Q 30 55 15 45" fill="none" stroke="var(--cat-body)" stroke-width="10" stroke-linecap="round"/>
+                                    <line x1="25" y1="35" x2="5" y2="50" stroke="#d2a679" stroke-width="3" stroke-linecap="round"/>
                                 </g>
                             </g>
                             
@@ -1325,6 +1524,15 @@
                     <div class="c-room room-knit">
                         <div class="room-label">KNITTING</div>
                         <svg class="scene-svg" viewBox="0 0 200 150">
+                            <!-- Wall Decor -->
+                            <circle cx="150" cy="40" r="12" fill="#fff" stroke="#ccc" stroke-width="2"/>
+                            <line x1="150" y1="40" x2="150" y2="33" stroke="#333" stroke-width="1.5" stroke-linecap="round"/>
+                            <line x1="150" y1="40" x2="156" y2="43" stroke="#333" stroke-width="1.5" stroke-linecap="round"/>
+                            
+                            <rect x="25" y="20" width="25" height="35" fill="#e0f2f7" stroke="#b3855a" stroke-width="2"/>
+                            <polygon points="25,55 37,40 50,55" fill="#a18cd1" opacity="0.5"/>
+                            <circle cx="42" cy="28" r="4" fill="#ffb3c6"/>
+
                             <!-- Chair Legs -->
                             <rect x="50" y="125" width="8" height="15" fill="#b3855a"/>
                             <rect x="100" y="125" width="8" height="15" fill="#b3855a"/>
@@ -1340,32 +1548,33 @@
                                 <circle cx="17.5" cy="40" r="23" fill="var(--cat-body)"/>
                                 
                                 <!-- Head relaxed -->
-                                <circle cx="10" cy="5" r="24" fill="var(--cat-body)"/>
+                                <circle cx="10" cy="5" r="26" fill="var(--cat-body)"/>
                                 <polygon points="-12,-5 -22,-15 2,-10" fill="var(--cat-body)" stroke="var(--cat-body)" stroke-width="2" stroke-linejoin="round"/>
                                 <polygon points="32,-5 42,-15 20,-10" fill="var(--cat-body)" stroke="var(--cat-body)" stroke-width="2" stroke-linejoin="round"/>
                                 <polygon points="-8,-4 -16,-12 0,-8" fill="var(--cat-ear)"/>
                                 <polygon points="28,-4 36,-12 18,-8" fill="var(--cat-ear)"/>
                                 
+                                <!-- Squinty sleepy eyes by default -->
                                 <g class="c-eye-open">
-                                    <path d="M 0 5 Q 4 10 8 5 M 16 5 Q 20 10 24 5" fill="none" stroke="var(--cat-eye)" stroke-width="2.5" stroke-linecap="round"/>
+                                    <path d="M -1 5 Q 4 10 9 5 M 15 5 Q 20 10 25 5" fill="none" stroke="var(--cat-eye)" stroke-width="2.5" stroke-linecap="round"/>
                                 </g>
                                 <g class="c-eye-happy">
-                                    <path d="M 0 7 Q 4 2 8 7 M 16 7 Q 20 2 24 7" fill="none" stroke="var(--cat-eye)" stroke-width="2.5" stroke-linecap="round"/>
+                                    <path d="M -1 7 Q 4 2 9 7 M 15 7 Q 20 2 25 7" fill="none" stroke="var(--cat-eye)" stroke-width="2.5" stroke-linecap="round"/>
                                 </g>
                                 
-                                <ellipse cx="-4" cy="11" rx="4" ry="2.5" fill="#ffb3c6" opacity="0.8"/>
-                                <ellipse cx="28" cy="11" rx="4" ry="2.5" fill="#ffb3c6" opacity="0.8"/>
+                                <ellipse cx="-6" cy="11" rx="5" ry="3" fill="#ffb3c6" opacity="0.8"/>
+                                <ellipse cx="30" cy="11" rx="5" ry="3" fill="#ffb3c6" opacity="0.8"/>
                                 <!-- smile -->
-                                <path d="M 10 11 Q 12 14 14 11" fill="none" stroke="var(--cat-ear)" stroke-width="1.5" stroke-linecap="round"/>
+                                <path d="M 9 11 Q 12 14 15 11" fill="none" stroke="var(--cat-ear)" stroke-width="1.5" stroke-linecap="round"/>
                                 
                                 <!-- Needles & Paws -->
                                 <g class="knit-needle-l" style="transform-origin: -5px 30px;">
                                     <line x1="-20" y1="25" x2="20" y2="55" stroke="#ddd" stroke-width="3" stroke-linecap="round"/>
-                                    <path d="M -5 30 Q -15 45 10 45" fill="none" stroke="var(--cat-body)" stroke-width="8" stroke-linecap="round"/>
+                                    <path d="M -5 30 Q -15 45 10 45" fill="none" stroke="var(--cat-body)" stroke-width="10" stroke-linecap="round"/>
                                 </g>
                                 <g class="knit-needle-r" style="transform-origin: 25px 30px;">
                                     <line x1="40" y1="25" x2="0" y2="55" stroke="#ddd" stroke-width="3" stroke-linecap="round"/>
-                                    <path d="M 25 30 Q 35 45 10 50" fill="none" stroke="var(--cat-body)" stroke-width="8" stroke-linecap="round"/>
+                                    <path d="M 25 30 Q 35 45 10 50" fill="none" stroke="var(--cat-body)" stroke-width="10" stroke-linecap="round"/>
                                 </g>
                             </g>
                             
@@ -1376,8 +1585,8 @@
                             <!-- Textured Scarf Trailing completely within the bounds -->
                             <g transform="translate(65, 80)">
                                 <!-- Scarf Base -->
-                                <path d="M 15 10 Q -10 30 20 55 Q 50 70 65 50" fill="none" stroke="#ffea00" stroke-width="14" stroke-linecap="round"/>
-                                <!-- Scarf Texture -->
+                                <path d="M 15 10 Q -10 30 20 55 Q 50 70 65 50" fill="none" stroke="#ffea00" stroke-width="16" stroke-linecap="round"/>
+                                <!-- Scarf Texture (Knit stitches) -->
                                 <path d="M 15 10 Q -10 30 20 55 Q 50 70 65 50" fill="none" stroke="#d4b400" stroke-width="3" stroke-dasharray="4 4" stroke-linecap="round"/>
                                 <path d="M 12 10 Q -13 30 17 55 Q 47 70 62 50" fill="none" stroke="#d4b400" stroke-width="3" stroke-dasharray="4 4" stroke-linecap="round" opacity="0.7"/>
                             </g>
@@ -1388,6 +1597,21 @@
                     <div class="c-room room-kitchen">
                         <div class="room-label">COOKING & BAKING</div>
                         <svg class="scene-svg" viewBox="0 0 400 150">
+                            <!-- Kitchen Window -->
+                            <rect x="140" y="20" width="90" height="50" fill="#e0f2f7" stroke="#ccc" stroke-width="4"/>
+                            <line x1="140" y1="45" x2="230" y2="45" stroke="#ccc" stroke-width="3"/>
+                            <line x1="185" y1="20" x2="185" y2="70" stroke="#ccc" stroke-width="3"/>
+                            <!-- Sun outside -->
+                            <circle cx="205" cy="35" r="8" fill="#ffea00" opacity="0.8"/>
+                            <!-- Curtains -->
+                            <path d="M 138 20 Q 155 40 165 20 Z" fill="#ff8fa3" opacity="0.8"/>
+                            <path d="M 232 20 Q 215 40 205 20 Z" fill="#ff8fa3" opacity="0.8"/>
+
+                            <!-- Hanging Pots -->
+                            <line x1="260" y1="20" x2="340" y2="20" stroke="#666" stroke-width="2"/>
+                            <path d="M 270 20 L 270 30 A 5 5 0 0 0 280 30 L 280 20" fill="none" stroke="#888" stroke-width="2"/>
+                            <path d="M 300 20 L 300 35 L 315 35 L 315 20" fill="none" stroke="#a18cd1" stroke-width="2"/>
+
                             <!-- Shelves -->
                             <line x1="30" y1="40" x2="120" y2="40" stroke="#b3855a" stroke-width="4" stroke-linecap="round"/>
                             <rect x="40" y="20" width="15" height="20" fill="#a18cd1"/>
@@ -1443,38 +1667,38 @@
                                 <path d="M 5 45 L 35 45 L 42 90 L -2 90 Z" fill="#fff" opacity="0.9"/>
                                 
                                 <!-- Big Round Head -->
-                                <circle cx="22" cy="15" r="24" fill="var(--cat-body)"/>
+                                <circle cx="22" cy="15" r="26" fill="var(--cat-body)"/>
                                 <polygon points="0,2 -12,-12 10,-2" fill="var(--cat-body)" stroke="var(--cat-body)" stroke-width="2" stroke-linejoin="round"/>
                                 <polygon points="44,2 56,-12 34,-2" fill="var(--cat-body)" stroke="var(--cat-body)" stroke-width="2" stroke-linejoin="round"/>
                                 <polygon points="2,0 -9,-10 9,-2" fill="var(--cat-ear)"/>
                                 <polygon points="42,0 53,-10 35,-2" fill="var(--cat-ear)"/>
                                 
                                 <g class="c-eye-open">
-                                    <circle cx="12" cy="18" r="3.5" fill="var(--cat-eye)"/>
-                                    <circle cx="32" cy="18" r="3.5" fill="var(--cat-eye)"/>
+                                    <circle cx="10" cy="20" r="3.5" fill="var(--cat-eye)"/>
+                                    <circle cx="34" cy="20" r="3.5" fill="var(--cat-eye)"/>
                                 </g>
                                 <g class="c-eye-happy">
-                                    <path d="M 8 19 Q 12 14 16 19" fill="none" stroke="var(--cat-eye)" stroke-width="2.5" stroke-linecap="round"/>
-                                    <path d="M 28 19 Q 32 14 36 19" fill="none" stroke="var(--cat-eye)" stroke-width="2.5" stroke-linecap="round"/>
+                                    <path d="M 6 21 Q 10 16 14 21" fill="none" stroke="var(--cat-eye)" stroke-width="2.5" stroke-linecap="round"/>
+                                    <path d="M 30 21 Q 34 16 38 21" fill="none" stroke="var(--cat-eye)" stroke-width="2.5" stroke-linecap="round"/>
                                 </g>
                                 
                                 <!-- Cute details -->
-                                <ellipse cx="5" cy="24" rx="4" ry="2.5" fill="#ffb3c6" opacity="0.8"/>
-                                <ellipse cx="39" cy="24" rx="4" ry="2.5" fill="#ffb3c6" opacity="0.8"/>
-                                <path d="M 19 23 Q 22 26 25 23" fill="none" stroke="var(--cat-ear)" stroke-width="1.5" stroke-linecap="round"/>
+                                <ellipse cx="3" cy="26" rx="5" ry="3" fill="#ffb3c6" opacity="0.8"/>
+                                <ellipse cx="41" cy="26" rx="5" ry="3" fill="#ffb3c6" opacity="0.8"/>
+                                <path d="M 19 25 Q 22 28 25 25" fill="none" stroke="var(--cat-ear)" stroke-width="1.5" stroke-linecap="round"/>
                                 
                                 <!-- Chef Hat -->
                                 <path d="M 5 -5 Q -10 -30 10 -35 Q 25 -45 35 -35 Q 55 -30 40 -5 Z" fill="#fff"/>
                                 <rect x="5" y="-5" width="35" height="12" rx="3" fill="#fff" stroke="#eee" stroke-width="1"/>
                                 
                                 <!-- Left Arm -->
-                                <path d="M 5 45 Q -10 60 10 60" fill="none" stroke="var(--cat-body)" stroke-width="8" stroke-linecap="round"/>
+                                <path d="M 5 45 Q -10 60 10 60" fill="none" stroke="var(--cat-body)" stroke-width="10" stroke-linecap="round"/>
                                 
                                 <!-- Whisking Right Arm -->
                                 <g class="whisk-paw" style="transform-origin: 35px 45px;">
-                                    <path d="M 35 45 Q 55 55 45 65" fill="none" stroke="var(--cat-body)" stroke-width="8" stroke-linecap="round"/>
+                                    <path d="M 35 45 Q 55 55 45 65" fill="none" stroke="var(--cat-body)" stroke-width="10" stroke-linecap="round"/>
                                     <!-- Whisk -->
-                                    <line x1="45" y1="60" x2="60" y2="75" stroke="#888" stroke-width="2.5" stroke-linecap="round"/>
+                                    <line x1="45" y1="60" x2="60" y2="75" stroke="#888" stroke-width="3" stroke-linecap="round"/>
                                     <ellipse cx="62" cy="77" rx="5" ry="8" fill="none" stroke="#aaa" stroke-width="2" transform="rotate(-45 62 77)"/>
                                 </g>
                             </g>
