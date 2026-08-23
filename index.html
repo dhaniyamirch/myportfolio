@@ -8,27 +8,28 @@
     
     <style>
         :root {
-            --bg-color: #fff5f8;
-            --surface-color: #ffffff;
-            --surface-color-light: #fff0f5;
+            /* Cute & Eye-Friendly Warm Pastel Theme */
+            --bg-color: #fdfaf5; /* Warm oat milk / cream - very gentle on eyes */
+            --surface-color: #ffffff; /* Clean white for cards */
+            --surface-color-light: #f9f0f2; /* Softest pink-gray */
             --primary-color: #ff8fa3; 
             --secondary-color: #ffb3c6; 
             --accent-color: #a18cd1; 
-            --text-main: #4a4a4a; 
-            --text-muted: #8e8e8e;
-            --border-color: rgba(255, 143, 163, 0.2);
-            --shadow-color: rgba(255, 143, 163, 0.15);
+            --text-main: #534b5c; /* Soft dark plum/taupe - legible but not harsh */
+            --text-muted: #9b91a3;
+            --border-color: rgba(255, 143, 163, 0.35);
+            --shadow-color: rgba(85, 70, 100, 0.08); /* Soft, airy purple shadow */
             
-            --cat-body: #161616;
-            --cat-shade: #2a2a2a;
+            --cat-body: #2c2833; /* Softer, warmer black for the cats */
+            --cat-shade: #1a1721;
             --cat-ear: #ff8fa3;
             --cat-eye: #fff;
             
             --intro-size: clamp(150px, 30vw, 220px);
-            --intro-black: #161616;
+            --intro-black: #2c2833;
             --intro-white: #fff;
             --intro-scary-eye: #fff;
-            --intro-bg: #fff5f8;
+            --intro-bg: #fdfaf5;
 
             --spacing-sm: 0.5rem;
             --spacing-md: 1rem;
@@ -139,17 +140,39 @@
         .intro-cat-wrapper[data-scary-level="3"] .ear--right { transform: rotate(60deg); top: -10%; }
         #intro-screen.scary-bg-3 { background: #2a1111; color: white; transition: background 0.5s; }
         
-        .intro-cat-wrapper[data-scary-level="4"] { animation: shake 0.5s infinite; }
-        .intro-cat-wrapper[data-scary-level="4"] .eye { --intro-scary-eye: #ff0000; box-shadow: 0 0 50px red; }
+        .intro-cat-wrapper[data-scary-level="4"] { animation: violent-shake 0.15s infinite; transform: scale(1.2); transition: transform 0.3s ease; }
+        .intro-cat-wrapper[data-scary-level="4"] .eye { --intro-scary-eye: #ff0000; box-shadow: 0 0 80px red, inset 0 0 20px #fff; height: 35%; border-radius: 50% 50% 50% 50% / 60% 60% 40% 40%; }
+        .intro-cat-wrapper[data-scary-level="4"] .eye--left { transform: rotate(25deg); }
+        .intro-cat-wrapper[data-scary-level="4"] .eye--right { transform: rotate(-25deg); }
+        .intro-cat-wrapper[data-scary-level="4"] .eye-pupil { width: 5%; height: 95%; background: #000; }
+        .intro-cat-wrapper[data-scary-level="4"] .ear--left { transform: rotate(-80deg); top: 5%; }
+        .intro-cat-wrapper[data-scary-level="4"] .ear--right { transform: rotate(80deg); top: 5%; }
+        .intro-cat-wrapper[data-scary-level="4"] .muzzle { opacity: 0; }
+        .intro-cat-wrapper[data-scary-level="4"] .creepy-smile { opacity: 1; }
+        
         #intro-screen.scary-bg-4 { background: #000; color: #ff3333; transition: background 0.5s; }
         
-        @keyframes shake {
-            0%, 100% { transform: translate(1px, 1px) rotate(0deg); }
-            20% { transform: translate(-2px, -1px) rotate(-1deg); }
-            40% { transform: translate(2px, -2px) rotate(1deg); }
-            60% { transform: translate(-2px, 2px) rotate(0deg); }
-            80% { transform: translate(1px, -1px) rotate(1deg); }
+        @keyframes violent-shake {
+            0%, 100% { transform: scale(1.2) translate(2px, 2px) rotate(0deg); }
+            20% { transform: scale(1.2) translate(-2px, -1px) rotate(-1deg); }
+            40% { transform: scale(1.2) translate(3px, -2px) rotate(1deg); }
+            60% { transform: scale(1.2) translate(-3px, 2px) rotate(0deg); }
+            80% { transform: scale(1.2) translate(2px, -2px) rotate(1deg); }
         }
+
+        .creepy-smile {
+            position: absolute; top: 60%; left: 20%; width: 60%; height: 20%;
+            border-bottom: 8px solid #ff0000; border-radius: 0 0 50% 50%;
+            opacity: 0; transition: opacity 0.3s;
+            filter: drop-shadow(0 0 10px red);
+        }
+        .creepy-smile::before, .creepy-smile::after, .creepy-smile-tooth {
+            content: ''; position: absolute; bottom: -8px; width: 0; height: 0;
+            border-left: 6px solid transparent; border-right: 6px solid transparent; border-top: 15px solid #ff0000;
+        }
+        .creepy-smile::before { left: 10%; }
+        .creepy-smile::after { right: 10%; }
+        .creepy-smile-tooth { left: 40%; }
 
         .intro-content {
             display: flex; flex-direction: column; align-items: center; text-align: center;
@@ -176,7 +199,7 @@
             background: var(--surface-color); color: var(--text-muted); border: 2px solid var(--border-color);
             z-index: 1; transform: translateX(75px); box-shadow: 0 8px 20px var(--shadow-color);
         }
-        #btn-no:hover { background: #fff; color: var(--text-main); border-color: var(--primary-color); }
+        #btn-no:hover { background: var(--surface-color-light); color: var(--text-main); border-color: var(--primary-color); }
 
         #intro-message-wrapper { margin-top: 1.5rem; height: 3rem; display: flex; align-items: center; justify-content: center; }
         #intro-message {
@@ -224,6 +247,24 @@
             100% { transform: translate(-50%, -100px) scale(1.5) rotate(var(--rot)); opacity: 0; }
         }
 
+        .scratch-mark {
+            position: absolute; 
+            width: clamp(200px, 40vw, 400px); height: clamp(200px, 40vw, 400px);
+            z-index: 50001; opacity: 0; pointer-events: none; transform: translate(-50%, -50%);
+            animation: scratchStrike 0.3s cubic-bezier(0.1, 0.8, 0.2, 1) forwards;
+        }
+        @keyframes scratchStrike {
+            0% { opacity: 0; transform: translate(-50%, -50%) scale(1.5); }
+            30% { opacity: 1; transform: translate(-50%, -50%) scale(1); filter: drop-shadow(0 0 20px #fff); }
+            100% { opacity: 1; transform: translate(-50%, -50%) scale(1); }
+        }
+        
+        .screen-flash {
+            position: fixed; top: 0; left: 0; width: 100vw; height: 100vh;
+            background: rgba(255, 0, 0, 0.6); z-index: 50000; opacity: 0; pointer-events: none; mix-blend-mode: color-burn;
+            transition: opacity 0.05s;
+        }
+
         #portfolio-main {
             opacity: 0; display: none; flex-direction: column; align-items: center;
             width: 100%; padding-bottom: 100px; transition: opacity 1s ease; 
@@ -232,12 +273,12 @@
             position: absolute; top: 0; left: 0; right: 0; bottom: 0;
             background-image: radial-gradient(var(--border-color) 2px, transparent 2px), radial-gradient(var(--border-color) 2px, transparent 2px);
             background-size: 40px 40px; background-position: 0 0, 20px 20px;
-            pointer-events: none; z-index: 0; opacity: 0.5;
+            pointer-events: none; z-index: 0; opacity: 0.8;
         }
 
         header {
             width: 100%; padding: 1.5rem 5%; display: flex; justify-content: space-between; align-items: center;
-            position: fixed; top: 0; background: rgba(255, 255, 255, 0.8);
+            position: fixed; top: 0; background: rgba(253, 250, 245, 0.85);
             backdrop-filter: blur(12px); border-bottom: 2px solid var(--surface-color-light); z-index: 100;
         }
         .logo { font-weight: 800; font-size: 1.5rem; letter-spacing: -0.5px; }
@@ -257,7 +298,7 @@
         }
 
         .cat-platform {
-            position: relative; background: var(--surface-color); border: 2px solid white;
+            position: relative; background: var(--surface-color); border: 2px solid var(--surface-color-light);
             border-radius: var(--border-radius); padding: var(--spacing-lg);
             box-shadow: 0 10px 30px var(--shadow-color); transition: transform 0.3s ease, box-shadow 0.3s ease;
         }
@@ -413,14 +454,14 @@
         }
         
         .node-skill {
-            background: #fff;
+            background: var(--surface-color-light);
             color: var(--primary-color);
             border: 2px solid rgba(255, 143, 163, 0.4);
             padding: 0.4rem 0.8rem;
             border-radius: 20px;
             font-weight: 700;
             font-size: 0.9rem;
-            box-shadow: 0 3px 10px rgba(0,0,0,0.05);
+            box-shadow: 0 3px 10px var(--shadow-color);
             transition: transform 0.2s ease, border-color 0.2s ease, box-shadow 0.2s ease;
         }
         
@@ -450,7 +491,7 @@
         .projects-content-area { flex: 1; position: relative; display: flex; flex-direction: column; width: 100%; }
         
         .guardian-cat-overlay { position: absolute; top: 0; left: 0; width: 100%; height: 100%; display: flex; flex-direction: column; align-items: center; justify-content: center; z-index: 20; transition: background 1s ease, backdrop-filter 1s ease; pointer-events: auto; }
-        .guardian-cat-overlay:not(.unlocked) { background: rgba(255, 255, 255, 0.85); backdrop-filter: blur(8px); }
+        .guardian-cat-overlay:not(.unlocked) { background: rgba(253, 250, 245, 0.85); backdrop-filter: blur(8px); }
         .guardian-cat-overlay.unlocked { pointer-events: none; }
         .guardian-cat-overlay.unlocked #guardian-text-container { opacity: 0; pointer-events: none; }
         .guardian-cat-wrapper { position: absolute; top: calc(50% - 90px); left: calc(50% - 125px); width: 250px; height: 180px; transform: translate(0px, 0px); z-index: 30; will-change: transform; }
@@ -740,6 +781,7 @@
                         <div class="eye eye--left"><div class="eye-pupil"></div></div>
                         <div class="eye eye--right"><div class="eye-pupil"></div></div>
                         <div class="muzzle"></div>
+                        <div class="creepy-smile"><div class="creepy-smile-tooth"></div></div>
                     </div>
                 </div>
             </div>
@@ -1099,7 +1141,7 @@
                             </g>
                         </g>
                         <path d="M 40 20 L 160 20 L 140 120 L 60 120 Z" fill="none" stroke="var(--primary-color)" stroke-width="4"/>
-                        <rect x="70" y="120" width="60" height="80" rx="10" fill="#fff" stroke="var(--border-color)" stroke-width="4"/>
+                        <rect x="70" y="120" width="60" height="80" rx="10" fill="var(--surface-color-light)" stroke="var(--border-color)" stroke-width="4"/>
                         <circle cx="100" cy="150" r="15" fill="var(--surface-color-light)" stroke="var(--primary-color)" stroke-width="2"/>
                         <path d="M 85 180 L 115 180 L 125 200 L 75 200 Z" fill="var(--accent-color)"/>
                         <circle class="kibble" cx="95" cy="185" r="6" fill="#8c6148"/>
@@ -1133,234 +1175,153 @@
                             <path d="M 25 65 L 35 50 L 45 60 L 55 45 L 55 65 Z" fill="#a18cd1" opacity="0.5"/>
                             
                             <!-- Small wall frame -->
-                        <rect x="75" y="15" width="20" height="25" fill="none" stroke="#b3855a" stroke-width="2"/>
-                        <circle cx="85" cy="27" r="5" fill="#ffea00" opacity="0.5"/>
+                            <rect x="75" y="15" width="20" height="25" fill="none" stroke="#b3855a" stroke-width="2"/>
+                            <circle cx="85" cy="27" r="5" fill="#ffea00" opacity="0.5"/>
 
-<!-- NEW: Caged Dog Area -->
-<g transform="translate(-30, 80) scale(1.25)">
-
-    <!-- Back wires of the cage -->
-    <path d="M 8 42 C 8 0, 48 0, 48 42"
-          fill="none" stroke="#ddd" stroke-width="1.1" />
-
-    <path d="M 16 42 C 16 8, 40 8, 40 42"
-          fill="none" stroke="#ddd" stroke-width="1.1" />
-
-    <!-- Inner shadow / depth base -->
-    <rect x="3" y="38" width="50" height="6"
-          rx="2" fill="#ffb3c6" opacity="0.8" />
-
-    <!-- The Sitting Dog -->
-    <g transform="translate(10, 8)">
-
-        <!-- Tail -->
-        <path d="M 0 25 Q -8 28 -4 18"
-              fill="none"
-              stroke="#d2a679"
-              stroke-width="4"
-              stroke-linecap="round"/>
-
-        <!-- Body -->
-        <path d="M 15 5 Q 30 15 25 30 L 5 30 Q 0 20 15 5 Z"
-              fill="#c69c6d"/>
-
-        <!-- Back haunch -->
-        <circle cx="10" cy="23" r="7" fill="#b3855a"/>
-        <rect x="12" y="27" width="5" height="4"
-              rx="2" fill="#fff"/>
-
-        <!-- Chest patch -->
-        <ellipse cx="22" cy="18" rx="4" ry="9"
-                 fill="#fff" opacity="0.9"/>
-
-        <!-- Front Legs -->
-        <rect x="17" y="20" width="4" height="11"
-              rx="2" fill="#c69c6d"/>
-        <rect x="23" y="20" width="4" height="11"
-              rx="2" fill="#c69c6d"/>
-
-        <rect x="17" y="28" width="4" height="3"
-              rx="1.5" fill="#fff"/>
-        <rect x="23" y="28" width="4" height="3"
-              rx="1.5" fill="#fff"/>
-
-        <!-- Head -->
-        <circle cx="20" cy="5" r="10" fill="#c69c6d"/>
-
-        <!-- Floppy Ears -->
-        <ellipse cx="11" cy="5" rx="3.5" ry="9"
-                 fill="#8c6148"
-                 transform="rotate(25 11 5)"/>
-
-        <ellipse cx="29" cy="5" rx="3.5" ry="9"
-                 fill="#8c6148"
-                 transform="rotate(-25 29 5)"/>
-
-        <!-- Snout -->
-        <circle cx="25" cy="7" r="5" fill="#fff"/>
-        <circle cx="28" cy="5" r="2" fill="#333"/>
-
-        <path d="M 26 9 Q 27 11 28 9"
-              fill="none"
-              stroke="#ff8fa3"
-              stroke-width="1.5"/>
-
-        <!-- Eyes -->
-        <circle cx="21" cy="2" r="1.5" fill="#333"/>
-        <circle cx="26" cy="1" r="1.5" fill="#333"/>
-
-    </g>
-
-    <!-- Bone -->
-    <g transform="translate(36, 35)">
-        <circle cx="0" cy="0" r="1.5" fill="#e6c280"/>
-        <circle cx="0" cy="3" r="1.5" fill="#e6c280"/>
-        <circle cx="6" cy="0" r="1.5" fill="#e6c280"/>
-        <circle cx="6" cy="3" r="1.5" fill="#e6c280"/>
-        <rect x="0" y="0.5" width="6" height="2"
-              fill="#e6c280"/>
-    </g>
-
-    <!-- Water Bottle -->
-    <g transform="translate(42, 13)">
-        <rect x="0" y="0" width="6" height="12"
-              rx="2"
-              fill="#fff"
-              stroke="#b0b0b0"
-              stroke-width="1"
-              opacity="0.9"/>
-
-        <rect x="0.5" y="5" width="5" height="6"
-              rx="1"
-              fill="#81d4fa"
-              opacity="0.7"/>
-
-        <!-- Nozzle -->
-        <path d="M 1 12 L -2 15"
-              stroke="#999"
-              stroke-width="1.5"
-              stroke-linecap="round"/>
-
-        <circle cx="-2" cy="15" r="1"
-                fill="#ffb3c6"/>
-    </g>
-
-    <!-- Front Wires & Pink Tray Base -->
-
-    <!-- Base / Tray -->
-    <rect x="0" y="40" width="56" height="7"
-          rx="3"
-          fill="#f498a7" />
-
-    <!-- Arching front dome -->
-    <path d="M 3 40 C 3 0, 53 0, 53 40"
-          fill="none"
-          stroke="#b0b0b0"
-          stroke-width="1.5" />
-
-    <!-- Inner vertical wires -->
-    <path d="M 12 40 C 12 2, 44 2, 44 40"
-          fill="none"
-          stroke="#b0b0b0"
-          stroke-width="1.5" />
-
-    <path d="M 22 40 C 22 4, 34 4, 34 40"
-          fill="none"
-          stroke="#b0b0b0"
-          stroke-width="1.5" />
-
-    <path d="M 28 40 L 28 3"
-          fill="none"
-          stroke="#b0b0b0"
-          stroke-width="1.5" />
-
-    <!-- Horizontal wires -->
-    <path d="M 3.5 30 Q 28 33 52.5 30"
-          fill="none"
-          stroke="#b0b0b0"
-          stroke-width="1.5" />
-
-    <path d="M 4.5 20 Q 28 23 51.5 20"
-          fill="none"
-          stroke="#b0b0b0"
-          stroke-width="1.5" />
-
-    <path d="M 6.5 10 Q 28 13 49.5 10"
-          fill="none"
-          stroke="#b0b0b0"
-          stroke-width="1.5" />
-
-</g>
-
-                        <!-- Entire Painting Scene Moved Slightly Left -->
-                        <g transform="translate(-12, 0)">
-                            <!-- Easel & Canvas -->
-                            <polygon points="150,140 160,20 170,140" fill="#b3855a"/>
-                            <rect x="135" y="40" width="50" height="60" fill="#fff" stroke="#ccc" stroke-width="2"/>
-                            <!-- Drawing of the Dog on the canvas -->
-                            <circle cx="160" cy="65" r="8" fill="none" stroke="#888" stroke-width="1.5"/>
-                            <path d="M 154 65 Q 160 80 166 65" fill="none" stroke="#888" stroke-width="1.5"/>
-                            <path d="M 154 62 C 150 62, 150 68, 154 68" fill="none" stroke="#888" stroke-width="1"/>
-                            <path d="M 166 62 C 170 62, 170 68, 166 68" fill="none" stroke="#888" stroke-width="1"/>
-                            <!-- Splatter -->
-                            <circle class="paint-splat" cx="165" cy="80" r="4" fill="#a18cd1"/>
-                            
-                            <!-- Paint Jars -->
-                            <rect x="130" y="140" width="8" height="10" fill="#ff8fa3"/>
-                            <rect x="140" y="135" width="8" height="15" fill="#a18cd1"/>
-                            <rect x="175" y="138" width="10" height="12" fill="#ffea00"/>
-                            
-                            <!-- The Cute Chubby Painting Cat -->
-                            <g transform="translate(60, 60)">
-                                <!-- Tail -->
-                                <path d="M -5 60 Q -20 70 -10 90" fill="none" stroke="var(--cat-body)" stroke-width="10" stroke-linecap="round"/>
-                                <!-- Back legs -->
-                                <rect x="5" y="70" width="12" height="15" rx="6" fill="var(--cat-body)"/>
-                                <rect x="25" y="70" width="12" height="15" rx="6" fill="var(--cat-body)"/>
+                            <!-- NEW: Caged Dog Area -->
+                            <g transform="translate(-30, 80) scale(1.25)">
                                 
-                                <!-- Chubby Body Base -->
-                                <path d="M 0 30 Q -5 70 20 75 Q 45 70 40 30 Z" fill="var(--cat-body)"/>
-                                <circle cx="20" cy="45" r="23" fill="var(--cat-body)"/>
-                                
-                                <!-- Big Round Head -->
-                                <circle cx="20" cy="10" r="26" fill="var(--cat-body)"/>
-                                <polygon points="-5,0 -12,-18 8,-2" fill="var(--cat-body)" stroke="var(--cat-body)" stroke-width="2" stroke-linejoin="round"/>
-                                <polygon points="45,0 52,-18 32,-2" fill="var(--cat-body)" stroke="var(--cat-body)" stroke-width="2" stroke-linejoin="round"/>
-                                <polygon points="-2,-1 -8,-14 6,0" fill="var(--cat-ear)"/>
-                                <polygon points="42,-1 48,-14 34,0" fill="var(--cat-ear)"/>
-                                
-                                <g class="c-eye-open">
-                                    <circle cx="8" cy="14" r="3.5" fill="var(--cat-eye)"/>
-                                    <circle cx="32" cy="14" r="3.5" fill="var(--cat-eye)"/>
+                                <!-- Back wires of the cage -->
+                                <path d="M 8 40 A 20 48 0 0 1 48 40" fill="none" stroke="#ddd" stroke-width="1.1" />
+                                <path d="M 18 40 A 10 45 0 0 1 38 40" fill="none" stroke="#ddd" stroke-width="1.1" />
+
+                                <!-- Inner shadow / depth base -->
+                                <rect x="3" y="38" width="50" height="6" rx="2" fill="#ffb3c6" opacity="0.8" />
+
+                                <!-- The Sitting Dog -->
+                                <g transform="translate(10, 8)">
+                                    <!-- Tail -->
+                                    <path d="M 0 25 Q -8 28 -4 18" fill="none" stroke="#d2a679" stroke-width="4" stroke-linecap="round"/>
+                                    <!-- Body -->
+                                    <path d="M 15 5 Q 30 15 25 30 L 5 30 Q 0 20 15 5 Z" fill="#c69c6d"/>
+                                    <!-- Back haunch -->
+                                    <circle cx="10" cy="23" r="7" fill="#b3855a"/>
+                                    <rect x="12" y="27" width="5" height="4" rx="2" fill="#fff"/>
+                                    <!-- Chest patch -->
+                                    <ellipse cx="22" cy="18" rx="4" ry="9" fill="#fff" opacity="0.9"/>
+                                    <!-- Front Legs -->
+                                    <rect x="17" y="20" width="4" height="11" rx="2" fill="#c69c6d"/>
+                                    <rect x="23" y="20" width="4" height="11" rx="2" fill="#c69c6d"/>
+                                    <rect x="17" y="28" width="4" height="3" rx="1.5" fill="#fff"/>
+                                    <rect x="23" y="28" width="4" height="3" rx="1.5" fill="#fff"/>
+                                    <!-- Head -->
+                                    <circle cx="20" cy="5" r="10" fill="#c69c6d"/>
+                                    <!-- Floppy Ears -->
+                                    <ellipse cx="11" cy="5" rx="3.5" ry="9" fill="#8c6148" transform="rotate(25 11 5)"/>
+                                    <ellipse cx="29" cy="5" rx="3.5" ry="9" fill="#8c6148" transform="rotate(-25 29 5)"/>
+                                    <!-- Snout -->
+                                    <circle cx="25" cy="7" r="5" fill="#fff"/>
+                                    <circle cx="28" cy="5" r="2" fill="#333"/>
+                                    <path d="M 26 9 Q 27 11 28 9" fill="none" stroke="#ff8fa3" stroke-width="1.5"/>
+                                    <!-- Eyes -->
+                                    <circle cx="21" cy="2" r="1.5" fill="#333"/>
+                                    <circle cx="26" cy="1" r="1.5" fill="#333"/>
                                 </g>
-                                <g class="c-eye-happy">
-                                    <path d="M 4 15 Q 8 10 12 15" fill="none" stroke="var(--cat-eye)" stroke-width="2.5" stroke-linecap="round"/>
-                                    <path d="M 28 15 Q 32 10 36 15" fill="none" stroke="var(--cat-eye)" stroke-width="2.5" stroke-linecap="round"/>
+
+                                <!-- Bone -->
+                                <g transform="translate(36, 35)">
+                                    <circle cx="0" cy="0" r="1.5" fill="#e6c280"/>
+                                    <circle cx="0" cy="3" r="1.5" fill="#e6c280"/>
+                                    <circle cx="6" cy="0" r="1.5" fill="#e6c280"/>
+                                    <circle cx="6" cy="3" r="1.5" fill="#e6c280"/>
+                                    <rect x="0" y="0.5" width="6" height="2" fill="#e6c280"/>
                                 </g>
+
+                                <!-- Water Bottle -->
+                                <g transform="translate(42, 13)">
+                                    <rect x="0" y="0" width="6" height="12" rx="2" fill="#fff" stroke="#b0b0b0" stroke-width="1" opacity="0.9"/>
+                                    <rect x="0.5" y="5" width="5" height="6" rx="1" fill="#81d4fa" opacity="0.7"/>
+                                    <path d="M 1 12 L -2 15" stroke="#999" stroke-width="1.5" stroke-linecap="round"/>
+                                    <circle cx="-2" cy="15" r="1" fill="#ffb3c6"/>
+                                </g>
+
+                                <!-- Base / Tray -->
+                                <rect x="0" y="40" width="56" height="7" rx="3" fill="#f498a7" />
+
+                                <!-- Arching front dome -->
+                                <path d="M 3 40 A 25 55 0 0 1 53 40" fill="none" stroke="#b0b0b0" stroke-width="1.5" />
+
+                                <!-- Inner vertical wires -->
+                                <path d="M 12 40 A 16 52 0 0 1 44 40" fill="none" stroke="#b0b0b0" stroke-width="1.5" />
+                                <path d="M 20 40 A 8 49 0 0 1 36 40" fill="none" stroke="#b0b0b0" stroke-width="1.5" />
+                                <path d="M 28 40 L 28 -15" fill="none" stroke="#b0b0b0" stroke-width="1.5" />
+
+                                <!-- Horizontal wires (Clipped cleanly to outer dome) -->
+                                <path d="M 4 25 Q 28 28 52 25" fill="none" stroke="#b0b0b0" stroke-width="1.5" />
+                                <path d="M 7 10 Q 28 13 49 10" fill="none" stroke="#b0b0b0" stroke-width="1.5" />
+                                <path d="M 13.6 -5 Q 28 -2 42.4 -5" fill="none" stroke="#b0b0b0" stroke-width="1.5" />
+                                <path d="M 19.9 -12 Q 28 -10 36.1 -12" fill="none" stroke="#b0b0b0" stroke-width="1.5" />
+                            </g>
+
+                            <!-- Entire Painting Setup (Shifted proportionally left using SVG transform) -->
+                            <g transform="translate(-15, 0)">
+                                <!-- Easel & Canvas -->
+                                <polygon points="150,140 160,20 170,140" fill="#b3855a"/>
+                                <rect x="135" y="40" width="50" height="60" fill="#fff" stroke="#ccc" stroke-width="2"/>
+                                <!-- Drawing of the Dog on the canvas -->
+                                <circle cx="160" cy="65" r="8" fill="none" stroke="#888" stroke-width="1.5"/>
+                                <path d="M 154 65 Q 160 80 166 65" fill="none" stroke="#888" stroke-width="1.5"/>
+                                <path d="M 154 62 C 150 62, 150 68, 154 68" fill="none" stroke="#888" stroke-width="1"/>
+                                <path d="M 166 62 C 170 62, 170 68, 166 68" fill="none" stroke="#888" stroke-width="1"/>
+                                <!-- Splatter -->
+                                <circle class="paint-splat" cx="165" cy="80" r="4" fill="#a18cd1"/>
                                 
-                                <!-- Cute details -->
-                                <ellipse cx="1" cy="20" rx="5" ry="3" fill="#ffb3c6" opacity="0.8"/>
-                                <ellipse cx="39" cy="20" rx="5" ry="3" fill="#ffb3c6" opacity="0.8"/>
-                                <path d="M 17 19 Q 20 22 23 19" fill="none" stroke="var(--cat-ear)" stroke-width="1.5" stroke-linecap="round"/>
+                                <!-- Paint Jars -->
+                                <rect x="130" y="140" width="8" height="10" fill="#ff8fa3"/>
+                                <rect x="140" y="135" width="8" height="15" fill="#a18cd1"/>
+                                <rect x="175" y="138" width="10" height="12" fill="#ffea00"/>
                                 
-                                <!-- Left Arm (Palette) -->
-                                <path d="M 5 35 Q -15 45 0 60" fill="none" stroke="var(--cat-body)" stroke-width="10" stroke-linecap="round"/>
-                                <ellipse cx="0" cy="60" rx="14" ry="9" fill="#e8c6c8" transform="rotate(15 0 60)"/> 
-                                <circle cx="-4" cy="60" r="3" fill="#ff8fa3"/>
-                                <circle cx="4" cy="57" r="2" fill="#a18cd1"/>
-                                
-                                <!-- Right Arm (Brush) -->
-                                <g class="brush-arm" style="transform-origin: 35px 35px;">
-                                    <path d="M 35 35 Q 55 45 45 25" fill="none" stroke="var(--cat-body)" stroke-width="12" stroke-linecap="round"/>
-                                    <line x1="40" y1="35" x2="65" y2="10" stroke="#b3855a" stroke-width="4" stroke-linecap="round"/>
-                                    <path d="M 65 10 L 70 5 L 68 13 Z" fill="#a18cd1"/>
+                                <!-- The Cute Chubby Painting Cat -->
+                                <g transform="translate(60, 60)">
+                                    <!-- Tail -->
+                                    <path d="M -5 60 Q -20 70 -10 90" fill="none" stroke="var(--cat-body)" stroke-width="10" stroke-linecap="round"/>
+                                    <!-- Back legs -->
+                                    <rect x="5" y="70" width="12" height="15" rx="6" fill="var(--cat-body)"/>
+                                    <rect x="25" y="70" width="12" height="15" rx="6" fill="var(--cat-body)"/>
+                                    
+                                    <!-- Chubby Body Base -->
+                                    <path d="M 0 30 Q -5 70 20 75 Q 45 70 40 30 Z" fill="var(--cat-body)"/>
+                                    <circle cx="20" cy="45" r="23" fill="var(--cat-body)"/>
+                                    
+                                    <!-- Big Round Head -->
+                                    <circle cx="20" cy="10" r="26" fill="var(--cat-body)"/>
+                                    <polygon points="-5,0 -12,-18 8,-2" fill="var(--cat-body)" stroke="var(--cat-body)" stroke-width="2" stroke-linejoin="round"/>
+                                    <polygon points="45,0 52,-18 32,-2" fill="var(--cat-body)" stroke="var(--cat-body)" stroke-width="2" stroke-linejoin="round"/>
+                                    <polygon points="-2,-1 -8,-14 6,0" fill="var(--cat-ear)"/>
+                                    <polygon points="42,-1 48,-14 34,0" fill="var(--cat-ear)"/>
+                                    
+                                    <g class="c-eye-open">
+                                        <circle cx="8" cy="14" r="4.5" fill="var(--cat-eye)"/>
+                                        <circle cx="32" cy="14" r="4.5" fill="var(--cat-eye)"/>
+                                    </g>
+                                    <g class="c-eye-happy">
+                                        <path d="M 3 15 Q 8 9 13 15" fill="none" stroke="var(--cat-eye)" stroke-width="2.5" stroke-linecap="round"/>
+                                        <path d="M 27 15 Q 32 9 37 15" fill="none" stroke="var(--cat-eye)" stroke-width="2.5" stroke-linecap="round"/>
+                                    </g>
+                                    
+                                    <!-- Cute details -->
+                                    <ellipse cx="1" cy="22" rx="6" ry="4" fill="#ffb3c6" opacity="0.8"/>
+                                    <ellipse cx="39" cy="22" rx="6" ry="4" fill="#ffb3c6" opacity="0.8"/>
+                                    <path d="M 17 21 Q 20 24 23 21" fill="none" stroke="var(--cat-ear)" stroke-width="2" stroke-linecap="round"/>
+                                    
+                                    <!-- Left Arm (Palette) -->
+                                    <path d="M 5 35 Q -15 45 0 60" fill="none" stroke="var(--cat-body)" stroke-width="10" stroke-linecap="round"/>
+                                    <ellipse cx="0" cy="60" rx="14" ry="9" fill="#e8c6c8" transform="rotate(15 0 60)"/> 
+                                    <circle cx="-4" cy="60" r="3" fill="#ff8fa3"/>
+                                    <circle cx="4" cy="57" r="2" fill="#a18cd1"/>
+                                    
+                                    <!-- Right Arm (Brush) -->
+                                    <g class="brush-arm" style="transform-origin: 35px 35px;">
+                                        <path d="M 35 35 Q 55 45 45 25" fill="none" stroke="var(--cat-body)" stroke-width="12" stroke-linecap="round"/>
+                                        <line x1="40" y1="35" x2="65" y2="10" stroke="#b3855a" stroke-width="4" stroke-linecap="round"/>
+                                        <path d="M 65 10 L 70 5 L 68 13 Z" fill="#a18cd1"/>
+                                    </g>
                                 </g>
                             </g>
-                        </g>
-                    </svg>
-                </div>
+                        </svg>
+                    </div>
 
-                <!-- 2. SKETCHING -->
+                    <!-- 2. SKETCHING -->
                     <div class="c-room room-sketch">
                         <div class="room-label">SKETCHING</div>
                         <svg class="scene-svg" viewBox="0 0 200 150">
@@ -1396,13 +1357,14 @@
                             <g transform="translate(60, 40)">
                                 <!-- Tail -->
                                 <path d="M -15 65 Q -30 75 -20 95" fill="none" stroke="var(--cat-body)" stroke-width="10" stroke-linecap="round"/>
-                                <!-- Back Legs -->
-                                <rect x="5" y="60" width="12" height="15" rx="6" fill="var(--cat-body)"/>
-                                <rect x="25" y="60" width="12" height="15" rx="6" fill="var(--cat-body)"/>
                                 
-                                <!-- Chubby Body Base -->
-                                <path d="M -5 30 Q -10 65 20 70 Q 45 65 40 30 Z" fill="var(--cat-body)"/>
-                                <circle cx="17.5" cy="40" r="23" fill="var(--cat-body)"/>
+                                <!-- Back Legs -->
+                                <rect x="5" y="65" width="12" height="15" rx="6" fill="var(--cat-body)"/>
+                                <rect x="25" y="65" width="12" height="15" rx="6" fill="var(--cat-body)"/>
+                                
+                                <!-- Chubby Body Base - FIXED PATH -->
+                                <path d="M -5 30 Q -15 65 5 70 L 35 70 Q 55 65 45 30 Z" fill="var(--cat-body)"/>
+                                <circle cx="20" cy="40" r="24" fill="var(--cat-body)"/>
                                 
                                 <!-- Big Round Head down -->
                                 <circle cx="35" cy="15" r="26" fill="var(--cat-body)"/>
@@ -1429,9 +1391,9 @@
                                 <path d="M 5 40 Q 15 60 25 55" fill="none" stroke="var(--cat-body)" stroke-width="10" stroke-linecap="round"/>
                                 
                                 <!-- Sketching Right Arm -->
-                                <g class="sketch-paw" style="transform-origin: 25px 40px;">
-                                    <path d="M 25 40 Q 40 70 55 55" fill="none" stroke="var(--cat-body)" stroke-width="10" stroke-linecap="round"/>
-                                    <line x1="45" y1="50" x2="65" y2="65" stroke="#f498a7" stroke-width="2.5" stroke-linecap="round"/>
+                                <g class="sketch-paw" style="transform-origin: 35px 35px;">
+                                    <path d="M 35 35 Q 40 70 55 55" fill="none" stroke="var(--cat-body)" stroke-width="10" stroke-linecap="round"/>
+                                    <line x1="45" y1="50" x2="65" y2="65" stroke="#f498a7" stroke-width="3" stroke-linecap="round"/>
                                     <polygon points="65,65 68,68 62,68" fill="#333"/>
                                 </g>
                             </g>
@@ -1805,16 +1767,69 @@
                 
                 const giantPaw = document.createElement('div');
                 giantPaw.className = 'giant-paw';
-                giantPaw.innerHTML = `
-                    <svg viewBox="0 0 200 200" width="100%" height="100%" style="filter: drop-shadow(0 10px 8px rgba(0,0,0,0.15));">
-                        <path d="M 30 110 C 15 110, 15 160, 45 180 C 75 200, 125 200, 155 180 C 185 160, 185 110, 170 110 C 190 75, 155 30, 100 30 C 45 30, 10 75, 30 110 Z" fill="#ffffff" />
-                        <path d="M 60 135 C 50 110, 75 95, 100 105 C 125 95, 150 110, 140 135 C 135 155, 115 165, 100 160 C 85 165, 65 155, 60 135 Z" fill="#ff8fa3"/>
-                        <ellipse cx="55" cy="85" rx="14" ry="20" fill="#ff8fa3" transform="rotate(-25 55 85)"/>
-                        <ellipse cx="85" cy="55" rx="15" ry="22" fill="#ff8fa3" transform="rotate(-10 85 55)"/>
-                        <ellipse cx="115" cy="55" rx="15" ry="22" fill="#ff8fa3" transform="rotate(10 115 55)"/>
-                        <ellipse cx="145" cy="85" rx="14" ry="20" fill="#ff8fa3" transform="rotate(25 145 85)"/>
-                    </svg>
-                `;
+                
+                if (isHappy) {
+                    giantPaw.innerHTML = `
+                        <svg viewBox="0 0 200 200" width="100%" height="100%" style="filter: drop-shadow(0 10px 8px rgba(0,0,0,0.15));">
+                            <path d="M 30 110 C 15 110, 15 160, 45 180 C 75 200, 125 200, 155 180 C 185 160, 185 110, 170 110 C 190 75, 155 30, 100 30 C 45 30, 10 75, 30 110 Z" fill="#ffffff" />
+                            <path d="M 60 135 C 50 110, 75 95, 100 105 C 125 95, 150 110, 140 135 C 135 155, 115 165, 100 160 C 85 165, 65 155, 60 135 Z" fill="#ff8fa3"/>
+                            <ellipse cx="55" cy="85" rx="14" ry="20" fill="#ff8fa3" transform="rotate(-25 55 85)"/>
+                            <ellipse cx="85" cy="55" rx="15" ry="22" fill="#ff8fa3" transform="rotate(-10 85 55)"/>
+                            <ellipse cx="115" cy="55" rx="15" ry="22" fill="#ff8fa3" transform="rotate(10 115 55)"/>
+                            <ellipse cx="145" cy="85" rx="14" ry="20" fill="#ff8fa3" transform="rotate(25 145 85)"/>
+                        </svg>
+                    `;
+                } else {
+                    giantPaw.innerHTML = `
+                        <svg viewBox="0 0 200 200" width="100%" height="100%" style="filter: drop-shadow(0 10px 15px rgba(255,51,51,0.5));">
+                            <!-- Base Black Paw -->
+                            <path d="M 30 110 C 15 110, 15 160, 45 180 C 75 200, 125 200, 155 180 C 185 160, 185 110, 170 110 C 190 75, 155 30, 100 30 C 45 30, 10 75, 30 110 Z" fill="#161616" />
+                            <path d="M 60 135 C 50 110, 75 95, 100 105 C 125 95, 150 110, 140 135 C 135 155, 115 165, 100 160 C 85 165, 65 155, 60 135 Z" fill="#3a3a3a"/>
+                            <ellipse cx="55" cy="85" rx="14" ry="20" fill="#3a3a3a" transform="rotate(-25 55 85)"/>
+                            <ellipse cx="85" cy="55" rx="15" ry="22" fill="#3a3a3a" transform="rotate(-10 85 55)"/>
+                            <ellipse cx="115" cy="55" rx="15" ry="22" fill="#3a3a3a" transform="rotate(10 115 55)"/>
+                            <ellipse cx="145" cy="85" rx="14" ry="20" fill="#3a3a3a" transform="rotate(25 145 85)"/>
+                            <!-- Sharp Claws -->
+                            <polygon points="45,65 52,40 60,68" fill="#e0e0e0" transform="rotate(-25 55 85)"/>
+                            <polygon points="75,35 82,10 90,38" fill="#e0e0e0" transform="rotate(-10 85 55)"/>
+                            <polygon points="105,35 112,10 120,38" fill="#e0e0e0" transform="rotate(10 115 55)"/>
+                            <polygon points="135,65 142,40 150,68" fill="#e0e0e0" transform="rotate(25 145 85)"/>
+                        </svg>
+                    `;
+                    
+                    const flash = document.createElement('div');
+                    flash.className = 'screen-flash';
+                    pawContainer.appendChild(flash);
+                    
+                    const scratchesConfig = [
+                        { top: '35%', left: '30%', rot: '-35deg', delay: 1.45 },
+                        { top: '65%', left: '70%', rot: '15deg', delay: 1.6 },
+                        { top: '50%', left: '50%', rot: '-10deg', delay: 1.8 }
+                    ];
+                    
+                    scratchesConfig.forEach(config => {
+                        const scratch = document.createElement('div');
+                        scratch.className = 'scratch-mark';
+                        scratch.style.top = config.top;
+                        scratch.style.left = config.left;
+                        scratch.style.animationDelay = `${config.delay}s`;
+                        
+                        scratch.innerHTML = `
+                            <svg viewBox="0 0 200 200" width="100%" height="100%" style="transform: rotate(${config.rot});">
+                                <path d="M 40 20 Q 50 100 30 180" fill="none" stroke="#ff3333" stroke-width="12" stroke-linecap="round" style="filter: drop-shadow(0 0 10px red);"/>
+                                <path d="M 100 10 Q 110 100 90 190" fill="none" stroke="#ff3333" stroke-width="18" stroke-linecap="round" style="filter: drop-shadow(0 0 10px red);"/>
+                                <path d="M 160 30 Q 150 100 170 170" fill="none" stroke="#ff3333" stroke-width="12" stroke-linecap="round" style="filter: drop-shadow(0 0 10px red);"/>
+                            </svg>
+                        `;
+                        pawContainer.appendChild(scratch);
+                        
+                        setTimeout(() => {
+                            flash.style.opacity = '1';
+                            setTimeout(() => flash.style.opacity = '0', 60);
+                        }, config.delay * 1000);
+                    });
+                }
+
                 pawContainer.appendChild(giantPaw);
                 
                 for(let i = 0; i < 6; i++) {
@@ -1824,7 +1839,9 @@
                     let rot = (Math.random() - 0.5) * 60;
                     p.style.left = `calc(50% + ${offsetX}vw)`;
                     p.style.setProperty('--rot', `${rot}deg`);
-                    p.innerHTML = `<svg viewBox="0 0 24 24" width="100%" height="100%"><path fill="rgba(255, 143, 163, 0.6)" d="M12 8.5c-1.4 0-2.5 1.1-2.5 2.5s1.1 2.5 2.5 2.5 2.5-1.1 2.5-2.5-1.1-2.5-2.5-2.5zm-5 0c-1.4 0-2.5 1.1-2.5 2.5s1.1 2.5 2.5 2.5 2.5-1.1 2.5-2.5-1.1-2.5-2.5-2.5zm10 0c-1.4 0-2.5 1.1-2.5 2.5s1.1 2.5 2.5 2.5 2.5-1.1 2.5-2.5-1.1-2.5-2.5-2.5zm-8.5-5.5c-1.4 0-2.5 1.1-2.5 2.5s1.1 2.5 2.5 2.5 2.5-1.1 2.5-2.5-1.1-2.5-2.5-2.5zm7 0c-1.4 0-2.5 1.1-2.5 2.5s1.1 2.5 2.5 2.5 2.5-1.1 2.5-2.5-1.1-2.5-2.5-2.5zm-3.5 8c-3 0-5.5 2-6.5 4.5-.5 1.5.5 3 2 3h9c1.5 0 2.5-1.5 2-3-1-2.5-3.5-4.5-6.5-4.5z"/></svg>`;
+                    
+                    let particleColor = isHappy ? "rgba(255, 143, 163, 0.6)" : "rgba(255, 51, 51, 0.6)";
+                    p.innerHTML = `<svg viewBox="0 0 24 24" width="100%" height="100%"><path fill="${particleColor}" d="M12 8.5c-1.4 0-2.5 1.1-2.5 2.5s1.1 2.5 2.5 2.5 2.5-1.1 2.5-2.5-1.1-2.5-2.5-2.5zm-5 0c-1.4 0-2.5 1.1-2.5 2.5s1.1 2.5 2.5 2.5 2.5-1.1 2.5-2.5-1.1-2.5-2.5-2.5zm10 0c-1.4 0-2.5 1.1-2.5 2.5s1.1 2.5 2.5 2.5 2.5-1.1 2.5-2.5-1.1-2.5-2.5-2.5zm-8.5-5.5c-1.4 0-2.5 1.1-2.5 2.5s1.1 2.5 2.5 2.5 2.5-1.1 2.5-2.5-1.1-2.5-2.5-2.5zm7 0c-1.4 0-2.5 1.1-2.5 2.5s1.1 2.5 2.5 2.5 2.5-1.1 2.5-2.5-1.1-2.5-2.5-2.5zm-3.5 8c-3 0-5.5 2-6.5 4.5-.5 1.5.5 3 2 3h9c1.5 0 2.5-1.5 2-3-1-2.5-3.5-4.5-6.5-4.5z"/></svg>`;
                     pawContainer.appendChild(p);
                 }
                 
