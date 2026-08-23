@@ -4,7 +4,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Embedded & CV Engineer Portfolio</title>
-    <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@400;600;700&family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@400;600;700;800&family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
+    
     <style>
         :root {
             --bg-color: #fff5f8;
@@ -261,6 +262,8 @@
             box-shadow: 0 10px 30px var(--shadow-color); transition: transform 0.3s ease, box-shadow 0.3s ease;
         }
         .cat-platform:hover { transform: translateY(-5px); box-shadow: 0 15px 40px rgba(255, 143, 163, 0.25); }
+        
+        .tag { display: inline-block; padding: 0.4rem 1rem; background: var(--surface-color-light); color: var(--accent-color); border-radius: 50px; font-size: 0.85rem; margin-right: 0.5rem; margin-bottom: 0.5rem; font-weight: 600; border: 1px solid rgba(161, 140, 209, 0.2); }
 
         #hero { min-height: 100vh; justify-content: center; text-align: center; padding-top: 0; }
         .hero-layout {
@@ -371,12 +374,12 @@
             100% { transform: translate(-50%, -50%) scale(0) rotate(calc(var(--current-rot, 0deg) - 45deg)); opacity: 0; }
         }
 
-        /* --- SKILL TREE STYLING --- */
+        /* SKILL TREE STYLING */
         .hanging-yarn-strand {
             stroke: var(--secondary-color); stroke-width: 4; stroke-linecap: round; fill: none;
-            opacity: 1;
+            opacity: 1; transform-origin: top center;
         }
-
+        
         .sub-branch {
             fill: none;
             stroke: var(--secondary-color);
@@ -428,7 +431,7 @@
             cursor: default;
         }
 
-        .timeline-container { position: relative; width: 100%; max-width: 900px; margin: 0 auto; padding-top: 50px; }
+        .timeline-container { position: relative; width: 100%; max-width: 900px; margin: 0 auto; padding-top: 50px; padding-bottom: 250px; }
         .timeline-item { width: 45%; margin-bottom: 3rem; opacity: 0; transition: all 0.6s cubic-bezier(0.34, 1.56, 0.64, 1); z-index: 10; position: relative; }
         .timeline-item.left { margin-right: auto; transform: translateX(-50px); text-align: right; }
         .timeline-item.right { margin-left: auto; transform: translateX(50px); text-align: left; }
@@ -527,13 +530,144 @@
         .zzz-anim { animation: zzzFloat 2.5s infinite linear; transform-origin: center; }
         @keyframes zzzFloat { 0% { transform: translate(0,0) scale(0.8); opacity: 0; } 20% { opacity: 1; } 100% { transform: translate(30px, -40px) scale(1.5); opacity: 0; } }
 
+        #creative-corner { padding-top: 4rem; z-index: 10; background: var(--bg-color); }
+        .creative-house-container {
+            width: 100%; max-width: 900px; margin: 0 auto; 
+            opacity: 0; transform: translateY(40px); transition: all 1s ease;
+        }
+        .creative-house-container.visible {
+            opacity: 1; transform: translateY(0);
+        }
+
+        .house-roof {
+            width: 100%; height: 60px;
+            background: #d68b9a;
+            clip-path: polygon(50% 0%, 100% 100%, 0% 100%);
+            margin-bottom: -2px;
+            position: relative;
+            z-index: 2;
+        }
+
+        .creative-house {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            grid-template-rows: 220px 220px 250px;
+            gap: 15px; 
+            background: #e8c6c8;
+            padding: 15px;
+            border-radius: 0 0 16px 16px;
+            box-shadow: 0 20px 50px rgba(0,0,0,0.1);
+        }
+
+        .c-room {
+            position: relative;
+            background: var(--surface-color);
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: inset 0 0 20px rgba(0,0,0,0.03);
+            cursor: pointer;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        .c-room:hover, .c-room.active-interaction {
+            box-shadow: inset 0 0 30px rgba(255, 143, 163, 0.15), 0 5px 15px rgba(255, 143, 163, 0.3);
+        }
+
+        /* Room Allocations */
+        .room-paint { grid-area: 1 / 1 / 2 / 2; background: linear-gradient(to bottom, #fdfbf7 60%, transparent 60%); }
+        .room-sketch { grid-area: 1 / 2 / 2 / 3; background: linear-gradient(to bottom, #f0f4f8 60%, transparent 60%); }
+        .room-crochet { grid-area: 2 / 1 / 3 / 2; background: linear-gradient(to bottom, #f9f0f5 60%, transparent 60%); }
+        .room-knit { grid-area: 2 / 2 / 3 / 3; background: linear-gradient(to bottom, #f5f5f0 60%, transparent 60%); }
+        .room-kitchen { grid-area: 3 / 1 / 4 / 3; background: linear-gradient(to bottom, #fffdf0 60%, transparent 60%); }
+
+        /* Shared Floor */
+        .c-room::after {
+            content: ''; position: absolute; bottom: 0; left: 0; width: 100%; height: 40%;
+            background: repeating-linear-gradient(90deg, #d2a679, #d2a679 20px, #c69c6d 20px, #c69c6d 22px);
+            z-index: 1; border-top: 3px solid #b3855a;
+        }
+
+        .room-label {
+            position: absolute; top: 10px; left: 10px; background: rgba(255,255,255,0.9);
+            padding: 4px 10px; border-radius: 20px; font-size: 0.8rem; font-weight: 700;
+            color: var(--accent-color); z-index: 20; box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+            transition: transform 0.3s ease, background 0.3s ease, color 0.3s ease;
+        }
+        .c-room:hover .room-label, .c-room.active-interaction .room-label {
+            transform: scale(1.05); background: var(--primary-color); color: #fff;
+        }
+
+        .scene-svg {
+            position: absolute; bottom: 5%; left: 50%; transform: translateX(-50%);
+            width: 90%; height: 85%; z-index: 10; pointer-events: none; overflow: visible;
+        }
+        .room-kitchen .scene-svg { width: 70%; height: 90%; }
+
+        /* Room Animations (Idle & Hover) */
+        /* Paint */
+        .brush-arm { animation: paint-idle 3s infinite ease-in-out; }
+        .c-room:hover .brush-arm, .c-room.active-interaction .brush-arm { animation: paint-active 0.8s infinite alternate ease-in-out; }
+        .paint-splat { opacity: 0; transition: opacity 0.3s; }
+        .c-room:hover .paint-splat, .c-room.active-interaction .paint-splat { opacity: 1; animation: pop-in 0.3s forwards; }
+        
+        @keyframes paint-idle { 0%, 100% { transform: rotate(0deg); } 50% { transform: rotate(-3deg); } }
+        @keyframes paint-active { 0% { transform: rotate(-5deg) translateY(1px); } 100% { transform: rotate(3deg) translateY(-1px); } }
+        
+        /* Sketch */
+        .sketch-paw { animation: sketch-idle 2s infinite alternate ease-in-out; }
+        .c-room:hover .sketch-paw, .c-room.active-interaction .sketch-paw { animation: sketch-active 0.6s infinite alternate ease-in-out; }
+        .sketch-doodle { stroke-dasharray: 50; stroke-dashoffset: 50; transition: stroke-dashoffset 1s ease; }
+        .c-room:hover .sketch-doodle, .c-room.active-interaction .sketch-doodle { stroke-dashoffset: 0; }
+        
+        @keyframes sketch-idle { 0% { transform: rotate(0deg); } 100% { transform: rotate(-2deg); } }
+        @keyframes sketch-active { 0% { transform: rotate(-2deg) translateX(-1px); } 100% { transform: rotate(2deg) translateX(1px); } }
+
+        /* Crochet */
+        .crochet-paw { animation: crochet-idle 2s infinite ease-in-out; }
+        .c-room:hover .crochet-paw, .c-room.active-interaction .crochet-paw { animation: crochet-active 0.8s infinite ease-in-out; }
+        .yarn-ball-prop { transform-origin: center; animation: ball-idle 4s infinite ease-in-out; }
+        .c-room:hover .yarn-ball-prop, .c-room.active-interaction .yarn-ball-prop { animation: ball-active 1s infinite alternate ease-in-out; }
+        .crochet-string { stroke-dasharray: 4; animation: string-flow 2s infinite linear; }
+        .c-room:hover .crochet-string, .c-room.active-interaction .crochet-string { animation-duration: 0.8s; }
+
+        @keyframes crochet-idle { 0%, 100% { transform: rotate(0deg); } 50% { transform: rotate(3deg); } }
+        @keyframes crochet-active { 0%, 100% { transform: rotate(-2deg) translateY(-1px); } 50% { transform: rotate(4deg) translateY(1px); } }
+        @keyframes ball-idle { 0%, 100% { transform: rotate(0deg); } 50% { transform: rotate(15deg); } }
+        @keyframes ball-active { 0% { transform: translateX(-1px) rotate(-5deg); } 100% { transform: translateX(1px) rotate(10deg); } }
+        @keyframes string-flow { to { stroke-dashoffset: -8; } }
+
+        /* Knit */
+        .knit-needle-l { animation: knit-idle-l 1.5s infinite alternate ease-in-out; }
+        .knit-needle-r { animation: knit-idle-r 1.5s infinite alternate ease-in-out; }
+        .c-room:hover .knit-needle-l, .c-room.active-interaction .knit-needle-l { animation: knit-active-l 0.6s infinite alternate ease-in-out; }
+        .c-room:hover .knit-needle-r, .c-room.active-interaction .knit-needle-r { animation: knit-active-r 0.6s infinite alternate ease-in-out; }
+        
+        @keyframes knit-idle-l { 0% { transform: rotate(0deg); } 100% { transform: rotate(-3deg); } }
+        @keyframes knit-idle-r { 0% { transform: rotate(0deg); } 100% { transform: rotate(3deg); } }
+        @keyframes knit-active-l { 0% { transform: rotate(-3deg) translateY(1px); } 100% { transform: rotate(1deg) translateY(-1px); } }
+        @keyframes knit-active-r { 0% { transform: rotate(3deg) translateY(-1px); } 100% { transform: rotate(-1deg) translateY(1px); } }
+
+        /* Kitchen */
+        .whisk-paw { animation: whisk-idle 2s infinite ease-in-out; }
+        .c-room:hover .whisk-paw, .c-room.active-interaction .whisk-paw { animation: whisk-active 0.6s infinite alternate ease-in-out; }
+        .steam-puff { opacity: 0.4; animation: steam-rise 3s infinite ease-in; transform-origin: bottom; }
+        .c-room:hover .steam-puff, .c-room.active-interaction .steam-puff { opacity: 0.8; animation-duration: 2s; }
+        .oven-glow { opacity: 0.5; transition: opacity 0.3s; }
+        .c-room:hover .oven-glow, .c-room.active-interaction .oven-glow { opacity: 0.9; }
+
+        @keyframes whisk-idle { 0%, 100% { transform: rotate(0deg); } 50% { transform: rotate(5deg); } }
+        @keyframes whisk-active { 0% { transform: translateX(-1px) rotate(-4deg); } 100% { transform: translateX(1px) rotate(4deg); } }
+        @keyframes steam-rise { 0% { transform: translateY(0) scale(0.5); opacity: 0; } 50% { opacity: var(--max-op, 0.4); } 100% { transform: translateY(-30px) scale(1.5); opacity: 0; } }
+        @keyframes pop-in { 0% { transform: scale(0); opacity: 0; } 100% { transform: scale(1); opacity: 1; } }
+
+        /* Interactive Eyes */
+        .c-eye-open { transition: opacity 0.3s ease; opacity: 1; }
+        .c-eye-happy { transition: opacity 0.3s ease; opacity: 0; }
+        .c-room:hover .c-eye-open, .c-room.active-interaction .c-eye-open { opacity: 0; }
+        .c-room:hover .c-eye-happy, .c-room.active-interaction .c-eye-happy { opacity: 1; }
+
         #game-layer { position: absolute; top: 0; left: 0; width: 100%; height: 100%; pointer-events: none; z-index: 500; overflow: hidden; }
         #cat { position: absolute; width: 60px; height: 50px; transform-origin: bottom center; will-change: transform; pointer-events: auto; }
-        .cat-svg-part { transition: transform 0.2s ease; }
-        #cat-tail { transform-origin: 80% 80%; }
-        #cat-head { transform-origin: 20% 40%; }
-        #cat-leg-fl, #cat-leg-fr, #cat-leg-bl, #cat-leg-br { transform-origin: top center; }
-        .cat-idle #cat-tail { animation: tail-wag 4s infinite ease-in-out; }
+        
         .cat-walking #cat-leg-fl, .cat-running #cat-leg-fl { animation: walk-cycle 0.5s infinite alternate; }
         .cat-walking #cat-leg-fr, .cat-running #cat-leg-fr { animation: walk-cycle 0.5s infinite alternate-reverse; }
         .cat-walking #cat-leg-bl, .cat-running #cat-leg-bl { animation: walk-cycle 0.5s infinite alternate-reverse; }
@@ -562,6 +696,7 @@
         .cat-dead #cat-eyes { opacity: 0; }
         .cat-dead #cat-dead-eyes { opacity: 1 !important; }
         .cat-dead #cat-rip { opacity: 1 !important; animation: rip-float 2s infinite ease-in-out alternate; }
+        
         @keyframes rip-float { 0% { transform: translateY(0); } 100% { transform: translateY(-5px); } }
         .cat-dead #cat-leg-bl, .cat-dead #cat-leg-fl, .cat-dead #cat-leg-br, .cat-dead #cat-leg-fr { animation: none; transform: translateY(-10px); opacity: 0.5; }
         .cat-dead #cat-tail { animation: none; transform: rotate(-30deg); }
@@ -584,6 +719,13 @@
             .timeline-item.left, .timeline-item.right { margin: 0 auto 2rem auto; transform: translateY(30px); text-align: center; }
             .timeline-item.revealed { transform: translateY(0); }
             .projects-interactive-wrapper { flex-direction: column; }
+            
+            .creative-house { 
+                grid-template-columns: 1fr; 
+                grid-template-rows: repeat(5, 200px); 
+            }
+            .room-paint, .room-sketch, .room-crochet, .room-knit, .room-kitchen { grid-area: auto; }
+            .room-kitchen .scene-svg { width: 100%; } 
         }
     </style>
 </head>
@@ -627,7 +769,7 @@
                 <path id="timeline-yarn-dash" fill="none" stroke="var(--bg-color)" stroke-width="3" stroke-dasharray="10 10" stroke-linecap="round" />
                 
                 <g id="hanging-yarn-group"></g>
-                <g id="skill-yarn-branches"></g> <!-- Sub-branches will draw here -->
+                <g id="skill-yarn-branches"></g>
             </svg>
             
             <div id="skill-nodes-container" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; pointer-events: none; z-index: 35;"></div>
@@ -668,6 +810,7 @@
                 <a href="#hero">About</a>
                 <a href="#timeline">Timeline</a>
                 <a href="#projects">Projects</a>
+                <a href="#creative-corner">Hobbies</a>
                 <a href="#contact">Contact</a>
             </nav>
         </header>
@@ -810,7 +953,8 @@
             </div>
         </section>
 
-        <div id="skills-spacer" style="height: 0px; width: 100%; transition: height 1s cubic-bezier(0.25, 1, 0.5, 1);"></div>
+        <!-- Invisible spacer that dynamically grows to push the projects section down when skill tree expands -->
+        <div id="skills-spacer" style="height: 0px; width: 100%; transition: height 1.2s cubic-bezier(0.25, 1, 0.5, 1);"></div>
 
         <section id="projects">
             <h2 class="section-title">Recent Deployments</h2>
@@ -970,6 +1114,377 @@
             </div>
         </section>
 
+        <section id="creative-corner">
+            <h2 class="section-title">Creative Corner</h2>
+            <p style="text-align:center; color:var(--text-muted); margin-bottom: 2rem; max-width:600px;">Outside the code, I like making things the old-fashioned way too.</p>
+            
+            <div id="creative-house-wrap" class="creative-house-container">
+                <div class="house-roof"></div>
+                <div class="creative-house">
+                    
+                    <!-- 1. PAINTING -->
+                    <div class="c-room room-paint">
+                        <div class="room-label">PAINTING</div>
+                        <svg class="scene-svg" viewBox="0 0 200 150">
+                            <!-- Background Decor -->
+                            <rect x="20" y="30" width="40" height="50" fill="none" stroke="#ddd" stroke-width="2"/>
+                            <circle cx="40" cy="55" r="10" fill="#f498a7" opacity="0.3"/>
+                            
+                            <!-- Easel & Canvas -->
+                            <polygon points="150,140 160,20 170,140" fill="#b3855a"/>
+                            <rect x="135" y="40" width="50" height="60" fill="#fff" stroke="#ccc" stroke-width="2"/>
+                            <!-- Crude cat drawing on canvas -->
+                            <circle cx="160" cy="70" r="15" fill="none" stroke="#888" stroke-width="1.5"/>
+                            <polygon points="150,60 145,50 155,55" fill="none" stroke="#888" stroke-width="1.5"/>
+                            <polygon points="170,60 175,50 165,55" fill="none" stroke="#888" stroke-width="1.5"/>
+                            <!-- Splatter -->
+                            <circle class="paint-splat" cx="165" cy="80" r="4" fill="#a18cd1"/>
+                            
+                            <!-- Paint Jars -->
+                            <rect x="130" y="140" width="8" height="10" fill="#ff8fa3"/>
+                            <rect x="140" y="135" width="8" height="15" fill="#a18cd1"/>
+                            <rect x="175" y="138" width="10" height="12" fill="#ffea00"/>
+                            
+                            <!-- The Cute Chubby Painting Cat -->
+                            <g transform="translate(60, 60)">
+                                <!-- Tail -->
+                                <path d="M -5 60 Q -20 70 -10 90" fill="none" stroke="var(--cat-body)" stroke-width="10" stroke-linecap="round"/>
+                                
+                                <!-- Chubby Body Base -->
+                                <path d="M 0 30 Q -5 70 20 75 Q 45 70 40 30 Z" fill="var(--cat-body)"/>
+                                <circle cx="20" cy="45" r="23" fill="var(--cat-body)"/>
+                                
+                                <!-- Big Round Head -->
+                                <circle cx="20" cy="10" r="24" fill="var(--cat-body)"/>
+                                <polygon points="-2,-2 -8,-18 10,-2" fill="var(--cat-body)" stroke="var(--cat-body)" stroke-width="2" stroke-linejoin="round"/>
+                                <polygon points="42,-2 48,-18 30,-2" fill="var(--cat-body)" stroke="var(--cat-body)" stroke-width="2" stroke-linejoin="round"/>
+                                <polygon points="0,0 -5,-14 9,-1" fill="var(--cat-ear)"/>
+                                <polygon points="40,0 45,-14 31,-1" fill="var(--cat-ear)"/>
+                                
+                                <g class="c-eye-open">
+                                    <circle cx="10" cy="12" r="3.5" fill="var(--cat-eye)"/>
+                                    <circle cx="30" cy="12" r="3.5" fill="var(--cat-eye)"/>
+                                </g>
+                                <g class="c-eye-happy">
+                                    <path d="M 6 13 Q 10 8 14 13" fill="none" stroke="var(--cat-eye)" stroke-width="2.5" stroke-linecap="round"/>
+                                    <path d="M 26 13 Q 30 8 34 13" fill="none" stroke="var(--cat-eye)" stroke-width="2.5" stroke-linecap="round"/>
+                                </g>
+                                
+                                <!-- Cute details -->
+                                <ellipse cx="3" cy="18" rx="4" ry="2.5" fill="#ffb3c6" opacity="0.8"/>
+                                <ellipse cx="37" cy="18" rx="4" ry="2.5" fill="#ffb3c6" opacity="0.8"/>
+                                <path d="M 17 17 Q 20 20 23 17" fill="none" stroke="var(--cat-ear)" stroke-width="1.5" stroke-linecap="round"/>
+                                
+                                <!-- Left Arm (Palette) -->
+                                <path d="M 5 35 Q -10 40 0 55" fill="none" stroke="var(--cat-body)" stroke-width="8" stroke-linecap="round"/>
+                                <ellipse cx="0" cy="55" rx="12" ry="8" fill="#e8c6c8"/> 
+                                <circle cx="-3" cy="55" r="3" fill="#ff8fa3"/>
+                                <circle cx="4" cy="53" r="2" fill="#a18cd1"/>
+                                
+                                <!-- Right Arm (Brush) -->
+                                <g class="brush-arm" style="transform-origin: 35px 35px;">
+                                    <path d="M 35 35 Q 50 45 45 30" fill="none" stroke="var(--cat-body)" stroke-width="8" stroke-linecap="round"/>
+                                    <line x1="40" y1="35" x2="65" y2="15" stroke="#b3855a" stroke-width="3" stroke-linecap="round"/>
+                                    <path d="M 65 15 L 70 10 L 68 18 Z" fill="#a18cd1"/>
+                                </g>
+                            </g>
+                        </svg>
+                    </div>
+
+                    <!-- 2. SKETCHING -->
+                    <div class="c-room room-sketch">
+                        <div class="room-label">SKETCHING</div>
+                        <svg class="scene-svg" viewBox="0 0 200 150">
+                            <!-- Window -->
+                            <rect x="130" y="20" width="50" height="60" rx="4" fill="#e0f2f7" stroke="#ccc" stroke-width="3"/>
+                            <line x1="130" y1="50" x2="180" y2="50" stroke="#ccc" stroke-width="3"/>
+                            <line x1="155" y1="20" x2="155" y2="80" stroke="#ccc" stroke-width="3"/>
+                            
+                            <!-- Desk -->
+                            <path d="M 30 100 L 170 100 L 180 110 L 20 110 Z" fill="#d2a679"/>
+                            <rect x="40" y="110" width="10" height="40" fill="#b3855a"/>
+                            <rect x="150" y="110" width="10" height="40" fill="#b3855a"/>
+                            
+                            <!-- Lamp -->
+                            <path d="M 160 100 Q 160 70 140 60" fill="none" stroke="#666" stroke-width="3"/>
+                            <polygon points="140,55 125,65 145,75" fill="#f498a7"/>
+                            <ellipse cx="130" cy="75" rx="10" ry="15" fill="#ffea00" opacity="0.3" transform="rotate(-30 130 75)"/>
+                            
+                            <!-- Paper -->
+                            <rect x="80" y="90" width="40" height="20" fill="#fff" transform="rotate(-5 100 100)"/>
+                            <path class="sketch-doodle" d="M 85 95 Q 95 85 105 95 T 115 95" fill="none" stroke="#666" stroke-width="1.5"/>
+                            
+                            <!-- The Cute Chubby Sketching Cat -->
+                            <g transform="translate(60, 40)">
+                                <!-- Tail -->
+                                <path d="M -15 65 Q -30 75 -20 95" fill="none" stroke="var(--cat-body)" stroke-width="10" stroke-linecap="round"/>
+                                
+                                <!-- Chubby Body Base -->
+                                <path d="M -5 30 Q -10 65 20 70 Q 45 65 40 30 Z" fill="var(--cat-body)"/>
+                                <circle cx="17.5" cy="40" r="23" fill="var(--cat-body)"/>
+                                
+                                <!-- Big Round Head down -->
+                                <circle cx="35" cy="15" r="24" fill="var(--cat-body)"/>
+                                <polygon points="12,5 5,-12 22,-2" fill="var(--cat-body)" stroke="var(--cat-body)" stroke-width="2" stroke-linejoin="round"/>
+                                <polygon points="56,0 67,-12 48,-2" fill="var(--cat-body)" stroke="var(--cat-body)" stroke-width="2" stroke-linejoin="round"/>
+                                <polygon points="14,3 8,-9 20,0" fill="var(--cat-ear)"/>
+                                <polygon points="54,2 64,-9 50,0" fill="var(--cat-ear)"/>
+                                
+                                <g class="c-eye-open">
+                                    <circle cx="30" cy="22" r="3.5" fill="var(--cat-eye)"/>
+                                    <circle cx="48" cy="22" r="3.5" fill="var(--cat-eye)"/>
+                                </g>
+                                <g class="c-eye-happy">
+                                    <path d="M 26 23 Q 30 18 34 23" fill="none" stroke="var(--cat-eye)" stroke-width="2.5" stroke-linecap="round"/>
+                                    <path d="M 44 23 Q 48 18 52 23" fill="none" stroke="var(--cat-eye)" stroke-width="2.5" stroke-linecap="round"/>
+                                </g>
+                                
+                                <!-- Cute details -->
+                                <ellipse cx="23" cy="26" rx="4" ry="2.5" fill="#ffb3c6" opacity="0.8"/>
+                                <ellipse cx="55" cy="26" rx="4" ry="2.5" fill="#ffb3c6" opacity="0.8"/>
+                                <path d="M 37 25 Q 39 28 41 25" fill="none" stroke="var(--cat-ear)" stroke-width="1.5" stroke-linecap="round"/>
+                                
+                                <!-- Static Left Arm -->
+                                <path d="M 5 40 Q 15 60 25 55" fill="none" stroke="var(--cat-body)" stroke-width="8" stroke-linecap="round"/>
+                                
+                                <!-- Sketching Right Arm -->
+                                <g class="sketch-paw" style="transform-origin: 25px 40px;">
+                                    <path d="M 25 40 Q 40 65 55 55" fill="none" stroke="var(--cat-body)" stroke-width="8" stroke-linecap="round"/>
+                                    <line x1="45" y1="50" x2="65" y2="65" stroke="#f498a7" stroke-width="2.5" stroke-linecap="round"/>
+                                    <polygon points="65,65 68,68 62,68" fill="#333"/>
+                                </g>
+                            </g>
+                        </svg>
+                    </div>
+
+                    <!-- 3. CROCHET -->
+                    <div class="c-room room-crochet">
+                        <div class="room-label">CROCHET</div>
+                        <svg class="scene-svg" viewBox="0 0 200 150">
+                            <!-- Rug -->
+                            <ellipse cx="100" cy="135" rx="60" ry="15" fill="#f498a7" opacity="0.4"/>
+                            
+                            <!-- Yarn Basket -->
+                            <path d="M 140 120 L 170 120 L 165 140 L 145 140 Z" fill="#b3855a"/>
+                            <circle cx="150" cy="115" r="10" fill="#a18cd1"/>
+                            <circle cx="160" cy="118" r="12" fill="#ffb3c6"/>
+                            
+                            <!-- The Cute Chubby Crochet Cat -->
+                            <g transform="translate(80, 60)">
+                                <!-- Tail -->
+                                <path d="M -5 65 Q -30 75 -15 90" fill="none" stroke="var(--cat-body)" stroke-width="10" stroke-linecap="round"/>
+                                
+                                <!-- Chubby Body Base -->
+                                <path d="M -5 30 Q -10 65 20 70 Q 45 65 40 30 Z" fill="var(--cat-body)"/>
+                                <circle cx="17.5" cy="40" r="23" fill="var(--cat-body)"/>
+                                
+                                <!-- Big Round Head -->
+                                <circle cx="17" cy="5" r="24" fill="var(--cat-body)"/>
+                                <polygon points="-5,-5 -12,-20 5,-5" fill="var(--cat-body)" stroke="var(--cat-body)" stroke-width="2" stroke-linejoin="round"/>
+                                <polygon points="38,-5 46,-20 28,-5" fill="var(--cat-body)" stroke="var(--cat-body)" stroke-width="2" stroke-linejoin="round"/>
+                                <polygon points="-2,-4 -9,-17 6,-4" fill="var(--cat-ear)"/>
+                                <polygon points="35,-4 43,-17 29,-4" fill="var(--cat-ear)"/>
+                                
+                                <g class="c-eye-open">
+                                    <circle cx="7" cy="8" r="3.5" fill="var(--cat-eye)"/>
+                                    <circle cx="27" cy="8" r="3.5" fill="var(--cat-eye)"/>
+                                </g>
+                                <g class="c-eye-happy">
+                                    <path d="M 3 9 Q 7 4 11 9" fill="none" stroke="var(--cat-eye)" stroke-width="2.5" stroke-linecap="round"/>
+                                    <path d="M 23 9 Q 27 4 31 9" fill="none" stroke="var(--cat-eye)" stroke-width="2.5" stroke-linecap="round"/>
+                                </g>
+                                
+                                <!-- Cute details -->
+                                <ellipse cx="0" cy="13" rx="4" ry="2.5" fill="#ffb3c6" opacity="0.8"/>
+                                <ellipse cx="34" cy="13" rx="4" ry="2.5" fill="#ffb3c6" opacity="0.8"/>
+                                <path d="M 14 12 Q 17 15 20 12" fill="none" stroke="var(--cat-ear)" stroke-width="1.5" stroke-linecap="round"/>
+
+                                <!-- Amigurumi base -->
+                                <circle cx="10" cy="45" r="14" fill="#ffb3c6"/>
+                                
+                                <!-- Left Paw holding item -->
+                                <path d="M -2 30 Q -5 45 5 45" fill="none" stroke="var(--cat-body)" stroke-width="8" stroke-linecap="round"/>
+                                
+                                <!-- Right Paw holding hook -->
+                                <g class="crochet-paw" style="transform-origin: 35px 30px;">
+                                    <path d="M 35 30 Q 30 50 15 45" fill="none" stroke="var(--cat-body)" stroke-width="8" stroke-linecap="round"/>
+                                    <line x1="25" y1="35" x2="5" y2="50" stroke="#d2a679" stroke-width="2" stroke-linecap="round"/>
+                                </g>
+                            </g>
+                            
+                            <!-- Connected Yarn -->
+                            <g class="yarn-ball-prop" transform="translate(40, 130)">
+                                <circle cx="0" cy="0" r="14" fill="#ffb3c6"/>
+                                <path d="M -10 -5 Q 0 5 10 -5 M -8 5 Q 0 -5 8 5" fill="none" stroke="#f498a7" stroke-width="1.5"/>
+                            </g>
+                            <path class="crochet-string" d="M 40 120 Q 60 90 85 110" fill="none" stroke="#ffb3c6" stroke-width="2"/>
+                        </svg>
+                    </div>
+
+                    <!-- 4. KNITTING -->
+                    <div class="c-room room-knit">
+                        <div class="room-label">KNITTING</div>
+                        <svg class="scene-svg" viewBox="0 0 200 150">
+                            <!-- Chair Legs -->
+                            <rect x="50" y="125" width="8" height="15" fill="#b3855a"/>
+                            <rect x="100" y="125" width="8" height="15" fill="#b3855a"/>
+                            
+                            <!-- Chair Back & Seat -->
+                            <rect x="45" y="55" width="70" height="60" rx="10" fill="#a18cd1"/>
+                            <rect x="40" y="100" width="80" height="25" rx="10" fill="#8b76ba"/>
+                            
+                            <!-- The Cute Chubby Knitting Cat -->
+                            <g transform="translate(75, 50)">
+                                <!-- Body lounging completely INSIDE chair bounds -->
+                                <path d="M -5 30 Q -10 65 20 70 Q 45 65 40 30 Z" fill="var(--cat-body)"/>
+                                <circle cx="17.5" cy="40" r="23" fill="var(--cat-body)"/>
+                                
+                                <!-- Head relaxed -->
+                                <circle cx="10" cy="5" r="24" fill="var(--cat-body)"/>
+                                <polygon points="-12,-5 -22,-15 2,-10" fill="var(--cat-body)" stroke="var(--cat-body)" stroke-width="2" stroke-linejoin="round"/>
+                                <polygon points="32,-5 42,-15 20,-10" fill="var(--cat-body)" stroke="var(--cat-body)" stroke-width="2" stroke-linejoin="round"/>
+                                <polygon points="-8,-4 -16,-12 0,-8" fill="var(--cat-ear)"/>
+                                <polygon points="28,-4 36,-12 18,-8" fill="var(--cat-ear)"/>
+                                
+                                <g class="c-eye-open">
+                                    <path d="M 0 5 Q 4 10 8 5 M 16 5 Q 20 10 24 5" fill="none" stroke="var(--cat-eye)" stroke-width="2.5" stroke-linecap="round"/>
+                                </g>
+                                <g class="c-eye-happy">
+                                    <path d="M 0 7 Q 4 2 8 7 M 16 7 Q 20 2 24 7" fill="none" stroke="var(--cat-eye)" stroke-width="2.5" stroke-linecap="round"/>
+                                </g>
+                                
+                                <ellipse cx="-4" cy="11" rx="4" ry="2.5" fill="#ffb3c6" opacity="0.8"/>
+                                <ellipse cx="28" cy="11" rx="4" ry="2.5" fill="#ffb3c6" opacity="0.8"/>
+                                <!-- smile -->
+                                <path d="M 10 11 Q 12 14 14 11" fill="none" stroke="var(--cat-ear)" stroke-width="1.5" stroke-linecap="round"/>
+                                
+                                <!-- Needles & Paws -->
+                                <g class="knit-needle-l" style="transform-origin: -5px 30px;">
+                                    <line x1="-20" y1="25" x2="20" y2="55" stroke="#ddd" stroke-width="3" stroke-linecap="round"/>
+                                    <path d="M -5 30 Q -15 45 10 45" fill="none" stroke="var(--cat-body)" stroke-width="8" stroke-linecap="round"/>
+                                </g>
+                                <g class="knit-needle-r" style="transform-origin: 25px 30px;">
+                                    <line x1="40" y1="25" x2="0" y2="55" stroke="#ddd" stroke-width="3" stroke-linecap="round"/>
+                                    <path d="M 25 30 Q 35 45 10 50" fill="none" stroke="var(--cat-body)" stroke-width="8" stroke-linecap="round"/>
+                                </g>
+                            </g>
+                            
+                            <!-- Chair Armrests drawn OVER the cat so it looks like it sits INSIDE -->
+                            <rect x="35" y="85" width="20" height="35" rx="8" fill="#7a65a8"/>
+                            <rect x="105" y="85" width="20" height="35" rx="8" fill="#7a65a8"/>
+                            
+                            <!-- Textured Scarf Trailing completely within the bounds -->
+                            <g transform="translate(65, 80)">
+                                <!-- Scarf Base -->
+                                <path d="M 15 10 Q -10 30 20 55 Q 50 70 65 50" fill="none" stroke="#ffea00" stroke-width="14" stroke-linecap="round"/>
+                                <!-- Scarf Texture -->
+                                <path d="M 15 10 Q -10 30 20 55 Q 50 70 65 50" fill="none" stroke="#d4b400" stroke-width="3" stroke-dasharray="4 4" stroke-linecap="round"/>
+                                <path d="M 12 10 Q -13 30 17 55 Q 47 70 62 50" fill="none" stroke="#d4b400" stroke-width="3" stroke-dasharray="4 4" stroke-linecap="round" opacity="0.7"/>
+                            </g>
+                        </svg>
+                    </div>
+
+                    <!-- 5. KITCHEN / BAKING -->
+                    <div class="c-room room-kitchen">
+                        <div class="room-label">COOKING & BAKING</div>
+                        <svg class="scene-svg" viewBox="0 0 400 150">
+                            <!-- Shelves -->
+                            <line x1="30" y1="40" x2="120" y2="40" stroke="#b3855a" stroke-width="4" stroke-linecap="round"/>
+                            <rect x="40" y="20" width="15" height="20" fill="#a18cd1"/>
+                            <rect x="60" y="15" width="10" height="25" fill="#f498a7"/>
+                            <circle cx="100" cy="30" r="10" fill="#ffea00"/>
+                            
+                            <!-- Counter -->
+                            <rect x="20" y="100" width="220" height="50" fill="#d2a679"/>
+                            <rect x="15" y="95" width="230" height="8" fill="#e0e0e0"/>
+                            
+                            <!-- Oven -->
+                            <rect x="260" y="60" width="100" height="90" rx="5" fill="#eee" stroke="#ccc" stroke-width="2"/>
+                            <rect x="270" y="70" width="80" height="20" rx="4" fill="#333"/>
+                            <circle cx="280" cy="80" r="4" fill="#ff3333"/>
+                            <circle cx="295" cy="80" r="4" fill="#ccc"/>
+                            <circle cx="310" cy="80" r="4" fill="#ccc"/>
+                            <!-- Oven Door & Glow -->
+                            <rect x="270" y="100" width="80" height="40" rx="4" fill="#333"/>
+                            <rect class="oven-glow" x="275" y="105" width="70" height="30" fill="#ffea00"/>
+                            <!-- Cookies in oven -->
+                            <circle cx="290" cy="125" r="4" fill="#8c6148"/>
+                            <circle cx="310" cy="125" r="4" fill="#8c6148"/>
+                            <circle cx="330" cy="125" r="4" fill="#8c6148"/>
+                            
+                            <!-- Bowl & Steam -->
+                            <g transform="translate(180, 80)">
+                                <path class="steam-puff" style="--max-op:0.5;" d="M 0 0 Q -15 -20 5 -40 T -5 -60" fill="none" stroke="#fff" stroke-width="4" stroke-linecap="round"/>
+                                <path class="steam-puff" style="--max-op:0.3; animation-delay:0.5s;" d="M 15 0 Q 30 -15 10 -35 T 25 -55" fill="none" stroke="#fff" stroke-width="3" stroke-linecap="round"/>
+                                <path d="M -20 0 L 30 0 L 20 20 L -10 20 Z" fill="#ff8fa3"/>
+                            </g>
+                            
+                            <!-- Flour & Rolling pin -->
+                            <rect x="40" y="75" width="20" height="20" fill="#fff" stroke="#ccc" stroke-width="1"/>
+                            <text x="42" y="88" font-size="8" fill="#aaa">Flour</text>
+                            <rect x="70" y="90" width="30" height="5" rx="2" fill="#e8c6c8"/>
+                            <rect x="65" y="91" width="5" height="3" fill="#b3855a"/>
+                            <rect x="100" y="91" width="5" height="3" fill="#b3855a"/>
+
+                            <!-- The Cute Chubby Chef Cat -->
+                            <g transform="translate(130, 35)">
+                                <!-- Tail -->
+                                <path d="M 0 80 Q -30 90 -20 105" fill="none" stroke="var(--cat-body)" stroke-width="10" stroke-linecap="round"/>
+                                
+                                <!-- Chubby Body Base -->
+                                <path d="M -5 30 Q -10 90 20 95 Q 45 90 40 30 Z" fill="var(--cat-body)"/>
+                                <circle cx="17.5" cy="55" r="23" fill="var(--cat-body)"/>
+                                
+                                <!-- Legs -->
+                                <rect x="5" y="85" width="12" height="15" rx="6" fill="var(--cat-body)"/>
+                                <rect x="28" y="85" width="12" height="15" rx="6" fill="var(--cat-body)"/>
+                                
+                                <!-- Chef Apron -->
+                                <path d="M 5 45 L 35 45 L 42 90 L -2 90 Z" fill="#fff" opacity="0.9"/>
+                                
+                                <!-- Big Round Head -->
+                                <circle cx="22" cy="15" r="24" fill="var(--cat-body)"/>
+                                <polygon points="0,2 -12,-12 10,-2" fill="var(--cat-body)" stroke="var(--cat-body)" stroke-width="2" stroke-linejoin="round"/>
+                                <polygon points="44,2 56,-12 34,-2" fill="var(--cat-body)" stroke="var(--cat-body)" stroke-width="2" stroke-linejoin="round"/>
+                                <polygon points="2,0 -9,-10 9,-2" fill="var(--cat-ear)"/>
+                                <polygon points="42,0 53,-10 35,-2" fill="var(--cat-ear)"/>
+                                
+                                <g class="c-eye-open">
+                                    <circle cx="12" cy="18" r="3.5" fill="var(--cat-eye)"/>
+                                    <circle cx="32" cy="18" r="3.5" fill="var(--cat-eye)"/>
+                                </g>
+                                <g class="c-eye-happy">
+                                    <path d="M 8 19 Q 12 14 16 19" fill="none" stroke="var(--cat-eye)" stroke-width="2.5" stroke-linecap="round"/>
+                                    <path d="M 28 19 Q 32 14 36 19" fill="none" stroke="var(--cat-eye)" stroke-width="2.5" stroke-linecap="round"/>
+                                </g>
+                                
+                                <!-- Cute details -->
+                                <ellipse cx="5" cy="24" rx="4" ry="2.5" fill="#ffb3c6" opacity="0.8"/>
+                                <ellipse cx="39" cy="24" rx="4" ry="2.5" fill="#ffb3c6" opacity="0.8"/>
+                                <path d="M 19 23 Q 22 26 25 23" fill="none" stroke="var(--cat-ear)" stroke-width="1.5" stroke-linecap="round"/>
+                                
+                                <!-- Chef Hat -->
+                                <path d="M 5 -5 Q -10 -30 10 -35 Q 25 -45 35 -35 Q 55 -30 40 -5 Z" fill="#fff"/>
+                                <rect x="5" y="-5" width="35" height="12" rx="3" fill="#fff" stroke="#eee" stroke-width="1"/>
+                                
+                                <!-- Left Arm -->
+                                <path d="M 5 45 Q -10 60 10 60" fill="none" stroke="var(--cat-body)" stroke-width="8" stroke-linecap="round"/>
+                                
+                                <!-- Whisking Right Arm -->
+                                <g class="whisk-paw" style="transform-origin: 35px 45px;">
+                                    <path d="M 35 45 Q 55 55 45 65" fill="none" stroke="var(--cat-body)" stroke-width="8" stroke-linecap="round"/>
+                                    <!-- Whisk -->
+                                    <line x1="45" y1="60" x2="60" y2="75" stroke="#888" stroke-width="2.5" stroke-linecap="round"/>
+                                    <ellipse cx="62" cy="77" rx="5" ry="8" fill="none" stroke="#aaa" stroke-width="2" transform="rotate(-45 62 77)"/>
+                                </g>
+                            </g>
+                        </svg>
+                    </div>
+
+                </div>
+            </div>
+        </section>
+
         <section id="contact">
             <h2 class="section-title">Initialize Handshake</h2>
             <div class="cat-platform" style="width: 100%; max-width: 600px; text-align: center;">
@@ -1004,18 +1519,21 @@
                 <g id="cat-body-group">
                     <path id="cat-tail" d="M 80 70 Q 110 70, 95 30 Q 90 15, 80 25" fill="none" stroke="var(--cat-body)" stroke-width="8" stroke-linecap="round" />
                     <g id="cat-legs">
-                        <line id="cat-leg-bl" x1="65" y1="70" x2="65" y2="90" stroke="var(--cat-shade)" stroke-width="8" stroke-linecap="round" />
-                        <line id="cat-leg-fl" x1="35" y1="70" x2="35" y2="90" stroke="var(--cat-shade)" stroke-width="8" stroke-linecap="round" />
-                        <line id="cat-leg-br" x1="75" y1="70" x2="75" y2="90" stroke="var(--cat-body)" stroke-width="8" stroke-linecap="round" />
-                        <line id="cat-leg-fr" x1="25" y1="70" x2="25" y2="90" stroke="var(--cat-body)" stroke-width="8" stroke-linecap="round" />
+                        <line id="cat-leg-bl" x1="65" y1="70" x2="65" y2="90" stroke="var(--cat-shade)" stroke-width="8" stroke-linecap="round" style="transform-box: fill-box;" />
+                        <line id="cat-leg-fl" x1="35" y1="70" x2="35" y2="90" stroke="var(--cat-shade)" stroke-width="8" stroke-linecap="round" style="transform-box: fill-box;" />
+                        <line id="cat-leg-br" x1="75" y1="70" x2="75" y2="90" stroke="var(--cat-body)" stroke-width="8" stroke-linecap="round" style="transform-box: fill-box;" />
+                        <line id="cat-leg-fr" x1="25" y1="70" x2="25" y2="90" stroke="var(--cat-body)" stroke-width="8" stroke-linecap="round" style="transform-box: fill-box;" />
                     </g>
                     <rect id="cat-torso" x="20" y="40" width="60" height="40" rx="20" fill="var(--cat-body)" />
+                    <!-- Left-Facing Profile Head -->
                     <g id="cat-head">
                         <circle cx="20" cy="40" r="25" fill="var(--cat-body)" />
+                        <!-- Ears -->
                         <polygon points="5,25 0,0 20,15" fill="var(--cat-body)" stroke="var(--cat-body)" stroke-width="3" stroke-linejoin="round" />
                         <polygon points="35,25 40,0 20,15" fill="var(--cat-body)" stroke="var(--cat-body)" stroke-width="3" stroke-linejoin="round" />
                         <polygon points="7,22 4,5 16,16" fill="var(--cat-ear)" />
                         <polygon points="33,22 36,5 24,16" fill="var(--cat-ear)" />
+                        <!-- Eyes shifted left -->
                         <g id="cat-eyes">
                             <circle cx="10" cy="38" r="4.5" fill="var(--cat-eye)" style="transition: r 0.3s;" />
                             <circle cx="28" cy="38" r="4.5" fill="var(--cat-eye)" style="transition: r 0.3s;" />
@@ -1028,12 +1546,14 @@
                                 <circle class="eye-shine" cx="29" cy="40" r="1" fill="white" />
                             </g>
                         </g>
+                        <!-- Dead Eyes shifted left -->
                         <g id="cat-dead-eyes" style="opacity: 0; transition: opacity 0.3s;">
                             <line x1="7" y1="35" x2="13" y2="41" stroke="var(--cat-eye)" stroke-width="2.5" stroke-linecap="round" />
                             <line x1="13" y1="35" x2="7" y2="41" stroke="var(--cat-eye)" stroke-width="2.5" stroke-linecap="round" />
                             <line x1="25" y1="35" x2="31" y2="41" stroke="var(--cat-eye)" stroke-width="2.5" stroke-linecap="round" />
                             <line x1="31" y1="35" x2="25" y2="41" stroke="var(--cat-eye)" stroke-width="2.5" stroke-linecap="round" />
                         </g>
+                        <!-- Nose shifted left -->
                         <circle cx="19" cy="45" r="2" fill="var(--cat-eye)" />
                         <path d="M 15 48 Q 19 51 19 48 Q 19 51 23 48" fill="none" stroke="var(--cat-eye)" stroke-width="1.5" />
                     </g>
@@ -1202,11 +1722,10 @@
 
         const SkillTreeAnimation = {
             isStarted: false,
-            // Exactly the 13 skills explicitly asked for, grouped logically
             treeData: [
-                { cat: "Software", skills: ["Python", "C / C++", "JavaScript", "HTML / CSS", "Git / GitHub"] },
-                { cat: "Embedded", skills: ["Embedded Systems", "IoT", "Arduino / ESP32", "Raspberry Pi"] },
-                { cat: "Hardware", skills: ["PCB Design"] },
+                { cat: "Software", skills: ["Python", "C / C++", "JavaScript", "HTML / CSS", "Java"] },
+                { cat: "Embedded", skills: ["Embedded Systems", "IoT", "Arduino / ESP32", "Raspberry Pi", "RTOS"] },
+                { cat: "Hardware", skills: ["PCB Design", "Circuit Simulation"] },
                 { cat: "AI & Data", skills: ["Computer Vision", "Machine Learning", "Data Science"] }
             ],
 
@@ -1216,17 +1735,23 @@
 
                 const isMobile = window.innerWidth <= 768;
                 
-                // Expand space dynamically pushing the rest of the site down smoothly
                 const spacer = document.getElementById('skills-spacer');
-                if (spacer) spacer.style.height = isMobile ? '1600px' : '900px';
+                if (spacer) {
+                    spacer.style.height = isMobile ? '900px' : '200px'; 
+                }
 
                 const nodesContainer = document.getElementById('skill-nodes-container');
                 nodesContainer.innerHTML = ''; 
                 const branchesGroup = document.getElementById('skill-yarn-branches');
                 branchesGroup.innerHTML = '';
 
-                // We have exactly 4 main categories. Make sure we have 4 hanging strands.
                 const strands = Array.from(document.querySelectorAll('.hanging-yarn-strand'));
+
+                strands.sort((a, b) => {
+                    const ax = parseFloat(a.getAttribute('d').split(' ').pop());
+                    const bx = parseFloat(b.getAttribute('d').split(' ').pop());
+                    return ax - bx;
+                });
 
                 this.treeData.forEach((catData, i) => {
                     const strand = strands[i];
@@ -1234,20 +1759,16 @@
 
                     let catX, catY;
                     if (isMobile) {
-                        // Trunk grouping down the center, with slight horizontal spread
-                        catX = window.innerWidth / 2 + (i - 1.5) * 15; 
-                        catY = rootY + 180 + i * 320; // Spread vertically further
+                        catX = window.innerWidth / 2 + (i % 2 === 0 ? -30 : 30); 
+                        catY = rootY + 180 + i * 250; 
                     } else {
-                        // Spread out horizontally across desktop
                         const availableWidth = Math.min(window.innerWidth * 0.95, 1100);
                         const spacing = availableWidth / 4;
                         catX = (window.innerWidth / 2) - (availableWidth / 2) + (spacing / 2) + i * spacing;
                         catY = rootY + 180;
                     }
 
-                    // 1. Stretch hanging strand down to category node
                     this.stretchStrand(strand, rootX, rootY, catX, catY, () => {
-                        // Show Category Node
                         const catEl = document.createElement('div');
                         catEl.className = 'tree-node node-cat';
                         catEl.innerText = catData.cat;
@@ -1256,17 +1777,15 @@
                         nodesContainer.appendChild(catEl);
 
                         setTimeout(() => catEl.classList.add('visible'), 50);
-
-                        // 2. Draw sub-branches dynamically extending to exact 13 skills
                         this.drawSubBranches(catData.skills, catX, catY, isMobile, nodesContainer, branchesGroup);
                     });
                 });
             },
 
             stretchStrand(strand, rootX, rootY, targetX, targetY, onComplete) {
-                let curEndX = rootX, curEndY = rootY + 150; 
+                strand.style.animation = 'none';
                 
-                // Read current drop location to seamlessly transition without flicker
+                let curEndX = rootX, curEndY = rootY + 150; 
                 const match = strand.getAttribute('d').match(/Q\s+[-0-9.]+\s+[-0-9.]+\s+([-0-9.]+)\s+([-0-9.]+)/);
                 if (match) {
                     curEndX = parseFloat(match[1]);
@@ -1274,14 +1793,14 @@
                 }
 
                 let progress = 0;
-                const duration = 60; // 60 frames = approx 1 sec
+                const duration = 60; 
                 let frame = 0;
 
                 const anim = () => {
-                    if(!this.isStarted) return; // allows aborting if scrolling up
+                    if(!this.isStarted) return; 
                     frame++;
                     progress = frame / duration;
-                    const ease = 1 - Math.pow(1 - progress, 3); // Cubic ease out
+                    const ease = 1 - Math.pow(1 - progress, 3); 
                     
                     const x = curEndX + (targetX - curEndX) * ease;
                     const y = curEndY + (targetY - curEndY) * ease;
@@ -1305,44 +1824,34 @@
                     let skillX, skillY;
                     
                     if (isMobile) {
-                        // Sub-branches go left and right out of the center trunk
                         const side = (j % 2 === 0) ? -1 : 1;
-                        skillX = catX + side * (window.innerWidth * 0.35); 
-                        skillY = catY + 80 + Math.floor(j / 2) * 65;
+                        skillX = catX + side * (window.innerWidth * 0.25); 
+                        skillY = catY + 60 + j * 45;
                     } else {
-                        // Vertical Zig-Zag "Vine" to prevent horizontal category overlap
                         const side = (j % 2 === 0) ? -1 : 1;
-                        // Fan out slightly wider as it goes down to look organic
-                        const horizontalSpread = 35 + (j * 12); 
-                        skillX = catX + (side * horizontalSpread);
-                        
-                        // Push each node further down significantly
-                        const verticalDrop = 110 + (j * 75);
-                        skillY = catY + verticalDrop;
+                        const spreadX = 40 + (j % 3) * 15; 
+                        skillX = catX + (side * spreadX);
+                        skillY = catY + 80 + (j * 60); 
                     }
 
                     const path = document.createElementNS("http://www.w3.org/2000/svg", "path");
                     path.classList.add('sub-branch');
                     
-                    // Bezier S-curve downwards
                     const d = `M ${catX} ${catY} C ${catX} ${(catY + skillY) / 2}, ${skillX} ${(catY + skillY) / 2}, ${skillX} ${skillY}`;
                     path.setAttribute('d', d);
                     branchesGroup.appendChild(path);
 
-                    // Setup stroke-dash for smooth CSS drawing animation
                     const len = path.getTotalLength();
                     path.style.strokeDasharray = len;
                     path.style.strokeDashoffset = len;
                     
-                    void path.offsetWidth; // Reflow
+                    void path.offsetWidth; 
                     
-                    // Stagger the drawing of the sub-branches slightly
                     setTimeout(() => {
                         if(!this.isStarted) return;
                         path.style.transition = 'stroke-dashoffset 0.8s cubic-bezier(0.25, 1, 0.5, 1)';
                         path.style.strokeDashoffset = '0';
                         
-                        // Show skill node pill at the tip when line finishes drawing
                         setTimeout(() => {
                             if(!this.isStarted) return;
                             const el = document.createElement('div');
@@ -1360,13 +1869,10 @@
             
             reset() {
                 this.isStarted = false;
-                
                 const nodesContainer = document.getElementById('skill-nodes-container');
                 if (nodesContainer) nodesContainer.innerHTML = '';
-                
                 const branchesGroup = document.getElementById('skill-yarn-branches');
                 if (branchesGroup) branchesGroup.innerHTML = '';
-                
                 const spacer = document.getElementById('skills-spacer');
                 if (spacer) spacer.style.height = '0px';
             }
@@ -1377,8 +1883,6 @@
             isPlaying: false,
             finalX: 0,
             timeouts: [],
-            isFalling: false,
-            fallProgress: 0,
             
             trigger(x, y, currentRot) {
                 if (this.isTriggered) return;
@@ -1409,61 +1913,50 @@
                 this.timeouts.push(setTimeout(() => {
                     dynamicBall.style.setProperty('--current-rot', `${currentRot}deg`);
                     dynamicBall.classList.add('ball-squash');
-                    
-                    // Create EXACTLY 4 strands (one for each main category)
-                    this.createFallingYarn(x, y, 4); 
+                    this.createHangingYarn(x, y);
                 }, 1350));
                 
                 this.timeouts.push(setTimeout(() => {
                     this.isPlaying = false;
                     pawContainer.style.display = 'none';
                     if(trails) trails.style.opacity = '0';
-                    
-                    // Stop the fall loop and hand over to Tree Animation
-                    this.isFalling = false;
                     setTimeout(() => { SkillTreeAnimation.start(x, y); }, 100); 
                 }, 2000));
             },
             
-            createFallingYarn(startX, startY, numStrands = 4) {
+            createHangingYarn(startX, startY) {
                 const group = document.getElementById('hanging-yarn-group');
                 group.innerHTML = '';
                 
-                this.isFalling = true;
-                this.fallProgress = 0;
-
-                const stringsData = Array.from({length: numStrands}).map((_, i) => {
+                for(let i=0; i<4; i++) {
                     const path = document.createElementNS("http://www.w3.org/2000/svg", "path");
                     path.classList.add('hanging-yarn-strand');
+                    
+                    const len = 120 + Math.random() * 40; 
+                    const curveOffset = (Math.random() - 0.5) * 40; 
+                    
+                    const d = `M ${startX} ${startY} Q ${startX + curveOffset} ${startY + len/2} ${startX + curveOffset*0.5} ${startY + len}`;
+                    path.setAttribute('d', d);
+                    
+                    const startRot = (Math.random() - 0.5) * 120;
+                    const endRot = (Math.random() - 0.5) * 20;
+                    
+                    path.style.setProperty('--start-rot', `${startRot}deg`);
+                    path.style.setProperty('--swing-1', `${-startRot * 0.5}deg`);
+                    path.style.setProperty('--swing-2', `${startRot * 0.2}deg`);
+                    path.style.setProperty('--end-rot', `${endRot}deg`);
+                    path.style.setProperty('--sway-dur', `${2 + Math.random() * 1.5}s`);
+                    
+                    path.style.transformOrigin = `${startX}px ${startY}px`;
+                    path.classList.add('strand-anim-fall');
+                    
+                    setTimeout(() => {
+                        path.classList.remove('strand-anim-fall');
+                        path.classList.add('strand-anim-settle');
+                    }, 1200 + i * 50); 
+                    
                     group.appendChild(path);
-                    
-                    return {
-                        path: path,
-                        len: 120 + Math.random() * 40,
-                        offsetX: (i - numStrands/2) * 15 + (Math.random() - 0.5) * 20,
-                        swayOffset: Math.random() * Math.PI * 2
-                    };
-                });
-
-                const animateFall = () => {
-                    if (!this.isFalling) return;
-                    
-                    this.fallProgress += 5; // speed
-                    
-                    stringsData.forEach(str => {
-                        const curLen = Math.min(str.len, this.fallProgress);
-                        const sway = Math.sin(Date.now() / 300 + str.swayOffset) * (curLen / 5);
-                        
-                        const endX = startX + str.offsetX + sway;
-                        const endY = startY + curLen;
-                        
-                        str.path.setAttribute('d', `M ${startX} ${startY} Q ${startX + str.offsetX/2} ${startY + curLen/2} ${endX} ${endY}`);
-                    });
-                    
-                    requestAnimationFrame(animateFall);
-                };
-                
-                requestAnimationFrame(animateFall);
+                }
             },
             
             clearTimeouts() {
@@ -1475,8 +1968,6 @@
                 this.clearTimeouts();
                 this.isTriggered = false;
                 this.isPlaying = false;
-                this.isFalling = false;
-                
                 document.getElementById('hanging-yarn-group').innerHTML = '';
                 
                 const dynamicBall = document.getElementById('dynamic-ball');
@@ -1592,7 +2083,9 @@
             },
             
             draw() {
+                // Determine scale based on direction.
                 let sx = this.direction === 1 ? -1 : 1;
+                // Important: Ensure the container doesn't get messed up if scaling rules change.
                 this.el.style.transform = `translate(${this.x - CAT_CONFIG.width/2}px, ${this.y}px) scaleX(${sx})`;
                 
                 const pupils = document.getElementById('cat-pupils');
@@ -1766,14 +2259,17 @@
                     const startX = anchorRect.left + window.scrollX;
                     const startY = anchorRect.top + window.scrollY;
                     
-                    // Use timeline container specifically to lock the bottomY independent of spacer expansion
                     const timelineContainer = document.querySelector('.timeline-container');
                     if (!timelineContainer) return;
                     const timelineRect = timelineContainer.getBoundingClientRect();
                     const centerX = timelineRect.left + timelineRect.width / 2 + window.scrollX;
                     
-                    // Fixed Document coordinate - will not change when spacer beneath it expands
-                    let bottomY = timelineRect.bottom + window.scrollY + 50; 
+                    const timelineItems = document.querySelectorAll('.timeline-item');
+                    let bottomY = timelineRect.bottom + window.scrollY + 50;
+                    if (timelineItems.length > 0) {
+                        const lastItem = timelineItems[timelineItems.length - 1];
+                        bottomY = lastItem.getBoundingClientRect().bottom + window.scrollY + 80;
+                    }
                     
                     const heroCatWrapper = document.getElementById('hero-cat-wrapper');
                     let targetY;
@@ -1814,14 +2310,11 @@
                     }
                     
                     let isAtBottom = false;
-                    
-                    // Check logic based on fixed bottomY
                     if (targetY >= bottomY || TimelineEndingAnimation.isTriggered) {
                         targetY = bottomY;
                         isAtBottom = true;
                     } 
                     
-                    // Solid reset logic for when user scrolls backward up
                     if (!isAtBottom && TimelineEndingAnimation.isTriggered) {
                         TimelineEndingAnimation.reset();
                     }
@@ -1888,7 +2381,6 @@
                     } else {
                         if(!TimelineEndingAnimation.isTriggered) {
                             dynamicBall.style.opacity = '1';
-                            dynamicBall.style.display = 'block'; 
                         }
                     }
 
@@ -2273,12 +2765,55 @@
             }
         };
 
+        const CreativeCornerController = {
+            init() {
+                const wrap = document.getElementById('creative-house-wrap');
+                if (!wrap) return;
+
+                const observer = new IntersectionObserver((entries) => {
+                    entries.forEach(entry => {
+                        if (entry.isIntersecting) {
+                            wrap.classList.add('visible');
+                            
+                            const rooms = wrap.querySelectorAll('.c-room');
+                            rooms.forEach((room, index) => {
+                                setTimeout(() => {
+                                    room.classList.add('active-interaction');
+                                    setTimeout(() => room.classList.remove('active-interaction'), 1000);
+                                }, index * 400 + 500); 
+                            });
+
+                            observer.disconnect(); 
+                        }
+                    });
+                }, { threshold: 0.3 });
+                observer.observe(wrap);
+
+                const rooms = document.querySelectorAll('.c-room');
+                rooms.forEach(room => {
+                    room.addEventListener('click', () => {
+                        rooms.forEach(r => r.classList.remove('active-interaction'));
+                        room.classList.add('active-interaction');
+                        setTimeout(() => room.classList.remove('active-interaction'), 1500);
+                    });
+                    
+                    room.addEventListener('mouseenter', () => {
+                        room.classList.add('active-interaction');
+                    });
+                    room.addEventListener('mouseleave', () => {
+                        room.classList.remove('active-interaction');
+                    });
+                });
+            }
+        };
+
         window.addEventListener('DOMContentLoaded', () => { 
             IntroController.init(); 
             InputHandler.init();
             ScrollController.init();
             ProjectsInteractive.init();
             CarouselController.init();
+            CreativeCornerController.init();
         });
     </script>
 </body>
