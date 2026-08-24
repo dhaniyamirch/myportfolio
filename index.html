@@ -65,6 +65,21 @@
             scroll-behavior: smooth;
         }
 
+        body {
+            cursor: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='32' height='32' viewBox='0 0 32 32'%3E%3Cg fill='%23fdfaf5' stroke='%232c2833' stroke-width='1.5'%3E%3Cellipse cx='16' cy='21' rx='8' ry='7'/%3E%3Cellipse cx='7' cy='13' rx='3' ry='4' transform='rotate(-25 7 13)'/%3E%3Cellipse cx='12' cy='7' rx='3' ry='4' transform='rotate(-10 12 7)'/%3E%3Cellipse cx='20' cy='7' rx='3' ry='4' transform='rotate(10 20 7)'/%3E%3Cellipse cx='25' cy='13' rx='3' ry='4' transform='rotate(25 25 13)'/%3E%3C/g%3E%3C/svg%3E") 16 16, auto;
+        }
+        body.paw-clicking,
+        body.paw-clicking * {
+            cursor: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='32' height='32' viewBox='0 0 32 32'%3E%3Cg fill='%23e8c6c8' stroke='%232c2833' stroke-width='1.5'%3E%3Cellipse cx='16' cy='21' rx='8' ry='7'/%3E%3Cellipse cx='7' cy='13' rx='3' ry='4' transform='rotate(-25 7 13)'/%3E%3Cellipse cx='12' cy='7' rx='3' ry='4' transform='rotate(-10 12 7)'/%3E%3Cellipse cx='20' cy='7' rx='3' ry='4' transform='rotate(10 20 7)'/%3E%3Cellipse cx='25' cy='13' rx='3' ry='4' transform='rotate(25 25 13)'/%3E%3C/g%3E%3C/svg%3E") 16 16, auto !important;
+        }
+        button:hover,
+        a:hover,
+        input:hover,
+        textarea:hover,
+        select:hover {
+            cursor: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='32' height='32' viewBox='0 0 32 32'%3E%3Cg fill='%23a7d1bb' stroke='%232c2833' stroke-width='1.5'%3E%3Cellipse cx='16' cy='21' rx='8' ry='7'/%3E%3Cellipse cx='7' cy='13' rx='3' ry='4' transform='rotate(-25 7 13)'/%3E%3Cellipse cx='12' cy='7' rx='3' ry='4' transform='rotate(-10 12 7)'/%3E%3Cellipse cx='20' cy='7' rx='3' ry='4' transform='rotate(10 20 7)'/%3E%3Cellipse cx='25' cy='13' rx='3' ry='4' transform='rotate(25 25 13)'/%3E%3C/g%3E%3C/svg%3E") 16 16, auto;
+        }
+
         h1, h2, h3, h4 { font-weight: 700; }
         .mono { font-family: 'JetBrains Mono', monospace; font-size: 0.9em; }
         a { color: var(--primary-color); text-decoration: none; transition: color 0.3s ease; font-weight: 600; }
@@ -79,6 +94,13 @@
         }
 
         .intro-cat-wrapper { margin-bottom: 3rem; transition: transform 0.8s ease; }
+        .intro-cat-wrapper.happy-bounce { animation: happy-bounce 0.9s cubic-bezier(0.34, 1.56, 0.64, 1); }
+        @keyframes happy-bounce {
+            0% { transform: scale(1) rotate(0deg); }
+            35% { transform: scale(1.12) rotate(-5deg); }
+            65% { transform: scale(0.96) rotate(5deg); }
+            100% { transform: scale(1) rotate(0deg); }
+        }
         .cat-face-container { position: relative; height: var(--intro-size); width: calc(var(--intro-size) * 1.13); }
 
         .ear {
@@ -266,6 +288,19 @@
             100% { transform: translate(-50%, -100px) scale(1.5) rotate(var(--rot)); opacity: 0; }
         }
 
+        .cute-heart {
+            position: absolute; top: 52%; width: 24px; height: 24px;
+            color: var(--primary-color); font-size: 1.5rem; line-height: 1;
+            transform: translate(-50%, 0) scale(0);
+            animation: cuteHeartPop 1.6s cubic-bezier(0.1, 0.8, 0.2, 1) forwards;
+            animation-delay: var(--heart-delay);
+        }
+        @keyframes cuteHeartPop {
+            0% { transform: translate(-50%, 0) scale(0) rotate(-15deg); opacity: 0; }
+            25% { transform: translate(-50%, -20px) scale(1.2) rotate(10deg); opacity: 1; }
+            100% { transform: translate(-50%, -130px) scale(0.7) rotate(var(--rot)); opacity: 0; }
+        }
+
         .scratch-mark {
             position: absolute; 
             width: clamp(200px, 40vw, 400px); height: clamp(200px, 40vw, 400px);
@@ -403,6 +438,7 @@
         
         .hero-cta-group { display: flex; gap: 1rem; flex-wrap: wrap; }
         .hero-cta-main, .hero-cta-sec { padding: 0.8rem 1.5rem; border-radius: 30px; font-weight: 700; font-size: 1rem; cursor: pointer; transition: all 0.3s; text-decoration: none; display: inline-flex; align-items: center; justify-content: center; font-family: 'Quicksand', sans-serif; }
+        .hero-cta-sec svg { width: 1.1em; height: 1.1em; margin-right: 0.5rem; }
         .hero-cta-main { background: var(--primary-color); color: var(--bg-color); border: 2px solid var(--primary-color); box-shadow: 0 8px 20px rgba(232, 198, 200, 0.2); }
         .hero-cta-main:hover { transform: translateY(-3px); box-shadow: 0 12px 25px rgba(232, 198, 200, 0.4); }
         .hero-cta-sec { background: transparent; color: var(--text-main); border: 2px solid var(--surface-color-light); box-shadow: 0 8px 20px var(--shadow-color); }
@@ -676,7 +712,15 @@
         .timeline-item.right { margin-left: auto; transform: translateX(50px); text-align: left; }
         .timeline-item.revealed { opacity: 1; transform: translateX(0); }
 
-        .project-img { width: 100%; height: 200px; background: var(--bg-color); border-radius: 16px; margin-bottom: 1.5rem; display: flex; align-items: center; justify-content: center; color: var(--text-muted); border: 2px dashed var(--border-color); font-weight: 600; }
+        .project-img { width: 100%; height: 150px; background: var(--bg-color); border-radius: 16px; margin-bottom: 1rem; display: flex; align-items: center; justify-content: center; color: var(--text-muted); border: 2px dashed var(--border-color); font-weight: 600; overflow: hidden; }
+        .project-img img { width: 100%; height: 100%; object-fit: contain; display: block; }
+        .project-img.has-image { border-style: solid; border-color: var(--surface-color-light); }
+        .deployment-card { padding: 1.25rem; gap: 0.25rem; overflow: hidden; }
+        .deployment-card h3 { font-size: 1.15rem; line-height: 1.25; }
+        .deployment-card p { font-size: 0.9rem; margin-top: 0.4rem; color: var(--text-muted); line-height: 1.45; }
+        .project-number { color: var(--secondary-color); font-family: 'JetBrains Mono', monospace; font-size: 0.75rem; font-weight: 700; letter-spacing: 0; }
+        .project-tags { display: flex; flex-wrap: wrap; gap: 0.35rem; margin-top: auto; padding-top: 0.7rem; }
+        .project-tags .tag { margin: 0; padding: 0.25rem 0.55rem; font-size: 0.7rem; }
 
         .carousel-container { position: relative; width: 100%; max-width: 500px; height: 380px; margin: 0 auto; overflow: hidden; border-radius: var(--border-radius); }
         .carousel-slide { position: absolute; top: 0; left: 0; width: 100%; height: 100%; transition: transform 0.6s cubic-bezier(0.34, 1.56, 0.64, 1), opacity 0.6s; opacity: 0; pointer-events: none; transform: translateX(120%); }
@@ -686,13 +730,14 @@
         .btn-nav:hover { background: var(--primary-color); color: var(--bg-color); transform: translateY(-2px); }
         
         .projects-interactive-wrapper { display: flex; gap: 2rem; width: 100%; align-items: stretch; position: relative; }
-        .projects-content-area { flex: 1; position: relative; display: flex; flex-direction: column; width: 100%; }
-        
-        .guardian-cat-overlay { position: absolute; top: 0; left: 0; width: 100%; height: 100%; display: flex; flex-direction: column; align-items: center; justify-content: center; z-index: 20; transition: background 1s ease, backdrop-filter 1s ease; pointer-events: auto; }
+        .projects-content-area { flex: 1; position: relative; display: flex; flex-direction: column; width: 100%; z-index: 20; }
+        .guardian-cat-overlay { position: absolute; top: 0; left: 0; width: 100%; height: 100%; display: flex; flex-direction: column; align-items: center; justify-content: center; z-index: 20; overflow: visible; transition: background 1s ease, backdrop-filter 1s ease; pointer-events: auto; }
         .guardian-cat-overlay:not(.unlocked) { background: rgba(44, 40, 51, 0.85); backdrop-filter: blur(8px); }
         .guardian-cat-overlay.unlocked { pointer-events: none; }
         .guardian-cat-overlay.unlocked #guardian-text-container { opacity: 0; pointer-events: none; }
-        .guardian-cat-wrapper { position: absolute; top: calc(50% - 90px); left: calc(50% - 125px); width: 250px; height: 180px; transform: translate(0px, 0px); z-index: 30; will-change: transform; }
+        .guardian-cat-wrapper { position: absolute; top: 8%; left: 50%; width: 210px; height: 150px; transform: translate(-50%, 0); z-index: 30; will-change: transform; }
+        #guardian-svg { display: block; width: 100%; height: 100%; overflow: visible; }
+        #guardian-text-container { position: absolute !important; left: 5%; bottom: 8%; width: 90%; margin-top: 0 !important; }
         .cat-flipped svg { transform: scaleX(-1); }
 
         #g-torso { transform-origin: 160px 160px; transition: transform 0.4s ease; }
@@ -981,15 +1026,12 @@
         .waypoint-anim { animation: ping 0.5s ease-out forwards; }
         @keyframes ping { 0% { transform: translate(-50%, -50%) scale(0); opacity: 1; } 100% { transform: translate(-50%, -50%) scale(2); opacity: 0; } }
 
-        #mobile-hint { display: none; position: fixed; bottom: 20px; left: 50%; transform: translateX(-50%); background: var(--surface-color); padding: 12px 24px; border-radius: 30px; font-size: 0.9rem; font-weight: 600; z-index: 1000; box-shadow: 0 5px 15px var(--shadow-color); pointer-events: none; }
-        
         @media (max-width: 768px) {
             header { flex-direction: column; gap: 1rem; }
             nav { gap: 1rem; flex-wrap: wrap; justify-content: center; }
             .hero-layout { flex-direction: column; text-align: center; }
             .hero-cat-container { min-height: 350px; }
             #hero-cat-wrapper { height: 350px; }
-            #mobile-hint { display: block; }
             .timeline-item { width: 85%; }
             .timeline-item.left, .timeline-item.right { margin: 0 auto 2rem auto; transform: translateY(30px); text-align: center; }
             .timeline-item.revealed { transform: translateY(0); }
@@ -1150,29 +1192,126 @@
             background: var(--bg-color); border: 4px solid var(--primary-color); border-radius: 16px;
             overflow: hidden; box-shadow: 0 20px 50px rgba(0,0,0,0.5);
         }
-        #mg-bg { position: absolute; top: 0; left: 0; width: 100%; height: 100%; transition: background 1s; }
+        #mg-bg {
+            position: absolute; top: 0; left: 0; width: 100%; height: 100%; transition: background-color 1s;
+            background-image:
+                radial-gradient(circle at 15% 20%, rgba(255,255,255,0.9) 0 2px, transparent 3px),
+                radial-gradient(circle at 78% 16%, rgba(255,255,255,0.75) 0 1.5px, transparent 2.5px),
+                radial-gradient(circle at 62% 42%, rgba(255,255,255,0.55) 0 1px, transparent 2px),
+                linear-gradient(180deg, rgba(255,255,255,0.2), transparent 42%),
+                linear-gradient(135deg, rgba(255,255,255,0.14), transparent 45%);
+            background-size: 180px 140px, 240px 170px, 150px 120px, 100% 100%, 100% 100%;
+            background-position: 0 0, 30px 20px, 90px 10px, 0 0, 0 0;
+        }
+        #mg-bg::before, #mg-bg::after { content: ''; position: absolute; inset: 0; pointer-events: none; }
+        #mg-bg::before { background: radial-gradient(circle at 82% 18%, rgba(255,255,255,0.9) 0 2px, transparent 3px); opacity: 0; }
+        #mg-bg::after { opacity: 0; }
+        #mg-world.mg-level-3 #mg-bg::after { opacity: 0.55; background: radial-gradient(circle at 18% 36%, #e8a151 0 3px, transparent 4px), radial-gradient(circle at 54% 25%, #d77a58 0 3px, transparent 4px), radial-gradient(circle at 80% 42%, #efc35d 0 3px, transparent 4px); background-size: 110px 90px, 160px 120px, 130px 100px; }
+        #mg-world.mg-level-5 #mg-bg::after { opacity: 0.42; background: repeating-linear-gradient(105deg, transparent 0 13px, rgba(190,220,255,0.65) 14px 16px, transparent 17px 28px); animation: mgRain 0.55s linear infinite; }
+        #mg-world.mg-level-6 #mg-bg::after { opacity: 0.75; background: linear-gradient(180deg, rgba(255,157,122,0.28), rgba(213,116,153,0.12)); }
+        #mg-world.mg-level-6 #mg-bg::before { opacity: 1; background: radial-gradient(circle at 78% 20%, #fff3b0 0 22px, transparent 23px), radial-gradient(circle at 15% 18%, #fff 0 1px, transparent 2px), radial-gradient(circle at 35% 28%, #fff 0 1px, transparent 2px), radial-gradient(circle at 60% 12%, #fff 0 1.5px, transparent 2.5px); }
+        .mg-parallax-layer { position: absolute; inset: 0; pointer-events: none; }
+        #mg-mountains {
+            z-index: 1; top: 25%; bottom: 20%; opacity: 0.8;
+            background: linear-gradient(135deg, transparent 42%, rgba(126, 139, 190, 0.65) 42% 58%, transparent 58%) 0 100% / 260px 150px repeat-x;
+            transform: translateX(0);
+        }
+        #mg-clouds {
+            z-index: 2; opacity: 0.65;
+            background: radial-gradient(ellipse at 15% 22%, #fff 0 22px, transparent 24px), radial-gradient(ellipse at 20% 22%, #fff 0 30px, transparent 32px), radial-gradient(ellipse at 25% 23%, #fff 0 20px, transparent 22px);
+            background-size: 330px 120px; background-repeat: repeat-x;
+        }
+        #mg-foreground {
+            z-index: 3; top: auto; height: 24%; opacity: 0.8;
+            background: linear-gradient(160deg, transparent 0 35%, #82ad73 36% 100%) 0 0 / 90px 100% repeat-x;
+            animation: none;
+        }
+        #mg-world.mg-level-2 #mg-foreground { background-color: #8fba78; }
+        #mg-world.mg-level-3 #mg-clouds { opacity: 0.85; }
+        #mg-world.mg-level-4 #mg-clouds { opacity: 0.3; }
+        #mg-world.mg-level-4 #mg-foreground { background-color: #536d68; }
+        #mg-world.mg-level-5 #mg-foreground { background-color: #765461; }
+        #mg-world.mg-level-6 #mg-foreground { background-color: #263b55; }
+        #mg-world.mg-level-7 #mg-bg { background-color: #17243d !important; }
+        #mg-world.mg-level-7 #mg-foreground { background-color: #1d3a45; }
+        #mg-world.mg-level-8 #mg-bg { background-color: #211735 !important; }
+        #mg-world.mg-level-8 #mg-foreground { background-color: #34224d; }
+        #mg-world.mg-level-7 #mg-bg::before,
+        #mg-world.mg-level-8 #mg-bg::before {
+            opacity: 1;
+            background: radial-gradient(circle at 78% 20%, #fff3b0 0 22px, transparent 23px),
+                radial-gradient(circle at 15% 18%, #fff 0 1px, transparent 2px),
+                radial-gradient(circle at 35% 28%, #fff 0 1px, transparent 2px),
+                radial-gradient(circle at 60% 12%, #fff 0 1.5px, transparent 2.5px);
+        }
+        #mg-world.mg-level-8 #mg-bg::before { background-size: auto, 130px 100px, 170px 130px, 220px 150px; }
+        .mg-game-paused .mg-parallax-layer, .mg-game-paused #mg-cat, .mg-game-paused .mg-entity { animation-play-state: paused !important; }
+        .mg-game-over .mg-parallax-layer, .mg-game-over #mg-cat, .mg-game-over .mg-entity { animation-play-state: paused !important; }
+        @keyframes mgMountains { to { transform: translateX(-260px); } }
+        @keyframes mgClouds { to { background-position: -660px 0; } }
+        @keyframes mgForeground { to { background-position: -180px 0; } }
+        @keyframes mgRain { to { background-position: 0 28px; } }
         #mg-floor { position: absolute; bottom: 0; left: 0; width: 100%; height: 20%; transition: background 1s; border-top: 4px solid rgba(0,0,0,0.2); }
         
         #mg-hud {
             position: absolute; top: 15px; left: 15px; right: 15px; display: flex; justify-content: space-between;
             font-family: 'JetBrains Mono', monospace; font-weight: 800; font-size: clamp(0.8rem, 2vw, 1.2rem); color: #fff; text-shadow: 2px 2px 0 #000; z-index: 10;
         }
+        #mg-pause-btn {
+            display: none; margin: -7px 0 0 10px; padding: 7px 13px; border: 2px solid var(--primary-color);
+            border-radius: 8px; background: rgba(17, 15, 22, 0.8); color: #fff; cursor: pointer;
+            font: 800 0.85rem 'JetBrains Mono', monospace; text-shadow: none;
+        }
+        #mg-pause-btn:hover { background: var(--primary-color); color: #110f16; }
+        #mg-pause-layer { display: none; z-index: 30; }
+        #mg-pause-layer.active { display: flex; }
         
         #mg-cat {
             position: absolute; bottom: 20%; left: 10%; width: 50px; height: 50px;
             transition: bottom 0.05s linear; z-index: 5; transform-origin: bottom center;
         }
+        #mg-cat svg { display: block; width: 100%; height: 100%; overflow: visible; }
         
         .mg-entity { position: absolute; z-index: 4; transform-origin: bottom left; }
         .mg-score-float { position: absolute; font-weight: 800; font-size: 1.5rem; font-family: 'JetBrains Mono', monospace; animation: floatUp 1s forwards; z-index: 10; text-shadow: 2px 2px 0 rgba(0,0,0,0.8); }
         @keyframes floatUp { 0% { transform: translateY(0); opacity: 1; } 100% { transform: translateY(-60px); opacity: 0; } }
+        .mg-cute-popup {
+            position: absolute; top: 28%; left: 50%; transform: translateX(-50%);
+            z-index: 25; padding: 6px 12px; border: 2px solid currentColor; border-radius: 14px;
+            background: rgba(17, 15, 22, 0.88); font: 800 0.9rem 'Quicksand', sans-serif;
+            white-space: nowrap; pointer-events: none; animation: cutePopup 1.2s ease-out forwards;
+        }
+        #mg-debug {
+            display: none; position: absolute; left: 12px; bottom: 12px; z-index: 40;
+            max-width: 250px; padding: 6px 8px; color: #d9ffb0; background: rgba(0,0,0,0.75);
+            border: 1px solid #a2d149; border-radius: 6px; font: 11px/1.35 'JetBrains Mono', monospace;
+            pointer-events: none; white-space: pre-wrap;
+        }
+        #mg-world.mg-debug-on #mg-debug { display: block; }
+        #mg-world.mg-debug-on #mg-cat { outline: 1px solid #7cff6b; }
+        #mg-world.mg-debug-on .mg-entity { outline: 1px solid #ff6b6b; }
+        @keyframes cutePopup {
+            0% { opacity: 0; transform: translate(-50%, 10px) scale(0.8); }
+            15%, 70% { opacity: 1; transform: translate(-50%, 0) scale(1); }
+            100% { opacity: 0; transform: translate(-50%, -24px) scale(0.95); }
+        }
 
         /* Cat Animation States */
         @keyframes mgRunCycle { 0% { transform: translateY(0); } 50% { transform: translateY(-4px); } 100% { transform: translateY(0); } }
-        .mg-run svg { animation: mgRunCycle 0.3s infinite; }
-        .mg-jump svg { transform: rotate(-15deg); }
-        .mg-crouch { transform: scaleY(0.5); }
+        .mg-run { animation: mgRunCycle 0.3s infinite; }
+        #mg-cat svg { transform: scaleX(-1); }
+        .mg-jump svg { transform: scaleX(-1) rotate(-15deg); }
+        .mg-preparing { transform: translateY(8px) scaleY(0.72); }
+        .mg-slide { transform: translateY(12px) scaleY(0.5); }
         .mg-hurt { filter: brightness(0.5) sepia(1) hue-rotate(-50deg) saturate(5); }
+        .mg-dog_jump { animation: mgDogLeap 0.8s infinite ease-in-out; filter: drop-shadow(0 0 5px rgba(255, 120, 140, 0.85)); }
+        .mg-dog_air { filter: drop-shadow(0 0 5px rgba(110, 220, 255, 0.9)); }
+        .mg-dog_air::after { content: '〰 〰'; position: absolute; left: -24px; top: 48%; color: #9be7ff; font-size: 14px; letter-spacing: 5px; }
+        .mg-dog_air::before { content: ''; position: absolute; left: 15%; bottom: -10px; width: 70%; height: 5px; border-radius: 50%; background: rgba(60, 80, 110, 0.35); }
+        .mg-yarn { animation: mgYarnBob 1.8s ease-in-out infinite; }
+        .mg-yarn { filter: drop-shadow(0 0 4px rgba(255, 210, 225, 0.9)); }
+        @keyframes mgYarnBob { 0%, 100% { transform: translateY(0) rotate(-8deg); } 50% { transform: translateY(-6px) rotate(8deg); } }
+        @keyframes mgDogLeap { 0%, 100% { transform: translateY(0) rotate(-2deg); } 50% { transform: translateY(-10px) rotate(2deg); } }
 
         /* Game Screens */
         .mg-screen {
@@ -1303,6 +1442,16 @@
                     <p class="hero-desc" style="margin-top: -1rem;">
                         Welcome to my digital workspace! Scroll down to explore my timeline, check out my recent hardware deployments, or drop a message via the Post Cat.
                     </p>
+                    <div class="hero-cta-group">
+                        <a class="hero-cta-sec" href="./nachiket_resume.pdf" target="_blank" rel="noopener" aria-label="Open Nachiket's resume in a new tab">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                                <path d="M12 3v12"></path>
+                                <path d="m7 10 5 5 5-5"></path>
+                                <path d="M5 21h14"></path>
+                            </svg>
+                            Download Resume
+                        </a>
+                    </div>
                 </div>
                 
                 <div class="hero-cat-container">
@@ -2254,24 +2403,36 @@
                 <div class="projects-content-area">
                     <div class="carousel-container">
                         <div class="carousel-slide active">
-                            <div class="cat-platform" style="height: 100%; display: flex; flex-direction: column;">
-                                <div class="project-img">📷 Drone Brain</div>
-                                <h3>Autonomous Drone Brain</h3>
-                                <p style="font-size: 0.95rem; margin-top: 0.5rem; color: var(--text-muted);">A custom flight controller based on STM32 H7 running a real-time object avoidance neural net.</p>
+                            <div class="cat-platform deployment-card" style="height: 100%; display: flex; flex-direction: column;">
+                                <span class="project-number">PROJECT 01</span>
+                                <div class="project-img image-coming-soon" data-image-path="PROJECT_1_IMAGE_PATH">Image coming soon</div>
+                                <h3>Schizophrenia Classification from EEG</h3>
+                                <p>A machine-learning pipeline for schizophrenia classification using multi-channel EEG features from regional brain analysis.</p>
+                                <div class="project-tags">
+                                    <span class="tag">EEG</span><span class="tag">Machine Learning</span><span class="tag">Python</span><span class="tag">Signal Processing</span><span class="tag">Feature Extraction</span>
+                                </div>
                             </div>
                         </div>
                         <div class="carousel-slide">
-                            <div class="cat-platform" style="height: 100%; display: flex; flex-direction: column;">
-                                <div class="project-img">🐈 Smart Feeder</div>
-                                <h3>IoT Cat Feeder + Face Rec</h3>
-                                <p style="font-size: 0.95rem; margin-top: 0.5rem; color: var(--text-muted);">Dispenses specific diets based on which cat is detected using an ESP32-CAM.</p>
+                            <div class="cat-platform deployment-card" style="height: 100%; display: flex; flex-direction: column;">
+                                <span class="project-number">PROJECT 02</span>
+                                <div class="project-img image-coming-soon" data-image-path="PROJECT_2_IMAGE_PATH">Image coming soon</div>
+                                <h3>Sand Grain Vision &amp; Geolocation System</h3>
+                                <p>A Raspberry Pi vision system that analyzes sand grains, estimates dimensions, and links results to GPS locations through Flask.</p>
+                                <div class="project-tags">
+                                    <span class="tag">Raspberry Pi</span><span class="tag">Computer Vision</span><span class="tag">OpenCV</span><span class="tag">GPS</span><span class="tag">Flask</span><span class="tag">Image Processing</span>
+                                </div>
                             </div>
                         </div>
                         <div class="carousel-slide">
-                            <div class="cat-platform" style="height: 100%; display: flex; flex-direction: column;">
-                                <div class="project-img">🦾 Bionic Arm</div>
-                                <h3>Myoelectric Prosthetic</h3>
-                                <p style="font-size: 0.95rem; margin-top: 0.5rem; color: var(--text-muted);">A 3D-printed bionic arm controlled by EMG sensors reading muscle signals via I2C.</p>
+                            <div class="cat-platform deployment-card" style="height: 100%; display: flex; flex-direction: column;">
+                                <span class="project-number">PROJECT 03</span>
+                                <div class="project-img image-coming-soon" data-image-path="PROJECT_3_IMAGE_PATH">Image coming soon</div>
+                                <h3>Vision-Controlled Robotic Arm</h3>
+                                <p>A real-time gesture system that maps MediaPipe hand landmarks to serial commands for a servo-driven robotic arm.</p>
+                                <div class="project-tags">
+                                    <span class="tag">MediaPipe</span><span class="tag">Computer Vision</span><span class="tag">Machine Learning</span><span class="tag">Robotics</span><span class="tag">Servo Control</span><span class="tag">Serial Communication</span>
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -3231,8 +3392,6 @@
         <p style="color: var(--text-main); font-size: 1.2rem; font-weight: 600;">Press ESC to resume</p>
     </div>
 
-    <div id="mobile-hint">Tap anywhere to guide the mini cat</div>
-
     <div id="game-layer">
         <div id="waypoint" style="position: absolute; width: 20px; height: 20px; border-radius: 50%; border: 3px solid var(--primary-color); z-index: 500; pointer-events: none; opacity: 0;"></div>
         <div id="cat" class="cat-idle">
@@ -3289,38 +3448,34 @@
     <div id="mini-game-overlay">
         <div id="mg-world">
             <div id="mg-bg"></div>
+            
+            <div id="mg-mountains" class="mg-parallax-layer"></div>
+            <div id="mg-clouds" class="mg-parallax-layer"></div>
+            <div id="mg-foreground" class="mg-parallax-layer"></div>
             <div id="mg-floor"></div>
+            <div id="mg-debug"></div>
             
             <!-- HUD -->
             <div id="mg-hud">
                 <div id="mg-lives-disp">🐾 LIVES: ❤️❤️❤️❤️❤️❤️❤️❤️❤️</div>
                 <div id="mg-score-disp">SCORE: 000000</div>
                 <div id="mg-level-disp">LEVEL: 01</div>
+                <button id="mg-pause-btn" type="button">PAUSE</button>
+            </div>
+
+            <div id="mg-pause-layer" class="mg-screen">
+                <h2>PAUSED</h2>
+                <p>Press <strong>ESC</strong> or use the button to keep running.</p>
+                <button id="mg-resume-btn" class="mg-btn" type="button">RESUME</button>
+                <button class="mg-btn mg-btn-restart" type="button">RESTART</button>
+                <button class="mg-btn mg-btn-exit mg-btn-quit" type="button">EXIT</button>
             </div>
             
             <!-- Entities Container -->
             <div id="mg-entities"></div>
             
             <!-- Player Cat -->
-            <div id="mg-cat" class="mg-run">
-                <svg viewBox="0 0 100 100" width="100%" height="100%" style="overflow: visible;">
-                    <rect x="20" y="40" width="60" height="40" rx="15" fill="var(--primary-color)"/>
-                    <circle cx="80" cy="45" r="22" fill="var(--primary-color)"/>
-                    <polygon points="70,30 65,5 85,25" fill="var(--primary-color)"/>
-                    <polygon points="90,30 95,5 75,25" fill="var(--primary-color)"/>
-                    <!-- Face -->
-                    <circle cx="92" cy="40" r="4" fill="#14131a"/>
-                    <circle cx="78" cy="40" r="4" fill="#14131a"/>
-                    <circle cx="91" cy="38" r="1.5" fill="#fff"/>
-                    <circle cx="77" cy="38" r="1.5" fill="#fff"/>
-                    <path d="M 85 48 Q 87 50 89 48" fill="none" stroke="#14131a" stroke-width="2" stroke-linecap="round"/>
-                    <!-- Tail -->
-                    <path d="M 25 60 Q -5 50 5 25" fill="none" stroke="var(--primary-color)" stroke-width="12" stroke-linecap="round"/>
-                    <!-- Legs -->
-                    <line x1="35" y1="75" x2="35" y2="95" stroke="var(--secondary-color)" stroke-width="8" stroke-linecap="round"/>
-                    <line x1="65" y1="75" x2="65" y2="95" stroke="var(--secondary-color)" stroke-width="8" stroke-linecap="round"/>
-                </svg>
-            </div>
+            <div id="mg-cat" class="mg-run"></div>
             
             <!-- SCREENS -->
             <div id="mg-start-screen" class="mg-screen">
@@ -3340,6 +3495,7 @@
             <div id="mg-gameover-screen" class="mg-screen">
                 <h2 style="color: #ff3333;">GAME OVER</h2>
                 <p>The bugs caught you. Code failed to compile.</p>
+                <p id="mg-final-score" style="color:var(--accent-color); font-weight:800;"></p>
                 <div style="margin-top: 1rem;">
                     <button class="mg-btn mg-btn-retry">TRY AGAIN 🔄</button>
                     <button class="mg-btn mg-btn-quit">RETURN</button>
@@ -3408,12 +3564,44 @@
                 this.isTriggered = true;
                 this.isPlaying = true;
                 this.finalX = x;
+                const ball = document.getElementById('dynamic-ball');
+                const paw = document.getElementById('timeline-paw-container');
+                if (ball) {
+                    ball.style.setProperty('--current-rot', `${rot}deg`);
+                    ball.classList.remove('ball-squash');
+                }
+                if (paw) {
+                    paw.style.left = `${x}px`;
+                    paw.style.top = `${y}px`;
+                    paw.classList.remove('paw-anim-drop', 'paw-anim-swipe');
+                    void paw.offsetWidth;
+                    paw.classList.add('paw-anim-drop');
+                }
+                setTimeout(() => {
+                    if (ball) {
+                        ball.classList.add('ball-squash');
+                    }
+                    if (paw) {
+                        paw.classList.remove('paw-anim-drop');
+                        paw.classList.add('paw-anim-swipe');
+                    }
+                }, 600);
+                setTimeout(() => {
+                    if (ball) ball.style.opacity = '0';
+                    if (paw) paw.style.opacity = '0';
+                    SkillTreeAnimation.start(x, y);
+                }, 900);
                 setTimeout(() => { this.isPlaying = false; }, 1000);
             },
             reset() {
                 this.isTriggered = false;
                 this.isPlaying = false;
                 this.finalX = null;
+                const paw = document.getElementById('timeline-paw-container');
+                if (paw) {
+                    paw.classList.remove('paw-anim-drop', 'paw-anim-swipe');
+                    paw.style.opacity = '0';
+                }
             }
         };
 
@@ -3437,6 +3625,16 @@
                             <ellipse cx="145" cy="85" rx="14" ry="20" fill="#fca5a5" transform="rotate(25 145 85)"/>
                         </svg>
                     `;
+
+                    for (let i = 0; i < 5; i++) {
+                        const heart = document.createElement('div');
+                        heart.className = 'cute-heart';
+                        heart.innerText = '♥';
+                        heart.style.left = `calc(50% + ${(Math.random() - 0.5) * 34}vw)`;
+                        heart.style.setProperty('--rot', `${(Math.random() - 0.5) * 40}deg`);
+                        heart.style.setProperty('--heart-delay', `${1.1 + i * 0.12}s`);
+                        pawContainer.appendChild(heart);
+                    }
                 } else {
                     giantPaw.innerHTML = `
                         <svg viewBox="0 0 200 200" width="100%" height="100%" style="filter: drop-shadow(0 10px 15px rgba(255,51,51,0.5));">
@@ -3523,6 +3721,9 @@
                 let msgTimeout;
 
                 btnYes.addEventListener('click', () => { 
+                    catFace.classList.remove('happy-bounce');
+                    void catFace.offsetWidth;
+                    catFace.classList.add('happy-bounce');
                     btnYes.disabled = true; btnNo.disabled = true;
                     btnYes.style.opacity = '0'; btnYes.style.pointerEvents = 'none'; btnYes.style.transform = `translateX(-85px) scale(0)`;
                     btnNo.style.opacity = '0'; btnNo.style.pointerEvents = 'none'; btnNo.style.transform = `translateX(85px) scale(0)`;
@@ -4690,12 +4891,41 @@
             requestAnimationFrame(gameLoop);
         }
 
+        const PROJECT_1_IMAGE_PATH = "projects/schizophrenia/image.png";
+        const PROJECT_2_IMAGE_PATH = "";
+        const PROJECT_3_IMAGE_PATH = "";
+
         const CarouselController = {
             currentSlide: 0,
             isPushing: false,
             
             init() {
                 this.slides = document.querySelectorAll('.carousel-slide');
+                const imagePaths = {
+                    PROJECT_1_IMAGE_PATH,
+                    PROJECT_2_IMAGE_PATH,
+                    PROJECT_3_IMAGE_PATH
+                };
+                document.querySelectorAll('.image-coming-soon').forEach(imageContainer => {
+                    const imagePath = imagePaths[imageContainer.dataset.imagePath];
+                    if (imagePath) {
+                        imageContainer.classList.add('has-image');
+                        imageContainer.classList.remove('image-coming-soon');
+                        const image = document.createElement('img');
+                        image.src = imagePath;
+                        image.alt = 'Project image';
+                        imageContainer.appendChild(image);
+                    }
+                });
+                document.querySelectorAll('.project-img img').forEach(image => {
+                    image.addEventListener('error', () => {
+                        const imageContainer = image.parentElement;
+                        image.remove();
+                        imageContainer.classList.remove('has-image');
+                        imageContainer.classList.add('image-coming-soon');
+                        imageContainer.textContent = 'Image coming soon';
+                    });
+                });
                 document.getElementById('btn-next-proj').addEventListener('click', () => this.handlePush('next'));
                 document.getElementById('btn-prev-proj').addEventListener('click', () => this.handlePush('prev'));
             },
@@ -4874,13 +5104,21 @@
                             const wrapperRect = wrapper.getBoundingClientRect();
                             const bowlRect = bowlFood.getBoundingClientRect();
                             
-                            let distX = bowlRect.left - wrapperRect.left - 180; 
-                            let distY = bowlRect.top - wrapperRect.top - 100;
-                            
-                            if (window.innerWidth <= 768) {
-                                distX = (bowlRect.left + bowlRect.width/2) - (wrapperRect.left + wrapperRect.width/2) - 40;
-                                distY = bowlRect.top - wrapperRect.top - 120; 
+                            const overlayRect = overlay.getBoundingClientRect();
+                            const stopGap = window.innerWidth <= 768 ? 20 : 16;
+                            const overlayCenterX = overlayRect.left + overlayRect.width / 2;
+                            const feeder = document.querySelector('.dispenser-station');
+                            const feederRect = feeder ? feeder.getBoundingClientRect() : null;
+                            let stopLeft = overlayRect.right - wrapperRect.width - stopGap;
+
+                            if (feederRect && feederRect.top < overlayRect.bottom && feederRect.left >= overlayRect.right - 10) {
+                                stopLeft = feederRect.left - wrapperRect.width - stopGap;
+                            } else if (feederRect && feederRect.right <= overlayRect.left + 10) {
+                                stopLeft = feederRect.right + stopGap;
                             }
+
+                            let distX = stopLeft - overlayCenterX + 180;
+                            let distY = bowlRect.top - wrapperRect.top - 100;
                             
                             wrapper.style.transition = 'transform 2.5s cubic-bezier(0.25, 1, 0.5, 1)';
                             wrapper.style.transform = `translate(${distX}px, ${distY}px)`;
@@ -5354,16 +5592,27 @@
         const MiniGame = {
             initialized: false,
             isActive: false, isPlaying: false,
+            isPaused: false,
             lives: 9, score: 0, level: 1,
-            speed: 500, // px per second
+            speed: 340, // px per second
             catY: 0, catVy: 0, gravity: 2800, jumpForce: -1000,
             isJumping: false, isCrouching: false, isInvincible: false,
-            entities: [], lastTime: 0, spawnTimer: 0, levelTimer: 0,
+            isPreparingJump: false, jumpPreparationTimer: null, levelTransitionTimer: null,
+            mobileCrouchTimer: null, invincibilityTimer: null, catnipTimer: null,
+            entities: [], spawnQueue: [], sceneOffset: 0, lastTime: 0, spawnTimer: 0, levelTimer: 0,
+            debugMode: false, currentPattern: 'none',
             
-            levelDurations: [20000, 25000, 25000, 30000, 30000, 35000],
-            levelNames: ["SR. KG", "SCHOOL", "COLLEGE", "ENGINEERING", "CV RESEARCH", "DEV CAT"],
-            bgColors: ["#e0f2f7", "#d4e6f1", "#c7ccdc", "#3b3644", "#1a1e29", "#110f16"],
-            floorColors: ["#9a6b4e", "#b3855a", "#8c6548", "#5b486b", "#2c3545", "#24222a"],
+            levelDurations: [18000, 22000, 24000, 26000, 28000, 30000, 32000, 36000],
+            levelNames: ["MORNING MEADOW", "SUNNY AFTERNOON", "AUTUMN PARK", "CLOUDY WINDY DAY", "RAINY DAY", "SUNSET CITY", "NIGHT FOREST", "MIDNIGHT DEV CITY"],
+            bgColors: ["#bfe8f2", "#83c9ed", "#aab2ca", "#71869d", "#40546d", "#dd8a98", "#17243d", "#211735"],
+            floorColors: [
+                "linear-gradient(#9bd477 0 18%, #6ca85e 18% 100%)",
+                "linear-gradient(#a7dc78 0 18%, #75b65f 18% 100%)",
+                "linear-gradient(#8fb8a0 0 18%, #638d73 18% 100%)",
+                "linear-gradient(#5e7180 0 18%, #40515d 18% 100%)",
+                "linear-gradient(#9c6671 0 18%, #5c4258 18% 100%)",
+                "linear-gradient(#3e5d78 0 18%, #26394f 18% 100%)"
+            ],
             
             init() {
                 if (this.initialized) return;
@@ -5396,6 +5645,15 @@
                 const startScreen = document.getElementById('mg-start-screen');
                 if (!startScreen) console.error('MiniGame: #mg-start-screen not found');
 
+                const miniCat = document.getElementById('mg-cat');
+                const navbarCat = document.querySelector('#cat svg');
+                if (miniCat && navbarCat) {
+                    const matchingCat = navbarCat.cloneNode(true);
+                    matchingCat.querySelectorAll('[id]').forEach(el => el.removeAttribute('id'));
+                    matchingCat.style.transform = 'scaleX(-1)';
+                    miniCat.appendChild(matchingCat);
+                }
+
                 // BUG #4 & #5 FIX: Dynamically wire up existing buttons
                 // Uses event delegation to safely catch clicks on any PLAY, RETRY, or RETURN button
                 document.addEventListener('click', (e) => {
@@ -5411,8 +5669,10 @@
                         if (
                             target.closest('.mg-btn-play') || 
                             target.closest('.mg-btn-retry') || 
+                            target.closest('.mg-btn-restart') ||
                             text.includes('PLAY') || 
-                            text.includes('TRY AGAIN')
+                            text.includes('TRY AGAIN') ||
+                            text.includes('RESTART')
                         ) {
                             e.preventDefault();
                             e.stopPropagation();
@@ -5421,7 +5681,9 @@
                         // Quit / Return mapping
                         else if (
                             target.closest('.mg-btn-quit') || 
-                            text.includes('RETURN')
+                            target.closest('.mg-btn-exit') ||
+                            text.includes('RETURN') ||
+                            text.includes('EXIT')
                         ) {
                             e.preventDefault();
                             e.stopPropagation();
@@ -5456,6 +5718,8 @@
                 overlay.style.opacity = '1';
                 
                 setTimeout(() => {
+                    overlay.style.transition = 'none';
+                    overlay.style.transform = 'scale(1)';
                     this.isActive = true;
                     this.showScreen('mg-start-screen');
                     this.bindControls();
@@ -5466,27 +5730,59 @@
                 this.lives = 9;
                 this.score = 0;
                 this.level = 1;
-                this.speed = 500;
+                this.speed = 340;
                 this.entities.forEach(e => e.el.remove());
                 this.entities = [];
+                this.spawnQueue = [];
+                this.sceneOffset = 0;
                 this.levelTimer = 0;
                 this.spawnTimer = 1000;
                 this.catY = 0;
                 this.catVy = 0;
                 this.isJumping = false;
                 this.isCrouching = false;
+                this.isPreparingJump = false;
+                clearTimeout(this.jumpPreparationTimer);
+                clearTimeout(this.levelTransitionTimer);
+                clearTimeout(this.mobileCrouchTimer);
+                clearTimeout(this.invincibilityTimer);
+                clearTimeout(this.catnipTimer);
                 this.bossSpawned = false;
+                this.isPaused = false;
                 
                 document.getElementById('mg-cat').className = 'mg-run';
-                document.getElementById('mg-bg').style.background = this.bgColors[0];
+                document.getElementById('mg-world').className = 'mg-level-1';
+                document.getElementById('mg-bg').style.backgroundColor = this.bgColors[0];
                 document.getElementById('mg-floor').style.background = this.floorColors[0];
                 
                 this.hideScreens();
                 this.updateHUD();
                 
                 this.isPlaying = true;
+                document.getElementById('mg-pause-btn').style.display = 'block';
+                document.getElementById('mg-pause-layer').style.display = 'none';
+                document.getElementById('mg-pause-layer').classList.remove('active');
                 this.lastTime = performance.now();
                 requestAnimationFrame((t) => this.update(t));
+            },
+
+            togglePause() {
+                if (!this.isActive || (!this.isPlaying && !this.isPaused)) return;
+                if (this.isPaused) {
+                    this.isPaused = false;
+                    this.isPlaying = true;
+                    document.getElementById('mg-world').classList.remove('mg-game-paused');
+                    document.getElementById('mg-pause-layer').style.display = 'none';
+                    document.getElementById('mg-pause-layer').classList.remove('active');
+                    this.lastTime = performance.now();
+                    requestAnimationFrame((t) => this.update(t));
+                } else {
+                    this.isPaused = true;
+                    this.isPlaying = false;
+                    document.getElementById('mg-world').classList.add('mg-game-paused');
+                    document.getElementById('mg-pause-layer').style.display = 'flex';
+                    document.getElementById('mg-pause-layer').classList.add('active');
+                }
             },
             
             update(timestamp) {
@@ -5495,18 +5791,27 @@
                 let dt = (timestamp - this.lastTime) / 1000;
                 if (dt > 0.1) dt = 0.016; // Prevent massive jumps if tab was inactive
                 this.lastTime = timestamp;
+                if (this.debugMode) {
+                    const nearest = this.entities.filter(entity => entity.isEnemy).sort((a, b) => a.x - b.x)[0];
+                    const timeToCollision = nearest ? Math.max(0, (nearest.x - window.innerWidth * 0.1) / this.speed).toFixed(2) : '--';
+                    document.getElementById('mg-debug').innerText = `LEVEL: ${this.level}\nPATTERN: ${this.currentPattern}\nSTATE: ${this.isCrouching ? 'CROUCH' : this.isJumping ? 'JUMP' : 'GROUND'}\nNEXT ENEMY: ${timeToCollision}s`;
+                }
+                this.sceneOffset += this.speed * dt;
+                document.getElementById('mg-mountains').style.backgroundPosition = `${-this.sceneOffset * 0.18}px 100%`;
+                document.getElementById('mg-clouds').style.backgroundPosition = `${-this.sceneOffset * 0.08}px 0`;
+                document.getElementById('mg-foreground').style.backgroundPosition = `${-this.sceneOffset * 0.45}px 0`;
                 
                 // Score & Level Progression
                 this.score += this.speed * dt * 0.1;
                 this.levelTimer += dt * 1000;
                 this.updateHUD();
                 
-                if (this.level < 6 && this.levelTimer > this.levelDurations[this.level - 1]) {
+                if (this.level < 8 && this.levelTimer > this.levelDurations[this.level - 1]) {
                     this.nextLevel();
                     return;
                 }
                 
-                if (this.level === 6 && this.levelTimer > this.levelDurations[5]) {
+                if (this.level === 8 && this.levelTimer > this.levelDurations[7]) {
                     this.victory();
                     return;
                 }
@@ -5522,39 +5827,74 @@
                         this.isJumping = false;
                         const catEl = document.getElementById('mg-cat');
                         catEl.classList.remove('mg-jump');
+                        catEl.classList.remove('mg-slide', 'mg-preparing');
+                        catEl.querySelector('svg').style.transform = 'scaleX(-1)';
                         if (!this.isCrouching) catEl.classList.add('mg-run');
                     }
                     document.getElementById('mg-cat').style.bottom = `calc(20% + ${this.catY}px)`;
                 }
                 
                 // Spawning
+                if (this.spawnQueue.length === 0) this.preparePattern();
                 this.spawnTimer -= dt * 1000;
                 if (this.spawnTimer <= 0) {
-                    this.spawnEntity();
-                    // Spawn faster on higher levels
-                    this.spawnTimer = 800 + Math.random() * Math.max(500, 2000 - this.level * 250);
+                    const nextSpawn = this.spawnQueue.shift();
+                    this.spawnEntity(nextSpawn);
+                    this.spawnTimer = nextSpawn.gap;
                 }
                 
                 // Entity Update & Collision
-                const catRect = { x: window.innerWidth * 0.1, y: this.catY, w: 50, h: this.isCrouching ? 25 : 50 };
+                const catRect = {
+                    x: window.innerWidth * 0.1 + 4,
+                    y: this.catY + (this.isCrouching ? 22 : 4),
+                    w: 42,
+                    h: this.isCrouching ? 25 : 46
+                };
                 
                 this.entities.forEach(ent => {
                     if (ent.markedForDeletion) return;
                     
                     let entSpeed = this.speed;
                     if (ent.type === 'dog_angry') entSpeed *= 1.3;
+                    if (ent.type === 'dog_fast') entSpeed *= 1.25;
                     if (ent.type === 'dog_boss') entSpeed *= 0.8;
+
+                    if (ent.type === 'dog_jump') {
+                        if (!ent.jumpStarted && ent.x <= window.innerWidth * 0.5) {
+                            ent.jumpStarted = true;
+                            ent.jumpClock = 0;
+                        }
+                        if (ent.jumpStarted) {
+                            ent.jumpClock += dt;
+                            ent.y = ent.jumpClock < 1.4 ? Math.sin((ent.jumpClock / 1.4) * Math.PI) * 70 : 0;
+                        }
+                    }
+                    if (ent.type === 'dog_boss') {
+                        ent.attackClock += dt;
+                        if (ent.attackClock > 6) ent.attackClock = 0;
+                        const attackPhase = ent.attackClock < 1.8 ? 0 : ent.attackClock < 3.2 ? 1 : ent.attackClock < 4.8 ? 2 : 3;
+                        if (attackPhase !== ent.attackPhase) {
+                            ent.attackPhase = attackPhase;
+                            this.showCutePopup(['BOSS RUN!', 'BOSS JUMP!', 'CROUCH UNDER!', 'SAFE GAP!'][attackPhase], '#ffea00');
+                        }
+                        if (ent.attackClock < 1.8) ent.y = 0;
+                        else if (ent.attackClock < 3.2) ent.y = Math.sin(((ent.attackClock - 1.8) / 1.4) * Math.PI) * 52;
+                        else if (ent.attackClock < 4.8) ent.y = 42;
+                        else ent.y = 0;
+                    }
+                    ent.el.style.bottom = `calc(20% + ${ent.y}px)`;
                     
                     ent.x -= entSpeed * dt;
                     ent.el.style.left = `${ent.x}px`;
                     
                     // Collision Check
-                    const entRect = { x: ent.x, y: ent.y, w: ent.w * 0.7, h: ent.h * 0.7 }; // generous hitbox
+                    const entRect = { x: ent.x + ent.hitbox.x, y: ent.y + ent.hitbox.y, w: ent.hitbox.w, h: ent.hitbox.h };
                     
                     if (this.checkCollision(catRect, entRect)) {
                         if (ent.isEnemy) {
                             this.hit();
                             ent.markedForDeletion = true; 
+                            ent.el.remove();
                         } else {
                             this.collect(ent.type, ent.x, ent.y);
                             ent.markedForDeletion = true;
@@ -5568,38 +5908,51 @@
                     }
                 });
                 
-                this.entities = this.entities.filter(e => !e.markedForDeletion || (e.isEnemy && e.x > -200));
+                this.entities = this.entities.filter(e => !e.markedForDeletion);
                 
                 requestAnimationFrame((t) => this.update(t));
             },
             
             jump() {
-                if (this.catY === 0 && !this.isCrouching) {
-                    this.catVy = -this.jumpForce; // Negative jump force goes up
+                if (this.catY !== 0 || this.isCrouching || this.isPreparingJump) return;
+
+                const catEl = document.getElementById('mg-cat');
+                this.isPreparingJump = true;
+                catEl.classList.remove('mg-run');
+                catEl.classList.add('mg-preparing');
+
+                this.jumpPreparationTimer = setTimeout(() => {
+                    if (!this.isActive || !this.isPlaying || this.isPaused) return;
+                    this.isPreparingJump = false;
+                    this.catVy = Math.abs(this.jumpForce);
                     this.isJumping = true;
-                    const catEl = document.getElementById('mg-cat');
-                    catEl.classList.remove('mg-run');
+                    catEl.classList.remove('mg-preparing');
                     catEl.classList.add('mg-jump');
-                }
+                    catEl.querySelector('svg').style.transform = 'scaleX(-1) rotate(-15deg)';
+                }, 180);
             },
             
             crouch() {
                 if (this.isJumping) {
-                    this.catVy = -1500; // Fast fall!
+                    this.isCrouching = true;
+                    this.catVy = -1500;
+                    const catEl = document.getElementById('mg-cat');
+                    catEl.classList.remove('mg-jump');
+                    catEl.classList.add('mg-slide');
                     return;
                 }
                 if (this.isCrouching) return;
                 this.isCrouching = true;
                 const catEl = document.getElementById('mg-cat');
                 catEl.classList.remove('mg-run');
-                catEl.classList.add('mg-crouch');
+                catEl.classList.add('mg-slide');
             },
             
             unCrouch() {
                 if (!this.isCrouching) return;
                 this.isCrouching = false;
                 const catEl = document.getElementById('mg-cat');
-                catEl.classList.remove('mg-crouch');
+                catEl.classList.remove('mg-slide');
                 if (!this.isJumping) catEl.classList.add('mg-run');
             },
             
@@ -5613,12 +5966,14 @@
                     this.gameOver();
                     return;
                 }
+
+                this.showCutePopup('-1 life, stay pawsitive!', 'var(--primary-color)');
                 
                 this.isInvincible = true;
                 const catEl = document.getElementById('mg-cat');
                 catEl.classList.add('mg-hurt');
                 
-                setTimeout(() => {
+                this.invincibilityTimer = setTimeout(() => {
                     this.isInvincible = false;
                     catEl.classList.remove('mg-hurt');
                 }, 1500);
@@ -5628,13 +5983,14 @@
                 if (type === 'yarn') {
                     this.score += 100;
                     this.showFloatingText('+100', x, y, 'var(--primary-color)');
+                    this.showCutePopup('+100 yarn points!', 'var(--accent-color)');
                 } else if (type === 'catnip') {
                     this.speed += 200; // temporary speed boost
                     this.isInvincible = true;
                     document.getElementById('mg-cat').style.filter = 'drop-shadow(0 0 10px #a2d149)';
                     this.showFloatingText('CATNIP DASH!', x, y, '#a2d149');
                     
-                    setTimeout(() => {
+                    this.catnipTimer = setTimeout(() => {
                         this.speed -= 200;
                         this.isInvincible = false;
                         document.getElementById('mg-cat').style.filter = '';
@@ -5652,24 +6008,49 @@
                 document.getElementById('mg-world').appendChild(fl);
                 setTimeout(() => fl.remove(), 1000);
             },
+
+            showCutePopup(text, color) {
+                const popup = document.createElement('div');
+                popup.className = 'mg-cute-popup';
+                popup.innerText = text;
+                popup.style.color = color;
+                document.getElementById('mg-world').appendChild(popup);
+                setTimeout(() => popup.remove(), 1200);
+            },
             
             checkCollision(a, b) {
                 return a.x < b.x + b.w && a.x + a.w > b.x && a.y < b.y + b.h && a.y + a.h > b.y;
             },
             
-            spawnEntity() {
-                const rand = Math.random();
-                let type = 'dog_small';
+            preparePattern() {
+                if (this.level === 8 && this.levelTimer > this.levelDurations[7] - 8000 && !this.bossSpawned) {
+                    this.spawnQueue = [{ type: 'dog_boss', gap: 1800 }];
+                    return;
+                }
+
+                const patterns = {
+                    1: [[{ type: 'dog_small', gap: 1300 }], [{ type: 'dog_small', gap: 1500 }, { type: 'yarn', y: 32, gap: 1300 }]],
+                    2: [[{ type: 'dog_small', gap: 1100 }, { type: 'dog_small', gap: 1500 }], [{ type: 'dog_fast', gap: 1500 }, { type: 'dog_small', gap: 1600 }], [{ type: 'dog_jump', gap: 1500 }]],
+                    3: [[{ type: 'dog_air', gap: 1600 }, { type: 'dog_small', gap: 1500 }], [{ type: 'dog_jump', gap: 1400 }, { type: 'yarn', y: 38, gap: 1400 }]],
+                    4: [[{ type: 'dog_fast', gap: 1500 }, { type: 'dog_air', gap: 1800 }], [{ type: 'dog_jump', gap: 1600 }, { type: 'dog_fast', gap: 1800 }]],
+                    5: [[{ type: 'dog_fast', gap: 1700 }, { type: 'dog_air', gap: 2100 }], [{ type: 'dog_air', gap: 1900 }, { type: 'dog_small', gap: 1900 }]],
+                    6: [[{ type: 'dog_pack', gap: 2000 }, { type: 'dog_jump', gap: 1900 }], [{ type: 'dog_air', gap: 2000 }, { type: 'dog_fast', gap: 1900 }]],
+                    7: [[{ type: 'dog_fast', gap: 1600 }, { type: 'dog_air', gap: 2000 }], [{ type: 'dog_jump', gap: 1800 }, { type: 'dog_pack', gap: 2100 }]],
+                    8: [[{ type: 'dog_fast', gap: 1500 }, { type: 'dog_air', gap: 2000 }], [{ type: 'dog_pack', gap: 2100 }, { type: 'dog_jump', gap: 1900 }]]
+                };
+                const levelPatterns = patterns[this.level];
+                this.spawnQueue = levelPatterns[Math.floor(Math.random() * levelPatterns.length)].map(item => ({ ...item }));
+                this.currentPattern = this.spawnQueue.map(item => item.type).join(' -> ');
+            },
+
+            spawnEntity(spec = {}) {
+                let type = spec.type || 'dog_small';
+                let y = spec.y ?? 0;
                 
-                if (this.level >= 2 && rand > 0.6) type = 'dog_angry';
-                if (this.level >= 3 && rand > 0.8) type = 'dog_big';
-                if (this.level >= 4 && rand > 0.9) type = 'dog_pack';
-                if (rand < 0.1) type = 'yarn';
-                if (rand < 0.02) type = 'catnip';
-                
-                if (this.level === 6 && this.levelTimer > this.levelDurations[5] - 6000 && !this.bossSpawned) {
+                if (this.level === 8 && this.levelTimer > this.levelDurations[7] - 8000 && !this.bossSpawned) {
                     type = 'dog_boss';
                     this.bossSpawned = true;
+                    this.showCutePopup('FINAL DEADLINE APPROACHING!', '#ffea00');
                 }
                 
                 if (this.bossSpawned && type !== 'dog_boss') return; // Stop spawning normal enemies during boss
@@ -5679,29 +6060,39 @@
                 el.innerHTML = this.getEntitySVG(type);
                 el.style.left = '100vw';
                 
-                let w = 60, h = 40, isEnemy = true, y = 0;
+                let w = 60, h = 40, isEnemy = true;
                 
                 if (type === 'dog_angry') { w = 65; h = 45; }
-                if (type === 'dog_big') { w = 90; h = 70; }
-                if (type === 'dog_pack') { w = 130; h = 40; }
-                if (type === 'dog_boss') { w = 150; h = 100; }
+                if (type === 'dog_fast') { w = 54; h = 34; }
+                if (type === 'dog_air') { w = 60; h = 38; y = 72; }
+                if (type === 'dog_big') { w = 78; h = 58; }
+                if (type === 'dog_pack') { w = 108; h = 38; }
+                if (type === 'dog_boss') { w = 110; h = 70; }
+                if (type === 'dog_jump') { w = 60; h = 40; }
                 
-                if (type === 'yarn') { w = 30; h = 30; isEnemy = false; y = 30 + Math.random() * 80; }
-                if (type === 'catnip') { w = 30; h = 30; isEnemy = false; y = 30 + Math.random() * 80; }
+                if (type === 'yarn') { w = 22; h = 22; isEnemy = false; y = 30 + Math.random() * 80; }
+                if (type === 'catnip') { w = 22; h = 22; isEnemy = false; y = 30 + Math.random() * 80; }
                 
+                el.style.width = `${w}px`;
+                el.style.height = `${h}px`;
                 el.style.bottom = `calc(20% + ${y}px)`;
                 document.getElementById('mg-entities').appendChild(el);
                 
-                this.entities.push({ el, type, isEnemy, x: window.innerWidth, y, w, h, markedForDeletion: false });
+                const hitbox = {
+                    x: type === 'dog_air' ? 8 : 4,
+                    y: type === 'dog_air' ? 8 : 6,
+                    w: Math.max(18, w - (type === 'dog_big' || type === 'dog_boss' ? 18 : 12)),
+                    h: Math.max(16, h - 12)
+                };
+                this.entities.push({ el, type, isEnemy, x: window.innerWidth, y, w, h, hitbox, markedForDeletion: false, jumpClock: 0, jumpStarted: false, attackClock: 0, attackPhase: -1 });
             },
             
             getEntitySVG(type) {
                 if (type.startsWith('dog')) {
-                    let color = type === 'dog_angry' ? '#d32f2f' : '#8c6148';
-                    let size = 1;
+                    let color = type === 'dog_jump' ? '#f0788f' : (type === 'dog_angry' ? '#d32f2f' : '#8c6148');
                     let text = '';
                     
-                    if (type === 'dog_big') { size = 1.5; color = '#5d4037'; }
+                    if (type === 'dog_big') { color = '#5d4037'; }
                     if (type === 'dog_pack') {
                         // Return 3 small dogs
                         return `
@@ -5723,11 +6114,11 @@
                         </svg>`;
                     }
                     if (type === 'dog_boss') { 
-                        color = '#111'; size = 2.2; 
+                        color = '#111';
                         text = '<text x="-10" y="10" fill="#ff3333" font-weight="bold" font-family="Quicksand" font-size="12">FINAL DEADLINE</text>';
                     }
                     
-                    return `${text}<svg viewBox="0 0 100 100" width="100%" height="100%" style="transform: scale(${size}); transform-origin: bottom left; overflow:visible;">
+                    return `${text}<svg viewBox="0 0 100 100" width="100%" height="100%" style="overflow:visible;">
                         <rect x="20" y="40" width="60" height="40" rx="10" fill="${color}"/>
                         <circle cx="20" cy="45" r="15" fill="${color}"/> <!-- Head facing left -->
                         <polygon points="10,35 0,15 25,25" fill="#3e2723"/>
@@ -5758,16 +6149,29 @@
                 this.isPlaying = false;
                 this.level++;
                 this.levelTimer = 0;
+                this.clearEntities();
+                this.spawnTimer = 1200;
+                this.isJumping = false;
+                this.isCrouching = false;
+                this.isPreparingJump = false;
+                clearTimeout(this.jumpPreparationTimer);
+
+                const catEl = document.getElementById('mg-cat');
+                catEl.className = 'mg-run';
+                catEl.style.bottom = '20%';
+                catEl.querySelector('svg').style.transform = 'scaleX(-1)';
                 
                 const title = document.getElementById('mg-level-title');
                 title.innerHTML = `LEVEL COMPLETE 🐾<br><span style="color:white; font-size:1.5rem;">${this.levelNames[this.level-1]} UNLOCKED!</span>`;
                 this.showScreen('mg-level-screen');
                 
                 this.speed += 50; 
-                document.getElementById('mg-bg').style.background = this.bgColors[this.level-1];
+                document.getElementById('mg-world').className = `mg-level-${this.level}`;
+                document.getElementById('mg-bg').style.backgroundColor = this.bgColors[this.level-1];
                 document.getElementById('mg-floor').style.background = this.floorColors[this.level-1];
                 
-                setTimeout(() => {
+                this.levelTransitionTimer = setTimeout(() => {
+                    if (!this.isActive || this.lives <= 0) return;
                     this.hideScreens();
                     this.isPlaying = true;
                     this.lastTime = performance.now();
@@ -5775,16 +6179,39 @@
                 }, 2500);
             },
             
+            clearEntities() {
+                this.entities.forEach(entity => entity.el.remove());
+                this.entities = [];
+                this.spawnQueue = [];
+                this.spawnTimer = 0;
+                this.bossSpawned = false;
+                clearTimeout(this.mobileCrouchTimer);
+                clearTimeout(this.levelTransitionTimer);
+                document.querySelectorAll('#mg-world .mg-cute-popup, #mg-world .mg-score-float').forEach(el => el.remove());
+            },
+
             gameOver() {
                 this.isPlaying = false;
-                document.getElementById('mg-cat').className = 'mg-crouch'; // Sad flat cat
+                this.isPaused = false;
+                clearTimeout(this.jumpPreparationTimer);
+                clearTimeout(this.levelTransitionTimer);
+                clearTimeout(this.mobileCrouchTimer);
+                clearTimeout(this.invincibilityTimer);
+                clearTimeout(this.catnipTimer);
+                this.isPreparingJump = false;
+                this.isInvincible = false;
+                this.clearEntities();
+                document.getElementById('mg-world').classList.remove('mg-game-paused');
+                document.getElementById('mg-world').classList.add('mg-game-over');
+                document.getElementById('mg-pause-btn').style.display = 'none';
+                document.getElementById('mg-final-score').innerText = `FINAL SCORE: ${Math.floor(this.score).toString().padStart(6, '0')}`;
+                document.getElementById('mg-cat').className = 'mg-slide'; // Sad flat cat
                 this.showScreen('mg-gameover-screen');
             },
             
             victory() {
                 this.isPlaying = false;
-                this.entities.forEach(e => e.el.remove());
-                this.entities = [];
+                this.clearEntities();
                 document.getElementById('mg-cat').className = 'mg-run'; 
                 this.showScreen('mg-victory-screen');
             },
@@ -5792,6 +6219,10 @@
             quit() {
                 this.isActive = false;
                 this.isPlaying = false;
+                    this.isPaused = false;
+                    document.getElementById('mg-world').classList.remove('mg-game-paused');
+                document.getElementById('mg-pause-btn').style.display = 'none';
+                document.getElementById('mg-pause-layer').classList.remove('active');
                 const overlay = document.getElementById('mini-game-overlay');
                 overlay.style.opacity = '0';
                 
@@ -5829,10 +6260,23 @@
                 this.controlsBound = true;
                 
                 window.addEventListener('keydown', (e) => {
+                    if (e.code === 'KeyD' && this.isActive) {
+                        this.debugMode = !this.debugMode;
+                        document.getElementById('mg-world').classList.toggle('mg-debug-on', this.debugMode);
+                        return;
+                    }
+                    if ((e.code === 'Escape' || e.code === 'KeyP') && this.isActive) {
+                        e.preventDefault();
+                        this.togglePause();
+                        return;
+                    }
                     if (!this.isActive || !this.isPlaying) return;
                     if (e.code === 'Space' || e.code === 'ArrowUp') { e.preventDefault(); this.jump(); }
                     if (e.code === 'ArrowDown') { e.preventDefault(); this.crouch(); }
                 });
+
+                document.getElementById('mg-pause-btn').addEventListener('click', () => this.togglePause());
+                document.getElementById('mg-resume-btn').addEventListener('click', () => this.togglePause());
                 
                 window.addEventListener('keyup', (e) => {
                     if (!this.isActive || !this.isPlaying) return;
@@ -5843,16 +6287,16 @@
                 let touchStartY = 0;
                 
                 overlay.addEventListener('touchstart', (e) => {
-                    if (!this.isActive || !this.isPlaying) return;
+                    if (!this.isActive || !this.isPlaying || e.target.closest('button')) return;
                     touchStartY = e.touches[0].clientY;
                 });
                 
                 overlay.addEventListener('touchend', (e) => {
-                    if (!this.isActive || !this.isPlaying) return;
+                    if (!this.isActive || !this.isPlaying || e.target.closest('button')) return;
                     let dy = e.changedTouches[0].clientY - touchStartY;
                     if (dy > 50) {
                         this.crouch();
-                        setTimeout(() => this.unCrouch(), 600); // Auto un-crouch on mobile
+                        this.mobileCrouchTimer = setTimeout(() => this.unCrouch(), 600); // Auto un-crouch on mobile
                     } else {
                         this.jump();
                     }
@@ -5871,6 +6315,15 @@
             ContactController.init();
             HeroTextController.init();
             MiniGame.init(); // BUG #2 FIX: Now initializes MiniGame
+        });
+        document.addEventListener('pointerdown', () => {
+            document.body.classList.remove('paw-clicking');
+            void document.body.offsetWidth;
+            document.body.classList.add('paw-clicking');
+            clearTimeout(window.pawCursorTimeout);
+            window.pawCursorTimeout = setTimeout(() => {
+                document.body.classList.remove('paw-clicking');
+            }, 220);
         });
     </script>
 </body>
