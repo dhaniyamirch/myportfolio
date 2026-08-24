@@ -1300,10 +1300,9 @@
                         Currently building things at the intersection of hardware, vision & code.<br>
                         Occasionally debugging things that worked perfectly 5 minutes ago.
                     </p>
-                    <div class="hero-cta-group">
-                        <a href="#projects" class="hero-cta-main">Explore my work →</a>
-                        <a href="#timeline" class="hero-cta-sec" onclick="document.getElementById('hero-cat-wrapper').classList.add('cat-reacting'); setTimeout(() => document.getElementById('hero-cat-wrapper').classList.remove('cat-reacting'), 1000);">Meet the cat 🐾</a>
-                    </div>
+                    <p class="hero-desc" style="margin-top: -1rem;">
+                        Welcome to my digital workspace! Scroll down to explore my timeline, check out my recent hardware deployments, or drop a message via the Post Cat.
+                    </p>
                 </div>
                 
                 <div class="hero-cat-container">
@@ -3227,10 +3226,15 @@
         Ohh the cat fell! Now the cat has 8 more lives 🙀
     </div>
 
+    <div id="pause-overlay" style="display: none; position: fixed; top: 0; left: 0; width: 100vw; height: 100vh; background: rgba(20, 19, 26, 0.7); backdrop-filter: blur(4px); z-index: 55000; align-items: center; justify-content: center; flex-direction: column;">
+        <h2 style="font-size: 3rem; color: var(--primary-color); text-shadow: 2px 2px 10px rgba(0,0,0,0.5); margin-bottom: 1rem;">PAUSED</h2>
+        <p style="color: var(--text-main); font-size: 1.2rem; font-weight: 600;">Press ESC to resume</p>
+    </div>
+
     <div id="mobile-hint">Tap anywhere to guide the mini cat</div>
 
     <div id="game-layer">
-        <div id="waypoint"></div>
+        <div id="waypoint" style="position: absolute; width: 20px; height: 20px; border-radius: 50%; border: 3px solid var(--primary-color); z-index: 500; pointer-events: none; opacity: 0;"></div>
         <div id="cat" class="cat-idle">
             <svg id="cat-svg" viewBox="0 0 100 100" width="100%" height="100%" style="overflow: visible; transform-origin: bottom center;">
                 <text id="cat-rip" x="50" y="15" font-family="Quicksand" font-size="22" font-weight="800" fill="var(--primary-color)" text-anchor="middle" style="opacity: 0; transition: opacity 0.5s;">RIP</text>
@@ -3360,7 +3364,57 @@
 
         const GameState = {
             introActive: true, noClicks: 0, platforms: [], lastTime: 0, mouseX: 0, mouseY: 0,
-            fallCooldown: false
+            fallCooldown: false, isPaused: false
+        };
+
+        const PlatformManager = {
+            scanned: false,
+            scan() {
+                GameState.platforms = [];
+                const platformElements = document.querySelectorAll('.cat-platform, .cat-walkable');
+                platformElements.forEach(el => {
+                    const rect = el.getBoundingClientRect();
+                    const isFixed = window.getComputedStyle(el).position === 'fixed' || el.id === 'nav-shelf';
+                    GameState.platforms.push({
+                        el: el,
+                        x: rect.left + window.scrollX,
+                        y: rect.top + window.scrollY,
+                        width: rect.width,
+                        height: rect.height,
+                        isFixed: isFixed,
+                        fixedTop: isFixed ? rect.top : null,
+                        fixedLeft: isFixed ? rect.left : null
+                    });
+                });
+                this.scanned = true;
+            },
+            updateFixed() {
+                if (!this.scanned) this.scan();
+                for (let i = 0; i < GameState.platforms.length; i++) {
+                    const p = GameState.platforms[i];
+                    if (p.isFixed) {
+                        p.y = p.fixedTop + window.scrollY;
+                        p.x = p.fixedLeft + window.scrollX;
+                    }
+                }
+            }
+        };
+
+        const TimelineEndingAnimation = {
+            isTriggered: false,
+            isPlaying: false,
+            finalX: null,
+            trigger(x, y, rot) {
+                this.isTriggered = true;
+                this.isPlaying = true;
+                this.finalX = x;
+                setTimeout(() => { this.isPlaying = false; }, 1000);
+            },
+            reset() {
+                this.isTriggered = false;
+                this.isPlaying = false;
+                this.finalX = null;
+            }
         };
 
         const IntroController = {
@@ -3795,82 +3849,6 @@
             }
         };
 
-        const TimelineEndingAnimation = {
-            isTriggered: false,
-            isPlaying: false,
-            finalX: null,
-            finalY: null,
-            
-            trigger(x, y, rot) {
-                if (this.isTriggered) return;
-                this.isTriggered = true;
-                this.isPlaying = true;
-                this.finalX = x;
-                this.finalY = y;
-                
-                const ball = document.getElementById('dynamic-ball');
-                ball.style.transition = 'none';
-                
-                const pawContainer = document.getElementById('timeline-paw-container');
-                pawContainer.style.left = x + 'px';
-                pawContainer.style.top = y + 'px';
-                
-                setTimeout(() => {
-                    pawContainer.classList.add('paw-anim-drop');
-                    
-                    setTimeout(() => {
-                        ball.style.setProperty('--current-rot', rot + 'deg');
-                        ball.classList.add('ball-squash');
-                        pawContainer.classList.replace('paw-anim-drop', 'paw-anim-swipe');
-                        
-                        setTimeout(() => {
-                            SkillTreeAnimation.start(x, y);
-                            this.isPlaying = false;
-                        }, 200);
-                    }, 600);
-                }, 100);
-            },
-            reset() {
-                this.isTriggered = false;
-                this.isPlaying = false;
-                this.finalX = null;
-                this.finalY = null;
-                const ball = document.getElementById('dynamic-ball');
-                ball.classList.remove('ball-squash');
-                const pawContainer = document.getElementById('timeline-paw-container');
-                pawContainer.classList.remove('paw-anim-drop', 'paw-anim-swipe');
-            }
-        };
-
-        const PlatformManager = {
-            scan() {
-                GameState.platforms = [];
-                const padding = 10;
-                
-                const navShelf = document.getElementById('nav-shelf');
-                if(navShelf) {
-                    const rect = navShelf.getBoundingClientRect();
-                    GameState.platforms.push({
-                        y: rect.top + window.scrollY,
-                        x: rect.left + window.scrollX - padding,
-                        width: rect.width + padding * 2,
-                        el: navShelf
-                    });
-                }
-                
-                document.querySelectorAll('.cat-platform').forEach(el => {
-                    if (el.id === 'nav-shelf') return; // Already added above
-                    const rect = el.getBoundingClientRect();
-                    GameState.platforms.push({
-                        y: rect.top + window.scrollY,
-                        x: rect.left + window.scrollX - padding,
-                        width: rect.width + padding * 2,
-                        el: el
-                    });
-                });
-            }
-        };
-
         const Cat = {
             el: null,
             svg: null,
@@ -3894,9 +3872,30 @@
             _cachedNavAnchor: null,
             _navAnchorDirty: true,
 
-            // NEW:
             // true = cat is visually locked to the fixed navbar
             navbarLocked: false,
+            
+            aiTimer: 2000,
+
+            checkVisibility() {
+                const catTop = this.y;
+                const catBottom = this.y + CAT_CONFIG.height;
+                const catLeft = this.x - CAT_CONFIG.width / 2;
+                const catRight = this.x + CAT_CONFIG.width / 2;
+                
+                const viewportTop = window.scrollY;
+                const viewportBottom = window.scrollY + window.innerHeight;
+                const viewportLeft = window.scrollX;
+                const viewportRight = window.scrollX + window.innerWidth;
+                
+                // Add generous 100px padding so we don't return home instantly if slightly clipped
+                return (
+                    catBottom >= viewportTop - 100 &&
+                    catTop <= viewportBottom + 100 &&
+                    catRight >= viewportLeft - 100 &&
+                    catLeft <= viewportRight + 100
+                );
+            },
             
             init() {
                 this.el = document.getElementById('cat');
@@ -3917,12 +3916,8 @@
             },
             
             getNavbarAnchor() {
-                // SURGICAL FIX: Cache the anchor if resting to avoid DOM read jitter
-                if (
-                    this._cachedNavAnchor && 
-                    !this._navAnchorDirty && 
-                    (this.state === 'SLEEPING' || this.state === 'SITTING')
-                ) {
+                // SURGICAL FIX: Cache the anchor completely to avoid DOM read jitter
+                if (this._cachedNavAnchor && !this._navAnchorDirty) {
                     // Update page coordinates dynamically from the stable screen coordinates
                     this._cachedNavAnchor.pageX = this._cachedNavAnchor.screenX + window.scrollX;
                     this._cachedNavAnchor.pageY = this._cachedNavAnchor.screenY + window.scrollY;
@@ -4028,7 +4023,14 @@
                 this.returningHome = true;
                 this.currentPlatform = null;
                 
-                if (this.state !== 'JUMPING' && this.state !== 'FALLING') {
+                if (!this.checkVisibility()) {
+                    // Teleport safely above the viewport and fall in if off-screen
+                    this.x = homePos.x;
+                    this.y = window.scrollY - 100;
+                    this.vy = 0;
+                    this.vx = 0;
+                    this.setState('FALLING');
+                } else if (this.state !== 'JUMPING' && this.state !== 'FALLING') {
                     this.setState('WALKING');
                 }
             },
@@ -4109,14 +4111,12 @@
                     return;
                 }
 
+                const isNavbarCat = this.currentPlatform && this.currentPlatform.el && this.currentPlatform.el.id === 'nav-shelf';
+
                 // === SURGICAL JITTER FIX ===
                 // When resting on the navbar, bypass the physics engine entirely to prevent 
                 // floating-point velocity accumulation and sub-pixel collision jitter.
-                const isRestingOnNavbar = 
-                    this.currentPlatform && 
-                    this.currentPlatform.el && 
-                    this.currentPlatform.el.id === 'nav-shelf' &&
-                    (this.state === 'SLEEPING' || this.state === 'SITTING');
+                const isRestingOnNavbar = isNavbarCat && (this.state === 'SLEEPING' || this.state === 'SITTING' || this.state === 'IDLE');
 
                 if (isRestingOnNavbar) {
                     this.vx = 0;
@@ -4124,13 +4124,16 @@
                     
                     const anchor = this.getNavbarAnchor();
                     if (anchor) {
-                        this.x = anchor.pageX;
+                        // Only force X to the bed if it's SLEEPING (at home). 
+                        if (this.state === 'SLEEPING') {
+                            this.x = anchor.pageX;
+                        }
                         this.y = anchor.pageY;
                         
                         this.el.style.position = 'fixed';
                         
-                        // Math.round() locks it to full pixels, destroying visual shimmer
-                        const screenX = Math.round(anchor.screenX - CAT_CONFIG.width / 2);
+                        const currentScreenX = this.x - window.scrollX;
+                        const screenX = Math.round(currentScreenX - CAT_CONFIG.width / 2);
                         const screenY = Math.round(anchor.screenY);
                         
                         this.el.style.transform = `translate3d(${screenX}px, ${screenY}px, 0)`;
@@ -4140,25 +4143,41 @@
                     }
                     return; // Skip normal physics/collision loop
                 }
-                // ============================
 
                 let onGround = false;
-
                 const previousPlatform = this.currentPlatform;
-
                 this.currentPlatform = null;
+
+                // CRITICAL FIX: Force ground on navbar when walking to avoid collision height mismatch (bed vs shelf)
+                if (isNavbarCat && this.state !== 'JUMPING' && this.state !== 'FALLING') {
+                    onGround = true;
+                    this.vy = 0;
+                    this.currentPlatform = previousPlatform; // Keep memory of navbar platform
+                    const anchor = this.getNavbarAnchor();
+                    if (anchor) this.y = anchor.pageY;
+                }
 
                 const bottomY = this.y + CAT_CONFIG.height;
                 
                 // Collision Detection: Only check for platforms if we are moving downwards
-                if (this.state !== 'JUMPING' && this.vy >= 0) {
-                    for (let p of GameState.platforms) {
-                        if (this.x >= p.x && this.x <= p.x + p.width) {
-                            if (bottomY <= p.y + 15 && bottomY + this.vy * (dt / 1000) >= p.y - 15) {
-                                this.y = p.y - CAT_CONFIG.height;
-                                this.vy = 0;
+                if (!onGround && this.state !== 'JUMPING' && this.vy >= 0) {
+                    for (let i = 0; i < GameState.platforms.length; i++) {
+                        const platform = GameState.platforms[i];
+                        if (!platform.el) continue;
+                        
+                        const left = platform.x;
+                        const right = platform.x + platform.width;
+                        const top = platform.y;
+                        
+                        // Check if cat's X is within the platform's width bounds
+                        if (this.x >= left && this.x <= right) {
+                            // Check if cat's bottom edge is crossing the platform's top edge
+                            const nextBottomY = bottomY + (this.vy * (dt / 1000));
+                            if (bottomY <= top + 15 && nextBottomY >= top) {
                                 onGround = true;
-                                this.currentPlatform = p;
+                                this.y = top - CAT_CONFIG.height;
+                                this.vy = 0;
+                                this.currentPlatform = platform;
                                 break;
                             }
                         }
@@ -4271,15 +4290,12 @@
                     this.facingRight = false;
                 }
 
-                const isNavbarCat =
-                    this.currentPlatform &&
-                    this.currentPlatform.el &&
-                    this.currentPlatform.el.id === 'nav-shelf';
+                const isMoving = Math.abs(this.vx) > 0.1 || Math.abs(this.vy) > 0.1;
 
                 if (isNavbarCat) {
 
                     // ================================================
-                    // CAT IS ON FIXED NAVBAR (ACTIVE/IDLE)
+                    // CAT IS ON FIXED NAVBAR
                     // ================================================
 
                     const anchor = this.getNavbarAnchor();
@@ -4292,19 +4308,18 @@
                         // Make the cat itself FIXED while on navbar
                         this.el.style.position = 'fixed';
 
-                        // Render using viewport coordinates, ROUNDED to prevent sub-pixel jitter
-                        const screenX = Math.round(anchor.screenX - CAT_CONFIG.width / 2);
-                        const screenY = Math.round(anchor.screenY);
+                        const currentScreenX = this.x - window.scrollX;
+                        
+                        // Avoid Math.round while moving to prevent 1px stuttering
+                        const screenX = isMoving ? (currentScreenX - CAT_CONFIG.width / 2) : Math.round(currentScreenX - CAT_CONFIG.width / 2);
+                        const screenY = isMoving ? anchor.screenY : Math.round(anchor.screenY);
 
                         this.el.style.transform =
                             `translate3d(${screenX}px, ${screenY}px, 0)`;
 
-                        // Small navbar cat
                         const scale = 0.75;
-
                         this.svg.style.transform =
-                            `scaleX(${this.facingRight ? -scale : scale})
-                            scaleY(${scale})`;
+                            `scaleX(${this.facingRight ? -scale : scale}) scaleY(${scale})`;
                     }
 
                 } else {
@@ -4316,12 +4331,11 @@
                     this.el.style.position = 'absolute';
 
                     this.svg.style.transform =
-                        `scaleX(${this.facingRight ? -1 : 1})
-                        scaleY(1)`;
+                        `scaleX(${this.facingRight ? -1 : 1}) scaleY(1)`;
 
-                    // ROUND absolute coordinates to prevent sub-pixel jitter
-                    const absX = Math.round(this.x - CAT_CONFIG.width / 2);
-                    const absY = Math.round(this.y);
+                    // Only round absolute coordinates if completely stopped to prevent sub-pixel jitter
+                    const absX = isMoving ? (this.x - CAT_CONFIG.width / 2) : Math.round(this.x - CAT_CONFIG.width / 2);
+                    const absY = isMoving ? this.y : Math.round(this.y);
 
                     this.el.style.transform =
                         `translate3d(${absX}px, ${absY}px, 0)`;
@@ -4331,6 +4345,20 @@
 
         const InputHandler = {
             init() {
+                window.addEventListener('keydown', (e) => {
+                    if (e.key === 'Escape' && !GameState.introActive && !MiniGame.isActive) {
+                        GameState.isPaused = !GameState.isPaused;
+                        const pauseOverlay = document.getElementById('pause-overlay');
+                        if (GameState.isPaused) {
+                            pauseOverlay.style.display = 'flex';
+                        } else {
+                            pauseOverlay.style.display = 'none';
+                            // Reset lastTime to prevent a massive delta time jump upon resuming
+                            GameState.lastTime = performance.now(); 
+                        }
+                    }
+                });
+
                 document.addEventListener('mousemove', (e) => {
                     GameState.mouseX = e.pageX;
                     GameState.mouseY = e.pageY;
@@ -4343,26 +4371,77 @@
                     }
                 });
 
-                document.addEventListener('click', (e) => {
-                    if (GameState.introActive) return;
+                document.addEventListener('pointerdown', (e) => {
+                    if (GameState.introActive || Cat.state === 'DEAD' || Cat.state === 'PERMADEAD' || Cat.state === 'FALLING') return;
                     
-                    const platform = e.target.closest('.cat-platform');
-                    if (!platform) return;
-                    
-                    // Ignore clicks directly on the nav-shelf itself (handled by goHome or specific bed click)
-                    if (platform.id === 'nav-shelf') return;
-                    
-                    // Do not intercept interactive elements
-                    if (e.target.closest('a') || e.target.closest('button')) return;
-                    
-                    e.preventDefault();
-                    e.stopPropagation();
-                    
-                    const rect = platform.getBoundingClientRect();
-                    const targetX = rect.left + rect.width / 2 + window.scrollX;
-                    const targetY = rect.top + window.scrollY - CAT_CONFIG.height;
-                    
+                    // Prevent interfering with interactive elements
+                    if (e.target.closest('a') || e.target.closest('button') || e.target.closest('input') || e.target.closest('textarea')) return;
+
+                    let platform = e.target.closest('.cat-platform') || e.target.closest('.cat-walkable');
+                    let targetX, targetY;
+                    let isNavbarTarget = false;
+
+                    const catHalfWidth = CAT_CONFIG.width / 2;
+
+                    // If clicking directly on the visual bed or navbar
+                    if (e.target.closest('.cat-bed-visual') || (platform && platform.id === 'nav-shelf')) {
+                        isNavbarTarget = true;
+                        platform = GameState.platforms.find(p => p.el && p.el.id === 'nav-shelf');
+                        if (!platform) return;
+
+                        const rect = platform.el.getBoundingClientRect();
+                        
+                        // Calculate target relative to the fixed navbar
+                        targetX = e.clientX + window.scrollX;
+                        // Clamp X to navbar bounds
+                        targetX = Math.max(rect.left + window.scrollX + catHalfWidth, Math.min(rect.right + window.scrollX - catHalfWidth, targetX));
+                        
+                        targetY = rect.top + window.scrollY - CAT_CONFIG.height;
+
+                        // If user explicitly clicks the bed and cat is there, trigger wake animation
+                        if (e.target.closest('.cat-bed-visual') && Cat.currentPlatform && Cat.currentPlatform.el.id === 'nav-shelf' && Math.abs(Cat.x - targetX) < 50) {
+                            if (Cat.state === 'SLEEPING') {
+                                Cat.setState('SITTING');
+                                setTimeout(() => {
+                                    if (Cat.state === 'SITTING' && Cat.targetX === null) Cat.setState('IDLE');
+                                }, 800);
+                            }
+                            return; // Let minigame logic take over if needed
+                        }
+                    } 
+                    // If clicking a valid document platform
+                    else if (platform) {
+                        const rect = platform.getBoundingClientRect();
+                        
+                        // Use exact click X
+                        targetX = e.clientX + window.scrollX;
+                        // Clamp X to platform bounds so cat doesn't walk off edge
+                        targetX = Math.max(rect.left + window.scrollX + catHalfWidth, Math.min(rect.right + window.scrollX - catHalfWidth, targetX));
+                        
+                        // Enforce Y to top of the platform regardless of where they clicked vertically on the card
+                        targetY = rect.top + window.scrollY - CAT_CONFIG.height;
+                    } 
+                    else {
+                        return; // Ignore clicks on empty space
+                    }
+
+                    // Cancel returning home if user commands a new location
+                    Cat.returningHome = false;
+
+                    // Execute command
                     Cat.setTarget(targetX, targetY);
+
+                    // Show visual waypoint ping
+                    const waypoint = document.getElementById('waypoint');
+                    if (waypoint) {
+                        waypoint.style.left = `${targetX}px`;
+                        waypoint.style.top = `${targetY + CAT_CONFIG.height}px`; // Ping at feet level
+                        
+                        // Re-trigger animation
+                        waypoint.classList.remove('waypoint-anim');
+                        void waypoint.offsetWidth;
+                        waypoint.classList.add('waypoint-anim');
+                    }
                 });
                 
                 window.addEventListener('resize', () => {
@@ -4385,6 +4464,7 @@
         const ScrollController = {
             init() {
                 let ticking = false;
+                let scrollSettleTimer = null;
                 
                 window.addEventListener('scroll', () => {
                     if (GameState.introActive) return;
@@ -4392,9 +4472,21 @@
                     if (!ticking) {
                         ticking = true;
                         requestAnimationFrame(() => {
+                            if (Cat.currentPlatform && Cat.currentPlatform.el && Cat.currentPlatform.el.id === 'nav-shelf') {
+                                Cat.syncWithNavbar();
+                            }
                             ticking = false;
                         });
                     }
+
+                    // --- PAGE-WIDE WANDERING: OFF-SCREEN RETURN ---
+                    clearTimeout(scrollSettleTimer);
+                    scrollSettleTimer = setTimeout(() => {
+                        if (GameState.introActive) return;
+                        if (!Cat.checkVisibility() && !Cat.returningHome && Cat.currentPlatform?.el?.id !== 'nav-shelf') {
+                            Cat.goHome();
+                        }
+                    }, 500);
                     
                     const anchor = document.getElementById('hero-ball-anchor');
                     if (!anchor) return;
@@ -4545,12 +4637,18 @@
         };
 
         function gameLoop(timestamp) {
+            if (GameState.isPaused) {
+                GameState.lastTime = timestamp; // Keep lastTime updated so dt isn't huge when unpaused
+                requestAnimationFrame(gameLoop);
+                return;
+            }
+
             if (!GameState.lastTime) GameState.lastTime = timestamp;
             let dt = timestamp - GameState.lastTime;
             GameState.lastTime = timestamp;
             if (dt > 100) dt = 16;
             
-            PlatformManager.scan(); 
+            PlatformManager.updateFixed(); // Use lightweight update instead of full DOM scan to stop lag/flickering
             
             Cat.update(dt);
             
@@ -5777,4 +5875,3 @@
     </script>
 </body>
 </html>
-                                        
