@@ -208,14 +208,17 @@
         }
         #btn-yes {
             background: var(--primary-color); color: #24222e; z-index: 10;
-            transform: translateX(-75px); box-shadow: 0 8px 20px rgba(252, 165, 165, 0.2);
+            transform: translateX(-85px); box-shadow: 0 8px 20px rgba(252, 165, 165, 0.2);
         }
         #btn-yes:hover { box-shadow: 0 15px 25px rgba(252, 165, 165, 0.4); }
+        #btn-yes:active { margin-top: 4px; box-shadow: 0 2px 10px rgba(252, 165, 165, 0.3); transition: all 0.1s ease; }
+        
         #btn-no {
             background: var(--surface-color); color: var(--text-muted); border: 2px solid var(--border-color);
-            z-index: 1; transform: translateX(75px); box-shadow: 0 8px 20px var(--shadow-color);
+            z-index: 1; transform: translateX(85px); box-shadow: 0 8px 20px var(--shadow-color);
         }
         #btn-no:hover { background: var(--surface-color-light); color: var(--text-main); border-color: var(--primary-color); }
+        #btn-no:active { margin-top: 4px; box-shadow: 0 2px 10px var(--shadow-color); transition: all 0.1s ease; }
 
         #intro-message-wrapper { margin-top: 1.5rem; height: 3rem; display: flex; align-items: center; justify-content: center; }
         #intro-message {
@@ -284,6 +287,7 @@
         #portfolio-main {
             opacity: 0; display: none; flex-direction: column; align-items: center;
             width: 100%; padding-bottom: 100px; transition: opacity 1s ease; 
+            position: relative; /* FIX: Forces the absolute yarn container to span the entire document height, preventing SVG culling */
         }
         
         /* Removed .cute-bg as we moved the background to the body */
@@ -302,8 +306,8 @@
         #nav-shelf {
             position: absolute;
             bottom: 0px;
-            left: 0;
-            width: 100%;
+            left: 25%;
+            width: 100px;
             height: 4px;
             background: transparent;
             z-index: 30;
@@ -315,8 +319,8 @@
         .cat-bed-visual {
             position: absolute;
             bottom: 0px;
-            left: 25%;
-            width: 100px;
+            left: 0;
+            width: 100%;
             height: 20px;
             background: var(--surface-color);
             border: 2px solid var(--surface-color-light);
@@ -326,6 +330,17 @@
             align-items: center;
             justify-content: center;
             box-shadow: inset 0 -5px 10px rgba(0,0,0,0.1);
+            cursor: pointer;
+            transition: transform 0.25s ease, box-shadow 0.25s ease;
+        }
+
+        .cat-bed-visual:hover {
+            transform: translateY(-3px) scale(1.04);
+            box-shadow: 0 0 18px rgba(232, 198, 200, 0.35);
+        }
+
+        .cat-bed-visual:active {
+            transform: translateY(0) scale(0.98);
         }
         
         .cat-bed-visual span {
@@ -338,7 +353,8 @@
         }
         
         @media (max-width: 768px) {
-            .cat-bed-visual { left: 50%; right: auto; transform: translateX(-50%); }
+            #nav-shelf { left: 50%; right: auto; transform: translateX(-50%); }
+            .cat-bed-visual { left: 0; right: auto; transform: none; }
         }
 
         section {
@@ -357,6 +373,9 @@
             box-shadow: 0 10px 30px var(--shadow-color); transition: transform 0.3s ease, box-shadow 0.3s ease;
         }
         .cat-platform:hover { transform: translateY(-5px); box-shadow: 0 15px 40px rgba(0, 0, 0, 0.4); }
+        
+        #hero .cat-platform { z-index: auto; }
+        #hero .cat-platform:hover { transform: none; box-shadow: 0 10px 30px var(--shadow-color); }
         
         .tag { display: inline-block; padding: 0.4rem 1rem; background: var(--surface-color-light); color: var(--accent-color); border-radius: 50px; font-size: 0.85rem; margin-right: 0.5rem; margin-bottom: 0.5rem; font-weight: 600; border: 1px solid rgba(167, 199, 231, 0.1); }
 
@@ -534,9 +553,9 @@
 
         .tree-node {
             position: absolute;
-            transform: translate(-50%, -50%) scale(0);
+            transform: translate(-50%, calc(-50% + 15px)) scale(0.85);
             opacity: 0;
-            transition: all 0.5s cubic-bezier(0.34, 1.56, 0.64, 1);
+            transition: opacity 0.4s ease-out, transform 0.6s cubic-bezier(0.34, 1.56, 0.64, 1);
             z-index: 35;
             white-space: nowrap;
             pointer-events: auto;
@@ -1100,6 +1119,63 @@
         .ff-sparkle-1 { top: -10px; left: 10px; }
         .ff-sparkle-2 { bottom: 5px; right: 40px; font-size: 0.5rem; }
         .ff-sparkle-3 { top: 5px; right: 10px; font-size: 0.6rem; }
+
+        /* MINI-GAME STYLES */
+        #mini-game-overlay {
+            position: fixed; top: 0; left: 0; width: 100vw; height: 100vh;
+            background: rgba(20, 19, 26, 0.95); z-index: 60000;
+            display: none; flex-direction: column; align-items: center; justify-content: center;
+            overflow: hidden; backdrop-filter: blur(8px);
+        }
+        #mg-world {
+            position: relative; width: 100%; max-width: 800px; height: 60vh; max-height: 450px;
+            background: var(--bg-color); border: 4px solid var(--primary-color); border-radius: 16px;
+            overflow: hidden; box-shadow: 0 20px 50px rgba(0,0,0,0.5);
+        }
+        #mg-bg { position: absolute; top: 0; left: 0; width: 100%; height: 100%; transition: background 1s; }
+        #mg-floor { position: absolute; bottom: 0; left: 0; width: 100%; height: 20%; transition: background 1s; border-top: 4px solid rgba(0,0,0,0.2); }
+        
+        #mg-hud {
+            position: absolute; top: 15px; left: 15px; right: 15px; display: flex; justify-content: space-between;
+            font-family: 'JetBrains Mono', monospace; font-weight: 800; font-size: clamp(0.8rem, 2vw, 1.2rem); color: #fff; text-shadow: 2px 2px 0 #000; z-index: 10;
+        }
+        
+        #mg-cat {
+            position: absolute; bottom: 20%; left: 10%; width: 50px; height: 50px;
+            transition: bottom 0.05s linear; z-index: 5; transform-origin: bottom center;
+        }
+        
+        .mg-entity { position: absolute; z-index: 4; transform-origin: bottom left; }
+        .mg-score-float { position: absolute; font-weight: 800; font-size: 1.5rem; font-family: 'JetBrains Mono', monospace; animation: floatUp 1s forwards; z-index: 10; text-shadow: 2px 2px 0 rgba(0,0,0,0.8); }
+        @keyframes floatUp { 0% { transform: translateY(0); opacity: 1; } 100% { transform: translateY(-60px); opacity: 0; } }
+
+        /* Cat Animation States */
+        @keyframes mgRunCycle { 0% { transform: translateY(0); } 50% { transform: translateY(-4px); } 100% { transform: translateY(0); } }
+        .mg-run svg { animation: mgRunCycle 0.3s infinite; }
+        .mg-jump svg { transform: rotate(-15deg); }
+        .mg-crouch { transform: scaleY(0.5); }
+        .mg-hurt { filter: brightness(0.5) sepia(1) hue-rotate(-50deg) saturate(5); }
+
+        /* Game Screens */
+        .mg-screen {
+            position: absolute; top: 0; left: 0; width: 100%; height: 100%;
+            background: rgba(0,0,0,0.75); display: none; flex-direction: column;
+            align-items: center; justify-content: center; z-index: 20; color: #fff; text-align: center;
+        }
+        .mg-screen.active { display: flex; }
+        .mg-screen h2 { font-size: clamp(2rem, 5vw, 3.5rem); color: var(--primary-color); margin-bottom: 1rem; text-shadow: 3px 3px 0 #000; }
+        .mg-screen p { font-size: 1.1rem; margin-bottom: 2rem; max-width: 80%; line-height: 1.5; }
+        
+        .mg-btn {
+            background: var(--primary-color); color: #110f16; border: none; padding: 12px 30px;
+            font-size: 1.2rem; font-weight: 800; border-radius: 30px; cursor: pointer;
+            font-family: 'Quicksand', sans-serif; margin: 5px; transition: transform 0.2s, box-shadow 0.2s;
+            box-shadow: 0 6px 15px rgba(232, 198, 200, 0.3); outline: none;
+        }
+        .mg-btn:hover { transform: translateY(-2px) scale(1.05); box-shadow: 0 10px 20px rgba(232, 198, 200, 0.5); }
+        .mg-btn:active { transform: scale(0.95); }
+        .mg-btn-quit { background: #3b3644; color: #fff; border: 2px solid #555; box-shadow: 0 6px 15px rgba(0,0,0,0.5); }
+        .mg-btn-quit:hover { border-color: var(--primary-color); }
     </style>
 </head>
 <body>
@@ -1189,7 +1265,7 @@
             </nav>
             <div id="nav-shelf" class="cat-platform">
                 <div class="cat-bed-visual">
-                    <span>CAT BED</span>
+                    <span>WAKE ME? 🐾</span>
                 </div>
             </div>
         </header>
@@ -3187,6 +3263,77 @@
         </div>
     </div>
 
+    <!-- MINI GAME OVERLAY AND HTML (Added to fix missing DOM elements) -->
+    <div id="mini-game-overlay">
+        <div id="mg-world">
+            <div id="mg-bg"></div>
+            <div id="mg-floor"></div>
+            
+            <!-- HUD -->
+            <div id="mg-hud">
+                <div id="mg-lives-disp">🐾 LIVES: ❤️❤️❤️❤️❤️❤️❤️❤️❤️</div>
+                <div id="mg-score-disp">SCORE: 000000</div>
+                <div id="mg-level-disp">LEVEL: 01</div>
+            </div>
+            
+            <!-- Entities Container -->
+            <div id="mg-entities"></div>
+            
+            <!-- Player Cat -->
+            <div id="mg-cat" class="mg-run">
+                <svg viewBox="0 0 100 100" width="100%" height="100%" style="overflow: visible;">
+                    <rect x="20" y="40" width="60" height="40" rx="15" fill="var(--primary-color)"/>
+                    <circle cx="80" cy="45" r="22" fill="var(--primary-color)"/>
+                    <polygon points="70,30 65,5 85,25" fill="var(--primary-color)"/>
+                    <polygon points="90,30 95,5 75,25" fill="var(--primary-color)"/>
+                    <!-- Face -->
+                    <circle cx="92" cy="40" r="4" fill="#14131a"/>
+                    <circle cx="78" cy="40" r="4" fill="#14131a"/>
+                    <circle cx="91" cy="38" r="1.5" fill="#fff"/>
+                    <circle cx="77" cy="38" r="1.5" fill="#fff"/>
+                    <path d="M 85 48 Q 87 50 89 48" fill="none" stroke="#14131a" stroke-width="2" stroke-linecap="round"/>
+                    <!-- Tail -->
+                    <path d="M 25 60 Q -5 50 5 25" fill="none" stroke="var(--primary-color)" stroke-width="12" stroke-linecap="round"/>
+                    <!-- Legs -->
+                    <line x1="35" y1="75" x2="35" y2="95" stroke="var(--secondary-color)" stroke-width="8" stroke-linecap="round"/>
+                    <line x1="65" y1="75" x2="65" y2="95" stroke="var(--secondary-color)" stroke-width="8" stroke-linecap="round"/>
+                </svg>
+            </div>
+            
+            <!-- SCREENS -->
+            <div id="mg-start-screen" class="mg-screen">
+                <h2>DEV CAT RUN</h2>
+                <p>Dodge the bugs (dogs). Catch the yarn. Survive until the final deadline.</p>
+                <p style="font-size:0.9rem; color:var(--accent-color); font-family: 'JetBrains Mono', monospace;">Controls: [Space/Up] = Jump | [Down] = Crouch | Tap/Swipe on Mobile</p>
+                <div style="margin-top: 1rem;">
+                    <button class="mg-btn mg-btn-play">PLAY 🐾</button>
+                    <button class="mg-btn mg-btn-quit">RETURN</button>
+                </div>
+            </div>
+            
+            <div id="mg-level-screen" class="mg-screen">
+                <h2 id="mg-level-title">LEVEL COMPLETE</h2>
+            </div>
+            
+            <div id="mg-gameover-screen" class="mg-screen">
+                <h2 style="color: #ff3333;">GAME OVER</h2>
+                <p>The bugs caught you. Code failed to compile.</p>
+                <div style="margin-top: 1rem;">
+                    <button class="mg-btn mg-btn-retry">TRY AGAIN 🔄</button>
+                    <button class="mg-btn mg-btn-quit">RETURN</button>
+                </div>
+            </div>
+            
+            <div id="mg-victory-screen" class="mg-screen">
+                <h2 style="color: var(--accent-color);">VICTORY!</h2>
+                <p>You deployed to production successfully without crashing.</p>
+                <div style="margin-top: 1rem;">
+                    <button class="mg-btn mg-btn-quit">RETURN TO PORTFOLIO 🏆</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
     <script>
         const CAT_CONFIG = {
             walkSpeed: 150, runSpeed: 400, gravity: 1200, jumpVelocityY: -600, 
@@ -3195,7 +3342,7 @@
 
         const GameState = {
             introActive: true, noClicks: 0, platforms: [], lastTime: 0, mouseX: 0, mouseY: 0,
-            lives: 9, livesActive: false, fallCooldown: false
+            fallCooldown: false
         };
 
         const IntroController = {
@@ -3305,8 +3452,8 @@
 
                 btnYes.addEventListener('click', () => { 
                     btnYes.disabled = true; btnNo.disabled = true;
-                    btnYes.style.opacity = '0'; btnYes.style.pointerEvents = 'none'; btnYes.style.transform = `translateX(-75px) scale(0)`;
-                    btnNo.style.opacity = '0'; btnNo.style.pointerEvents = 'none'; btnNo.style.transform = `translateX(75px) scale(0)`;
+                    btnYes.style.opacity = '0'; btnYes.style.pointerEvents = 'none'; btnYes.style.transform = `translateX(-85px) scale(0)`;
+                    btnNo.style.opacity = '0'; btnNo.style.pointerEvents = 'none'; btnNo.style.transform = `translateX(85px) scale(0)`;
 
                     if(msgTimeout) clearTimeout(msgTimeout);
                     msg.style.opacity = '0';
@@ -3341,19 +3488,27 @@
                             msg.style.opacity = '1'; msg.style.transform = 'translateY(0)';
                         }, 300);
                         
-                        let yesScale = 1 + (GameState.noClicks * 0.2);
+                        // Slower growth for YES, and NO stays pinned in place
+                        let yesScale = 1 + (GameState.noClicks * 0.12);
                         let noScale = 1 - (GameState.noClicks * 0.15);
                         
-                        btnYes.style.transform = `translateX(-75px) scale(${yesScale})`;
-                        btnNo.style.transform = `translateX(${75 + (GameState.noClicks * 45)}px) scale(${noScale})`;
+                        // Shift YES left based on its scale so its right edge stays pinned to the center, preventing overlap
+                        let yesX = -75 * yesScale; 
+                        
+                        btnYes.style.transform = `translateX(${yesX}px) scale(${yesScale})`;
+                        btnNo.style.transform = `translateX(75px) scale(${noScale})`;
                         
                     } else if (GameState.noClicks === 5) {
                         if(msgTimeout) clearTimeout(msgTimeout);
                         msg.style.opacity = '0';
                         setTimeout(() => { msg.innerText = noMessages[4]; msg.style.opacity = '1'; }, 300);
 
-                        btnNo.style.opacity = '0'; btnNo.style.pointerEvents = 'none'; btnNo.style.transform = `translateX(200px) scale(0)`;
-                        btnYes.style.opacity = '0'; btnYes.style.pointerEvents = 'none'; btnYes.style.transform = `scale(0)`;
+                        // Collapse neatly in place
+                        let yesScale = 1 + (4 * 0.12);
+                        let yesX = -75 * yesScale;
+
+                        btnNo.style.opacity = '0'; btnNo.style.pointerEvents = 'none'; btnNo.style.transform = `translateX(75px) scale(0)`;
+                        btnYes.style.opacity = '0'; btnYes.style.pointerEvents = 'none'; btnYes.style.transform = `translateX(${yesX}px) scale(0)`;
                         btnYes.disabled = true;
 
                         setTimeout(() => { this.playGiantPawTransition(false); }, 800);
@@ -3362,19 +3517,21 @@
             },
 
             transitionToPortfolio(happy) {
-                if(!GameState.introActive) return;
+                if (!GameState.introActive) return;
                 GameState.introActive = false;
-                
+
                 const introScreen = document.getElementById('intro-screen');
                 const portfolio = document.getElementById('portfolio-main');
                 const pawContainer = document.getElementById('paw-container');
-                
-                introScreen.style.display = 'none';
-                
-                portfolio.style.display = 'flex';
-                void portfolio.offsetWidth; 
-                portfolio.style.opacity = '1';
-                
+
+                if (introScreen) introScreen.style.display = 'none';
+
+                if (portfolio) {
+                    portfolio.style.display = 'flex';
+                    void portfolio.offsetWidth; 
+                    portfolio.style.opacity = '1';
+                }
+
                 document.querySelectorAll('#portfolio-main > header, #portfolio-main > section').forEach((el, index) => {
                     el.style.opacity = '0';
                     el.style.transform = 'translateY(40px)';
@@ -3384,23 +3541,25 @@
 
                 if (pawContainer) pawContainer.style.opacity = '0';
                 setTimeout(() => { if (pawContainer) pawContainer.style.display = 'none'; }, 1000);
-                
+
                 PlatformManager.scan();
-                const navShelf = GameState.platforms.find(p => p.el && p.el.id === 'nav-shelf');
                 const visualBed = document.querySelector('.cat-bed-visual');
+                const navShelf = GameState.platforms.find(p => p.el && p.el.id === 'nav-shelf');
                 
                 if (visualBed && navShelf) {
                     const vRect = visualBed.getBoundingClientRect();
+                    // Position horizontally: Center of the bed
                     Cat.x = vRect.left + (vRect.width / 2) + window.scrollX;
-                    Cat.y = happy ? window.scrollY - 100 : navShelf.y - CAT_CONFIG.height; 
-                } else if(navShelf) {
-                    Cat.x = navShelf.x + (navShelf.width / 2);
-                    Cat.y = happy ? window.scrollY - 100 : navShelf.y - CAT_CONFIG.height; 
+                    // Position vertically: Drop from top if happy, otherwise sit exactly on bed
+                    Cat.y = happy ? window.scrollY - 100 : navShelf.y - CAT_CONFIG.height;
+                    Cat.currentPlatform = navShelf;
                 } else {
-                    Cat.x = window.innerWidth / 2; Cat.y = window.scrollY - 100;
+                    Cat.x = window.innerWidth / 2; 
+                    Cat.y = window.scrollY - 100;
                 }
                 
-                Cat.setState(happy ? 'FALL' : 'SITTING');
+                Cat.facingRight = false;
+                Cat.setState(happy ? 'FALLING' : 'SLEEPING');
                 requestAnimationFrame(gameLoop);
             }
         };
@@ -3408,14 +3567,13 @@
         const SkillTreeAnimation = {
             isStarted: false,
             treeData: [
-                { cat: "Software", skills: ["Python", "C / C++", "Embedded C", "HTML / CSS", "Flask", "Matplotlib"] },
-                { cat: "AI & Vision", skills: ["OpenCV", "TensorFlow & Sklearn", "NumPy & Pandas", "Object Detection", "Image Segmentation", "Feature Extraction"] },
-                { cat: "Embedded", skills: ["STM32 (F4/N6/L4/WB)", "ESP32 & 8266", "Raspberry Pi", "Arduino & 8051", "STM32Cube Suite"] },
-                { cat: "Protocols", skills: ["I²C & SPI", "UART / USART", "RS-485 (Modbus)", "BLE", "MQTT", "HTTP / REST"] },
-                { cat: "Hardware", skills: ["PCB Design", "KiCad", "Multisim", "Proteus", "Circuit Simulation"] }
+                { cat: "Foundation 🐱", skills: ["C / C++", "Python", "JavaScript", "HTML / CSS", "Git / Linux"] },
+                { cat: "Embedded 🐈", skills: ["Embedded C", "FreeRTOS", "Arduino & 8051", "ESP32 & STM32", "Raspberry Pi"] },
+                { cat: "Hardware 🐈‍⬛", skills: ["PCB Design", "Sensors & Actuators", "I²C / SPI / UART", "Oscilloscopes"] },
+                { cat: "Data & AI 😼", skills: ["Computer Vision", "OpenCV", "Machine Learning", "Edge AI", "Flask"] }
             ],
 
-            start(rootX, rootY) {
+            async start(rootX, rootY) {
                 if (this.isStarted) return;
                 this.isStarted = true;
 
@@ -3425,79 +3583,188 @@
                 nodesContainer.innerHTML = ''; 
                 const branchesGroup = document.getElementById('skill-yarn-branches');
                 branchesGroup.innerHTML = '';
+                const hangingGroup = document.getElementById('hanging-yarn-group');
+                hangingGroup.innerHTML = '';
 
-                const strands = Array.from(document.querySelectorAll('.hanging-yarn-strand'));
+                // Helper for async sequences
+                const delay = ms => new Promise(res => setTimeout(res, ms));
 
-                strands.sort((a, b) => {
-                    const ax = parseFloat(a.getAttribute('d').split(' ').pop());
-                    const bx = parseFloat(b.getAttribute('d').split(' ').pop());
-                    return ax - bx;
-                });
+                // 1. Calculate deterministic layout bounding box
+                const containerWidth = Math.min(window.innerWidth, 1100);
+                const CX = window.innerWidth / 2;
+                let maxY = rootY;
+                let layout = [];
 
-                let mobileYOffset = rootY + 180;
-                let maxDesktopDepth = 0;
+                if (isMobile) {
+                    let currentY = rootY + 120;
+                    this.treeData.forEach((catData, i) => {
+                        let catX = CX;
+                        let catY = currentY;
 
-                this.treeData.forEach((catData, i) => {
-                    const strand = strands[i];
-                    if (!strand) return;
+                        let skills = catData.skills.map((skill, j) => {
+                            // Neatly alternate left and right on mobile
+                            let side = j % 2 === 0 ? -1 : 1;
+                            let row = Math.floor(j / 2);
+                            let skillX = catX + side * 90; 
+                            let skillY = catY + 70 + row * 55;
+                            
+                            // Center the last skill if it's an odd number
+                            if (catData.skills.length % 2 !== 0 && j === catData.skills.length - 1) {
+                                skillX = catX; 
+                                skillY = catY + 70 + row * 55 + 20;
+                            }
+                            return { text: skill, x: skillX, y: skillY };
+                        });
 
-                    let catX, catY;
-                    if (isMobile) {
-                        catX = window.innerWidth / 2 + (i % 2 === 0 ? -30 : 30); 
-                        catY = mobileYOffset;
-                        // Dynamically calculate the spacing needed for the next cat based on how many skills THIS cat has
-                        mobileYOffset += 110 + (catData.skills.length * 45); 
+                        let lowestSkillY = skills.length > 0 ? Math.max(...skills.map(s => s.y)) : catY;
+                        currentY = lowestSkillY + 140; // Push next category down
+                        maxY = Math.max(maxY, lowestSkillY);
+
+                        // Connect back to previous category to form a continuous spine
+                        let parentCoords = i === 0 ? {x: rootX, y: rootY} : {x: layout[i-1].catX, y: layout[i-1].catY + 30};
+
+                        layout.push({ cat: catData.cat, catX, catY, skills, parentX: parentCoords.x, parentY: parentCoords.y });
+                    });
+                } else {
+                    // Desktop Layout: 4 Distinct Branches with Staggered Depths
+                    const xOffset = Math.min(360, containerWidth * 0.35);
+                    const innerOffset = Math.min(140, containerWidth * 0.12);
+
+                    // All 4 branches radiate from the central root but drop to vastly different depths
+                    const coords = [
+                        { x: CX - xOffset, y: rootY + 240, parentX: CX, parentY: rootY },       // Far Left (Shallow)
+                        { x: CX - innerOffset, y: rootY + 500, parentX: CX, parentY: rootY },   // Inner Left (Deepest)
+                        { x: CX + innerOffset, y: rootY + 340, parentX: CX, parentY: rootY },   // Inner Right (Medium)
+                        { x: CX + xOffset, y: rootY + 460, parentX: CX, parentY: rootY }        // Far Right (Deep)
+                    ];
+
+                    this.treeData.forEach((catData, i) => {
+                        let catX = coords[i].x;
+                        let catY = coords[i].y;
+                        let numSkills = catData.skills.length;
+                        let skillSpread = 90; // Tighter spread so inter-branch leaves don't overlap
+
+                        let skills = catData.skills.map((skill, j) => {
+                            // Fan out symmetrically 
+                            let spreadFactor = (j - (numSkills - 1) / 2); 
+                            let skillX = catX + spreadFactor * skillSpread;
+                            
+                            // Create a slight arch and prevent vertical collisions
+                            let archY = Math.abs(spreadFactor) * 20; 
+                            let skillY = catY + 80 + archY;
+                            
+                            // Sub-stagger adjacent text slightly so long labels don't collide
+                            if (j % 2 === 1) skillY += 45;
+
+                            return { text: skill, x: skillX, y: skillY };
+                        });
+
+                        let lowestSkillY = skills.length > 0 ? Math.max(...skills.map(s => s.y)) : catY;
+                        maxY = Math.max(maxY, lowestSkillY);
+
+                        layout.push({
+                            cat: catData.cat, catX, catY, skills,
+                            parentX: coords[i].parentX, parentY: coords[i].parentY
+                        });
+                    });
+                }
+                
+                // Ensure section has enough height so tree doesn't overflow
+                const spacer = document.getElementById('skills-spacer');
+                if (spacer) spacer.style.height = (maxY - rootY + 150) + 'px';
+
+                // --- 2. THE ANIMATION SEQUENCE ---
+                
+                const createNode = (text, x, y, className) => {
+                    const el = document.createElement('div');
+                    el.className = `tree-node ${className}`;
+                    el.innerText = text;
+                    el.style.left = x + 'px';
+                    el.style.top = y + 'px';
+                    nodesContainer.appendChild(el);
+                    return el;
+                };
+
+                // Draw main branches (Staggered)
+                for (let i = 0; i < layout.length; i++) {
+                    const data = layout[i];
+                    const strand = document.createElementNS("http://www.w3.org/2000/svg", "path");
+                    strand.setAttribute("class", "hanging-yarn-strand");
+                    
+                    // Elegant organic S-curves
+                    let d;
+                    if (Math.abs(data.parentX - data.catX) < 10) {
+                        d = `M ${data.parentX} ${data.parentY} L ${data.catX} ${data.catY}`;
                     } else {
-                        catX = rootX + (i - 2) * 180;
-                        catY = rootY + 120 + Math.abs(i - 2) * 40;
-                        maxDesktopDepth = Math.max(maxDesktopDepth, catY + 60 + (catData.skills.length * 45));
+                        d = `M ${data.parentX} ${data.parentY} C ${data.parentX} ${data.parentY + (data.catY-data.parentY)/2}, ${data.catX} ${data.parentY + (data.catY-data.parentY)/2}, ${data.catX} ${data.catY}`;
                     }
                     
-                    const d = `M ${rootX} ${rootY} Q ${rootX} ${catY - 50} ${catX} ${catY}`;
                     strand.setAttribute('d', d);
-
-                    const catNode = document.createElement('div');
-                    catNode.className = 'tree-node node-cat';
-                    catNode.innerText = catData.cat;
-                    catNode.style.left = catX + 'px';
-                    catNode.style.top = catY + 'px';
-                    nodesContainer.appendChild(catNode);
+                    hangingGroup.appendChild(strand);
                     
-                    setTimeout(() => catNode.classList.add('visible'), i * 200 + 500);
+                    // Trigger GPU draw
+                    void strand.getBoundingClientRect();
+                    const len = strand.getTotalLength() || 1000;
+                    strand.style.strokeDasharray = len;
+                    strand.style.strokeDashoffset = len;
+                    
+                    requestAnimationFrame(() => {
+                        strand.style.transition = 'stroke-dashoffset 0.8s cubic-bezier(0.4, 0, 0.2, 1)';
+                        strand.style.strokeDashoffset = '0';
+                    });
+                    
+                    await delay(300); // Wait briefly before drawing next main branch
+                }
 
-                    catData.skills.forEach((skill, j) => {
-                        const skillX = catX + (j % 2 === 0 ? -1 : 1) * (40 + Math.random() * 20);
-                        const skillY = catY + 60 + (j * 45);
-                        
+                await delay(400);
+
+                // Reveal Category Cats
+                let catDOMNodes = [];
+                for (let i = 0; i < layout.length; i++) {
+                    const node = createNode(layout[i].cat, layout[i].catX, layout[i].catY, 'node-cat');
+                    catDOMNodes.push(node);
+                    
+                    requestAnimationFrame(() => node.classList.add('visible'));
+                    await delay(200);
+                }
+
+                await delay(300);
+
+                // Draw Sub-branches and reveal Skill Pills simultaneously
+                for (let i = 0; i < layout.length; i++) {
+                    const data = layout[i];
+                    for (let j = 0; j < data.skills.length; j++) {
+                        const skillData = data.skills[j];
+
                         const subBranch = document.createElementNS("http://www.w3.org/2000/svg", "path");
                         subBranch.setAttribute("class", "sub-branch");
-                        subBranch.setAttribute("d", `M ${catX} ${catY + 15} Q ${catX} ${skillY} ${skillX} ${skillY}`);
-                        subBranch.style.strokeDasharray = "100";
-                        subBranch.style.strokeDashoffset = "100";
-                        subBranch.style.transition = "stroke-dashoffset 1s ease";
+
+                        let d = `M ${data.catX} ${data.catY + 20} C ${data.catX} ${skillData.y - 30}, ${skillData.x} ${data.catY + 50}, ${skillData.x} ${skillData.y}`;
+                        if (isMobile) {
+                            d = `M ${data.catX} ${data.catY + 20} Q ${data.catX} ${skillData.y}, ${skillData.x} ${skillData.y}`;
+                        }
+
+                        subBranch.setAttribute("d", d);
                         branchesGroup.appendChild(subBranch);
 
-                        const skillNode = document.createElement('div');
-                        skillNode.className = 'tree-node node-skill';
-                        skillNode.innerText = skill;
-                        skillNode.style.left = skillX + 'px';
-                        skillNode.style.top = skillY + 'px';
-                        nodesContainer.appendChild(skillNode);
+                        void subBranch.getBoundingClientRect();
+                        const len = subBranch.getTotalLength() || 300;
+                        subBranch.style.strokeDasharray = len;
+                        subBranch.style.strokeDashoffset = len;
+                        
+                        requestAnimationFrame(() => {
+                            subBranch.style.transition = 'stroke-dashoffset 0.5s ease-out';
+                            subBranch.style.strokeDashoffset = '0';
+                        });
 
-                        setTimeout(() => {
-                            subBranch.style.strokeDashoffset = "0";
-                            skillNode.classList.add('visible');
-                        }, i * 200 + 800 + (j * 150));
-                    });
-                });
-                
-                const spacer = document.getElementById('skills-spacer');
-                if (spacer) {
-                    if (isMobile) {
-                        spacer.style.height = (mobileYOffset - rootY + 50) + 'px';
-                    } else {
-                        spacer.style.height = (maxDesktopDepth - rootY + 50) + 'px';
+                        await delay(150); // Pause while branch draws
+
+                        const skillNode = createNode(skillData.text, skillData.x, skillData.y, 'node-skill');
+                        requestAnimationFrame(() => skillNode.classList.add('visible'));
+
+                        await delay(100); // Quick gap before next skill
                     }
+                    await delay(200); // Breathing room between categories
                 }
             }
         };
@@ -3566,7 +3833,7 @@
                 }
                 
                 document.querySelectorAll('.cat-platform').forEach(el => {
-                    if (el.id === 'nav-shelf') return;
+                    if (el.id === 'nav-shelf') return; // Already added above
                     const rect = el.getBoundingClientRect();
                     GameState.platforms.push({
                         y: rect.top + window.scrollY,
@@ -3575,8 +3842,6 @@
                         el: el
                     });
                 });
-                
-                GameState.platforms.sort((a, b) => a.y - b.y);
             }
         };
 
@@ -3623,72 +3888,41 @@
                 if (
                     this.state === 'DEAD' || 
                     this.state === 'PERMADEAD' || 
-                    GameState.fallCooldown
+                    GameState.fallCooldown ||
+                    MiniGame.isActive // Block portfolio falling if game is active
                 ) {
-                    return; // Prevent multiple triggers and ensure lock is respected
+                    return; 
                 }
                 
                 GameState.fallCooldown = true;
-                this.setState('DEAD');
-                GameState.lives = Math.max(0, GameState.lives - 1);
                 
-                const ui = document.getElementById('lives-ui');
-                const count = document.getElementById('lives-count');
-                const toast = document.getElementById('fall-toast');
-                
-                ui.style.display = 'block';
-                count.innerText = GameState.lives;
-                
-                toast.style.top = '20px';
-                if (GameState.lives > 0) {
-                    toast.innerText = `Ohh the cat fell! One life lost. ${GameState.lives} lives remaining 🙀`;
-                } else {
-                    toast.innerText = `RIP. The cat has run out of lives! 🪦`;
-                }
-                
-                setTimeout(() => { toast.style.top = '-100px'; }, 3000);
-                setTimeout(() => { ui.style.opacity = '0'; }, 3000);
-                setTimeout(() => { ui.style.display = 'none'; ui.style.opacity = '1'; }, 3300);
+                // Purely visual reset now. No lives deducted in the portfolio!
+                this.setState('FALLING');
                 
                 setTimeout(() => {
                     PlatformManager.scan();
-                    const navShelf = document.getElementById('nav-shelf');
                     const visualBed = document.querySelector('.cat-bed-visual');
+                    const navShelf = GameState.platforms.find(p => p.el && p.el.id === 'nav-shelf');
                     
                     if (visualBed && navShelf) {
                         const vRect = visualBed.getBoundingClientRect();
-                        const shelfRect = navShelf.getBoundingClientRect();
-                        
-                        // Spawn exactly in the horizontal center of the visual bed graphic
                         this.x = vRect.left + (vRect.width / 2) + window.scrollX;
-                        
-                        // Safe respawn directly on the platform surface
-                        this.y = shelfRect.top + window.scrollY - CAT_CONFIG.height; 
-                        this.currentPlatform = GameState.platforms.find(p => p.el.id === 'nav-shelf');
-                    } else if (navShelf) {
-                        const rect = navShelf.getBoundingClientRect();
-                        this.x = rect.left + window.scrollX + 60; 
-                        
-                        this.y = rect.top + window.scrollY - CAT_CONFIG.height; 
-                        this.currentPlatform = GameState.platforms.find(p => p.el.id === 'nav-shelf');
+                        this.y = window.scrollY - 100; // Drop down from top
+                        this.currentPlatform = navShelf;
                     } else {
                         this.x = window.innerWidth / 2; 
-                        this.y = window.scrollY; // safe fallback
+                        this.y = window.scrollY; 
                     }
                     
                     this.vy = 0; 
                     this.vx = 0;
                     this.targetX = null; 
                     this.targetY = null;
+                    this.facingRight = false;
                     
-                    if (GameState.lives > 0) {
-                        this.setState('SITTING'); // Cat is safely seated on the platform
-                        GameState.fallCooldown = false; // Release the lock so the cat can play again
-                    } else {
-                        this.setState('PERMADEAD');
-                        // Do not release lock if permadead
-                    }
-                }, 2000);
+                    this.setState('FALLING'); 
+                    GameState.fallCooldown = false; 
+                }, 1000);
             },
             
             update(dt) {
@@ -3762,7 +3996,7 @@
                         // Only move if we are more than 5px away from target
                         if (dist > 5) {
                             // Face the correct direction
-                            this.svg.style.transform = dx > 0 ? 'scaleX(-1)' : 'scaleX(1)';
+                            this.facingRight = dx > 0;
                             
                             // Determine speed based on distance
                             const isSprint = dist > CAT_CONFIG.sprintDistance;
@@ -3831,7 +4065,12 @@
                     }
                 }
 
-                // Apply final transforms
+                // Apply final transforms & dynamically scale cat if it is in the navbar
+                if (this.facingRight === undefined) this.facingRight = false;
+                const inNavbar = this.y <= window.scrollY + 120; // Safe buffer for header zone
+                const scale = inNavbar ? 0.75 : 1;
+                
+                this.svg.style.transform = `scaleX(${this.facingRight ? -scale : scale}) scaleY(${scale})`;
                 this.el.style.transform = `translate(${this.x - CAT_CONFIG.width/2}px, ${this.y}px)`;
             }
         };
@@ -3866,6 +4105,19 @@
                     clearTimeout(this.resizeTimer);
                     this.resizeTimer = setTimeout(() => { 
                         PlatformManager.scan(); 
+                        
+                        // Re-anchor if sitting idle by the logo/header
+                        if (Cat.currentPlatform && Cat.currentPlatform.el.closest('header') && (Cat.state === 'SITTING' || Cat.state === 'SLEEPING') && Cat.targetX === null) {
+                            const visualBed = document.querySelector('.cat-bed-visual');
+                            const navShelf = GameState.platforms.find(p => p.el && p.el.id === 'nav-shelf');
+                            
+                            if (visualBed && navShelf) {
+                                const vRect = visualBed.getBoundingClientRect();
+                                Cat.x = vRect.left + (vRect.width / 2) + window.scrollX;
+                                Cat.y = navShelf.y - CAT_CONFIG.height;
+                                Cat.facingRight = false;
+                            }
+                        }
                     }, 200);
                 });
             }
@@ -4742,6 +4994,507 @@
             }
         };
 
+        // --- DEV CAT RUNNER: MINI GAME ENGINE ---
+        const MiniGame = {
+            initialized: false,
+            isActive: false, isPlaying: false,
+            lives: 9, score: 0, level: 1,
+            speed: 500, // px per second
+            catY: 0, catVy: 0, gravity: 2800, jumpForce: -1000,
+            isJumping: false, isCrouching: false, isInvincible: false,
+            entities: [], lastTime: 0, spawnTimer: 0, levelTimer: 0,
+            
+            levelDurations: [20000, 25000, 25000, 30000, 30000, 35000],
+            levelNames: ["SR. KG", "SCHOOL", "COLLEGE", "ENGINEERING", "CV RESEARCH", "DEV CAT"],
+            bgColors: ["#e0f2f7", "#d4e6f1", "#c7ccdc", "#3b3644", "#1a1e29", "#110f16"],
+            floorColors: ["#9a6b4e", "#b3855a", "#8c6548", "#5b486b", "#2c3545", "#24222a"],
+            
+            init() {
+                if (this.initialized) return;
+
+                const bed = document.querySelector('.cat-bed-visual');
+                if (!bed) {
+                    console.warn('MiniGame: .cat-bed-visual not found');
+                } else {
+                    bed.addEventListener('click', (e) => {
+                        e.preventDefault();
+                        e.stopPropagation(); // BUG #3 FIX: Stop global portfolio cat click
+
+                        if (this.isActive) return;
+                        this.initTransition();
+                    });
+                }
+
+                // Safety checks for expected DOM
+                const overlay = document.getElementById('mini-game-overlay');
+                if (!overlay) console.error('MiniGame: #mini-game-overlay not found');
+                const startScreen = document.getElementById('mg-start-screen');
+                if (!startScreen) console.error('MiniGame: #mg-start-screen not found');
+
+                // BUG #4 & #5 FIX: Dynamically wire up existing buttons
+                // Uses event delegation to safely catch clicks on any PLAY, RETRY, or RETURN button
+                document.addEventListener('click', (e) => {
+                    if (!this.isActive) return;
+
+                    const target = e.target;
+                    const text = (target.innerText || '').toUpperCase();
+                    const screen = target.closest('.mg-screen');
+
+                    // Make sure click happened inside an active mini-game screen
+                    if (screen && screen.classList.contains('active')) {
+                        // Play / Retry mapping
+                        if (
+                            target.closest('.mg-btn-play') || 
+                            target.closest('.mg-btn-retry') || 
+                            text.includes('PLAY') || 
+                            text.includes('TRY AGAIN')
+                        ) {
+                            e.preventDefault();
+                            e.stopPropagation();
+                            this.start();
+                        }
+                        // Quit / Return mapping
+                        else if (
+                            target.closest('.mg-btn-quit') || 
+                            text.includes('RETURN')
+                        ) {
+                            e.preventDefault();
+                            e.stopPropagation();
+                            this.quit();
+                        }
+                    }
+                });
+
+                this.initialized = true;
+            },
+
+            initTransition() {
+                if (this.isActive) return;
+                
+                const bed = document.querySelector('.cat-bed-visual');
+                const rect = bed.getBoundingClientRect();
+                const overlay = document.getElementById('mini-game-overlay');
+                
+                // Freeze Portfolio Cat
+                Cat.setState('SITTING');
+                
+                // Transition Setup
+                overlay.style.display = 'flex';
+                overlay.style.transformOrigin = `${rect.left + rect.width/2}px ${rect.top + rect.height/2}px`;
+                overlay.style.transform = 'scale(0)';
+                overlay.style.opacity = '0';
+                
+                void overlay.offsetWidth; // force reflow
+                
+                overlay.style.transition = 'transform 1s cubic-bezier(0.34, 1.56, 0.64, 1), opacity 0.8s ease';
+                overlay.style.transform = 'scale(1)';
+                overlay.style.opacity = '1';
+                
+                setTimeout(() => {
+                    this.isActive = true;
+                    this.showScreen('mg-start-screen');
+                    this.bindControls();
+                }, 1000);
+            },
+            
+            start() {
+                this.lives = 9;
+                this.score = 0;
+                this.level = 1;
+                this.speed = 500;
+                this.entities.forEach(e => e.el.remove());
+                this.entities = [];
+                this.levelTimer = 0;
+                this.spawnTimer = 1000;
+                this.catY = 0;
+                this.catVy = 0;
+                this.isJumping = false;
+                this.isCrouching = false;
+                this.bossSpawned = false;
+                
+                document.getElementById('mg-cat').className = 'mg-run';
+                document.getElementById('mg-bg').style.background = this.bgColors[0];
+                document.getElementById('mg-floor').style.background = this.floorColors[0];
+                
+                this.hideScreens();
+                this.updateHUD();
+                
+                this.isPlaying = true;
+                this.lastTime = performance.now();
+                requestAnimationFrame((t) => this.update(t));
+            },
+            
+            update(timestamp) {
+                if (!this.isActive || !this.isPlaying) return;
+                
+                let dt = (timestamp - this.lastTime) / 1000;
+                if (dt > 0.1) dt = 0.016; // Prevent massive jumps if tab was inactive
+                this.lastTime = timestamp;
+                
+                // Score & Level Progression
+                this.score += this.speed * dt * 0.1;
+                this.levelTimer += dt * 1000;
+                this.updateHUD();
+                
+                if (this.level < 6 && this.levelTimer > this.levelDurations[this.level - 1]) {
+                    this.nextLevel();
+                    return;
+                }
+                
+                if (this.level === 6 && this.levelTimer > this.levelDurations[5]) {
+                    this.victory();
+                    return;
+                }
+                
+                // Physics
+                if (this.isJumping || this.catY > 0) {
+                    this.catVy -= this.gravity * dt; // Gravity pulls down
+                    this.catY += this.catVy * dt;
+                    
+                    if (this.catY <= 0) {
+                        this.catY = 0;
+                        this.catVy = 0;
+                        this.isJumping = false;
+                        const catEl = document.getElementById('mg-cat');
+                        catEl.classList.remove('mg-jump');
+                        if (!this.isCrouching) catEl.classList.add('mg-run');
+                    }
+                    document.getElementById('mg-cat').style.bottom = `calc(20% + ${this.catY}px)`;
+                }
+                
+                // Spawning
+                this.spawnTimer -= dt * 1000;
+                if (this.spawnTimer <= 0) {
+                    this.spawnEntity();
+                    // Spawn faster on higher levels
+                    this.spawnTimer = 800 + Math.random() * Math.max(500, 2000 - this.level * 250);
+                }
+                
+                // Entity Update & Collision
+                const catRect = { x: window.innerWidth * 0.1, y: this.catY, w: 50, h: this.isCrouching ? 25 : 50 };
+                
+                this.entities.forEach(ent => {
+                    if (ent.markedForDeletion) return;
+                    
+                    let entSpeed = this.speed;
+                    if (ent.type === 'dog_angry') entSpeed *= 1.3;
+                    if (ent.type === 'dog_boss') entSpeed *= 0.8;
+                    
+                    ent.x -= entSpeed * dt;
+                    ent.el.style.left = `${ent.x}px`;
+                    
+                    // Collision Check
+                    const entRect = { x: ent.x, y: ent.y, w: ent.w * 0.7, h: ent.h * 0.7 }; // generous hitbox
+                    
+                    if (this.checkCollision(catRect, entRect)) {
+                        if (ent.isEnemy) {
+                            this.hit();
+                            ent.markedForDeletion = true; 
+                        } else {
+                            this.collect(ent.type, ent.x, ent.y);
+                            ent.markedForDeletion = true;
+                            ent.el.remove();
+                        }
+                    }
+                    
+                    if (ent.x < -200) {
+                        ent.markedForDeletion = true;
+                        ent.el.remove();
+                    }
+                });
+                
+                this.entities = this.entities.filter(e => !e.markedForDeletion || (e.isEnemy && e.x > -200));
+                
+                requestAnimationFrame((t) => this.update(t));
+            },
+            
+            jump() {
+                if (this.catY === 0 && !this.isCrouching) {
+                    this.catVy = -this.jumpForce; // Negative jump force goes up
+                    this.isJumping = true;
+                    const catEl = document.getElementById('mg-cat');
+                    catEl.classList.remove('mg-run');
+                    catEl.classList.add('mg-jump');
+                }
+            },
+            
+            crouch() {
+                if (this.isJumping) {
+                    this.catVy = -1500; // Fast fall!
+                    return;
+                }
+                if (this.isCrouching) return;
+                this.isCrouching = true;
+                const catEl = document.getElementById('mg-cat');
+                catEl.classList.remove('mg-run');
+                catEl.classList.add('mg-crouch');
+            },
+            
+            unCrouch() {
+                if (!this.isCrouching) return;
+                this.isCrouching = false;
+                const catEl = document.getElementById('mg-cat');
+                catEl.classList.remove('mg-crouch');
+                if (!this.isJumping) catEl.classList.add('mg-run');
+            },
+            
+            hit() {
+                if (this.isInvincible) return;
+                
+                this.lives = Math.max(0, this.lives - 1);
+                this.updateHUD();
+                
+                if (this.lives === 0) {
+                    this.gameOver();
+                    return;
+                }
+                
+                this.isInvincible = true;
+                const catEl = document.getElementById('mg-cat');
+                catEl.classList.add('mg-hurt');
+                
+                setTimeout(() => {
+                    this.isInvincible = false;
+                    catEl.classList.remove('mg-hurt');
+                }, 1500);
+            },
+            
+            collect(type, x, y) {
+                if (type === 'yarn') {
+                    this.score += 100;
+                    this.showFloatingText('+100', x, y, 'var(--primary-color)');
+                } else if (type === 'catnip') {
+                    this.speed += 200; // temporary speed boost
+                    this.isInvincible = true;
+                    document.getElementById('mg-cat').style.filter = 'drop-shadow(0 0 10px #a2d149)';
+                    this.showFloatingText('CATNIP DASH!', x, y, '#a2d149');
+                    
+                    setTimeout(() => {
+                        this.speed -= 200;
+                        this.isInvincible = false;
+                        document.getElementById('mg-cat').style.filter = '';
+                    }, 3000);
+                }
+            },
+            
+            showFloatingText(text, x, y, color) {
+                const fl = document.createElement('div');
+                fl.className = 'mg-score-float';
+                fl.innerText = text;
+                fl.style.left = `${x}px`;
+                fl.style.bottom = `calc(20% + ${y + 50}px)`;
+                fl.style.color = color;
+                document.getElementById('mg-world').appendChild(fl);
+                setTimeout(() => fl.remove(), 1000);
+            },
+            
+            checkCollision(a, b) {
+                return a.x < b.x + b.w && a.x + a.w > b.x && a.y < b.y + b.h && a.y + a.h > b.y;
+            },
+            
+            spawnEntity() {
+                const rand = Math.random();
+                let type = 'dog_small';
+                
+                if (this.level >= 2 && rand > 0.6) type = 'dog_angry';
+                if (this.level >= 3 && rand > 0.8) type = 'dog_big';
+                if (this.level >= 4 && rand > 0.9) type = 'dog_pack';
+                if (rand < 0.1) type = 'yarn';
+                if (rand < 0.02) type = 'catnip';
+                
+                if (this.level === 6 && this.levelTimer > this.levelDurations[5] - 6000 && !this.bossSpawned) {
+                    type = 'dog_boss';
+                    this.bossSpawned = true;
+                }
+                
+                if (this.bossSpawned && type !== 'dog_boss') return; // Stop spawning normal enemies during boss
+                
+                const el = document.createElement('div');
+                el.className = `mg-entity mg-${type}`;
+                el.innerHTML = this.getEntitySVG(type);
+                el.style.left = '100vw';
+                
+                let w = 60, h = 40, isEnemy = true, y = 0;
+                
+                if (type === 'dog_angry') { w = 65; h = 45; }
+                if (type === 'dog_big') { w = 90; h = 70; }
+                if (type === 'dog_pack') { w = 130; h = 40; }
+                if (type === 'dog_boss') { w = 150; h = 100; }
+                
+                if (type === 'yarn') { w = 30; h = 30; isEnemy = false; y = 30 + Math.random() * 80; }
+                if (type === 'catnip') { w = 30; h = 30; isEnemy = false; y = 30 + Math.random() * 80; }
+                
+                el.style.bottom = `calc(20% + ${y}px)`;
+                document.getElementById('mg-entities').appendChild(el);
+                
+                this.entities.push({ el, type, isEnemy, x: window.innerWidth, y, w, h, markedForDeletion: false });
+            },
+            
+            getEntitySVG(type) {
+                if (type.startsWith('dog')) {
+                    let color = type === 'dog_angry' ? '#d32f2f' : '#8c6148';
+                    let size = 1;
+                    let text = '';
+                    
+                    if (type === 'dog_big') { size = 1.5; color = '#5d4037'; }
+                    if (type === 'dog_pack') {
+                        // Return 3 small dogs
+                        return `
+                        <svg viewBox="0 0 150 100" width="100%" height="100%" style="overflow:visible;">
+                            <g transform="translate(0, 0)">
+                                <rect x="20" y="40" width="60" height="40" rx="10" fill="${color}"/>
+                                <circle cx="20" cy="45" r="15" fill="${color}"/>
+                                <polygon points="10,35 0,15 25,25" fill="#3e2723"/><polygon points="30,35 40,15 20,25" fill="#3e2723"/>
+                                <circle cx="15" cy="40" r="3" fill="#fff"/><circle cx="25" cy="40" r="3" fill="#fff"/>
+                                <rect x="25" y="70" width="8" height="20" rx="4" fill="#3e2723"/><rect x="65" y="70" width="8" height="20" rx="4" fill="#3e2723"/>
+                            </g>
+                            <g transform="translate(60, 10)">
+                                <rect x="20" y="40" width="60" height="40" rx="10" fill="#5d4037"/>
+                                <circle cx="20" cy="45" r="15" fill="#5d4037"/>
+                                <polygon points="10,35 0,15 25,25" fill="#3e2723"/><polygon points="30,35 40,15 20,25" fill="#3e2723"/>
+                                <circle cx="15" cy="40" r="3" fill="#fff"/><circle cx="25" cy="40" r="3" fill="#fff"/>
+                                <rect x="25" y="70" width="8" height="20" rx="4" fill="#3e2723"/><rect x="65" y="70" width="8" height="20" rx="4" fill="#3e2723"/>
+                            </g>
+                        </svg>`;
+                    }
+                    if (type === 'dog_boss') { 
+                        color = '#111'; size = 2.2; 
+                        text = '<text x="-10" y="10" fill="#ff3333" font-weight="bold" font-family="Quicksand" font-size="12">FINAL DEADLINE</text>';
+                    }
+                    
+                    return `${text}<svg viewBox="0 0 100 100" width="100%" height="100%" style="transform: scale(${size}); transform-origin: bottom left; overflow:visible;">
+                        <rect x="20" y="40" width="60" height="40" rx="10" fill="${color}"/>
+                        <circle cx="20" cy="45" r="15" fill="${color}"/> <!-- Head facing left -->
+                        <polygon points="10,35 0,15 25,25" fill="#3e2723"/>
+                        <polygon points="30,35 40,15 20,25" fill="#3e2723"/>
+                        <!-- eyes -->
+                        <circle cx="15" cy="40" r="3" fill="${type==='dog_angry' || type==='dog_boss' ? 'red' : 'white'}"/>
+                        <circle cx="25" cy="40" r="3" fill="${type==='dog_angry' || type==='dog_boss' ? 'red' : 'white'}"/>
+                        <rect x="25" y="70" width="8" height="20" rx="4" fill="#3e2723"/>
+                        <rect x="65" y="70" width="8" height="20" rx="4" fill="#3e2723"/>
+                        <path d="M 80 50 Q 95 40 90 20" fill="none" stroke="${color}" stroke-width="8" stroke-linecap="round"/>
+                    </svg>`;
+                }
+                if (type === 'yarn') {
+                    return `<svg viewBox="0 0 100 100" width="100%" height="100%">
+                        <circle cx="50" cy="50" r="40" fill="var(--primary-color)"/>
+                        <path d="M 20 50 Q 50 20 80 50 M 30 70 Q 50 40 70 70 M 50 10 Q 30 50 50 90" fill="none" stroke="rgba(255,255,255,0.4)" stroke-width="6" stroke-linecap="round"/>
+                    </svg>`;
+                }
+                if (type === 'catnip') {
+                    return `<svg viewBox="0 0 100 100" width="100%" height="100%">
+                        <path d="M 50 90 C 10 50, 20 10, 50 10 C 80 10, 90 50, 50 90 Z" fill="#a2d149"/>
+                        <path d="M 50 85 L 50 20" stroke="#558b2f" stroke-width="4" stroke-linecap="round"/>
+                    </svg>`;
+                }
+            },
+            
+            nextLevel() {
+                this.isPlaying = false;
+                this.level++;
+                this.levelTimer = 0;
+                
+                const title = document.getElementById('mg-level-title');
+                title.innerHTML = `LEVEL COMPLETE 🐾<br><span style="color:white; font-size:1.5rem;">${this.levelNames[this.level-1]} UNLOCKED!</span>`;
+                this.showScreen('mg-level-screen');
+                
+                this.speed += 50; 
+                document.getElementById('mg-bg').style.background = this.bgColors[this.level-1];
+                document.getElementById('mg-floor').style.background = this.floorColors[this.level-1];
+                
+                setTimeout(() => {
+                    this.hideScreens();
+                    this.isPlaying = true;
+                    this.lastTime = performance.now();
+                    requestAnimationFrame((t) => this.update(t));
+                }, 2500);
+            },
+            
+            gameOver() {
+                this.isPlaying = false;
+                document.getElementById('mg-cat').className = 'mg-crouch'; // Sad flat cat
+                this.showScreen('mg-gameover-screen');
+            },
+            
+            victory() {
+                this.isPlaying = false;
+                this.entities.forEach(e => e.el.remove());
+                this.entities = [];
+                document.getElementById('mg-cat').className = 'mg-run'; 
+                this.showScreen('mg-victory-screen');
+            },
+            
+            quit() {
+                this.isActive = false;
+                this.isPlaying = false;
+                const overlay = document.getElementById('mini-game-overlay');
+                overlay.style.opacity = '0';
+                
+                setTimeout(() => {
+                    overlay.style.display = 'none';
+                    this.hideScreens();
+                }, 800);
+            },
+            
+            updateHUD() {
+                document.getElementById('mg-lives-disp').innerText = `🐾 LIVES: ${'❤️'.repeat(this.lives)}`;
+                document.getElementById('mg-score-disp').innerText = `SCORE: ${Math.floor(this.score).toString().padStart(6, '0')}`;
+                document.getElementById('mg-level-disp').innerText = `LEVEL: 0${this.level}`;
+            },
+            
+            showScreen(id) {
+                this.hideScreens();
+                const screen = document.getElementById(id);
+                if (screen) {
+                    screen.classList.add('active');
+                    screen.style.display = 'flex'; // Explicitly enforce visibility
+                }
+            },
+            
+            hideScreens() {
+                document.querySelectorAll('.mg-screen').forEach(s => {
+                    s.classList.remove('active');
+                    s.style.display = 'none'; // Explicitly enforce hiding
+                });
+            },
+            
+            bindControls() {
+                // Remove listeners if already bound
+                if (this.controlsBound) return;
+                this.controlsBound = true;
+                
+                window.addEventListener('keydown', (e) => {
+                    if (!this.isActive || !this.isPlaying) return;
+                    if (e.code === 'Space' || e.code === 'ArrowUp') { e.preventDefault(); this.jump(); }
+                    if (e.code === 'ArrowDown') { e.preventDefault(); this.crouch(); }
+                });
+                
+                window.addEventListener('keyup', (e) => {
+                    if (!this.isActive || !this.isPlaying) return;
+                    if (e.code === 'ArrowDown') { e.preventDefault(); this.unCrouch(); }
+                });
+                
+                const overlay = document.getElementById('mini-game-overlay');
+                let touchStartY = 0;
+                
+                overlay.addEventListener('touchstart', (e) => {
+                    if (!this.isActive || !this.isPlaying) return;
+                    touchStartY = e.touches[0].clientY;
+                });
+                
+                overlay.addEventListener('touchend', (e) => {
+                    if (!this.isActive || !this.isPlaying) return;
+                    let dy = e.changedTouches[0].clientY - touchStartY;
+                    if (dy > 50) {
+                        this.crouch();
+                        setTimeout(() => this.unCrouch(), 600); // Auto un-crouch on mobile
+                    } else {
+                        this.jump();
+                    }
+                });
+            }
+        };
+
         window.addEventListener('DOMContentLoaded', () => { 
             IntroController.init(); 
             Cat.init();
@@ -4752,6 +5505,7 @@
             CreativeCornerController.init();
             ContactController.init();
             HeroTextController.init();
+            MiniGame.init(); // BUG #2 FIX: Now initializes MiniGame
         });
     </script>
 </body>
