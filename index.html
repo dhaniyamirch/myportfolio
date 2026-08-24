@@ -715,14 +715,62 @@
         .project-img { width: 100%; height: 150px; background: var(--bg-color); border-radius: 16px; margin-bottom: 1rem; display: flex; align-items: center; justify-content: center; color: var(--text-muted); border: 2px dashed var(--border-color); font-weight: 600; overflow: hidden; }
         .project-img img { width: 100%; height: 100%; object-fit: contain; display: block; }
         .project-img.has-image { border-style: solid; border-color: var(--surface-color-light); }
-        .deployment-card { padding: 1.25rem; gap: 0.25rem; overflow: hidden; }
+        .deployment-card { padding: 0; gap: 0; overflow: hidden; }
+        .project-scene { height: 245px; flex: 0 0 245px; position: relative; overflow: hidden; border-radius: 22px 22px 0 0; }
+        .project-scene svg { display: block; width: 100%; height: 100%; }
+        .project-info { padding: 0.85rem 1.15rem 1rem; display: flex; flex: 1; min-height: 0; flex-direction: column; }
         .deployment-card h3 { font-size: 1.15rem; line-height: 1.25; }
-        .deployment-card p { font-size: 0.9rem; margin-top: 0.4rem; color: var(--text-muted); line-height: 1.45; }
+        .deployment-card p { font-size: 0.88rem; margin-top: 0.35rem; color: var(--text-muted); line-height: 1.4; }
         .project-number { color: var(--secondary-color); font-family: 'JetBrains Mono', monospace; font-size: 0.75rem; font-weight: 700; letter-spacing: 0; }
         .project-tags { display: flex; flex-wrap: wrap; gap: 0.35rem; margin-top: auto; padding-top: 0.7rem; }
         .project-tags .tag { margin: 0; padding: 0.25rem 0.55rem; font-size: 0.7rem; }
+        .project-evidence { margin-top: 0.55rem; }
+        .project-evidence button { background: transparent; color: var(--accent-color); border: 1px solid currentColor; border-radius: 18px; padding: 0.3rem 0.65rem; font: 700 0.72rem 'Quicksand', sans-serif; cursor: pointer; }
+        .project-evidence button:hover { color: var(--primary-color); }
+        #project-lightbox { position: fixed; inset: 0; display: none; align-items: center; justify-content: center; padding: 1.5rem; background: rgba(20, 19, 26, 0.86); backdrop-filter: blur(8px); z-index: 60000; }
+        #project-lightbox.open { display: flex; }
+        .project-lightbox-panel { position: relative; width: min(760px, 100%); max-height: 90vh; padding: 1.25rem; background: var(--surface-color); border: 2px solid var(--surface-color-light); border-radius: var(--border-radius); box-shadow: 0 20px 60px rgba(0,0,0,.5); }
+        #project-lightbox-image { display: block; width: 100%; max-height: 75vh; object-fit: contain; border-radius: 12px; }
+        #project-lightbox-empty { display: none; padding: 5rem 1rem; color: var(--text-muted); text-align: center; font-weight: 700; }
+        #project-lightbox-close { position: absolute; top: 0.75rem; right: 0.75rem; width: 2.25rem; height: 2.25rem; border: 0; border-radius: 50%; background: var(--primary-color); color: var(--bg-color); font-size: 1.25rem; font-weight: 800; cursor: pointer; }
 
-        .carousel-container { position: relative; width: 100%; max-width: 500px; height: 380px; margin: 0 auto; overflow: hidden; border-radius: var(--border-radius); }
+        .scene-eeg { background: #242942; }
+        .scene-beach { background: #8fc9db; }
+        .scene-robotics { background: #202832; }
+        .scene-label { font: 700 10px 'JetBrains Mono', monospace; letter-spacing: 0.5px; opacity: 0.75; }
+        .eeg-wave { animation: eeg-wave-shift 2.4s linear infinite; transform-origin: center; }
+        .eeg-led { animation: led-blink 1.8s ease-in-out infinite; }
+        .eeg-wire { animation: wire-drift 3s ease-in-out infinite alternate; transform-origin: center; }
+        .eeg-cat-body { animation: eeg-breathe 3s ease-in-out infinite; transform-origin: 265px 205px; }
+        .eeg-cat-ear { animation: ear-twitch 4s ease-in-out infinite; transform-origin: center; }
+        .scene-beach .wave { animation: beach-wave 3s ease-in-out infinite alternate; }
+        .scene-beach .cloud { animation: cloud-drift 12s linear infinite alternate; }
+        .explorer-tail { animation: explorer-tail-wag 2.5s ease-in-out infinite alternate; transform-origin: 210px 206px; }
+        .gps-pulse { animation: gps-pulse 1.8s ease-out infinite; transform-origin: center; }
+        .grain-sparkle { animation: grain-sparkle 2s ease-in-out infinite alternate; }
+        .robot-arm { animation: robot-calibrate 5s ease-in-out infinite; transform-origin: 430px 171px; }
+        .robot-servo { animation: servo-glow 2s ease-in-out infinite; }
+        .robot-cat-tail { animation: robot-tail 3s ease-in-out infinite alternate; transform-origin: 190px 198px; }
+        .robot-paw { animation: robot-wave 3.2s ease-in-out infinite; transform-origin: 245px 142px; }
+        .gesture-check { animation: gesture-pop 4s ease-in-out infinite; transform-origin: center; }
+        @keyframes eeg-wave-shift { 0% { transform: translateX(0); } 100% { transform: translateX(-18px); } }
+        @keyframes led-blink { 0%, 42%, 100% { opacity: 0.35; } 50%, 70% { opacity: 1; } }
+        @keyframes wire-drift { from { transform: rotate(-1deg); } to { transform: rotate(2deg); } }
+        @keyframes eeg-breathe { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-3px); } }
+        @keyframes ear-twitch { 0%, 88%, 100% { transform: rotate(0); } 92% { transform: rotate(-7deg); } }
+        @keyframes beach-wave { from { transform: translateX(0); } to { transform: translateX(12px); } }
+        @keyframes cloud-drift { from { transform: translateX(-8px); } to { transform: translateX(14px); } }
+        @keyframes explorer-tail-wag { from { transform: rotate(-5deg); } to { transform: rotate(9deg); } }
+        @keyframes gps-pulse { 0%, 100% { transform: scale(0.8); opacity: 0.35; } 50% { transform: scale(1.18); opacity: 0.9; } }
+        @keyframes grain-sparkle { from { opacity: 0.25; } to { opacity: 1; } }
+        @keyframes robot-calibrate { 0%, 100% { transform: rotate(-2deg); } 50% { transform: rotate(4deg); } }
+        @keyframes servo-glow { 0%, 100% { fill: #a7d1bb; } 50% { fill: #e8c6c8; } }
+        @keyframes robot-tail { from { transform: rotate(-4deg); } to { transform: rotate(8deg); } }
+        @keyframes robot-wave { 0%, 100% { transform: rotate(-5deg); } 50% { transform: rotate(12deg); } }
+        @keyframes gesture-pop { 0%, 75%, 100% { opacity: 0; transform: scale(0.7); } 82%, 92% { opacity: 1; transform: scale(1); } }
+        @media (prefers-reduced-motion: reduce) { .project-scene * { animation: none !important; } }
+
+        .carousel-container { position: relative; width: 100%; max-width: 500px; height: 520px; margin: 0 auto; overflow: hidden; border-radius: var(--border-radius); }
         .carousel-slide { position: absolute; top: 0; left: 0; width: 100%; height: 100%; transition: transform 0.6s cubic-bezier(0.34, 1.56, 0.64, 1), opacity 0.6s; opacity: 0; pointer-events: none; transform: translateX(120%); }
         .carousel-slide.active { opacity: 1; pointer-events: auto; transform: translateX(0); }
         .carousel-controls { display: flex; justify-content: space-between; width: 100%; max-width: 500px; margin: 1.5rem auto 0; opacity: 0; pointer-events: none; transition: opacity 0.8s ease; position: relative; z-index: 40; }
@@ -1032,6 +1080,9 @@
             .hero-layout { flex-direction: column; text-align: center; }
             .hero-cat-container { min-height: 350px; }
             #hero-cat-wrapper { height: 350px; }
+            .carousel-container { height: 540px; }
+            .project-scene { height: 235px; flex-basis: 235px; }
+            .project-info { padding: 0.75rem 1rem 0.9rem; }
             .timeline-item { width: 85%; }
             .timeline-item.left, .timeline-item.right { margin: 0 auto 2rem auto; transform: translateY(30px); text-align: center; }
             .timeline-item.revealed { transform: translateY(0); }
@@ -2404,35 +2455,32 @@
                     <div class="carousel-container">
                         <div class="carousel-slide active">
                             <div class="cat-platform deployment-card" style="height: 100%; display: flex; flex-direction: column;">
-                                <span class="project-number">PROJECT 01</span>
-                                <div class="project-img image-coming-soon" data-image-path="PROJECT_1_IMAGE_PATH">Image coming soon</div>
-                                <h3>Schizophrenia Classification from EEG</h3>
-                                <p>A machine-learning pipeline for schizophrenia classification using multi-channel EEG features from regional brain analysis.</p>
-                                <div class="project-tags">
-                                    <span class="tag">EEG</span><span class="tag">Machine Learning</span><span class="tag">Python</span><span class="tag">Signal Processing</span><span class="tag">Feature Extraction</span>
+                                <div class="project-scene scene-eeg">
+                                    <svg viewBox="0 0 600 260" role="img" aria-label="Cozy EEG research lab with a cat researcher">
+                                        <rect width="600" height="260" fill="#242942"/><circle cx="55" cy="35" r="2" fill="#a7d1bb"/><circle cx="520" cy="28" r="2" fill="#e8c6c8"/><circle cx="570" cy="80" r="1.5" fill="#a7d1bb"/>
+                                        <rect x="22" y="28" width="205" height="116" rx="10" fill="#313752" stroke="#8d8eb6" stroke-width="3"/><rect x="36" y="42" width="177" height="82" rx="5" fill="#182237" stroke="#68769b"/>
+                                        <path class="eeg-wave" d="M28 88 H52 L60 88 68 62 76 108 85 79 94 88 111 88 119 54 128 111 137 78 147 88 H164 L172 68 181 98 190 81 202 88 H225" fill="none" stroke="#9ddad5" stroke-width="3" stroke-linecap="round"/>
+                                        <text x="43" y="58" class="scene-label" fill="#e8c6c8">EEG / CH 01</text><text x="150" y="113" class="scene-label" fill="#a7d1bb">ALPHA</text>
+                                        <rect x="246" y="37" width="78" height="117" rx="8" fill="#34364b" stroke="#e8c6c8" stroke-width="3"/><circle class="eeg-led" cx="285" cy="57" r="6" fill="#a7d1bb"/><path d="M263 91h44M263 103h44M263 115h27" stroke="#8d8eb6" stroke-width="4" stroke-linecap="round"/><text x="259" y="140" class="scene-label" fill="#e8c6c8">CH 02</text>
+                                        <path d="M0 188 Q130 178 270 188 T600 188 V260 H0Z" fill="#1b2034"/><path d="M40 187 H555" stroke="#8e91ad" stroke-width="5"/><path d="M90 187v35M510 187v35" stroke="#555b7c" stroke-width="6"/>
+                                        <g class="eeg-wire" fill="none" stroke="#d68b9a" stroke-width="2"><path d="M264 119 Q252 157 276 190"/><path d="M280 120 Q280 159 289 190"/><path d="M296 120 Q309 160 301 190"/></g>
+                                        <g class="eeg-cat-body"><ellipse cx="280" cy="219" rx="58" ry="27" fill="#eee9e4"/><circle cx="280" cy="178" r="34" fill="#f5f1ec"/><path class="eeg-cat-ear" d="M252 158l5-28 22 23M285 153l22-24 4 31" fill="#f5f1ec" stroke="#d68b9a" stroke-width="4"/><path d="M258 167q10-9 20 0M284 167q10-9 20 0" fill="none" stroke="#30344d" stroke-width="3"/><circle cx="268" cy="169" r="3" fill="#30344d"/><circle cx="294" cy="169" r="3" fill="#30344d"/><path d="M278 181q2 3 5 0M276 187q5 5 10 0" fill="none" stroke="#d68b9a" stroke-width="2"/><path d="M249 159 Q280 133 311 160 L306 173 Q280 157 254 173Z" fill="#a7d1bb" stroke="#e8c6c8" stroke-width="3"/><circle cx="265" cy="158" r="4" fill="#e8c6c8"/><circle cx="280" cy="153" r="4" fill="#e8c6c8"/><circle cx="296" cy="158" r="4" fill="#e8c6c8"/><path d="M267 205q-18 8-25 22M302 205q17 8 24 22" stroke="#f5f1ec" stroke-width="11" stroke-linecap="round"/><rect x="335" y="204" width="90" height="24" rx="4" fill="#34364b"/><path d="M345 212h8m7 0h8m7 0h8m7 0h8m7 0h8" stroke="#a7d1bb" stroke-width="3"/></g>
+                                        <text x="424" y="45" class="scene-label" fill="#e8c6c8">DELTA</text><text x="454" y="66" class="scene-label" fill="#a7d1bb">BETA</text>
+                                    </svg>
                                 </div>
+                                <div class="project-info"><span class="project-number">PROJECT 01</span><h3>Schizophrenia Classification from EEG</h3><p>Machine-learning pipeline for schizophrenia classification using multi-channel EEG features from regional brain analysis.</p><div class="project-tags"><span class="tag">EEG</span><span class="tag">Machine Learning</span><span class="tag">Python</span><span class="tag">Signal Processing</span></div><div class="project-evidence"><button type="button" data-project-image="PROJECT_1_IMAGE_PATH">View actual project</button></div></div>
                             </div>
                         </div>
                         <div class="carousel-slide">
                             <div class="cat-platform deployment-card" style="height: 100%; display: flex; flex-direction: column;">
-                                <span class="project-number">PROJECT 02</span>
-                                <div class="project-img image-coming-soon" data-image-path="PROJECT_2_IMAGE_PATH">Image coming soon</div>
-                                <h3>Sand Grain Vision &amp; Geolocation System</h3>
-                                <p>A Raspberry Pi vision system that analyzes sand grains, estimates dimensions, and links results to GPS locations through Flask.</p>
-                                <div class="project-tags">
-                                    <span class="tag">Raspberry Pi</span><span class="tag">Computer Vision</span><span class="tag">OpenCV</span><span class="tag">GPS</span><span class="tag">Flask</span><span class="tag">Image Processing</span>
-                                </div>
+                                <div class="project-scene scene-beach"><svg viewBox="0 0 600 260" role="img" aria-label="Sunny beach research scene with an explorer cat"><rect width="600" height="260" fill="#8fc9db"/><circle cx="510" cy="48" r="25" fill="#ffe6a8" opacity=".9"/><g class="cloud" fill="#fdfaf5" opacity=".75"><ellipse cx="112" cy="45" rx="42" ry="14"/><ellipse cx="147" cy="42" rx="28" ry="18"/></g><path d="M0 125 Q100 112 200 126 T400 124 T600 126 V175 H0Z" fill="#4c9db5"/><path class="wave" d="M0 140 Q70 126 140 140 T280 140 T420 140 T600 140" fill="none" stroke="#c5edf0" stroke-width="5"/><path d="M0 164 Q120 150 240 168 T480 162 T600 168 V260 H0Z" fill="#d9b887"/><path d="M0 205 Q140 190 280 210 T600 205" fill="none" stroke="#c3946d" stroke-width="3" opacity=".7"/><path d="M35 208l12-21 7 20M50 210l12-26 7 25M550 200l-10-20-8 20" stroke="#739c78" stroke-width="4" fill="none"/><g class="explorer-tail"><path d="M190 222 Q140 230 163 188 Q176 170 190 190" fill="none" stroke="#d98d4d" stroke-width="16" stroke-linecap="round"/></g><g fill="#e9a45e" stroke="#754f3d" stroke-width="2"><ellipse cx="225" cy="215" rx="48" ry="25"/><circle cx="215" cy="181" r="30"/><path d="M190 164l5-28 21 22M234 158l23-20-4 31"/></g><path d="M196 169q8-7 16 0M220 169q8-7 16 0" stroke="#3c4651" stroke-width="3" fill="none"/><circle cx="207" cy="171" r="3" fill="#3c4651"/><circle cx="230" cy="171" r="3" fill="#3c4651"/><path d="M190 157 Q216 134 246 155 L242 164 Q216 151 194 166Z" fill="#f0c77e" stroke="#754f3d" stroke-width="3"/><path d="M236 198q20 7 26 22" stroke="#d98d4d" stroke-width="10" stroke-linecap="round"/><rect x="172" y="198" width="25" height="32" rx="8" fill="#739c78"/><circle cx="217" cy="184" r="3" fill="#754f3d"/><g fill="#c79c6a" stroke="#8c654e"><ellipse cx="335" cy="225" rx="56" ry="15"/><ellipse cx="350" cy="215" rx="28" ry="8"/></g><g fill="#e7c28c" class="grain-sparkle"><circle cx="338" cy="216" r="3"/><circle cx="352" cy="222" r="2"/><circle cx="365" cy="214" r="3"/></g><g transform="translate(408 145)"><rect x="0" y="0" width="55" height="38" rx="6" fill="#d9e1dc" stroke="#3d6873" stroke-width="3"/><circle cx="27" cy="18" r="11" fill="#263c4e"/><circle cx="27" cy="18" r="4" fill="#e8c6c8" class="eeg-led"/><path d="M10 38l-9 35M45 38l9 35" stroke="#3d6873" stroke-width="5"/><path d="M27 38v32" stroke="#3d6873" stroke-width="4"/></g><g class="gps-pulse" fill="none" stroke="#e8c6c8" stroke-width="3"><circle cx="510" cy="188" r="13"/><circle cx="510" cy="188" r="23" opacity=".5"/></g><path d="M510 174v-24" stroke="#e8c6c8" stroke-width="3"/><text x="483" y="143" class="scene-label" fill="#fff">GPS</text><text x="410" y="137" class="scene-label" fill="#fff">IMAGE</text><text x="331" y="199" class="scene-label" fill="#754f3d">GRAIN / SIZE</text></svg></div>
+                                <div class="project-info"><span class="project-number">PROJECT 02</span><h3>Sand Grain Vision &amp; Geolocation System</h3><p>Computer-vision sand-grain analysis with image processing and geographical location tagging.</p><div class="project-tags"><span class="tag">Raspberry Pi</span><span class="tag">Computer Vision</span><span class="tag">GPS</span><span class="tag">Flask</span></div></div>
                             </div>
                         </div>
                         <div class="carousel-slide">
                             <div class="cat-platform deployment-card" style="height: 100%; display: flex; flex-direction: column;">
-                                <span class="project-number">PROJECT 03</span>
-                                <div class="project-img image-coming-soon" data-image-path="PROJECT_3_IMAGE_PATH">Image coming soon</div>
-                                <h3>Vision-Controlled Robotic Arm</h3>
-                                <p>A real-time gesture system that maps MediaPipe hand landmarks to serial commands for a servo-driven robotic arm.</p>
-                                <div class="project-tags">
-                                    <span class="tag">MediaPipe</span><span class="tag">Computer Vision</span><span class="tag">Machine Learning</span><span class="tag">Robotics</span><span class="tag">Servo Control</span><span class="tag">Serial Communication</span>
-                                </div>
+                                <div class="project-scene scene-robotics"><svg viewBox="0 0 600 260" role="img" aria-label="Robotics workshop with an engineer cat controlling a robotic arm"><rect width="600" height="260" fill="#202832"/><path d="M0 190 H600 V260 H0Z" fill="#303d4b"/><path d="M0 190H600" stroke="#8da0ae" stroke-width="4"/><circle cx="84" cy="48" r="26" fill="#ffe2a6" opacity=".7"/><path d="M74 48h20M84 38v20" stroke="#fff2c7" stroke-width="3"/><rect x="38" y="72" width="92" height="48" rx="5" fill="#17202a" stroke="#6f8799" stroke-width="3"/><circle cx="84" cy="96" r="13" fill="#263c4e"/><circle cx="84" cy="96" r="5" fill="#e8c6c8" class="eeg-led"/><text x="44" y="137" class="scene-label" fill="#a7d1bb">CAMERA</text><path d="M84 120v30" stroke="#6f8799" stroke-width="4"/><g class="robot-arm"><path d="M430 185 L430 142 L485 110 L530 140 L545 185" fill="none" stroke="#aebbc1" stroke-width="18" stroke-linecap="round" stroke-linejoin="round"/><circle class="robot-servo" cx="430" cy="185" r="15"/><circle class="robot-servo" cx="430" cy="142" r="12"/><circle class="robot-servo" cx="485" cy="110" r="12"/><circle class="robot-servo" cx="530" cy="140" r="12"/><path d="M545 185l-12 22M545 185l14 22" stroke="#aebbc1" stroke-width="7" stroke-linecap="round"/><rect x="522" y="207" width="45" height="8" rx="4" fill="#e8c6c8"/></g><text x="448" y="83" class="scene-label" fill="#a7d1bb">SERVO ARM</text><g class="robot-cat-tail"><path d="M204 224 Q165 230 178 190 Q188 174 204 192" fill="none" stroke="#687887" stroke-width="15" stroke-linecap="round"/></g><g fill="#687887" stroke="#131a22" stroke-width="3"><ellipse cx="245" cy="220" rx="52" ry="26"/><circle cx="248" cy="181" r="32"/><path d="M222 162l-1-30 25 23M270 157l24-25-2 34"/></g><path d="M229 177h16M254 177h16" stroke="#a7d1bb" stroke-width="7"/><circle cx="237" cy="178" r="7" fill="#27323a" stroke="#e8c6c8" stroke-width="2"/><circle cx="263" cy="178" r="7" fill="#27323a" stroke="#e8c6c8" stroke-width="2"/><path d="M246 190q5 5 10 0" fill="none" stroke="#e8c6c8" stroke-width="2"/><path class="robot-paw" d="M274 203 Q292 173 306 153" fill="none" stroke="#687887" stroke-width="13" stroke-linecap="round"/><path d="M302 153l12-8m-12 8 2-14m10 14 8-7" stroke="#e8c6c8" stroke-width="4" stroke-linecap="round"/><rect x="160" y="205" width="58" height="28" rx="4" fill="#253844" stroke="#a7d1bb" stroke-width="2"/><circle cx="175" cy="218" r="4" fill="#a7d1bb" class="robot-servo"/><path d="M185 218h22" stroke="#a7d1bb" stroke-width="3"/><g class="gesture-check"><rect x="315" y="50" width="92" height="26" rx="13" fill="#a7d1bb"/><text x="331" y="67" class="scene-label" fill="#202832">✓ GESTURE</text></g><text x="208" y="143" class="scene-label" fill="#e8c6c8">HAND → CAMERA</text></svg></div>
+                                <div class="project-info"><span class="project-number">PROJECT 03</span><h3>Vision-Controlled Robotic Arm</h3><p>Real-time hand gesture recognition used to control a multi-degree-of-freedom robotic arm.</p><div class="project-tags"><span class="tag">MediaPipe</span><span class="tag">Computer Vision</span><span class="tag">Robotics</span><span class="tag">Servo Control</span></div></div>
                             </div>
                         </div>
                     </div>
@@ -2440,6 +2488,14 @@
                     <div id="carousel-controls" class="carousel-controls">
                         <button id="btn-prev-proj" class="btn-nav">← Prev</button>
                         <button id="btn-next-proj" class="btn-nav">Next →</button>
+                    </div>
+
+                    <div id="project-lightbox" aria-hidden="true">
+                        <div class="project-lightbox-panel" role="dialog" aria-modal="true" aria-label="Actual project image">
+                            <button id="project-lightbox-close" type="button" aria-label="Close project image">×</button>
+                            <img id="project-lightbox-image" alt="Actual project evidence">
+                            <div id="project-lightbox-empty">Project image coming soon</div>
+                        </div>
                     </div>
 
                     <div id="guardian-cat-overlay" class="guardian-cat-overlay">
@@ -4906,6 +4962,37 @@
                     PROJECT_2_IMAGE_PATH,
                     PROJECT_3_IMAGE_PATH
                 };
+                const lightbox = document.getElementById('project-lightbox');
+                const lightboxImage = document.getElementById('project-lightbox-image');
+                const lightboxEmpty = document.getElementById('project-lightbox-empty');
+                const closeLightbox = () => {
+                    lightbox.classList.remove('open');
+                    lightbox.setAttribute('aria-hidden', 'true');
+                    lightboxImage.removeAttribute('src');
+                };
+                document.querySelectorAll('[data-project-image]').forEach(button => {
+                    button.addEventListener('click', () => {
+                        const imagePath = imagePaths[button.dataset.projectImage];
+                        lightbox.classList.add('open');
+                        lightbox.setAttribute('aria-hidden', 'false');
+                        lightboxEmpty.style.display = imagePath ? 'none' : 'block';
+                        lightboxImage.style.display = imagePath ? 'block' : 'none';
+                        if (imagePath) {
+                            lightboxImage.src = imagePath;
+                            lightboxImage.onerror = () => {
+                                lightboxImage.style.display = 'none';
+                                lightboxEmpty.style.display = 'block';
+                            };
+                        }
+                    });
+                });
+                document.getElementById('project-lightbox-close').addEventListener('click', closeLightbox);
+                lightbox.addEventListener('click', event => {
+                    if (event.target === lightbox) closeLightbox();
+                });
+                document.addEventListener('keydown', event => {
+                    if (event.key === 'Escape') closeLightbox();
+                });
                 document.querySelectorAll('.image-coming-soon').forEach(imageContainer => {
                     const imagePath = imagePaths[imageContainer.dataset.imagePath];
                     if (imagePath) {
