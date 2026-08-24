@@ -913,14 +913,16 @@
             z-index: 500; 
             overflow: visible;
         }
-        #cat { 
-            position: absolute; 
-            width: 60px; 
-            height: 50px; 
-            transform-origin: bottom center; 
-            will-change: transform; 
-            pointer-events: auto; 
-            z-index: 501; /* Ensure it stays above the game layer */
+        #cat {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 60px;
+            height: 50px;
+            transform-origin: bottom center;
+            will-change: transform;
+            pointer-events: auto;
+            z-index: 501;
         }
         
         .cat-walking #cat-leg-fl, .cat-running #cat-leg-fl { animation: walk-cycle 0.5s infinite alternate; }
@@ -3870,13 +3872,31 @@
         };
 
         const Cat = {
-            el: null, svg: null,
-            x: 0, y: 0, vx: 0, vy: 0,
-            targetX: null, targetY: null,
+            el: null,
+            svg: null,
+
+            x: 0,
+            y: 0,
+            vx: 0,
+            vy: 0,
+
+            targetX: null,
+            targetY: null,
+
             state: 'IDLE',
             currentPlatform: null,
-            landingTimer: null, jumpTimer: null,
+
+            landingTimer: null,
+            jumpTimer: null,
+
             returningHome: false,
+
+            _cachedNavAnchor: null,
+            _navAnchorDirty: true,
+
+            // NEW:
+            // true = cat is visually locked to the fixed navbar
+            navbarLocked: false,
             
             init() {
                 this.el = document.getElementById('cat');
@@ -3897,39 +3917,88 @@
             },
             
             getNavbarAnchor() {
-                const bed = document.querySelector('.cat-bed-visual');
-                const nav = document.getElementById('nav-shelf');
+                // SURGICAL FIX: Cache the anchor if resting to avoid DOM read jitter
+                if (
+                    this._cachedNavAnchor && 
+                    !this._navAnchorDirty && 
+                    (this.state === 'SLEEPING' || this.state === 'SITTING')
+                ) {
+                    // Update page coordinates dynamically from the stable screen coordinates
+                    this._cachedNavAnchor.pageX = this._cachedNavAnchor.screenX + window.scrollX;
+                    this._cachedNavAnchor.pageY = this._cachedNavAnchor.screenY + window.scrollY;
+                    return this._cachedNavAnchor;
+                }
 
-                if (!bed || !nav) return null;
+                const bed = document.querySelector('.cat-bed-visual');
+
+                if (!bed) return null;
 
                 const rect = bed.getBoundingClientRect();
 
-                return {
+                const anchor = {
+                    // VIEWPORT coordinates
                     screenX: rect.left + rect.width / 2,
                     screenY: rect.top - CAT_CONFIG.height,
 
+                    // PAGE coordinates
                     pageX: rect.left + rect.width / 2 + window.scrollX,
                     pageY: rect.top + window.scrollY - CAT_CONFIG.height
                 };
+
+                this._cachedNavAnchor = anchor;
+                this._navAnchorDirty = false;
+
+                return anchor;
             },
             
             syncWithNavbar() {
+                this._navAnchorDirty = true; // Force recalculation
                 const anchor = this.getNavbarAnchor();
-                if (!anchor) return;
-                
+
+                if (!anchor || !this.el) return;
+
+                // Lock cat to the fixed navbar
+                this.navbarLocked = true;
+
+                // Store PAGE coordinates internally
+                this.x = anchor.pageX;
                 this.y = anchor.pageY;
-                
-                if (this.state === 'SLEEPING' || this.state === 'SITTING') {
-                    if (this.targetX === null) {
-                        this.x = anchor.pageX; // Center on bed
-                    }
+
+                // IMPORTANT:
+                // Render using VIEWPORT coordinates because
+                // the cat is now position: fixed.
+                const scale = 0.75;
+
+                this.el.style.position = 'fixed';
+
+                this.el.style.transform =
+                    `translate3d(
+                        ${anchor.screenX - CAT_CONFIG.width / 2}px,
+                        ${anchor.screenY}px,
+                        0
+                    )`;
+
+                if (this.svg) {
+                    this.svg.style.transform =
+                        `scaleX(${this.facingRight ? -scale : scale}) scaleY(${scale})`;
                 }
-                
-                // Force a render immediately
-                const inNavbar = this.y <= window.scrollY + 120;
-                const scale = inNavbar ? 0.75 : 1;
-                this.svg.style.transform = `scaleX(${this.facingRight ? -scale : scale}) scaleY(${scale})`;
-                this.el.style.transform = `translate(${this.x - CAT_CONFIG.width/2}px, ${this.y}px)`;
+            },
+
+            unlockNavbar() {
+                if (!this.el || !this.navbarLocked) return;
+
+                this.navbarLocked = false;
+
+                // Convert the cat back to normal document positioning
+                this.el.style.position = 'absolute';
+
+                // Convert current page coordinates into normal game-layer coordinates
+                this.el.style.transform =
+                    `translate3d(
+                        ${this.x - CAT_CONFIG.width / 2}px,
+                        ${this.y}px,
+                        0
+                    )`;
             },
 
             findPlatformAtTarget(targetX, targetY) {
@@ -4039,9 +4108,46 @@
                     this.el.style.transform = `translate(${this.x - CAT_CONFIG.width/2}px, ${this.y}px)`;
                     return;
                 }
-                
+
+                // === SURGICAL JITTER FIX ===
+                // When resting on the navbar, bypass the physics engine entirely to prevent 
+                // floating-point velocity accumulation and sub-pixel collision jitter.
+                const isRestingOnNavbar = 
+                    this.currentPlatform && 
+                    this.currentPlatform.el && 
+                    this.currentPlatform.el.id === 'nav-shelf' &&
+                    (this.state === 'SLEEPING' || this.state === 'SITTING');
+
+                if (isRestingOnNavbar) {
+                    this.vx = 0;
+                    this.vy = 0;
+                    
+                    const anchor = this.getNavbarAnchor();
+                    if (anchor) {
+                        this.x = anchor.pageX;
+                        this.y = anchor.pageY;
+                        
+                        this.el.style.position = 'fixed';
+                        
+                        // Math.round() locks it to full pixels, destroying visual shimmer
+                        const screenX = Math.round(anchor.screenX - CAT_CONFIG.width / 2);
+                        const screenY = Math.round(anchor.screenY);
+                        
+                        this.el.style.transform = `translate3d(${screenX}px, ${screenY}px, 0)`;
+                        
+                        const scale = 0.75;
+                        this.svg.style.transform = `scaleX(${this.facingRight ? -scale : scale}) scaleY(${scale})`;
+                    }
+                    return; // Skip normal physics/collision loop
+                }
+                // ============================
+
                 let onGround = false;
+
+                const previousPlatform = this.currentPlatform;
+
                 this.currentPlatform = null;
+
                 const bottomY = this.y + CAT_CONFIG.height;
                 
                 // Collision Detection: Only check for platforms if we are moving downwards
@@ -4157,28 +4263,69 @@
                     }
                 }
 
-                // Apply final transforms & dynamically scale cat if it is in the navbar
-                if (this.facingRight === undefined) this.facingRight = false;
-                const inNavbar = this.y <= window.scrollY + 120; // Safe buffer for header zone
-                const scale = inNavbar ? 0.75 : 1;
-                
-                // --- NEW FIXED NAVBAR LOGIC ---
-                const isNavbarCat = this.currentPlatform && this.currentPlatform.el && this.currentPlatform.el.id === 'nav-shelf';
-                
-                if (isNavbarCat) {
-                    const anchor = this.getNavbarAnchor();
-                    if (anchor) {
-                        this.y = anchor.pageY;
-                        
-                        if ((this.state === 'SITTING' || this.state === 'SLEEPING') && this.targetX === null) {
-                            this.x = anchor.pageX;
-                        }
-                    }
+                // =====================================================
+                // FINAL CAT RENDERING
+                // =====================================================
+
+                if (this.facingRight === undefined) {
+                    this.facingRight = false;
                 }
-                // --- END NEW FIXED NAVBAR LOGIC ---
-                
-                this.svg.style.transform = `scaleX(${this.facingRight ? -scale : scale}) scaleY(${scale})`;
-                this.el.style.transform = `translate(${this.x - CAT_CONFIG.width/2}px, ${this.y}px)`;
+
+                const isNavbarCat =
+                    this.currentPlatform &&
+                    this.currentPlatform.el &&
+                    this.currentPlatform.el.id === 'nav-shelf';
+
+                if (isNavbarCat) {
+
+                    // ================================================
+                    // CAT IS ON FIXED NAVBAR (ACTIVE/IDLE)
+                    // ================================================
+
+                    const anchor = this.getNavbarAnchor();
+
+                    if (anchor) {
+
+                        // Keep the logical position in PAGE coordinates
+                        this.y = anchor.pageY;
+
+                        // Make the cat itself FIXED while on navbar
+                        this.el.style.position = 'fixed';
+
+                        // Render using viewport coordinates, ROUNDED to prevent sub-pixel jitter
+                        const screenX = Math.round(anchor.screenX - CAT_CONFIG.width / 2);
+                        const screenY = Math.round(anchor.screenY);
+
+                        this.el.style.transform =
+                            `translate3d(${screenX}px, ${screenY}px, 0)`;
+
+                        // Small navbar cat
+                        const scale = 0.75;
+
+                        this.svg.style.transform =
+                            `scaleX(${this.facingRight ? -scale : scale})
+                            scaleY(${scale})`;
+                    }
+
+                } else {
+
+                    // ================================================
+                    // NORMAL PAGE CAT
+                    // ================================================
+
+                    this.el.style.position = 'absolute';
+
+                    this.svg.style.transform =
+                        `scaleX(${this.facingRight ? -1 : 1})
+                        scaleY(1)`;
+
+                    // ROUND absolute coordinates to prevent sub-pixel jitter
+                    const absX = Math.round(this.x - CAT_CONFIG.width / 2);
+                    const absY = Math.round(this.y);
+
+                    this.el.style.transform =
+                        `translate3d(${absX}px, ${absY}px, 0)`;
+                }
             }
         };
 
@@ -4224,6 +4371,8 @@
                     this.resizeTimer = setTimeout(() => { 
                         PlatformManager.scan(); 
                         
+                        Cat._navAnchorDirty = true; // Force recalculation on resize
+                        
                         // Re-anchor if sitting/sleeping on the fixed navbar
                         if (Cat.currentPlatform && Cat.currentPlatform.el.id === 'nav-shelf') {
                             Cat.syncWithNavbar();
@@ -4243,9 +4392,6 @@
                     if (!ticking) {
                         ticking = true;
                         requestAnimationFrame(() => {
-                            if (Cat.currentPlatform && Cat.currentPlatform.el && Cat.currentPlatform.el.id === 'nav-shelf') {
-                                Cat.syncWithNavbar();
-                            }
                             ticking = false;
                         });
                     }
@@ -5631,3 +5777,4 @@
     </script>
 </body>
 </html>
+                                        
